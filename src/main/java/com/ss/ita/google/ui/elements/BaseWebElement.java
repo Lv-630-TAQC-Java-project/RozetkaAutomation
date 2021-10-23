@@ -32,4 +32,8 @@ public class BaseWebElement {
     public BaseWebElement(WebElement element) {
         this.webElement = element;
     }
+
+    public String getAttribute(String attribute){
+        return webElement.getAttribute(attribute);
+    }
 }
