@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 import static com.ss.ita.google.ui.locators.SearchResultPageLocator.*;
 
-public class SearchResultPage extends BasePage{
+public class SearchResultPage extends BasePage {
     private TextArea searchField;
     private Button searchButton;
 
@@ -18,6 +18,16 @@ public class SearchResultPage extends BasePage{
 
     public SearchResultPage(WebDriver driver) {
         super(driver);
+    }
+
+    public String getLinkText(int numberOfLink) {
+        return new SearchResultPage(driver)
+                .getLink(numberOfLink)
+                .getText();
+    }
+
+    public String getLinksColor() {
+        return driver.findElement(LINKS_LIST.getPath()).getAttribute("color");
     }
 
     public TextArea getSearchField() {
@@ -28,6 +38,11 @@ public class SearchResultPage extends BasePage{
     public Button getSearchButton() {
         if (searchButton == null) searchButton = new Button(driver, SEARCH_BUTTON);
         return searchButton;
+    }
+
+    public Link getLink(int numberOfLink){
+      return getResultLinks()
+                .get(numberOfLink);
     }
 
     public List<Link> getResultLinks() {
@@ -44,18 +59,18 @@ public class SearchResultPage extends BasePage{
         return this;
     }
 
-    public SearchResultPage clickSearch(){
+    public SearchResultPage clickSearch() {
         getSearchButton().clickButton();
         return new SearchResultPage(driver);
     }
 
-    public SearchResultPage search(String text){
+    public SearchResultPage search(String text) {
         return
                 setSearchText(text)
-                .clickSearch();
+                        .clickSearch();
     }
 
-    public SelectedWebSite goToLink(int index){
+    public SelectedWebSite goToLink(int index) {
         getResultLinks().get(index).click();
         return new SelectedWebSite(driver);
     }

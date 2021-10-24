@@ -13,16 +13,14 @@ import static org.testng.Assert.*;
 public class SearchTest extends TestRunner {
 
     @Test
-    public void firstTest(){
+    public void verifySearchTest() {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        String actual = new HomePage(driver)
-                .search("Funny kitten")
-                .getResultLinks()
-                .get(0)
-                .getText();
+        String firstLinkText=new HomePage(driver)
+                .search("funny kitten")
+                .getLinkText(0);
 
         String expected = "99% Lose this TRY NOT TO LAUGH Challenge";
-        Assert.assertEquals(actual, expected);
+        assertEquals(firstLinkText, expected);
     }
 }
