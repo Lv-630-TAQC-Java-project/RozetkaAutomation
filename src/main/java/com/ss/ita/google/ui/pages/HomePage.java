@@ -13,7 +13,6 @@ public class HomePage extends BasePage {
     private Button searchButton;
     private Link ruLanguage;
     private Link uaLanguage;
-    private Label languageTextArea;
 
     public HomePage(WebDriver driver) {
         super(driver);
