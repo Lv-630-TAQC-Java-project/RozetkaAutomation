@@ -8,11 +8,13 @@ import org.openqa.selenium.WebDriver;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.ss.ita.google.ui.locators.HomePageLocator.SEARCH_BUTTON;
 import static com.ss.ita.google.ui.locators.SearchResultPageLocator.*;
 
 public class SearchResultPage extends BasePage {
     private TextArea searchField;
     private Button searchButton;
+    private Link pageNine;
 
     private List<Link> resultLinks;
 
@@ -73,5 +75,12 @@ public class SearchResultPage extends BasePage {
     public SelectedWebSite goToLink(int index) {
         getResultLinks().get(index).click();
         return new SelectedWebSite(driver);
+    }
+
+    public Link getPageNine() {
+        if (pageNine == null) {
+            pageNine = new Link(driver, PAGE_NINE_LINK);
+        }
+        return pageNine;
     }
 }

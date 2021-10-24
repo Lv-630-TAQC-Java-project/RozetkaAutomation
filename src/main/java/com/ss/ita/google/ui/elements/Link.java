@@ -20,4 +20,8 @@ public class Link extends BaseWebElement {
     public String getText(){
         return webElement.getText();
     }
+
+    public String getLink(){
+        return webElement.getAttribute("href");
+    }
 }
