@@ -1,6 +1,8 @@
 package com.ss.ita.google.ui.pages;
 
 import com.ss.ita.google.ui.elements.Button;
+import com.ss.ita.google.ui.elements.Label;
+import com.ss.ita.google.ui.elements.Link;
 import com.ss.ita.google.ui.elements.TextArea;
 import org.openqa.selenium.WebDriver;
 
@@ -9,6 +11,9 @@ import static com.ss.ita.google.ui.locators.HomePageLocator.*;
 public class HomePage extends BasePage {
     private TextArea search;
     private Button searchButton;
+    private Link ruLanguage;
+    private Link uaLanguage;
+    private Label languageTextArea;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -56,5 +61,27 @@ public class HomePage extends BasePage {
         return search;
     }
 
+    public Link getRuLanguage() {
+        if (ruLanguage == null) {
+            ruLanguage = new Link(driver, RU_LANGUAGE);
+        }
+        return ruLanguage;
+    }
 
+    public Link getUaLanguage() {
+        if (uaLanguage == null) {
+            uaLanguage = new Link(driver, UA_LANGUAGE);
+        }
+        return uaLanguage;
+    }
+
+    public HomePage changeLanguageToRu() {
+        getRuLanguage().click();
+        return this;
+    }
+
+    public HomePage changeLanguageToUa() {
+        getUaLanguage().click();
+        return this;
+    }
 }
