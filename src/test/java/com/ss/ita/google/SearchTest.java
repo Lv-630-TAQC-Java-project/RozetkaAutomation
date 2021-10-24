@@ -30,7 +30,7 @@ public class SearchTest extends TestRunner {
         CharSequence word = "kitten";
         for (int i = 0; i < 9; i++) {
             String linkText = resPage.getLinkText(i).toLowerCase();
-            assertFalse(linkText.contains(word));
+            assertTrue(linkText.contains(word));
         }
 
     }
