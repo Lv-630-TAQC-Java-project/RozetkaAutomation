@@ -28,7 +28,7 @@ public class SearchTest extends TestRunner {
         SearchResultPage resPage = new HomePage(driver)
                 .search("funny kitten");
         CharSequence word = "kitten";
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < resPage.getResultLinks().size(); i++) {
             String linkText = resPage.getLinkText(i).toLowerCase();
             assertTrue(linkText.contains(word));
         }
