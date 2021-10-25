@@ -15,6 +15,7 @@ public class SearchResultPage extends BasePage {
     private TextArea searchField;
     private Button searchButton;
     private Link pageNine;
+    private Button returnButton;
 
     private List<Link> resultLinks;
 
@@ -82,5 +83,15 @@ public class SearchResultPage extends BasePage {
             pageNine = new Link(driver, PAGE_NINE_LINK);
         }
         return pageNine;
+    }
+
+    public Button getReturnHomePageButton() {
+        if (returnButton == null) returnButton = new Button(driver, RETURN_HOME_PAGE);
+        return returnButton;
+    }
+
+    public SearchResultPage returnHomePage(){
+        getReturnHomePageButton().clickButton();
+        return this;
     }
 }

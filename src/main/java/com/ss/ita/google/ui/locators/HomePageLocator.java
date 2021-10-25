@@ -9,7 +9,8 @@ public enum HomePageLocator implements BaseLocator {
     SEARCH_TEXT_AREA(By.xpath("//input[@class='gLFyf gsfi']")),
     UA_LANGUAGE(By.xpath("//a[contains(text(),'українська')]")),
     RU_LANGUAGE(By.xpath("//a[contains(text(),'русский')]")),
-    LANGUAGE_TEXT_AREA(By.cssSelector("#SIvCob"));
+    LANGUAGE_TEXT_AREA(By.cssSelector("#SIvCob")),
+    GOOGLE_TITLE_IMAGE(By.xpath("/html/body/div[1]/div[2]/div/img"));
 
 
     private final By path;

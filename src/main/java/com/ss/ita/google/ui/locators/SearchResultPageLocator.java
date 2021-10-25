@@ -7,7 +7,8 @@ public enum SearchResultPageLocator implements BaseLocator{
     SEARCH_BUTTON(By.xpath("//button[@class='Tg7LZd']")),
     LINKS_LIST(By.xpath("//div[@id='rso']//h3[contains(@class,'LC20lb')]")),
     IMAGES_TAB(By.xpath("//a[@data-hveid='CAEQAw']")),
-    PAGE_NINE_LINK(By.xpath("//a[@aria-label = 'Page 9']"));
+    PAGE_NINE_LINK(By.xpath("//a[@aria-label = 'Page 9']")),
+    RETURN_HOME_PAGE(By.xpath("//*[@id=\"logo\"]/img"));
 
 
     private final By path;
