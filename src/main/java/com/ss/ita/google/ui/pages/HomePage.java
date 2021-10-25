@@ -10,7 +10,6 @@ public class HomePage extends BasePage {
     private Button searchButton;
     private Link ruLanguage;
     private Link uaLanguage;
-    private Image googleLogo;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -83,7 +82,6 @@ public class HomePage extends BasePage {
     }
 
     public Image getGoogleLogo(){
-        if (googleLogo == null) googleLogo = new Image(driver, GOOGLE_LOGO);
-        return googleLogo;
+        return new Image(driver, GOOGLE_LOGO);
     }
 }

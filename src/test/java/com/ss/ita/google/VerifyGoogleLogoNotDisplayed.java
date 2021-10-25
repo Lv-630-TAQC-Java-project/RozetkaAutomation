@@ -12,12 +12,10 @@ public class VerifyGoogleLogoNotDisplayed extends TestRunner {
         Image logo = new HomePage(driver)
                 .getGoogleLogo();
 
-        String isHidden = logo.getAttribute("hidden");
-        Assert.assertEquals(isHidden, "false");
+        Assert.assertEquals(logo.getCssValue("display"), "inline");
 
-        // How am I supposed to hide the Google logo?
+        logo.setAttribute("hidden", "true");
 
-        isHidden = logo.getAttribute("hidden");
-        Assert.assertEquals(isHidden, "true");
+        Assert.assertEquals(logo.getCssValue("display"), "none");
     }
 }
