@@ -37,6 +37,11 @@ public class SearchResultPage extends BasePage {
     }
 
     public WebElement getSearchedLink(int numberOfLink) {
-           return driver.findElements(By.xpath("//div[@id='rso']//h3[contains(@class,'LC20lb')]")).get(numberOfLink);
+        return driver.findElements(By.xpath("//div[@id='rso']//h3[contains(@class,'LC20lb')]")).get(numberOfLink);
+    }
+
+    public SearchResultPage returnHomePage() {
+        driver.findElement(By.xpath("//*[@id=\"tsf\"]/div[1]/div[1]/div[1]/a/img")).click();
+        return this;
     }
 }
