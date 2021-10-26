@@ -10,16 +10,19 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
+    public SearchResultPage doSearch(String searchText){
+        return setSearchTerms(searchText).search();
+    }
+
     public  HomePage setSearchTerms(String terms) {
     	WebElement input = driver.findElement(By.xpath("//input[@class='gLFyf gsfi']"));
-    	input.click();
     	input.clear();
     	input.sendKeys(terms);
     	return this;
     }
         
-    public  SearchResultPage doSearchTerms() {
-    	driver.findElement(By.xpath("//center//input[@class='gNO89b'][1]")).click();
+    public  SearchResultPage search() {
+    	driver.findElement(By.xpath("//input[@class='gNO89b'][1]")).click();
     	return new SearchResultPage(driver);
     }
     

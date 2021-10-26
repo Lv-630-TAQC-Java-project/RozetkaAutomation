@@ -5,15 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class SearchResultPage extends BasePage {
-    private final static String SEARCH_FIELD = ("//input[@class='gLFyf gsfi']");
+
 
     public SearchResultPage(WebDriver driver) {
         super(driver);
     }
 
     public SearchResultPage doSearch(String searchText) {
-        setSearchTerm(searchText);
-        search();
+        setSearchTerms(searchText).search();
         return this;
     }
 
@@ -22,9 +21,10 @@ public class SearchResultPage extends BasePage {
         return this;
     }
 
-    public SearchResultPage setSearchTerm(String searchText) {
-        driver.findElement(By.xpath(SEARCH_FIELD)).clear();
-        driver.findElement(By.xpath(SEARCH_FIELD)).sendKeys(searchText);
+    public SearchResultPage setSearchTerms(String searchText) {
+        WebElement searchField = driver.findElement(By.xpath("//input[@class='gLFyf gsfi']"));
+        searchField.clear();
+        searchField.sendKeys(searchText);
         return this;
     }
 
