@@ -4,7 +4,6 @@ import com.ss.ita.google.ui.pages.HomePage;
 import com.ss.ita.google.ui.pages.SearchResultPage;
 import com.ss.ita.runner.TestRunner;
 import org.openqa.selenium.JavascriptExecutor;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -26,12 +25,12 @@ public class SearchTest extends TestRunner {
 //        assertTrue(firstLinkText.contains(searchText));
 
         String defaultColor = searchResultPage
-                .getLinksColor();
+                .getFirstLinkColor();
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        //  js.executeScript("document.querySelector('//div[@id='rso']//h3[contains(@class,'LC20lb')][1]').innerText=" +"pink");
-        js.executeScript("document.querySelector('#rso > div:nth-child(26) > div > div:nth-child(1) > div > div > div > div.yuRUbf > a > h3').style.color = 'lightblue';");
-        String changedColor = searchResultPage.getLinksColor();
+        js.executeScript("document.querySelector('.g>div>div>div>a>h3').style.color = 'lightpink';");
+        String changedColor = searchResultPage
+                .getFirstLinkColor();
 
         assertTrue(defaultColor != changedColor);
 

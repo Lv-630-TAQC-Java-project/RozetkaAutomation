@@ -4,7 +4,9 @@ import com.ss.ita.google.ui.elements.Button;
 import com.ss.ita.google.ui.elements.Label;
 import com.ss.ita.google.ui.elements.Link;
 import com.ss.ita.google.ui.elements.TextArea;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import static com.ss.ita.google.ui.locators.HomePageLocator.*;
 
@@ -60,27 +62,13 @@ public class HomePage extends BasePage {
         return search;
     }
 
-    public Link getRuLanguage() {
-        if (ruLanguage == null) {
-            ruLanguage = new Link(driver, RU_LANGUAGE);
-        }
-        return ruLanguage;
-    }
-
-    public Link getUaLanguage() {
-        if (uaLanguage == null) {
-            uaLanguage = new Link(driver, UA_LANGUAGE);
-        }
-        return uaLanguage;
-    }
-
     public HomePage changeLanguageToRu() {
-        getRuLanguage().click();
+        driver.findElement(By.xpath("//a[contains(text(),'русский')]")).click();
         return this;
     }
 
     public HomePage changeLanguageToUa() {
-        getUaLanguage().click();
+       driver.findElement((By.xpath("//a[contains(text(),'українська')]"))).click();
         return this;
     }
 }

@@ -3,6 +3,7 @@ package com.ss.ita.google.ui.pages;
 import com.ss.ita.google.ui.elements.Button;
 import com.ss.ita.google.ui.elements.Link;
 import com.ss.ita.google.ui.elements.TextArea;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import java.util.List;
@@ -29,8 +30,9 @@ public class SearchResultPage extends BasePage {
                 .getText();
     }
 
-    public String getLinksColor() {
-        return driver.findElement(LINKS_LIST.getPath()).getAttribute("color");
+    public String getFirstLinkColor() {
+        return driver.findElement(By.xpath("//div[@id='rso']//h3[contains(@class,'LC20lb')][1]")).getCssValue("color");
+//                driver.findElement(LINKS_LIST.getPath()).getAttribute("color");
     }
 
     public TextArea getSearchField() {
@@ -71,11 +73,6 @@ public class SearchResultPage extends BasePage {
         return
                 setSearchText(text)
                         .clickSearch();
-    }
-
-    public SelectedWebSite goToLink(int index) {
-        getResultLinks().get(index).click();
-        return new SelectedWebSite(driver);
     }
 
     public Link getPageNine() {
