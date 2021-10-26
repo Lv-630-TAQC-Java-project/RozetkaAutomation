@@ -10,10 +10,10 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.*;
 
-public class ChangeLinkColorTest extends TestRunner {
+public class ChangeLinksColorTest extends TestRunner {
 
     @Test
-    public void verifyChangeColorTest() {
+    public void verifyChangeLinksColorTest() {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         String searchText = "Funny kitten picture";
 
