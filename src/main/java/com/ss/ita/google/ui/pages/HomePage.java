@@ -11,11 +11,7 @@ import org.openqa.selenium.WebElement;
 //import static com.ss.ita.google.ui.locators.HomePageLocator.*;
 
 public class HomePage extends BasePage {
-//    private TextArea search;
-//    private Button searchButton;
-//    private Link ruLanguage;
-//    private Link uaLanguage;
-//
+
     public HomePage(WebDriver driver) {
         super(driver);
     }
