@@ -10,28 +10,24 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.*;
 
-public class SearchTest extends TestRunner {
+public class ChangeLinkColorTest extends TestRunner {
 
     @Test
     public void verifyChangeColorTest() {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        String searchText = "funny kitten picture";
+        String searchText = "Funny kitten picture";
 
         SearchResultPage searchResultPage = new HomePage(driver)
-                .search(searchText);
+                .doSearch("Funny kitten picture");
         String firstLinkText = searchResultPage
                 .getLinkText(0);
-
-//        assertTrue(firstLinkText.contains(searchText));
-
         String defaultColor = searchResultPage
-                .getFirstLinkColor();
-
+                .getLinkColor(0);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("document.querySelector('.g>div>div>div>a>h3').style.color = 'lightpink';");
         String changedColor = searchResultPage
-                .getFirstLinkColor();
-
+                .getLinkColor(0);
+        assertTrue(firstLinkText.contains("Funny"));
         assertTrue(defaultColor != changedColor);
 
     }
