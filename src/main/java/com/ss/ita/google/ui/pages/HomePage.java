@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class HomePage extends BasePage {
-
     public HomePage(WebDriver driver) {
         super(driver);
     }
@@ -28,11 +27,16 @@ public class HomePage extends BasePage {
     
     public HomePage changeLanguageToRu() {
         driver.findElement(By.xpath("//a[contains(text(),'русский')]")).click();
-        return this;
+        return new HomePage(driver);
     }
 
     public HomePage changeLanguageToUa() {
        driver.findElement((By.xpath("//a[contains(text(),'українська')]"))).click();
-        return this;
+        return new HomePage(driver);
+    }
+
+    public String languageTextArea() {
+        String language_text_area = driver.findElement(By.cssSelector("#SIvCob")).getText();
+        return language_text_area;
     }
 }
