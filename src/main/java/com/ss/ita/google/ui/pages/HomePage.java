@@ -1,14 +1,8 @@
 package com.ss.ita.google.ui.pages;
 
-//import com.ss.ita.google.ui.elements.Button;
-//import com.ss.ita.google.ui.elements.Label;
-//import com.ss.ita.google.ui.elements.Link;
-//import com.ss.ita.google.ui.elements.TextArea;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-//import static com.ss.ita.google.ui.locators.HomePageLocator.*;
 
 public class HomePage extends BasePage {
 
