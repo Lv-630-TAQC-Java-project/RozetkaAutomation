@@ -6,14 +6,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.asserts.SoftAssert;
+
+import java.util.concurrent.TimeUnit;
 
 
 public class TestRunner {
-    protected static WebDriver driver;
-    protected SoftAssert softAssert;
-    PropertiesProvider propertiesProvider = new PropertiesProvider();
+    public static WebDriver driver;
+    protected static PropertiesProvider propertiesProvider = new PropertiesProvider();
 
     @BeforeClass
     protected void getDriver() {
@@ -33,6 +32,7 @@ public class TestRunner {
             }
         }
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(propertiesProvider.getBaseUrl());
     }
 
@@ -40,10 +40,4 @@ public class TestRunner {
     protected void quitDriver() {
         if (driver != null) driver.quit();
     }
-
-    @BeforeMethod
-    protected void setUp() {
-        softAssert = new SoftAssert();
-    }
-
 }
