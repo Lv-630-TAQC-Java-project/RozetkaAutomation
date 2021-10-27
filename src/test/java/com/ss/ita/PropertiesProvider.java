@@ -5,34 +5,32 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class PropertiesProvider {
-    FileInputStream fis;
-    Properties prop;
+    FileInputStream fileInputStream;
+    Properties properties;
 
     public PropertiesProvider() {
         try {
-            this.fis = new FileInputStream("src/test/resources/data.properties");
-            this.prop = new Properties();
-            prop.load(fis);
+            this.fileInputStream = new FileInputStream("src/test/resources/data.properties");
+            this.properties = new Properties();
+            properties.load(fileInputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public String getBaseUrl() {
-        return prop.getProperty("baseUrl");
+        return properties.getProperty("baseUrl");
     }
 
     public String getChromeBrowser() {
-        return prop.getProperty("chromeWebdriverPath");
+        return properties.getProperty("chromeWebdriverPath");
     }
 
     public String getFirefoxBrowser() {
-        return prop.getProperty("geckoDriver");
+        return properties.getProperty("geckoDriver");
     }
 
     public String getBrowser() {
-        return prop.getProperty("browser");
+        return properties.getProperty("browser");
     }
-
-
 }

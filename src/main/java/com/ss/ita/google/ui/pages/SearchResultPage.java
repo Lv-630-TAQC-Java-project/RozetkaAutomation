@@ -1,6 +1,7 @@
 package com.ss.ita.google.ui.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -30,6 +31,12 @@ public class SearchResultPage extends BasePage {
 
     public String getLinkText(int numberOfLink) {
         return getSearchedLink(numberOfLink).getText();
+    }
+
+    public SearchResultPage changeFirstLinkColor(String color){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.querySelector('.g>div>div>div>a>h3').style.color =" + color +";");
+        return this;
     }
 
     public String getLinkColor(int numberOfLink) {

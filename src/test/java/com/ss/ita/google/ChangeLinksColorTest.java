@@ -14,7 +14,6 @@ public class ChangeLinksColorTest extends TestRunner {
 
     @Test
     public void verifyChangeLinksColorTest() {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         String searchText = "Funny kitten picture";
 
         SearchResultPage searchResultPage = new HomePage(driver)
@@ -23,10 +22,10 @@ public class ChangeLinksColorTest extends TestRunner {
                 .getLinkText(0);
         String defaultColor = searchResultPage
                 .getLinkColor(0);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("document.querySelector('.g>div>div>div>a>h3').style.color = 'lightpink';");
+        searchResultPage.changeFirstLinkColor("lightpink");
         String changedColor = searchResultPage
                 .getLinkColor(0);
+
         assertTrue(firstLinkText.contains("Funny"));
         assertTrue(defaultColor != changedColor);
 
