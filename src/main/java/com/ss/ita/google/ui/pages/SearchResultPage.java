@@ -48,7 +48,7 @@ public class SearchResultPage extends BasePage {
     }
 
     public SearchResultPage returnHomePage() {
-        driver.findElement(By.xpath("//*[@id=\"tsf\"]/div[1]/div[1]/div[1]/a/img")).click();
+        driver.findElement(By.xpath("//a/img")).click();
         return this;
     }
 }
