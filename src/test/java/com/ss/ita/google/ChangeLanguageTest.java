@@ -9,16 +9,17 @@ import org.testng.annotations.Test;
 public class ChangeLanguageTest extends TestRunner {
 
     @Test
-    public void changeLanguageTest() {
-        HomePage homePage = new HomePage(driver).changeLanguageToUa();
-        String actualUaLanguage = new HomePage(driver).languageTextArea();
+    public void verifyUserCanChangeLanguage() {
+        HomePage homePage = new HomePage(driver).changeLanguage("русский");
+        String actualRuText = homePage.getSearchButtonText();
+        String expectedRuText = "Поиск в Google";
 
-        Assert.assertEquals(actualUaLanguage, "Мова Google: русский", "Language didn't change");
+        Assert.assertEquals(actualRuText, expectedRuText, "Language didn't change");
 
-        homePage.changeLanguageToRu();
-        String actualRuLanguage = new HomePage(driver).languageTextArea();
+        homePage.changeLanguage("українська");
+        String actualUaText = new HomePage(driver).getSearchButtonText();
+        String expectedUaText = "Пошук Google";
 
-        Assert.assertEquals(actualRuLanguage, "Сервисы Google доступны на разных языках: українська",
-                "Language didn't change");
+        Assert.assertEquals(actualUaText, expectedUaText, "Language didn't change");
     }
 }

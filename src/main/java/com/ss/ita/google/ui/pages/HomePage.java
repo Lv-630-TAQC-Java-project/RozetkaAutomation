@@ -9,34 +9,29 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    public SearchResultPage doSearch(String searchText){
+    public SearchResultPage doSearch(String searchText) {
         return setSearchTerms(searchText).search();
     }
 
-    public  HomePage setSearchTerms(String terms) {
-    	WebElement input = driver.findElement(By.xpath("//input[@class='gLFyf gsfi']"));
-    	input.clear();
-    	input.sendKeys(terms);
-    	return this;
+    public HomePage setSearchTerms(String terms) {
+        WebElement input = driver.findElement(By.xpath("//input[@class='gLFyf gsfi']"));
+        input.clear();
+        input.sendKeys(terms);
+        return this;
     }
-        
-    public  SearchResultPage search() {
-    	driver.findElement(By.xpath("//input[@class='gNO89b'][1]")).click();
-    	return new SearchResultPage(driver);
+
+    public SearchResultPage search() {
+        driver.findElement(By.xpath("//input[@class='gNO89b'][1]")).click();
+        return new SearchResultPage(driver);
     }
-    
-    public HomePage changeLanguageToRu() {
-        driver.findElement(By.xpath("//a[contains(text(),'русский')]")).click();
+
+    public HomePage changeLanguage(String language) {
+        driver.findElement((By.xpath("//a[contains(text(),'" + language + "')]"))).click();
         return new HomePage(driver);
     }
 
-    public HomePage changeLanguageToUa() {
-       driver.findElement((By.xpath("//a[contains(text(),'українська')]"))).click();
-        return new HomePage(driver);
-    }
-
-    public String languageTextArea() {
-        String language_text_area = driver.findElement(By.cssSelector("#SIvCob")).getText();
-        return language_text_area;
+    public String getSearchButtonText() {
+        return driver.findElement(By
+                .xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).getAttribute("value");
     }
 }
