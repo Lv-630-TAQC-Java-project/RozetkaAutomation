@@ -1,6 +1,5 @@
 package com.ss.ita.google.ui.pages;
 
-
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -17,18 +16,19 @@ public class HomePage {
         input.sendKeys(terms);
         return this;
     }
-        
-    public  SearchResultPage search() {
-    	driver.findElement(By.xpath("//input[@class='gNO89b'][1]")).click();
-    	return new SearchResultPage();
+
+    public SearchResultPage search() {
+        driver.findElement(By.xpath("//input[@class='gNO89b'][1]")).click();
+        return new SearchResultPage();
+    }
 
     public HomePage changeLanguage(String language) {
         driver.findElement((By.xpath("//a[contains(text(),'" + language + "')]"))).click();
-        return new HomePage(driver);
+        return this;
     }
 
     public String getSearchButtonText() {
-        return driver.findElement(By
-                .xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).getAttribute("value");
+        return driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).getAttribute("value");
     }
 }
+

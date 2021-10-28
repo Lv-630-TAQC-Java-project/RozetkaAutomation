@@ -1,25 +1,25 @@
 package com.ss.ita.google;
 
 import com.ss.ita.google.ui.pages.HomePage;
-import com.ss.ita.runner.TestRunner;
-import org.testng.Assert;
+import com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.*;
 
 public class ChangeLanguageTest extends TestRunner {
 
     @Test
     public void verifyUserCanChangeLanguage() {
-        HomePage homePage = new HomePage(driver).changeLanguage("русский");
+        HomePage homePage = new HomePage().changeLanguage("русский");
         String actualRuText = homePage.getSearchButtonText();
         String expectedRuText = "Поиск в Google";
 
-        Assert.assertEquals(actualRuText, expectedRuText, "Language didn't change");
+        assertEquals(actualRuText, expectedRuText, "Language didn't change");
 
         homePage.changeLanguage("українська");
-        String actualUaText = new HomePage(driver).getSearchButtonText();
+        String actualUaText = new HomePage().getSearchButtonText();
         String expectedUaText = "Пошук Google";
 
-        Assert.assertEquals(actualUaText, expectedUaText, "Language didn't change");
+        assertEquals(actualUaText, expectedUaText, "Language didn't change");
     }
 }
