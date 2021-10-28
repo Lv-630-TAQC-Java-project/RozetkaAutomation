@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class ChangeLanguageTest extends TestRunner {
 
     @Test
-    public void verifyUserCanChangeLanguageTest() {
+    public void verifyUserCanChangeLanguage() {
         HomePage homePage = new HomePage(driver).changeLanguage("русский");
         String actualRuText = homePage.getSearchButtonText();
         String expectedRuText = "Поиск в Google";
