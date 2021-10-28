@@ -47,4 +47,13 @@ public class SearchResultPage {
         driver.findElement(By.xpath("//a/img")).click();
         return this;
     }
+
+    public SearchResultPage goToResultPageNumber(int numberOfPage) {
+        driver.findElement(By.xpath("//a[@aria-label = 'Page " + numberOfPage + "']")).click();
+        return this;
+    }
+
+    public String getCurrentPageNumber() {
+        return driver.findElement(By.xpath("//td[text()]")).getText();
+    }
 }
