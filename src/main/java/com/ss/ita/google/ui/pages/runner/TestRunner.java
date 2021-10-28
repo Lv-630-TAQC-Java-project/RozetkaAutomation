@@ -1,21 +1,25 @@
-package com.ss.ita.runner;
+package com.ss.ita.google.ui.pages.runner;
 
-import com.ss.ita.PropertiesProvider;
+import com.ss.ita.google.ui.pages.PropertiesProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
 public class TestRunner {
     public static WebDriver driver;
-    protected static PropertiesProvider propertiesProvider = new PropertiesProvider();
+
 
     @BeforeClass
-    protected void getDriver() {
+    protected void getDriver() throws IOException {
+        PropertiesProvider propertiesProvider = new PropertiesProvider();
+
         switch (propertiesProvider.getBrowser()) {
             case "chrome": {
                 System.setProperty("webdriver.chrome.driver", propertiesProvider.getChromeBrowser());

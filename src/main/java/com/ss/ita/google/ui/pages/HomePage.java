@@ -1,14 +1,11 @@
 package com.ss.ita.google.ui.pages;
 
+
+import static com.ss.ita.google.ui.pages.runner.TestRunner.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class HomePage extends BasePage {
-
-    public HomePage(WebDriver driver) {
-        super(driver);
-    }
+public class HomePage {
 
     public SearchResultPage doSearch(String searchText){
         return setSearchTerms(searchText).search();
@@ -23,7 +20,7 @@ public class HomePage extends BasePage {
         
     public  SearchResultPage search() {
     	driver.findElement(By.xpath("//input[@class='gNO89b'][1]")).click();
-    	return new SearchResultPage(driver);
+    	return new SearchResultPage();
     }
     
     public HomePage changeLanguageToRu() {

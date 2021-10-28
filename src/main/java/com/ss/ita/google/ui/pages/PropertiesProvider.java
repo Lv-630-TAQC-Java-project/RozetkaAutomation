@@ -1,8 +1,9 @@
-package com.ss.ita;
+package com.ss.ita.google.ui.pages;
 
 import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -10,16 +11,12 @@ public class PropertiesProvider {
     FileInputStream fileInputStream;
     Properties properties;
 
-    final static Logger logger = Logger.getLogger(PropertiesProvider.class);
 
-    public PropertiesProvider() {
-        try {
+    public PropertiesProvider() throws IOException {
+
             this.fileInputStream = new FileInputStream("src/test/resources/data.properties");
             this.properties = new Properties();
             properties.load(fileInputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public String getBaseUrl() {

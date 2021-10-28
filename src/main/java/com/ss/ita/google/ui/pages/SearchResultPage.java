@@ -5,12 +5,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class SearchResultPage extends BasePage {
+import static com.ss.ita.google.ui.pages.runner.TestRunner.*;
 
-
-    public SearchResultPage(WebDriver driver) {
-        super(driver);
-    }
+public class SearchResultPage {
 
     public SearchResultPage doSearch(String searchText) {
         setSearchTerms(searchText).search();
