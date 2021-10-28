@@ -15,7 +15,7 @@ public class SearchAndReturnHomeTest extends TestRunner {
     public void verifyReturningHomePageAfterSearching() {
         new HomePage()
                 .doSearch("funny kitten")
-                .returnHomePage();
+                .backToHomePage();
         assertTrue(driver.findElement(By.id("hplogo")).isDisplayed());
     }
 }

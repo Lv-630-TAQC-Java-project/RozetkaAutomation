@@ -1,11 +1,10 @@
 package com.ss.ita.google.ui.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
-
+import static com.ss.ita.google.ui.pages.helper.HelperClass.*;
 public class SearchResultPage {
 
     public SearchResultPage doSearch(String searchText) {
@@ -30,8 +29,7 @@ public class SearchResultPage {
     }
 
     public SearchResultPage changeFirstLinkColor(String color){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("document.querySelector('.g>div>div>div>a>h3').style.color =" + color +";");
+        javascriptExecutor("document.querySelector('.g>div>div>div>a>h3').style.color =" + color + ";");
         return this;
     }
 
@@ -43,8 +41,8 @@ public class SearchResultPage {
         return driver.findElements(By.xpath("//div[@id='rso']//h3[contains(@class,'LC20lb')]")).get(numberOfLink);
     }
 
-    public SearchResultPage returnHomePage() {
+    public HomePage backToHomePage() {
         driver.findElement(By.xpath("//a/img")).click();
-        return this;
+        return new HomePage();
     }
 }
