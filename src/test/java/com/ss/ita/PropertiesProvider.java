@@ -1,5 +1,7 @@
 package com.ss.ita;
 
+import org.apache.log4j.Logger;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -7,6 +9,8 @@ import java.util.Properties;
 public class PropertiesProvider {
     FileInputStream fileInputStream;
     Properties properties;
+
+    final static Logger logger = Logger.getLogger(PropertiesProvider.class);
 
     public PropertiesProvider() {
         try {
