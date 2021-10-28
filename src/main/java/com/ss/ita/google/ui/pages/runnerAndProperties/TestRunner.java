@@ -1,6 +1,5 @@
-package com.ss.ita.google.ui.pages.runner;
+package com.ss.ita.google.ui.pages.runnerAndProperties;
 
-import com.ss.ita.google.ui.pages.PropertiesProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;

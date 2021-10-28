@@ -1,9 +1,6 @@
-package com.ss.ita.google.ui.pages;
-
-import org.apache.log4j.Logger;
+package com.ss.ita.google.ui.pages.runnerAndProperties;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 

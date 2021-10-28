@@ -1,7 +1,7 @@
 package com.ss.ita.google.ui.pages;
 
 
-import static com.ss.ita.google.ui.pages.runner.TestRunner.*;
+import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 

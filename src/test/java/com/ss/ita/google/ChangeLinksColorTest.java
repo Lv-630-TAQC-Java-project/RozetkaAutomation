@@ -2,7 +2,7 @@ package com.ss.ita.google;
 
 import com.ss.ita.google.ui.pages.HomePage;
 import com.ss.ita.google.ui.pages.SearchResultPage;
-import com.ss.ita.google.ui.pages.runner.TestRunner;
+import com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -10,9 +10,7 @@ import static org.testng.Assert.*;
 public class ChangeLinksColorTest extends TestRunner {
 
     @Test
-    public void verifyChangeLinksColorTest() {
-        String searchText = "Funny kitten picture";
-
+    public void verifyChangingLinksColor() {
         SearchResultPage searchResultPage = new HomePage()
                 .doSearch("Funny kitten picture");
         String firstLinkText = searchResultPage
