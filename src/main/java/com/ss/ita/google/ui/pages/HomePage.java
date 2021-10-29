@@ -39,4 +39,3 @@ public class HomePage {
         return driver.findElement(By.name("q")).isDisplayed();
     }
 }
-
