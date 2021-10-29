@@ -49,7 +49,7 @@ public class SearchResultPage {
     }
 
     public SearchResultPage goToResultPageNumber(int numberOfPage) {
-        driver.findElement(By.xpath("//a[@aria-label = 'Page " + numberOfPage + "']")).click();
+        driver.findElement(By.xpath(String.format("//a[@aria-label = 'Page %s']", numberOfPage))).click();
         return this;
     }
 
