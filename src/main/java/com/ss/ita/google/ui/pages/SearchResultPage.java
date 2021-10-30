@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
 
 public class SearchResultPage {
@@ -33,6 +35,9 @@ public class SearchResultPage {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("document.querySelector('.g>div>div>div>a>h3').style.color =" + color +";");
         return this;
+    }
+    public List<WebElement> getResultLinks() {
+        return driver.findElements(By.xpath("//h3[contains(@class,'LC20lb')]"));
     }
 
     public String getLinkColor(int numberOfLink) {
