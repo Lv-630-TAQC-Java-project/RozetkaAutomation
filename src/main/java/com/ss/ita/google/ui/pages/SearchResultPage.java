@@ -52,7 +52,6 @@ public class SearchResultPage {
     }
     
 	public SearchResultPage goToSearchResultPage(int numberSearchResultPage) {
-		
 		List<WebElement> searchResultPages = driver.findElements(By.xpath("//td")).subList(1,
 				driver.findElements(By.xpath("//td")).size() - 1);
 		int indexLastPage = Integer.parseInt(searchResultPages.get(searchResultPages.size() - 1).getText()) - 1;
@@ -61,7 +60,7 @@ public class SearchResultPage {
 		}
 		if (numberSearchResultPage - 1 > indexLastPage) {
 			while (true) {
-				String PrevLastPageText = searchResultPages.get(searchResultPages.size() - 1).getText() ;
+				String PrevLastPageText = searchResultPages.get(searchResultPages.size() - 1).getText();
 				searchResultPages.get(indexLastPage).click();
 				searchResultPages = driver.findElements(By.xpath("//td")).subList(1,
 						driver.findElements(By.xpath("//td")).size() - 1);
@@ -69,7 +68,7 @@ public class SearchResultPage {
 					searchResultPages.get(numberSearchResultPage - 1).click();
 					break;
 				}
-				if(PrevLastPageText.equals(searchResultPages.get(searchResultPages.size() - 1).getText()) ) {
+				if (PrevLastPageText.equals(searchResultPages.get(searchResultPages.size() - 1).getText())) {
 					break;
 				}
 			}
@@ -78,12 +77,10 @@ public class SearchResultPage {
 	}
 	
 	public WebDriver goToResultLink (int numberSearchResultPage, int numberResultLink) {
-		
-		new SearchResultPage().goToSearchResultPage(numberSearchResultPage) ;
+		new SearchResultPage().goToSearchResultPage(numberSearchResultPage);
 		List<WebElement> searchResultLink = driver.findElements(By.xpath("//div[@class='yuRUbf']/a"));
 		System.out.println(searchResultLink.size());
-		searchResultLink.get(numberResultLink-1).click();
+		searchResultLink.get(numberResultLink - 1).click();
 		return driver;
-		
 	}
 }
