@@ -2,6 +2,7 @@ package com.ss.ita.google.ui.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
@@ -76,11 +77,13 @@ public class SearchResultPage {
 		return new SearchResultPage();
 	}
 	
-	public void goToResultLink (int numberSearchResultPage, int numberResultLink) {
+	public WebDriver goToResultLink (int numberSearchResultPage, int numberResultLink) {
 		
 		new SearchResultPage().goToSearchResultPage(numberSearchResultPage) ;
 		List<WebElement> searchResultLink = driver.findElements(By.xpath("//div[@class='yuRUbf']/a"));
 		System.out.println(searchResultLink.size());
 		searchResultLink.get(numberResultLink-1).click();
+		return driver;
+		
 	}
 }
