@@ -50,8 +50,29 @@ public class SearchResultPage {
         return this;
     }
     
-    public SearchResultPage goToSearchResultPage(int numberSearchResultPage) {
-    	List<WebElement> serchResultPages = driver.findElements(By.xpath("//td")).subList(1, driver.findElements(By.xpath("//td")).size() - 1);
-    	return new SearchResultPage();
-    }
+	public SearchResultPage goToSearchResultPage(int numberSearchResultPage) {
+		
+		List<WebElement> serchResultPages = driver.findElements(By.xpath("//td")).subList(1,
+				driver.findElements(By.xpath("//td")).size() - 1);
+		int indexLastPage = Integer.parseInt(serchResultPages.get(serchResultPages.size() - 1).getText()) - 1;
+		if (numberSearchResultPage - 1 <= indexLastPage) {
+			serchResultPages.get(numberSearchResultPage - 1).click();
+		}
+		if (numberSearchResultPage - 1 > indexLastPage) {
+			while (true) {
+				String PrevLastPageText = serchResultPages.get(serchResultPages.size() - 1).getText() ;
+				serchResultPages.get(indexLastPage).click();
+				serchResultPages = driver.findElements(By.xpath("//td")).subList(1,
+						driver.findElements(By.xpath("//td")).size() - 1);
+				if (numberSearchResultPage - 1 <= indexLastPage) {
+					serchResultPages.get(numberSearchResultPage - 1).click();
+					break;
+				}
+				if(PrevLastPageText.equals(serchResultPages.get(serchResultPages.size() - 1).getText()) ) {
+					break;
+				}
+			}
+		}
+		return new SearchResultPage();
+	}
 }
