@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
 
+import java.util.List;
+
 public class SearchResultPage {
 
     public SearchResultPage doSearch(String searchText) {
@@ -46,5 +48,10 @@ public class SearchResultPage {
     public SearchResultPage returnHomePage() {
         driver.findElement(By.xpath("//a/img")).click();
         return this;
+    }
+    
+    public SearchResultPage goToSearchResultPage(int numberSearchResultPage) {
+    	List<WebElement> serchResultPages = driver.findElements(By.xpath("//td")).subList(1, driver.findElements(By.xpath("//td")).size() - 1);
+    	return new SearchResultPage();
     }
 }
