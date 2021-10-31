@@ -9,11 +9,11 @@ public class GoToResultPageNineTest extends TestRunner {
 
     @Test
     public void verifyGoToPageNine() {
-        int pageNumber = 9;
-        String currentPageNumber = new HomePage()
+        var pageNumber = 9;
+        var currentPageNumber = new HomePage()
                 .doSearch("funny kitten")
                 .goToResultPageNumber(pageNumber)
                 .getCurrentPageNumber();
-        Assert.assertEquals(currentPageNumber, String.valueOf(pageNumber));
+        Assert.assertEquals(currentPageNumber, pageNumber);
         }
 }

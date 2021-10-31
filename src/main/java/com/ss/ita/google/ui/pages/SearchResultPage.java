@@ -53,7 +53,7 @@ public class SearchResultPage {
         return this;
     }
 
-    public String getCurrentPageNumber() {
-        return driver.findElement(By.xpath("//td[text()]")).getText();
+    public int getCurrentPageNumber() {
+        return Integer.parseInt(driver.findElement(By.xpath("//td[text()]")).getText());
     }
 }
