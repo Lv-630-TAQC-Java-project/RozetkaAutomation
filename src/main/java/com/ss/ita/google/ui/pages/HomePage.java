@@ -1,6 +1,8 @@
 package com.ss.ita.google.ui.pages;
 
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
+import static com.ss.ita.google.ui.pages.utils.WebElementHelper.changeAttributeValue;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -29,6 +31,24 @@ public class HomePage {
 
     public String getSearchButtonText() {
         return driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).getAttribute("value");
+    }
+
+    private WebElement findLogo() {
+        return driver.findElement(By.className("lnXdpd"));
+    }
+
+    public HomePage hideLogo() {
+        changeAttributeValue(driver, findLogo(), "hidden", "true");
+        return this;
+    }
+
+    public HomePage displayLogo() {
+        changeAttributeValue(driver, findLogo(), "hidden", "false");
+        return this;
+    }
+
+    public boolean isLogoDisplayed() {
+        return findLogo().isDisplayed();
     }
 }
 
