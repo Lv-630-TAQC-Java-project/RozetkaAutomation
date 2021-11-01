@@ -4,6 +4,7 @@ import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
 import static com.ss.ita.google.ui.pages.utils.WebElementHelper.changeAttributeValue;
 import static com.ss.ita.google.ui.pages.utils.WebElementHelper.removeAttribute;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -35,7 +36,11 @@ public class HomePage {
     }
 
     private WebElement getLogo() {
-        return driver.findElement(By.className("lnXdpd"));
+        return driver.findElement(By.xpath("//img[@width>'200']"));
+    }
+
+    public boolean isLogoDisplayed() {
+        return getLogo().isDisplayed();
     }
 
     public HomePage hideLogo() {
@@ -46,10 +51,6 @@ public class HomePage {
     public HomePage displayLogo() {
         removeAttribute(getLogo(), "hidden");
         return this;
-    }
-
-    public boolean isLogoDisplayed() {
-        return getLogo().isDisplayed();
     }
 }
 
