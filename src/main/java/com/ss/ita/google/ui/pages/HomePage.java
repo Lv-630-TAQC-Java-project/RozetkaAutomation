@@ -30,5 +30,13 @@ public class HomePage {
     public String getSearchButtonText() {
         return driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).getAttribute("value");
     }
+
+    private WebElement getLogo() {
+        return driver.findElement(By.xpath("//img"));
+    }
+
+    public boolean isLogoDisplayed() {
+        return getLogo().isDisplayed();
+    }
 }
 
