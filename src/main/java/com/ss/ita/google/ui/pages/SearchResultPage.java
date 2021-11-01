@@ -28,8 +28,8 @@ public class SearchResultPage {
         return getSearchedLink(numberOfLink).getText();
     }
 
-    public void changeLinkColor(int numberOfLink){
-        executeScriptForWebElementsColor(getSearchedLink(numberOfLink));
+    public void changeLinkColor(String color, int numberOfLink){
+        executeScriptForWebElementsColor(color,getSearchedLink(numberOfLink));
     }
 
     public String getLinkColor(int numberOfLink) {
