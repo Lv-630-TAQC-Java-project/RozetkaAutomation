@@ -34,22 +34,22 @@ public class HomePage {
         return driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).getAttribute("value");
     }
 
-    private WebElement findLogo() {
+    private WebElement getLogo() {
         return driver.findElement(By.className("lnXdpd"));
     }
 
     public HomePage hideLogo() {
-        changeAttributeValue(findLogo(), "hidden", "true");
+        changeAttributeValue(getLogo(), "hidden", "true");
         return this;
     }
 
     public HomePage displayLogo() {
-        removeAttribute(findLogo(), "hidden");
+        removeAttribute(getLogo(), "hidden");
         return this;
     }
 
     public boolean isLogoDisplayed() {
-        return findLogo().isDisplayed();
+        return getLogo().isDisplayed();
     }
 }
 
