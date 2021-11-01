@@ -32,7 +32,7 @@ public class HomePage {
     }
 
     private WebElement getLogo() {
-        return driver.findElement(By.xpath("//img"));
+        return driver.findElement(By.xpath("//img[@width>'200']"));
     }
 
     public boolean isLogoDisplayed() {
