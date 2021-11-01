@@ -29,9 +29,9 @@ public class SearchResultPage {
         return getSearchedLink(numberOfLink).getText();
     }
 
-    public SearchResultPage changeFirstLinkColor(String color){
+    public SearchResultPage changeFirstLinkColor(String color) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("document.querySelector('.g>div>div>div>a>h3').style.color =" + color +";");
+        js.executeScript("document.querySelector('.g>div>div>div>a>h3').style.color =" + color + ";");
         return this;
     }
 

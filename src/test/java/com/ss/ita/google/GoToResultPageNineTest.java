@@ -15,5 +15,5 @@ public class GoToResultPageNineTest extends TestRunner {
                 .goToResultPageNumber(pageNumber)
                 .getCurrentPageNumber();
         Assert.assertEquals(currentPageNumber, pageNumber);
-        }
+    }
 }
