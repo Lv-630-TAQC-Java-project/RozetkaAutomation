@@ -7,15 +7,14 @@ import org.testng.annotations.Test;
 
 public class HideHomePageLogoTest extends TestRunner {
     @Test
-    public void verifyHomePageLogoIsHidden(){
+    public void verifyHomePageLogoIsHidden() {
         HomePage page = new HomePage();
-
         Assert.assertTrue(page.isLogoDisplayed());
 
         page.hideLogo();
-
         Assert.assertFalse(page.isLogoDisplayed());
 
         page.displayLogo();
+        Assert.assertTrue(page.isLogoDisplayed());
     }
 }

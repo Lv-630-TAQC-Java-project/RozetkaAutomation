@@ -2,6 +2,7 @@ package com.ss.ita.google.ui.pages;
 
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
 import static com.ss.ita.google.ui.pages.utils.WebElementHelper.changeAttributeValue;
+import static com.ss.ita.google.ui.pages.utils.WebElementHelper.removeAttribute;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -38,12 +39,12 @@ public class HomePage {
     }
 
     public HomePage hideLogo() {
-        changeAttributeValue(driver, findLogo(), "hidden", "true");
+        changeAttributeValue(findLogo(), "hidden", "true");
         return this;
     }
 
     public HomePage displayLogo() {
-        changeAttributeValue(driver, findLogo(), "hidden", "false");
+        removeAttribute(findLogo(), "hidden");
         return this;
     }
 
