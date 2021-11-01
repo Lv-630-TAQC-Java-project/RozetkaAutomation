@@ -26,8 +26,10 @@ public class SearchAndReturnHomeTest extends TestRunner {
     public void verifySearchLinksContainsWord(){
         SearchResultPage searchResultPage = new HomePage()
                 .doSearch("funny kitten");
-        CharSequence word = "kitten";
-        for (int i = 0; i < searchResultPage.getResultLinks().size(); i++) {
+
+        String word = "kitten";
+
+        for (int i = 0; i < searchResultPage.getResultLinksText().size(); i++) {
             String linkText = searchResultPage.getLinkText(i).toLowerCase();
             assertTrue(linkText.contains(word));
         }
