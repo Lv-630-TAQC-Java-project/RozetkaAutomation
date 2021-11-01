@@ -23,11 +23,14 @@ public class SearchAndReturnHomeTest extends TestRunner {
     }
 
     @Test
-    public void verifySearchLinksContainsWord(){
+    public void verifySearchLinksContainsWord() {
         SearchResultPage searchResultPage = new HomePage()
                 .doSearch("funny kitten");
 
         String word = "kitten";
+        if (searchResultPage.getResultLinksText().size() == 0) {
+            throw new IllegalArgumentException("Links list shouldn't be empty");
+        }
 
         for (int i = 0; i < searchResultPage.getResultLinksText().size(); i++) {
             String linkText = searchResultPage.getLinkText(i).toLowerCase();

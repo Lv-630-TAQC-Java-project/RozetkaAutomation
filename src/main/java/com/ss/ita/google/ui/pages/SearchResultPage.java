@@ -36,14 +36,14 @@ public class SearchResultPage {
         js.executeScript("document.querySelector('.g>div>div>div>a>h3').style.color =" + color +";");
         return this;
     }
+
     public List<String> getResultLinksText() {
-          List<String> linksList = new ArrayList<>();
-          int linksListSize = driver.findElements(By.xpath("//h3[contains(@class,'LC20lb')]")).size();
-          if (linksListSize == 0) throw new IllegalArgumentException("Links list shouldn't be empty");
-          for (int i = 0; i < linksListSize; i++) {
+        List<String> linksList = new ArrayList<>();
+        int linksListSize = driver.findElements(By.xpath("//h3[contains(@class,'LC20lb')]")).size();
+        for (int i = 0; i < linksListSize; i++) {
             linksList.add(getLinkText(i));
-          }
-          return linksList;
+        }
+        return linksList;
     }
 
     public String getLinkColor(int numberOfLink) {
