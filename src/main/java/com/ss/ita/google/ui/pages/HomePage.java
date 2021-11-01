@@ -31,8 +31,12 @@ public class HomePage {
         return driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).getAttribute("value");
     }
 
+    private WebElement getLogo() {
+        return driver.findElement(By.xpath("//img[@width>'200']"));
+    }
+
     public boolean isLogoDisplayed() {
-        return driver.findElement(By.xpath("//img")).isDisplayed();
+        return getLogo().isDisplayed();
     }
 
     public boolean isSearchBoxDisplayed() {
