@@ -15,8 +15,9 @@ public class SearchAndGoBackHomePageTest extends TestRunner {
                 .goBackToHomePage();
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(homePage.logoIsDisplayed());
-        softAssert.assertTrue(homePage.searchBoxDisplayed());
+        softAssert.assertTrue(homePage.isLogoDisplayed());
+        softAssert.assertTrue(homePage.isSearchBoxDisplayed());
+        softAssert.assertTrue(homePage.isSearchButtonDisplayed());
         softAssert.assertAll();
     }
 }

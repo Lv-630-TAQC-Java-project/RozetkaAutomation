@@ -31,11 +31,15 @@ public class HomePage {
         return driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).getAttribute("value");
     }
 
-    public boolean logoIsDisplayed(){
+    public boolean isLogoDisplayed() {
         return driver.findElement(By.xpath("//img")).isDisplayed();
     }
 
-    public boolean searchBoxDisplayed(){
+    public boolean isSearchBoxDisplayed() {
         return driver.findElement(By.name("q")).isDisplayed();
+    }
+
+    public boolean isSearchButtonDisplayed() {
+        return driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).isDisplayed();
     }
 }
