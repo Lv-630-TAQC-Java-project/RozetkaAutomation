@@ -40,8 +40,8 @@ public class SearchResultPage {
         return driver.findElements(By.xpath("//div[@id='rso']//h3[contains(@class,'LC20lb')]")).get(numberOfLink);
     }
 
-    public HomePage backToHomePage() {
+    public SearchResultPage returnHomePage() {
         driver.findElement(By.xpath("//a/img")).click();
-        return new HomePage();
+        return this;
     }
 }
