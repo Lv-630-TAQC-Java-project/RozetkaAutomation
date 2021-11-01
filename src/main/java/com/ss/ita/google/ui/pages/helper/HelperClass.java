@@ -12,5 +12,4 @@ public class HelperClass {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript(format("arguments[0].style.color='%s'", color), webElement);
     }
-
 }

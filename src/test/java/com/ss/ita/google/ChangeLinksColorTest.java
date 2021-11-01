@@ -23,6 +23,5 @@ public class ChangeLinksColorTest extends TestRunner {
 
         assertTrue(firstLinkText.contains("Kitten"));
         assertTrue(defaultColor != changedColor);
-
     }
 }
