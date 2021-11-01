@@ -15,6 +15,11 @@ public class WebElementHelper {
 
     public static void changeAttributeValue(WebElement element, String attributeName, String value) {
         String script = "arguments[0].setAttribute(arguments[1], arguments[2]);";
-        getExecutorFromDriver().executeScript(script, driver, element, attributeName, value);
+        getExecutorFromDriver().executeScript(script, element, attributeName, value);
+    }
+
+    public static void removeAttribute(WebElement element, String attributeName) {
+        String script = "arguments[0].removeAttribute(arguments[1], arguments[1])";
+        getExecutorFromDriver().executeScript(script, element, attributeName);
     }
 }
