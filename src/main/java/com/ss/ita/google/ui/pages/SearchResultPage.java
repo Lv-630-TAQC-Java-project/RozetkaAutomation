@@ -28,9 +28,8 @@ public class SearchResultPage {
         return getSearchedLink(numberOfLink).getText();
     }
 
-    public SearchResultPage changeFirstLinkColor(String color){
-        javascriptExecutor("document.querySelector('.g>div>div>div>a>h3').style.color =" + color + ";");
-        return this;
+    public void changeLinkColor(int numberOfLink){
+        executeScriptForWebElementsColor(getSearchedLink(numberOfLink));
     }
 
     public String getLinkColor(int numberOfLink) {
