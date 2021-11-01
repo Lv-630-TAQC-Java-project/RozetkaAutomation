@@ -2,7 +2,6 @@ package com.ss.ita.google.ui.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
@@ -50,11 +49,10 @@ public class SearchResultPage {
         driver.findElement(By.xpath("//a/img")).click();
         return this;
     }
-    	
-	public WebDriver goToResultLink (int numberResultLink) {
+
+	public ExternalPage goToResultLink (int numberResultLink) {
 		List<WebElement> searchResultLink = driver.findElements(By.xpath("//div[@class='yuRUbf']/a"));
-		System.out.println(searchResultLink.size());
 		searchResultLink.get(numberResultLink - 1).click();
-		return driver;
+		return new ExternalPage();
 	}
 }
