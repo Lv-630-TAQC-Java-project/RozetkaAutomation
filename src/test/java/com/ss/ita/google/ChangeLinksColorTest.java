@@ -17,7 +17,7 @@ public class ChangeLinksColorTest extends TestRunner {
                 .getLinkText(0);
         String defaultColor = searchResultPage
                 .getLinkColor(0);
-        searchResultPage.changeLinkColor("lightpink", 0);
+        searchResultPage.changeWebElementColor("lightpink", searchResultPage.getSearchedLink(0));
         String changedColor = searchResultPage
                 .getLinkColor(0);
 

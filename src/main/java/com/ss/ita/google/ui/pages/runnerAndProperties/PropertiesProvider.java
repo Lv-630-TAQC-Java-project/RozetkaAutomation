@@ -11,9 +11,9 @@ public class PropertiesProvider {
 
     public PropertiesProvider() throws IOException {
 
-            this.fileInputStream = new FileInputStream("src/test/resources/data.properties");
-            this.properties = new Properties();
-            properties.load(fileInputStream);
+        this.fileInputStream = new FileInputStream("src/test/resources/data.properties");
+        this.properties = new Properties();
+        properties.load(fileInputStream);
     }
 
     public String getBaseUrl() {
