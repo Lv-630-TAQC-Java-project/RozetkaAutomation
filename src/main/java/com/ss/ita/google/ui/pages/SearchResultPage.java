@@ -24,8 +24,8 @@ public class SearchResultPage {
         return this;
     }
 
-    public String getLinkColor(int numberOfLink) {
-        return getSearchedResultLink(numberOfLink).getCssValue("color");
+    public String getLinkText(int numberOfLink) {
+        return getSearchedResultLink(numberOfLink).getText();
     }
 
     public WebElement getSearchedResultLink(int numberOfLink) {
