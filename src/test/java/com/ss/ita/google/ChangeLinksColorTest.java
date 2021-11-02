@@ -17,7 +17,7 @@ public class ChangeLinksColorTest extends TestRunner {
                 .getLinkText(0);
         String defaultColor = searchResultPage
                 .getLinkColor(0);
-        setColorViaJs("lightpink", searchResultPage.getSearchedLink(0));
+        setColorViaJs("lightpink", searchResultPage.getSearchedLink(0));//get needed WebElement to change his color
         String changedColor = searchResultPage
                 .getLinkColor(0);
 
