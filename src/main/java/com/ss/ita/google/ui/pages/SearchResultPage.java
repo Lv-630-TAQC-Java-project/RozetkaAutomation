@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
-import static com.ss.ita.google.ui.pages.helper.HelperClass.*;
 
 public class SearchResultPage {
 
@@ -27,10 +26,6 @@ public class SearchResultPage {
 
     public String getLinkText(int numberOfLink) {
         return getSearchedLink(numberOfLink).getText();
-    }
-
-    public void changeWebElementColor(String color, WebElement webElement) {
-        setColorViaJs(color, webElement);
     }
 
     public String getLinkColor(int numberOfLink) {

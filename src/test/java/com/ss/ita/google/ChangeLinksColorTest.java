@@ -1,10 +1,10 @@
 package com.ss.ita.google;
 
-import com.ss.ita.google.ui.pages.HomePage;
-import com.ss.ita.google.ui.pages.SearchResultPage;
+import com.ss.ita.google.ui.pages.*;
 import com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner;
 import org.testng.annotations.Test;
 
+import static com.ss.ita.google.ui.pages.helper.HelperClass.*;
 import static org.testng.Assert.*;
 
 public class ChangeLinksColorTest extends TestRunner {
@@ -17,7 +17,7 @@ public class ChangeLinksColorTest extends TestRunner {
                 .getLinkText(0);
         String defaultColor = searchResultPage
                 .getLinkColor(0);
-        searchResultPage.changeWebElementColor("lightpink", searchResultPage.getSearchedLink(0));
+        setColorViaJs("lightpink", searchResultPage.getSearchedLink(0));
         String changedColor = searchResultPage
                 .getLinkColor(0);
 
