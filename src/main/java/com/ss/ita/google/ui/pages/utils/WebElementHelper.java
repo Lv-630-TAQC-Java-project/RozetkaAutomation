@@ -9,17 +9,15 @@ public class WebElementHelper {
     private WebElementHelper() {
     }
 
-    public static JavascriptExecutor getExecutorFromDriver() {
-        return (JavascriptExecutor) driver;
-    }
-
-    public static void changeAttributeValue(WebElement element, String attributeName, String value) {
+    public static void setAttribute(WebElement element, String attributeName, String value) {
         String script = "arguments[0].setAttribute(arguments[1], arguments[2]);";
-        getExecutorFromDriver().executeScript(script, element, attributeName, value);
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript(script, element, attributeName, value);
     }
 
     public static void removeAttribute(WebElement element, String attributeName) {
         String script = "arguments[0].removeAttribute(arguments[1], arguments[1])";
-        getExecutorFromDriver().executeScript(script, element, attributeName);
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript(script, element, attributeName);
     }
 }

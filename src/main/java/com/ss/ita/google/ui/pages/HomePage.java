@@ -1,7 +1,7 @@
 package com.ss.ita.google.ui.pages;
 
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
-import static com.ss.ita.google.ui.pages.utils.WebElementHelper.changeAttributeValue;
+import static com.ss.ita.google.ui.pages.utils.WebElementHelper.setAttribute;
 import static com.ss.ita.google.ui.pages.utils.WebElementHelper.removeAttribute;
 
 
@@ -44,7 +44,7 @@ public class HomePage {
     }
 
     public HomePage hideLogo() {
-        changeAttributeValue(getLogo(), "hidden", "true");
+        setAttribute(getLogo(), "hidden", "true");
         return this;
     }
 
