@@ -1,24 +1,21 @@
 package com.ss.ita.google;
 
-import com.ss.ita.google.ui.pages.ExternalPage;
 import com.ss.ita.google.ui.pages.HomePage;
+import com.ss.ita.google.ui.pages.SearchResultPage;
 import com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
+
+import static org.testng.Assert.assertEquals;
 
 public class ResultLinkTest extends TestRunner {
 
-    @DataProvider
-    public static Object[][] dpOpenResultLink() {
-        return new Object[][]{{"funny kitten", 5}};
-    }
-
-    @Test(dataProvider = "dpOpenResultLink")
-    public void verifyOpenResultLink(String searchTerm, int numberResultLink) {
-        ExternalPage externalPage = new HomePage().doSearch(searchTerm).goToResultLink(numberResultLink);
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertFalse(externalPage.isPresentReloadButton());
-        softAssert.assertAll();
+    @Test
+    public void verifyOpenResultLink() {
+        String searchTerm = "funny kitten";
+        int numberResultLink = 5;
+        SearchResultPage searchResultPage = new HomePage().doSearch(searchTerm);
+        String resultLinkUrl = searchResultPage.getResultLinkUrl(numberResultLink);
+        String pageUrl = searchResultPage.goToResultLink(numberResultLink).getUrlPage();
+        assertEquals(resultLinkUrl, pageUrl);
     }
 }
