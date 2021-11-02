@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
 
@@ -38,12 +39,10 @@ public class SearchResultPage {
     }
 
     public List<String> getResultLinksText() {
-        List<String> linksList = new ArrayList<>();
-        int linksListSize = driver.findElements(By.xpath("//h3[contains(@class,'LC20lb')]")).size();
-        for (int i = 0; i < linksListSize; i++) {
-            linksList.add(getLinkText(i));
-        }
-        return linksList;
+        return driver.findElements(By.xpath("//h3[contains(@class,'LC20lb')]"))
+                .stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
     }
 
     public String getLinkColor(int numberOfLink) {

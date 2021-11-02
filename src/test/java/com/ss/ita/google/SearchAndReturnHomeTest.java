@@ -26,10 +26,7 @@ public class SearchAndReturnHomeTest extends TestRunner {
                 .doSearch("funny kitten");
 
         String word = "kitten";
-        if (searchResultPage.getResultLinksText().size() == 0) {
-            throw new IllegalArgumentException("Links list shouldn't be empty");
-        }
-
+        assertTrue(searchResultPage.getResultLinksText().size() != 0);
         for (int i = 0; i < searchResultPage.getResultLinksText().size(); i++) {
             String linkText = searchResultPage.getLinkText(i).toLowerCase();
             assertTrue(linkText.contains(word));
