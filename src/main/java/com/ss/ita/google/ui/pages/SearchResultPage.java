@@ -38,7 +38,7 @@ public class SearchResultPage {
         return this;
     }
 
-    public List<String> getResultLinksText() {
+    public List<String> getResultLinksTexts() {
         return driver.findElements(By.xpath("//h3[contains(@class,'LC20lb')]"))
                 .stream()
                 .map(WebElement::getText)
