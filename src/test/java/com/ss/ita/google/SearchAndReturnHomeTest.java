@@ -26,8 +26,9 @@ public class SearchAndReturnHomeTest extends TestRunner {
                 .doSearch("funny kitten");
 
         String word = "kitten";
-        assertTrue(searchResultPage.getResultLinksTexts().size() != 0);
-        for (int i = 0; i < searchResultPage.getResultLinksTexts().size(); i++) {
+        int numberOfLinks = searchResultPage.getResultLinksTexts().size();
+        assertTrue(numberOfLinks != 0);
+        for (int i = 0; i < numberOfLinks; i++) {
             String linkText = searchResultPage.getLinkText(i).toLowerCase();
             assertTrue(linkText.contains(word));
         }
