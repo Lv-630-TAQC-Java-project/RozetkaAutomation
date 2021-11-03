@@ -4,7 +4,7 @@ import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.driver;
 
 public class SearchedPage {
 
-    public String getUrlPage() {
+    public String getUrl() {
         return driver.getCurrentUrl();
     }
 }

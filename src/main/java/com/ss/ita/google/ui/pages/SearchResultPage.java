@@ -48,7 +48,7 @@ public class SearchResultPage {
         return this;
     }
 
-    public SearchedPage goToResultLink(int numberResultLink) {
+    public SearchedPage openSearchResultLink(int numberResultLink) {
         driver.findElement(By.xpath(String.format("(//div[@class='yuRUbf']/a)[%s]", numberResultLink))).click();
         return new SearchedPage();
     }
