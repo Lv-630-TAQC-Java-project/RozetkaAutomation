@@ -1,7 +1,6 @@
 package com.ss.ita.google.ui.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
@@ -29,12 +28,6 @@ public class SearchResultPage {
         return getSearchedLink(numberOfLink).getText();
     }
 
-    public SearchResultPage changeFirstLinkColor(String color){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("document.querySelector('.g>div>div>div>a>h3').style.color =" + color +";");
-        return this;
-    }
-
     public String getLinkColor(int numberOfLink) {
         return getSearchedLink(numberOfLink).getCssValue("color");
     }
@@ -56,5 +49,14 @@ public class SearchResultPage {
     public String getResultLinkUrl(int numberResultLink) {
         return driver.findElement(By.xpath(String.format("(//div[@class='yuRUbf']/a)[%s]", numberResultLink)))
                         .getAttribute("href");
+    }
+
+    public SearchResultPage openResultPage(int pageNumber) {
+        driver.findElement(By.xpath(String.format("//a[@aria-label = 'Page %s']", pageNumber))).click();
+        return this;
+    }
+
+    public int getCurrentPageNumber() {
+        return Integer.parseInt(driver.findElement(By.xpath("//td[text()]")).getText());
     }
 }
