@@ -13,7 +13,6 @@ public class WebElementUtil {
     }
 
     public static void setColorViaJs(WebElement webElement, String color) {
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript(format("arguments[0].style.color='%s'", color), webElement);
+        ((JavascriptExecutor) driver).executeScript(format("arguments[0].style.color='%s'", color), webElement);
     }
 }
