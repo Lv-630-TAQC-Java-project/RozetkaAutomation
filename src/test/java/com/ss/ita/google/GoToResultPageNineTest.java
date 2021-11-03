@@ -12,7 +12,7 @@ public class GoToResultPageNineTest extends TestRunner {
         var pageNumber = 9;
         var currentPageNumber = new HomePage()
                 .doSearch("funny kitten")
-                .goToResultPageNumber(pageNumber)
+                .openResultPage(pageNumber)
                 .getCurrentPageNumber();
         Assert.assertEquals(currentPageNumber, pageNumber);
     }

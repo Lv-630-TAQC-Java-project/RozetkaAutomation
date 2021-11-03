@@ -41,8 +41,8 @@ public class SearchResultPage {
         return this;
     }
 
-    public SearchResultPage goToResultPageNumber(int numberOfPage) {
-        driver.findElement(By.xpath(String.format("//a[@aria-label = 'Page %s']", numberOfPage))).click();
+    public SearchResultPage openResultPage(int pageNumber) {
+        driver.findElement(By.xpath(String.format("//a[@aria-label = 'Page %s']", pageNumber))).click();
         return this;
     }
 
