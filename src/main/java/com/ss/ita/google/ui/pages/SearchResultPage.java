@@ -47,4 +47,14 @@ public class SearchResultPage {
         driver.findElement(By.xpath("//a/img")).click();
         return new HomePage();
     }
+
+    public SearchedPage openSearchResultLink(int numberResultLink) {
+        driver.findElement(By.xpath(String.format("(//div[@class='yuRUbf']/a)[%s]", numberResultLink))).click();
+        return new SearchedPage();
+    }
+
+    public String getResultLinkUrl(int numberResultLink) {
+        return driver.findElement(By.xpath(String.format("(//div[@class='yuRUbf']/a)[%s]", numberResultLink)))
+                        .getAttribute("href");
+    }
 }
