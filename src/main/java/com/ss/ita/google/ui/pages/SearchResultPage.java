@@ -24,7 +24,7 @@ public class SearchResultPage {
         return this;
     }
 
-    public String getLinkText(int numberOfLink) {
+    public String getSearchedResultLinkText(int numberOfLink) {
         return getSearchedResultLink(numberOfLink).getText();
     }
 
