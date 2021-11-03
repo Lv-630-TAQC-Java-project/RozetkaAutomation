@@ -11,13 +11,20 @@ public class WebElementHelper {
 
     public static void setAttribute(WebElement element, String attributeName, String value) {
         String script = "arguments[0].setAttribute(arguments[1], arguments[2]);";
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript(script, element, attributeName, value);
+        ((JavascriptExecutor) driver).executeScript(script, element, attributeName, value);
     }
 
     public static void removeAttribute(WebElement element, String attributeName) {
         String script = "arguments[0].removeAttribute(arguments[1], arguments[1])";
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript(script, element, attributeName);
+        ((JavascriptExecutor) driver).executeScript(script, element, attributeName);
+    }
+
+    public static void switchWebElementVisibility(WebElement element, boolean makeHidden){
+        if (makeHidden){
+            setAttribute(element, "hidden", "true");
+        }
+        else {
+            removeAttribute(element, "hidden");
+        }
     }
 }

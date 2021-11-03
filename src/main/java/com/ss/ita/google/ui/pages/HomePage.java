@@ -1,12 +1,9 @@
 package com.ss.ita.google.ui.pages;
 
-import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
-import static com.ss.ita.google.ui.pages.utils.WebElementHelper.setAttribute;
-import static com.ss.ita.google.ui.pages.utils.WebElementHelper.removeAttribute;
-
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.driver;
 
 public class HomePage {
 
@@ -35,22 +32,12 @@ public class HomePage {
         return driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).getAttribute("value");
     }
 
-    private WebElement getLogo() {
+    public WebElement getLogo() {
         return driver.findElement(By.xpath("//img[@width>'200']"));
     }
 
     public boolean isLogoDisplayed() {
         return getLogo().isDisplayed();
-    }
-
-    public HomePage hideLogo() {
-        setAttribute(getLogo(), "hidden", "true");
-        return this;
-    }
-
-    public HomePage displayLogo() {
-        removeAttribute(getLogo(), "hidden");
-        return this;
     }
 }
 
