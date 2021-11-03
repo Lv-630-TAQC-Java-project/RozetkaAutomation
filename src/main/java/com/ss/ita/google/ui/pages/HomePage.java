@@ -38,5 +38,12 @@ public class HomePage {
     public boolean isLogoDisplayed() {
         return getLogo().isDisplayed();
     }
-}
 
+    public boolean isSearchBoxDisplayed() {
+        return driver.findElement(By.name("q")).isDisplayed();
+    }
+
+    public boolean isSearchButtonDisplayed() {
+        return driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).isDisplayed();
+    }
+}
