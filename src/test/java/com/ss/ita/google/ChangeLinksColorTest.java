@@ -9,20 +9,16 @@ import static com.ss.ita.google.ui.pages.util.WebElementUtil.*;
 import static org.testng.Assert.*;
 
 public class ChangeLinksColorTest extends TestRunner {
-    // method to get link needed in test
-    private WebElement searchedResultLink(SearchResultPage searchResultPage) {
-        return searchResultPage.getSearchedResultLink(0);
-    }
-    
+
     @Test
     public void verifyChangingLinksColor() {
-        SearchResultPage searchResultPage = new HomePage()
-                .doSearch("Funny kitten picture");
+        SearchResultPage searchResultPage = new HomePage().doSearch("Funny kitten picture");
+        WebElement searchedResultLink = searchResultPage.getSearchedResultLink(0);
         String firstLinkText = searchResultPage
                 .getSearchedResultLinkText(0);
-        String defaultColor = getColor(searchedResultLink(searchResultPage));
-        setColorViaJs(searchedResultLink(searchResultPage), "lightpink");
-        String changedColor = getColor(searchedResultLink(searchResultPage));
+        String defaultColor = getColor(searchedResultLink);
+        setColorViaJs(searchedResultLink, "lightpink");
+        String changedColor = getColor(searchedResultLink);
 
         assertTrue(firstLinkText.contains("Kitten"));
         assertTrue(defaultColor != changedColor);
