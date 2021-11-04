@@ -11,10 +11,10 @@ public class SearchLinksContainsWordTest {
 
     @Test
     public void verifySearchLinksContainsWord() {
+        String word = "kitten";
         SearchResultPage searchResultPage = new HomePage()
                 .doSearch("funny kitten");
-
-        String word = "kitten";
+        
         List<String> resLinksTexts = searchResultPage.getResultLinksTexts();
         int numberOfLinks = resLinksTexts.size();
         assertTrue(numberOfLinks != 0);
