@@ -37,10 +37,6 @@ public class SearchResultPage {
                 .collect(Collectors.toList());
     }
 
-    public String getLinkColor(int numberOfLink) {
-        return getSearchedResultLink(numberOfLink).getCssValue("color");
-    }
-
     public WebElement getSearchedResultLink(int numberOfLink) {
         return driver.findElements(By.xpath("//div[@id='rso']//h3[contains(@class,'LC20lb')]")).get(numberOfLink);
     }
