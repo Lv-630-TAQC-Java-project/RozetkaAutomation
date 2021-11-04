@@ -32,7 +32,7 @@ public class SearchResultPage {
     }
 
 
-    public WebElement getSearchedResultLink(int numberOfLink) {
+
     public List<String> getResultLinksTexts() {
         return driver.findElements(By.xpath("//h3[contains(@class,'LC20lb')]"))
                 .stream()
@@ -41,10 +41,11 @@ public class SearchResultPage {
     }
 
     public String getLinkColor(int numberOfLink) {
-        return getSearchedLink(numberOfLink).getCssValue("color");
+        return getSearchedResultLink(numberOfLink).getCssValue("color");
     }
 
-    public WebElement getSearchedLink(int numberOfLink) {
+
+    public WebElement getSearchedResultLink(int numberOfLink) {
         return driver.findElements(By.xpath("//div[@id='rso']//h3[contains(@class,'LC20lb')]")).get(numberOfLink);
     }
 
