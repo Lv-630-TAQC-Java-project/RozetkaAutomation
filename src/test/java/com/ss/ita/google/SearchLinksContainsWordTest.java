@@ -23,5 +23,4 @@ public class SearchLinksContainsWordTest {
             assertTrue(resultLink.contains(word));
         }
     }
-
 }
