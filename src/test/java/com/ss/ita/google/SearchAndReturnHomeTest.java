@@ -8,9 +8,6 @@ import com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.testng.Assert.*;
 
 public class SearchAndReturnHomeTest extends TestRunner {
