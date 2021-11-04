@@ -3,7 +3,6 @@ package com.ss.ita.google;
 import com.ss.ita.google.ui.pages.HomePage;
 import com.ss.ita.google.ui.pages.SearchResultPage;
 import org.testng.annotations.Test;
-
 import java.util.List;
 
 import static org.testng.Assert.assertTrue;
