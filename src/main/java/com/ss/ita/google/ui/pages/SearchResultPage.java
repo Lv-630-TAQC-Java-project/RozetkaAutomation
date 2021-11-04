@@ -31,8 +31,6 @@ public class SearchResultPage {
         return getSearchedResultLink(numberOfLink).getText();
     }
 
-
-
     public List<String> getResultLinksTexts() {
         return driver.findElements(By.xpath("//h3[contains(@class,'LC20lb')]"))
                 .stream()
@@ -43,7 +41,6 @@ public class SearchResultPage {
     public String getLinkColor(int numberOfLink) {
         return getSearchedResultLink(numberOfLink).getCssValue("color");
     }
-
 
     public WebElement getSearchedResultLink(int numberOfLink) {
         return driver.findElements(By.xpath("//div[@id='rso']//h3[contains(@class,'LC20lb')]")).get(numberOfLink);
