@@ -22,18 +22,4 @@ public class SearchAndReturnHomeTest extends TestRunner {
                 .returnHomePage();
         assertTrue(driver.findElement(By.id("hplogo")).isDisplayed());
     }
-
-    @Test
-    public void verifySearchLinksContainsWord() {
-        SearchResultPage searchResultPage = new HomePage()
-                .doSearch("funny kitten");
-
-        String word = "kitten";
-        List<String> resLinksTexts = searchResultPage.getResultLinksTexts();
-        int numberOfLinks = resLinksTexts.size();
-        assertTrue(numberOfLinks != 0);
-        for (String  resultLink : resLinksTexts) {
-            assertTrue(resultLink.contains(word));
-        }
-    }
 }
