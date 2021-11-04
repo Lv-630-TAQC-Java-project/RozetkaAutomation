@@ -2,7 +2,7 @@ package com.ss.ita.google;
 
 import com.ss.ita.google.ui.pages.HomePage;
 import com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner;
-import static com.ss.ita.google.ui.pages.utils.WebElementHelper.*;
+import static com.ss.ita.google.ui.pages.util.WebElementUtil.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,10 +12,10 @@ public class HideHomePageLogoTest extends TestRunner {
         HomePage page = new HomePage();
         Assert.assertTrue(page.isLogoDisplayed());
 
-        switchWebElementVisibility(page.getLogo(), true);
+        setVisibility(page.getLogo(), true);
         Assert.assertFalse(page.isLogoDisplayed());
 
-        switchWebElementVisibility(page.getLogo(), false);
+        setVisibility(page.getLogo(), false);
         Assert.assertTrue(page.isLogoDisplayed());
     }
 }
