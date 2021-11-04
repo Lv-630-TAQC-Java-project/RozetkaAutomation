@@ -1,9 +1,8 @@
 package com.ss.ita.google.ui.pages;
 
+import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.driver;
 
 public class HomePage {
 
@@ -39,5 +38,12 @@ public class HomePage {
     public boolean isLogoDisplayed() {
         return getLogo().isDisplayed();
     }
-}
 
+    public boolean isSearchBoxDisplayed() {
+        return driver.findElement(By.name("q")).isDisplayed();
+    }
+
+    public boolean isSearchButtonDisplayed() {
+        return driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).isDisplayed();
+    }
+}
