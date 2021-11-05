@@ -14,7 +14,7 @@ public class ResultLinkTest extends TestRunner {
         String searchTerm = "funny kitten";
         int numberResultLink = 5;
         SearchResultPage searchResultPage = new HomePage().doSearch(searchTerm);
-        String resultLinkUrl = searchResultPage.getResultLinkUrl(numberResultLink);
+        String resultLinkUrl = searchResultPage.getSearchedResultLinkUrl(numberResultLink);
         String pageUrl = searchResultPage.openSearchResultLink(numberResultLink).getUrl();
         assertEquals(resultLinkUrl, pageUrl);
     }

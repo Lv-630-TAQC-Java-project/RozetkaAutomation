@@ -1,8 +1,8 @@
 package com.ss.ita.google.ui.pages;
 
-import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
+import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.*;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class HomePage {
@@ -12,28 +12,28 @@ public class HomePage {
     }
 
     public HomePage setSearchTerms(String terms) {
-        WebElement input = driver.findElement(By.xpath("//input[@class='gLFyf gsfi']"));
+        WebElement input = $x("//input[@class='gLFyf gsfi']");
         input.clear();
         input.sendKeys(terms);
         return this;
     }
 
     public SearchResultPage search() {
-        driver.findElement(By.xpath("//input[@class='gNO89b'][1]")).click();
+        $x("//input[@class='gNO89b'][1]").click();
         return new SearchResultPage();
     }
 
     public HomePage changeLanguage(String language) {
-        driver.findElement((By.xpath("//a[contains(text(),'" + language + "')]"))).click();
+        $x("//a[contains(text(),'" + language + "')]").click();
         return this;
     }
 
     public String getSearchButtonText() {
-        return driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).getAttribute("value");
+        return $("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']").getAttribute("value");
     }
 
     private WebElement getLogo() {
-        return driver.findElement(By.xpath("//img[@width>'200']"));
+        return $x("//img[@width>'200']");
     }
 
     public boolean isLogoDisplayed() {
@@ -41,10 +41,10 @@ public class HomePage {
     }
 
     public boolean isSearchBoxDisplayed() {
-        return driver.findElement(By.name("q")).isDisplayed();
+        return $(byName("q")).isDisplayed();
     }
 
     public boolean isSearchButtonDisplayed() {
-        return driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).isDisplayed();
+        return $x("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']").isDisplayed();
     }
 }

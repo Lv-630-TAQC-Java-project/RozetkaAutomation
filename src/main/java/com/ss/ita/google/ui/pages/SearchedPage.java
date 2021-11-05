@@ -1,10 +1,11 @@
 package com.ss.ita.google.ui.pages;
 
-import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.driver;
+import static com.codeborne.selenide.WebDriverRunner.url;
 
 public class SearchedPage {
 
     public String getUrl() {
-        return driver.getCurrentUrl();
-    }
+        return url();
+   }
 }
+
