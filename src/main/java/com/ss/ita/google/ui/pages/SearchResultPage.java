@@ -46,12 +46,12 @@ public class SearchResultPage {
     }
 
     public SearchedPage openSearchResultLink(int numberResultLink) {
-        getSearchedResultLink(numberResultLink).click();
+        $x(String.format("(//div[@class='yuRUbf']/a)[%s]", numberResultLink)).click();
         return new SearchedPage();
     }
 
     public String getResultLinkUrl(int numberResultLink) {
-        return $x(String.format("(//div[@class='yuRUbf']/a)[%s])",numberResultLink)).getAttribute("href");
+        return $x(String.format("(//div[@class='yuRUbf']/a)[%s]", numberResultLink)).getAttribute("href");
     }
 
     public SearchResultPage openResultPage(int pageNumber) {
