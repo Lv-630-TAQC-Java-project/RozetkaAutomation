@@ -1,7 +1,6 @@
 package com.ss.ita.google.ui.pages;
 
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -32,7 +31,7 @@ public class HomePage {
         return driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).getAttribute("value");
     }
 
-    private WebElement getLogo() {
+    public WebElement getLogo() {
         return driver.findElement(By.xpath("//img[@width>'200']"));
     }
 
