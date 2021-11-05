@@ -40,7 +40,7 @@ public class SearchResultPage {
     }
 
     public HomePage goBackToHomePage() {
-        driver.findElement(By.xpath("//a/img")).click();
+        $x("//a/img").click();
         return new HomePage();
     }
 

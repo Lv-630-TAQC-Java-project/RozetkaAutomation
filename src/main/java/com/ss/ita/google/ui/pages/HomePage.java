@@ -33,7 +33,7 @@ public class HomePage {
     }
 
     public WebElement getLogo() {
-        return driver.findElement(By.xpath("//img[@width>'200']"));
+        return $x("//img[@width>'200']");
     }
 
     public boolean isLogoDisplayed() {
@@ -41,10 +41,10 @@ public class HomePage {
     }
 
     public boolean isSearchBoxDisplayed() {
-        return driver.findElement(By.name("q")).isDisplayed();
+        return $(byName("q")).isDisplayed();
     }
 
     public boolean isSearchButtonDisplayed() {
-        return driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).isDisplayed();
+        return $x("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']").isDisplayed();
     }
 }
