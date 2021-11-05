@@ -1,9 +1,10 @@
 package com.ss.ita.google.ui.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selectors.byName;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class HomePage {
 

@@ -1,11 +1,12 @@
 package com.ss.ita.google.ui.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class SearchResultPage {
 
