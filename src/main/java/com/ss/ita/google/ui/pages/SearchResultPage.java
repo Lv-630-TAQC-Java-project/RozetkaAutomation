@@ -31,9 +31,7 @@ public class SearchResultPage {
     }
 
     public List<String> getResultLinksTexts() {
-        return driver.findElements(By.xpath("//h3[contains(@class,'LC20lb')]"))
-                .stream()
-                .map(WebElement::getText)
+        return $$x("//h3[contains(@class,'LC20lb')]").stream().map(WebElement::getText)
                 .collect(Collectors.toList());
     }
 
@@ -47,13 +45,12 @@ public class SearchResultPage {
     }
 
     public SearchedPage openSearchResultLink(int numberResultLink) {
-        driver.findElement(By.xpath(String.format("(//div[@class='yuRUbf']/a)[%s]", numberResultLink))).click();
+        getSearchedResultLink(numberResultLink).click();
         return new SearchedPage();
     }
 
     public String getResultLinkUrl(int numberResultLink) {
-        return driver.findElement(By.xpath(String.format("(//div[@class='yuRUbf']/a)[%s]", numberResultLink)))
-                        .getAttribute("href");
+        return getSearchedResultLink(numberResultLink).getAttribute("href");
     }
 
     public SearchResultPage openResultPage(int pageNumber) {
