@@ -2,6 +2,8 @@ package com.ss.ita.google.ui.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
 
@@ -28,6 +30,12 @@ public class SearchResultPage {
         return getSearchedResultLink(numberOfLink).getText();
     }
 
+    public List<String> getResultLinksTexts() {
+        return driver.findElements(By.xpath("//h3[contains(@class,'LC20lb')]"))
+                .stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+    }
 
     public WebElement getSearchedResultLink(int numberOfLink) {
         return driver.findElements(By.xpath("//div[@id='rso']//h3[contains(@class,'LC20lb')]")).get(numberOfLink);
