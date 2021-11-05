@@ -51,7 +51,7 @@ public class SearchResultPage {
     }
 
     public String getResultLinkUrl(int numberResultLink) {
-        return getSearchedResultLink(numberResultLink).getAttribute("href");
+        return $x(String.format("(//div[@class='yuRUbf']/a)[%s])",numberResultLink)).getAttribute("href");
     }
 
     public SearchResultPage openResultPage(int pageNumber) {
