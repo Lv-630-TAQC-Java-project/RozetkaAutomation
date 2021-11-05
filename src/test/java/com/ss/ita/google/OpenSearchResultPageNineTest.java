@@ -10,9 +10,10 @@ public class OpenSearchResultPageNineTest extends TestRunner {
     @Test
     public void verifyOpenPageNine() {
         int pageNumber = 9;
-        new HomePage()
+        int currentPageNumber = new HomePage()
                 .doSearch("funny kitten")
-                .openSearchResultPageNumber(pageNumber)
-                .shouldHavePageNumber(pageNumber);
+                .openSearchResultPage(pageNumber)
+                .getCurrentPageNumber();
+        Assert.assertEquals(currentPageNumber, pageNumber);
     }
 }
