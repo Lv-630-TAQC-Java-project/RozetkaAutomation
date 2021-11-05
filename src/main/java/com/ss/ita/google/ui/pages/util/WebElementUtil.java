@@ -2,7 +2,8 @@ package com.ss.ita.google.ui.pages.util;
 
 import org.openqa.selenium.WebElement;
 
-import static com.codeborne.selenide.Selenide.executeJavaScript;
+
+import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
 public class WebElementUtil {
@@ -12,7 +13,7 @@ public class WebElementUtil {
     }
 
     public static void setColorViaJs(WebElement webElement, String color) {
-        ((JavascriptExecutor) driver).executeScript(format("arguments[0].style.color='%s'", color), webElement);
+        executeJavaScript(format("arguments[0].style.color='%s'", color), webElement);
     }
 
     public static void setAttribute(WebElement element, String attributeName, String value) {
