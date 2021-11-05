@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
+import static com.codeborne.selenide.Selenide.*;
 
 public class SearchResultPage {
 
@@ -57,11 +57,11 @@ public class SearchResultPage {
     }
 
     public SearchResultPage openResultPage(int pageNumber) {
-        driver.findElement(By.xpath(String.format("//a[@aria-label = 'Page %s']", pageNumber))).click();
+        $x(String.format("//a[@aria-label = 'Page %s']", pageNumber)).click();
         return this;
     }
 
     public int getCurrentPageNumber() {
-        return Integer.parseInt(driver.findElement(By.xpath("//td[text()]")).getText());
+        return Integer.parseInt($x("//td[text()]").getText());
     }
 }
