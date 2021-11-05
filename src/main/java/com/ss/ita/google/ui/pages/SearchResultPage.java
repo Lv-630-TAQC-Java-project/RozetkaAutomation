@@ -55,7 +55,7 @@ public class SearchResultPage {
         return getSearchedResultLink(numberResultLink).getAttribute("href");
     }
 
-    public SearchResultPage openSearchResultPageNumber(int pageNumber) {
+    public SearchResultPage openSearchResultPage(int pageNumber) {
         $x(String.format("//a[@aria-label = 'Page %s']", pageNumber)).click();
         return this;
     }
