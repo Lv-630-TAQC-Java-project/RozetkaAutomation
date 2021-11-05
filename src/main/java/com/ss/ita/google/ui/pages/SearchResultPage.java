@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.files.DownloadActions.click;
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
 
 public class SearchResultPage {
@@ -42,7 +44,7 @@ public class SearchResultPage {
     }
 
     public HomePage goBackToHomePage() {
-        driver.findElement(By.xpath("//a/img")).click();
+        $x("//a/img").click();
         return new HomePage();
     }
 

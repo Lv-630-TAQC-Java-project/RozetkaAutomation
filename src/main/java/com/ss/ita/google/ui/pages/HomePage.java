@@ -1,5 +1,8 @@
 package com.ss.ita.google.ui.pages;
 
+import static com.codeborne.selenide.Selectors.byName;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -32,7 +35,7 @@ public class HomePage {
     }
 
     public WebElement getLogo() {
-        return driver.findElement(By.xpath("//img[@width>'200']"));
+        return $x("//img[@width>'200']");
     }
 
     public boolean isLogoDisplayed() {
@@ -40,10 +43,10 @@ public class HomePage {
     }
 
     public boolean isSearchBoxDisplayed() {
-        return driver.findElement(By.name("q")).isDisplayed();
+        return $(byName("q")).isDisplayed();
     }
 
     public boolean isSearchButtonDisplayed() {
-        return driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']")).isDisplayed();
+        return $x("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']").isDisplayed();
     }
 }
