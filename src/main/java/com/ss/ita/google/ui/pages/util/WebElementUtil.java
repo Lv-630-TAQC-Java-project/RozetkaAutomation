@@ -1,9 +1,8 @@
 package com.ss.ita.google.ui.pages.util;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
-import static com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner.driver;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static java.lang.String.format;
 
 public class WebElementUtil {
@@ -18,12 +17,12 @@ public class WebElementUtil {
 
     public static void setAttribute(WebElement element, String attributeName, String value) {
         String script = "arguments[0].setAttribute(arguments[1], arguments[2]);";
-        ((JavascriptExecutor) driver).executeScript(script, element, attributeName, value);
+        executeJavaScript(script, element, attributeName, value);
     }
 
     public static void removeAttribute(WebElement element, String attributeName) {
         String script = "arguments[0].removeAttribute(arguments[1], arguments[1])";
-        ((JavascriptExecutor) driver).executeScript(script, element, attributeName);
+        executeJavaScript(script, element, attributeName);
     }
 
     public static void setVisibility(WebElement element, boolean isHidden){
