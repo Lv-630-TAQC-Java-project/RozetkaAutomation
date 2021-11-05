@@ -20,6 +20,9 @@ buildNumber.properties
 .settings
 test-output
 
+*.png
+*.html
+
 src/test/resources/web-drivers/
 allure-results/
 chromedriver.exe
