@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -54,12 +55,13 @@ public class SearchResultPage {
         return getSearchedResultLink(numberResultLink).getAttribute("href");
     }
 
-    public SearchResultPage openResultPage(int pageNumber) {
+    public SearchResultPage openSearchResultPageNumber(int pageNumber) {
         $x(String.format("//a[@aria-label = 'Page %s']", pageNumber)).click();
         return this;
     }
 
-    public int getCurrentPageNumber() {
-        return Integer.parseInt($x("//td[text()]").getText());
+    public SearchResultPage shouldHavePageNumber(int number) {
+        $x("//td[text()]").shouldHave(text(Integer.toString(number)));
+        return this;
     }
 }
