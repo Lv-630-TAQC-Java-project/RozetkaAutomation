@@ -27,8 +27,11 @@ public class SearchLinksContainsWordTest extends TestRunner {
     @Test
     public void verifyFivePageLinksContainsText() {
         String searchText = "funny kitten";
-        int numberResultPage = 5;
-        List<String> linksTexts = new HomePage().doSearch(searchText).openResultPage(5).getResultLinksTexts();
+        int numberResultPage = 4;
+        List<String> linksTexts = new HomePage()
+                                    .doSearch(searchText)
+                                    .openResultPage(numberResultPage)
+                                    .getResultLinksTexts();
         String expectedText = "kitten";
         SoftAssert softAssert = new SoftAssert();
         for (String linkText : linksTexts) {
