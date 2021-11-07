@@ -15,10 +15,13 @@ public class ChangeLinksColorTest extends TestRunner {
         SearchResultPage searchResultPage = new HomePage().doSearch("Funny kitten picture");
         WebElement searchedResultLink = searchResultPage.getSearchedResultLink(0);
         String firstLinkText = searchResultPage.getSearchedResultLinkText(0);
+
+        assertTrue(firstLinkText.contains("Kitten"));
+
         String defaultColor = getColor(searchedResultLink);
         setColorViaJs(searchedResultLink, "lightpink");
         String changedColor = getColor(searchedResultLink);
-        assertTrue(firstLinkText.contains("Kitten"));
+
         assertTrue(defaultColor != changedColor);
     }
 }
