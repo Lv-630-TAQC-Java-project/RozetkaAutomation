@@ -10,6 +10,8 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class SearchResultPage {
 
+    private String resultLinkLocator = "(//div[@class='yuRUbf']/a)[%s]";
+
     public SearchResultPage doSearch(String searchText) {
         setSearchTerms(searchText).search();
         return this;
@@ -46,12 +48,12 @@ public class SearchResultPage {
     }
 
     public SearchedPage openSearchResultLink(int numberResultLink) {
-        getSearchedResultLink(numberResultLink).click();
+        $x(String.format(resultLinkLocator, numberResultLink)).click();
         return new SearchedPage();
     }
 
     public String getResultLinkUrl(int numberResultLink) {
-        return getSearchedResultLink(numberResultLink).getAttribute("href");
+        return $x(String.format(resultLinkLocator, numberResultLink)).getAttribute("href");
     }
 
     public SearchResultPage openSearchResultPage(int pageNumber) {
