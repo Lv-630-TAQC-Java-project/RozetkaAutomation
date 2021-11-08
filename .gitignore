@@ -19,7 +19,6 @@ buildNumber.properties
 .project
 .settings
 test-output
-/build/
 
 *.png
 *.html
