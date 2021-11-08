@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Condition.*;
 
 public class SearchResultPage {
 
@@ -62,8 +61,7 @@ public class SearchResultPage {
         return this;
     }
 
-    public SearchResultPage shouldHavePageNumber(int number) {
-        $x("//td[text()]").shouldHave(text(Integer.toString(number)));
-        return this;
+    public int getCurrentPageNumber() {
+        return Integer.parseInt($x("//td[text()]").getText());
     }
 }
