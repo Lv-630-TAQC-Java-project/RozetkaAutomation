@@ -5,9 +5,8 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
-import static java.lang.Integer.parseInt;
+import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class SearchResultPage {
 
@@ -62,11 +61,6 @@ public class SearchResultPage {
     }
 
     public int getCurrentPageNumber() {
-        return parseInt($x("//td[text()]").getText());
-    }
-
-    public SearchResultPage shouldHavePageNumber(int number) {
-        $x("//td[text()]").shouldHave(text(Integer.toString(number)));
-        return this;
+        return Integer.parseInt($x("//td[text()]").getText());
     }
 }
