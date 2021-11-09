@@ -56,7 +56,7 @@ public class SearchResultPage {
                         .getAttribute("href");
     }
 
-    public SearchResultPage openResultPage(int pageNumber) {
+    public SearchResultPage openSearchResultPage(int pageNumber) {
        getSearchedResultLink(pageNumber).click();
         return this;
     }

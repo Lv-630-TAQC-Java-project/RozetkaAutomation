@@ -1,11 +1,11 @@
 package com.ss.ita.google;
 
 import com.ss.ita.google.ui.pages.*;
-import com.ss.ita.google.ui.pages.runner.TestRunnerForGoogle;
+import com.ss.ita.google.ui.runner.TestRunnerForGoogle;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
-import static com.ss.ita.google.ui.pages.util.WebElementUtil.*;
+import static com.ss.ita.google.ui.util.WebElementUtil.*;
 import static org.testng.Assert.*;
 
 public class ChangeLinksColorTest extends TestRunnerForGoogle {

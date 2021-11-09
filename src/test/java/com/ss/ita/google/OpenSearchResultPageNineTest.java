@@ -1,7 +1,7 @@
 package com.ss.ita.google;
 
 import com.ss.ita.google.ui.pages.HomePage;
-import com.ss.ita.google.ui.pages.runner.TestRunnerForGoogle;
+import com.ss.ita.google.ui.runner.TestRunnerForGoogle;
 import org.testng.annotations.Test;
 
 public class OpenSearchResultPageNineTest extends TestRunnerForGoogle {

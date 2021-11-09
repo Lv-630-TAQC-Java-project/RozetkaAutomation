@@ -1,4 +1,4 @@
-package com.ss.ita.google.ui.pages.util;
+package com.ss.ita.google.ui.util;
 
 import org.openqa.selenium.WebElement;
 
