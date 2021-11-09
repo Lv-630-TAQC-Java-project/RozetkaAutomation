@@ -1,9 +1,9 @@
 package com.ss.ita.google.ui.pages;
 
+import org.openqa.selenium.WebElement;
+
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-
-import org.openqa.selenium.WebElement;
 
 public class HomePage {
 
@@ -29,10 +29,10 @@ public class HomePage {
     }
 
     public String getSearchButtonText() {
-        return $("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']").getAttribute("value");
+        return $x("//div[@class='FPdoLc lJ9FBc']//input[@name='btnK']").getAttribute("value");
     }
 
-    private WebElement getLogo() {
+    public WebElement getLogo() {
         return $x("//img[@width>'200']");
     }
 

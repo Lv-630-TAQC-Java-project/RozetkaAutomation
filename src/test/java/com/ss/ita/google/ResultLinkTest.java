@@ -2,12 +2,12 @@ package com.ss.ita.google;
 
 import com.ss.ita.google.ui.pages.HomePage;
 import com.ss.ita.google.ui.pages.SearchResultPage;
-import com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner;
+import com.ss.ita.google.ui.pages.runner.TestRunnerForGoogle;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class ResultLinkTest extends TestRunner {
+public class ResultLinkTest extends TestRunnerForGoogle {
 
     @Test
     public void verifyOpenResultLink() {

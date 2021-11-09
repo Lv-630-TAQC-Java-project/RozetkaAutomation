@@ -2,6 +2,10 @@ package com.ss.ita.google.ui.pages;
 
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.Integer.parseInt;
 
@@ -13,7 +17,7 @@ public class SearchResultPage {
     }
 
     public SearchResultPage search() {
-        $x("//button[@class = 'Tg7LZd']").click();
+       $x("//button[@class = 'Tg7LZd']").click();
         return this;
     }
 
@@ -28,9 +32,13 @@ public class SearchResultPage {
         return getSearchedResultLink(numberOfLink).getText();
     }
 
+    public List<String> getResultLinksTexts() {
+        return $$x("//h3[contains(@class,'LC20lb')]").stream().map(WebElement::getText)
+                .collect(Collectors.toList());
+    }
 
     public WebElement getSearchedResultLink(int numberOfLink) {
-        return $$x("//h3[contains(@class,'LC20lb')]").get(numberOfLink);
+        return $$x("//div[@id='rso']//h3[contains(@class,'LC20lb')]").get(numberOfLink);
     }
 
     public HomePage goBackToHomePage() {
@@ -47,13 +55,18 @@ public class SearchResultPage {
         return getSearchedResultLink(numberOfResultLink)
                         .getAttribute("href");
     }
-//?
+
     public SearchResultPage openResultPage(int pageNumber) {
-       $x(String.format("//a[@aria-label = 'Page %s']", pageNumber)).click();
+       getSearchedResultLink(pageNumber).click();
         return this;
     }
 
     public int getCurrentPageNumber() {
         return parseInt($x("//td[text()]").getText());
+    }
+
+    public SearchResultPage shouldHavePageNumber(int number) {
+        $x("//td[text()]").shouldHave(text(Integer.toString(number)));
+        return this;
     }
 }

@@ -19,6 +19,10 @@ buildNumber.properties
 .project
 .settings
 test-output
+/build/
+
+*.png
+*.html
 
 src/test/resources/web-drivers/
 allure-results/
