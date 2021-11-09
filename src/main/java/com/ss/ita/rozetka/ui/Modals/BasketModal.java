@@ -1,4 +1,4 @@
-package com.ss.ita.rozetka.ui.pages.components;
+package com.ss.ita.rozetka.ui.Modals;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.ss.ita.rozetka.ui.pages.OrderingPage;
@@ -6,25 +6,26 @@ import com.ss.ita.rozetka.ui.pages.OrderingPage;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class GoodsCart {
-    public OrderingPage order() {
+public class BasketModal {
+
+    public OrderingPage openOrderingPage() {
         $x("//a[contains(@class, 'cart-receipt__submit')]").click();
         return new OrderingPage();
     }
 
-    public String getSumWithCurrency() {
+    public String getPriceWithCurrency() {
         return $x("//div[contains(@class,'sum-price')]").getAttribute("textContent");
     }
 
-    public int getSum() {
-        return Integer.parseInt(getSumWithCurrency().replaceAll("\\D", ""));
+    public int getPrice() {
+        return Integer.parseInt(getPriceWithCurrency().replaceAll("\\D", ""));
     }
 
-    public boolean isEmpty() {
-        return getGoodsList().isEmpty();
+    public boolean isBasketEmpty() {
+        return getProductsList().isEmpty();
     }
 
-    private ElementsCollection getGoodsList() {
+    private ElementsCollection getProductsList() {
         return $$x("//li[contains(@class, 'cart-list__item')]");
     }
 }

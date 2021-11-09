@@ -5,14 +5,18 @@ import java.util.List;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.*;
+import static java.lang.String.format;
 
 public class HomePage extends Header{
-    public ComputersNotebooksPage getComputersNotebooksPage(){
-         $x("(//a[@href = 'https://rozetka.com.ua/computers-notebooks/c80253/'])[2]").click();
-         return new ComputersNotebooksPage();
-    }
+
+    private static final String GENERAL_PRODUCT_CATEGORY_TEMPLATE = "//div[contains(@class,'menu-wrapper_state_static')]/descendant::a[contains(@href,'%s')]";
 
     public List<SelenideElement> getHomePageProductList(){
        return new ArrayList<>($$(".main-goods__cell.ng-star-inserted"));
+    }
+
+    public ProductCategoryPage openProductCategoryPage(String generalProductCategory){
+      $x(format(GENERAL_PRODUCT_CATEGORY_TEMPLATE,generalProductCategory)).click();
+       return new ProductCategoryPage();
     }
 }
