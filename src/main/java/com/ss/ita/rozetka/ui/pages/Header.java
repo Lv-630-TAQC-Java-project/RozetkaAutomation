@@ -24,11 +24,6 @@ public class Header {
         return new ProductTypePage();
     }
 
-    public Header openCatalog() {
-        $("svg.ng-tns-c5-0").click();
-        return this;
-    }
-
     public Header changeLanguage(String language) {
         $x("//a[normalize-space()='" + language + "']").click();
         return this;
