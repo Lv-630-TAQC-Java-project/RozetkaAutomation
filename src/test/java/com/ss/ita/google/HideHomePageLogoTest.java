@@ -1,12 +1,12 @@
 package com.ss.ita.google;
 
 import com.ss.ita.google.ui.pages.HomePage;
-import com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner;
+import com.ss.ita.google.ui.pages.runner.TestRunnerForGoogle;
 import static com.ss.ita.google.ui.pages.util.WebElementUtil.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class HideHomePageLogoTest extends TestRunner {
+public class HideHomePageLogoTest extends TestRunnerForGoogle {
     @Test
     public void verifyHomePageLogoIsHidden() {
         HomePage page = new HomePage();

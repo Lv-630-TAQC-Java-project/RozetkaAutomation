@@ -2,11 +2,11 @@ package com.ss.ita.google;
 
 import com.ss.ita.google.ui.pages.HomePage;
 
-import com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner;
+import com.ss.ita.google.ui.pages.runner.TestRunnerForGoogle;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class SearchAndGoBackHomePageTest extends TestRunner {
+public class SearchAndGoBackHomePageTest extends TestRunnerForGoogle {
 
     @Test
     public void verifyGoingBackToHomePageAfterSearching() {

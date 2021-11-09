@@ -2,15 +2,14 @@ package com.ss.ita.google;
 
 import com.ss.ita.google.ui.pages.HomePage;
 import com.ss.ita.google.ui.pages.SearchResultPage;
-import com.ss.ita.google.ui.pages.runnerAndProperties.TestRunner;
+import com.ss.ita.google.ui.pages.runner.TestRunnerForGoogle;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
-public class SearchLinksContainsWordTest extends TestRunner {
+public class SearchLinksContainsWordTest extends TestRunnerForGoogle {
 
     @Test
     public void verifySearchLinksContainsWord() {
