@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.ui.pages;
 
+import com.ss.ita.rozetka.ui.pages.components.LeftSideMenu;
 import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -30,5 +31,10 @@ public class Header {
     public Header changeLanguage(String language) {
         $x("//a[normalize-space()='" + language + "']").click();
         return this;
+    }
+
+    public LeftSideMenu openLeftSideMenu(){
+        $x("//button[@class='header__button']").click();
+        return new LeftSideMenu();
     }
 }
