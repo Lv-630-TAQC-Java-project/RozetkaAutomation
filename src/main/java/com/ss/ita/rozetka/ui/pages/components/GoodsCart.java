@@ -12,12 +12,9 @@ public class GoodsCart {
         return new OrderingPage();
     }
 
-    public String getSumWithCurrency() {
-        return $x("//div[contains(@class,'sum-price')]").getAttribute("textContent");
-    }
-
     public int getSum() {
-        return Integer.parseInt(getSumWithCurrency().replaceAll("\\D", ""));
+        String sum = $x("//div[contains(@class,'sum-price')]").getAttribute("textContent");
+        return Integer.parseInt(sum.replaceAll("\\D", ""));
     }
 
     public boolean isEmpty() {
