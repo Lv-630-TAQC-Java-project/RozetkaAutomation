@@ -8,6 +8,4 @@ public class ComputersNotebooksPage {
         $x("//a[@href='https://rozetka.com.ua/notebooks/c80004/']").click();
         return new NotebooksPage();
     }
-
-
 }
