@@ -1,5 +1,12 @@
 package com.ss.ita.rozetka.ui.pages;
 
+import static com.codeborne.selenide.Selenide.$x;
+
 public class ProductPage extends Header {
-    //for writing methods in close future
+
+    public ProductPage addProductToComparison() {
+        $x("//button[@class='compare-button ng-star-inserted']").click();
+        return new ProductPage();
+    }
+
 }

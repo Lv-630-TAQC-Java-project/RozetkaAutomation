@@ -12,6 +12,11 @@ public class ProductTypePage extends Header {
         return new ProductPage();
     }
 
+    public ProductPage openFirstProductPage() {
+        openProductPage(1);
+        return new ProductPage();
+    }
+
     public ProductTypePage chooseSubCategory(String subCategory) {
         $x(format(PRODUCT_CATEGORY_OR_SUBCATEGORY_TEMPLATE, subCategory)).click();
         return this;
