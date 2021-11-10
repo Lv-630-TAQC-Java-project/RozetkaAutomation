@@ -1,10 +1,9 @@
 package com.ss.ita.rozetka.ui.Modals;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.ss.ita.rozetka.ui.pages.OrderingPage;
+import com.ss.ita.rozetka.ui.pages.*;
 
-import static com.codeborne.selenide.Selenide.$$x;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 
 public class BasketModal {
 
@@ -13,12 +12,12 @@ public class BasketModal {
         return new OrderingPage();
     }
 
-    public String getPriceWithCurrency() {
+    public String getTotalProductsPriceWithCurrency() {
         return $x("//div[contains(@class,'sum-price')]").getAttribute("textContent");
     }
 
-    public int getPrice() {
-        return Integer.parseInt(getPriceWithCurrency().replaceAll("\\D", ""));
+    public int getTotalProductsPrice() {
+        return Integer.parseInt(getTotalProductsPriceWithCurrency().replaceAll("\\D", ""));
     }
 
     public boolean isBasketEmpty() {

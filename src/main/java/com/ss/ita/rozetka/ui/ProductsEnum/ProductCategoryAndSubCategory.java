@@ -1,6 +1,6 @@
 package com.ss.ita.rozetka.ui.ProductsEnum;
 
-public enum ProductCategoriesAndSubCategories {
+public enum ProductCategoryAndSubCategory {
     GARDEN_TECH_CATEGORY("garden_tech"),
     GARDEN_EQUIP_CATEGORY("sadoviy-inventar"),
 
@@ -8,7 +8,7 @@ public enum ProductCategoriesAndSubCategories {
 
     private final String name;
 
-    ProductCategoriesAndSubCategories(String name) {
+    ProductCategoryAndSubCategory(String name) {
         this.name = name;
     }
 

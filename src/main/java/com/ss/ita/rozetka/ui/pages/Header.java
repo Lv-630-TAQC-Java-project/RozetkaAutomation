@@ -29,17 +29,17 @@ public class Header {
         return this;
     }
 
-    public HamburgerModal openHamburgerModal(){
+    public HamburgerModal openHamburgerModal() {
         $x("//button[@class='header__button']").click();
         return new HamburgerModal();
     }
 
-    public CatalogModal openCatalogModal(){
+    public CatalogModal openCatalogModal() {
         $(By.id("fat-menu")).click();
         return new CatalogModal();
     }
 
-    public BasketModal openBasketModal(){
+    public BasketModal openBasketModal() {
         $x("//button[@class = 'header__button ng-star-inserted header__button--active']").click();
         return new BasketModal();
     }

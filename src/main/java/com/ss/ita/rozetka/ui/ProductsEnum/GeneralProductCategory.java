@@ -1,6 +1,6 @@
 package com.ss.ita.rozetka.ui.ProductsEnum;
 
-public enum GeneralProductCategories {
+public enum GeneralProductCategory {
 
     NOTEBOOKS_AND_COMPUTERS("computers-notebooks']"),
     PRODUCTS_FOR_HOUSE("bt"),
@@ -8,7 +8,7 @@ public enum GeneralProductCategories {
 
     private final String name;
 
-    GeneralProductCategories(String name) {
+    GeneralProductCategory(String name) {
         this.name = name;
     }
 
