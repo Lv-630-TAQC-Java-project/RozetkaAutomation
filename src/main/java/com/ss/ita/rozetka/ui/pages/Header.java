@@ -48,4 +48,8 @@ public class Header {
         $x("//a[@class='header__logo']").click();
         return new HomePage();
     }
+
+    public boolean isVisibleHamburgerModal() {
+        return $x("//nav[@class='drawer ng-star-inserted']").isDisplayed();
+    }
 }
