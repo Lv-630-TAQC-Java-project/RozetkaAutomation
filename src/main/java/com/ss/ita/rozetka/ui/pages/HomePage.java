@@ -2,7 +2,8 @@ package com.ss.ita.rozetka.ui.pages;
 
 import com.codeborne.selenide.Selenide;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
 public class HomePage extends Header {
