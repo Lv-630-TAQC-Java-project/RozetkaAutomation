@@ -8,7 +8,7 @@ public class HomePage extends Header {
 
     private static final String GENERAL_PRODUCT_CATEGORY_TEMPLATE = "//div[contains(@class,'menu-wrapper_state_static')]/descendant::a[contains(@href,'%s')]";
 
-    public HomePage openHomePage() {
+    public HomePage open() {
         open("https://rozetka.com.ua");
         return this;
     }
