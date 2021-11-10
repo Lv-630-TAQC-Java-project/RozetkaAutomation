@@ -1,20 +1,13 @@
 package com.ss.ita.rozetka.ui.Modals;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.ss.ita.rozetka.ui.pages.OrderingPage;
-import com.ss.ita.rozetka.ui.pages.ProductPage;
+import com.ss.ita.rozetka.ui.pages.*;
 
-import static com.codeborne.selenide.Selenide.$$x;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 
 public class BasketModal {
 
-    public ProductPage continueBuying() {
-        $x("//a[contains(@class,'button button_size_medium ')]").click();
-        return new ProductPage();
-    }
-
-    public OrderingPage orderProducts() {
+    public OrderingPage openOrderingPage() {
         $x("//a[contains(@class, 'cart-receipt__submit')]").click();
         return new OrderingPage();
     }
