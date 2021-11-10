@@ -43,4 +43,9 @@ public class Header {
         $x("//button[@class = 'header__button ng-star-inserted header__button--active']").click();
         return new BasketModal();
     }
+
+    public HomePage openHomePage() {
+        $x("//a[@class='header__logo']").click();
+        return new HomePage();
+    }
 }
