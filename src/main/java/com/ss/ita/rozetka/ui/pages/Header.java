@@ -25,7 +25,7 @@ public class Header {
     }
 
     public Header changeLanguage(String language) {
-        $x("//a[normalize-space()='" + language + "']").click();
+        $x(String.format("//a[normalize-space()='%s']", language)).click();
         return this;
     }
 
