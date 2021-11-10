@@ -48,4 +48,15 @@ public class Header {
         $x("//a[@class='header__logo']").click();
         return new HomePage();
     }
+
+    public Header setFocusSearchInput() {
+        $(By.name("search")).click();
+        return this;
+    }
+
+    public String getTextFromSearchHistory(int numberSearchedTerm) {
+        new Header().setFocusSearchInput();
+        return $x(String.format("(//li[@class='search-suggest__item ng-star-inserted'])[%s]", numberSearchedTerm))
+                .getText();
+    }
 }
