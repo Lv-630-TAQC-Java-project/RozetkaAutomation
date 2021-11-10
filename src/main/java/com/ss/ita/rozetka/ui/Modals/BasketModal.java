@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class ProductCartModal {
+public class BasketModal {
     public OrderingPage order() {
         $x("//a[contains(@class, 'cart-receipt__submit')]").click();
         return new OrderingPage();
@@ -23,10 +23,10 @@ public class ProductCartModal {
 
     public boolean isEmpty() {
         $("single-modal-window").should(Condition.exist);
-        return getGoodsList().isEmpty();
+        return getProductList().isEmpty();
     }
 
-    private ElementsCollection getGoodsList() {
+    private ElementsCollection getProductList() {
         return $$x("//li[contains(@class, 'cart-list__item')]");
     }
 
@@ -37,13 +37,13 @@ public class ProductCartModal {
         return $x(productXpath);
     }
 
-    public List<String> getProductNames(){
-        return getGoodsList().stream()
+    public List<String> getProductNames() {
+        return getProductList().stream()
                 .map(product -> product.$x(".//a[@class='cart-product__title']").text())
                 .collect(Collectors.toList());
     }
 
-    public ProductCartModal setProductCountByName(String productName, int count) {
+    public BasketModal setProductCountByName(String productName, int count) {
         SelenideElement countField = getProductByName(productName).$x(".//input[contains(@class, 'cart-counter__input')]");
         countField.clear();
         countField.sendKeys(count + "");
@@ -57,10 +57,14 @@ public class ProductCartModal {
         $x(loadingDonutXpath).shouldNot(Condition.exist);
     }
 
-    public ProductCartModal removeProductByName(String productName) {
+    public BasketModal removeProductByName(String productName) {
         SelenideElement product = getProductByName(productName);
         product.$x(".//button[contains(@id, 'cartProductActions')]").click();
         product.$x(".//rz-trash-icon/button").click();
         return this;
+    }
+
+    public void close() {
+        $x("//button[contains(@class, 'modal__close')]").click();
     }
 }
