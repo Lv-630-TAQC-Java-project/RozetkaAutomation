@@ -1,4 +1,4 @@
-package com.ss.ita.rozetka.ui.pages.components;
+package com.ss.ita.rozetka.ui.Modals;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class GoodsCart {
+public class ProductCartModal {
     public OrderingPage order() {
         $x("//a[contains(@class, 'cart-receipt__submit')]").click();
         return new OrderingPage();
@@ -43,7 +43,7 @@ public class GoodsCart {
                 .collect(Collectors.toList());
     }
 
-    public GoodsCart setProductCountByName(String productName, int count) {
+    public ProductCartModal setProductCountByName(String productName, int count) {
         SelenideElement countField = getProductByName(productName).$x(".//input[contains(@class, 'cart-counter__input')]");
         countField.clear();
         countField.sendKeys(count + "");
@@ -57,7 +57,7 @@ public class GoodsCart {
         $x(loadingDonutXpath).shouldNot(Condition.exist);
     }
 
-    public GoodsCart removeProductByName(String productName) {
+    public ProductCartModal removeProductByName(String productName) {
         SelenideElement product = getProductByName(productName);
         product.$x(".//button[contains(@id, 'cartProductActions')]").click();
         product.$x(".//rz-trash-icon/button").click();
