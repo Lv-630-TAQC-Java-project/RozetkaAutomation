@@ -5,6 +5,7 @@ import com.ss.ita.rozetka.ui.Modals.*;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.url;
 
 public class Header {
 
@@ -47,5 +48,9 @@ public class Header {
     public HomePage openHomePage() {
         $x("//a[@class='header__logo']").click();
         return new HomePage();
+    }
+
+    public String getCurrentUrl(){
+        return  url();
     }
 }
