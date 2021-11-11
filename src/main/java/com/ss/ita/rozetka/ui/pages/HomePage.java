@@ -3,11 +3,10 @@ package com.ss.ita.rozetka.ui.pages;
 import com.codeborne.selenide.Selenide;
 import com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory;
 
-import java.util.List;
-
 import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.$$x;
 import static java.lang.String.format;
+import static com.codeborne.selenide.Condition.visible;
+
 
 public class HomePage extends HeaderPage {
 
@@ -21,7 +20,7 @@ public class HomePage extends HeaderPage {
         return new ProductCategoryPage();
     }
 
-    public String getLastViewedProductName(int productNumber){
-        return  $x(format("//goods-section/h2[text() = ' Останні переглянуті товари ']/../ul/li[%s]//a[@class = 'tile__title']", productNumber)).getText();
+    public String getRecentlyViewedProductName(int itemNumber) {
+        return $x(format("//section[@class = 'main-goods ng-star-inserted'][1]//ul/li[%s]//a[@class = 'tile__title']", itemNumber)).getText();
     }
 }
