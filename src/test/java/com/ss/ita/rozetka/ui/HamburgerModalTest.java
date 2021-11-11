@@ -10,17 +10,17 @@ import org.testng.annotations.Test;
 public class HamburgerModalTest extends TestRunner {
 
     @Test
-    public void verifyOpenHamburgerModal(){
+    public void verifyOpenHamburgerModal() {
         HomePage homePage = new HomePage().open();
         homePage.header.openHamburgerModal();
         Assert.assertTrue(homePage.header.isVisibleHamburgerModal());
     }
 
     @Test
-    public void verifyCloseHamburgerModal(){
+    public void verifyCloseHamburgerModal() {
         HomePage homePage = new HomePage().open();
-        HamburgerModal menu =homePage.header.openHamburgerModal();
+        HamburgerModal menu = homePage.header.openHamburgerModal();
         menu.closeHamburgerModal();
         Assert.assertFalse(homePage.header.isVisibleHamburgerModal());
-     }
+    }
  }
