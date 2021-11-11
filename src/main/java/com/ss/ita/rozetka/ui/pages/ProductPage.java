@@ -10,4 +10,8 @@ public class ProductPage extends HeaderPage {
         $x("//button[contains(@class,'buy-button button button_')]").click();
         return new BasketModal();
     }
+
+    public String getProductTitle() {
+        return  $x("//h1[@class = 'product__title']").getText();
+    }
 }
