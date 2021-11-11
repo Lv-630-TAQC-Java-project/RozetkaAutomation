@@ -1,8 +1,8 @@
 package com.ss.ita.rozetka.ui.Modals;
 
-import com.ss.ita.rozetka.ui.pages.Header;
+import com.ss.ita.rozetka.ui.pages.*;
 
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 
 public class HamburgerModal {
 

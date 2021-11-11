@@ -1,13 +1,10 @@
 package com.ss.ita.rozetka.ui.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import com.ss.ita.rozetka.ui.Modals.BasketModal;
-import com.ss.ita.rozetka.ui.Modals.CatalogModal;
-import com.ss.ita.rozetka.ui.Modals.HamburgerModal;
+import com.ss.ita.rozetka.ui.Modals.*;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 
 public class Header {
 
