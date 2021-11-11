@@ -9,10 +9,10 @@ import  org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory.PRODUCTS_FOR_HOUSE;
 
-public class RozetkaLogoTest extends TestRunner {
+public class HeaderUiTest extends TestRunner {
 
     @Test
-    public void verifyClickOnRozetkaLogoOpensHomePageLogo(){
+    public void verifyReturnToHomePage(){
         String actualUrl = new HomePage().open()
                 .openProductCategoryPage(PRODUCTS_FOR_HOUSE)
                 .header
