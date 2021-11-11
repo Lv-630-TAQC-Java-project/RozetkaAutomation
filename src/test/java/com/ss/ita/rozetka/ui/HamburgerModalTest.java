@@ -6,7 +6,6 @@ import com.ss.ita.rozetka.ui.pages.HomePage;
 import com.ss.ita.rozetka.ui.runner.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 public class HamburgerModalTest extends TestRunner {
 
