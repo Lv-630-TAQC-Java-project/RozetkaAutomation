@@ -55,7 +55,4 @@ public class Header {
         return new HomePage();
     }
 
-    public String getCurrentUrl(){
-        return  url();
-    }
 }
