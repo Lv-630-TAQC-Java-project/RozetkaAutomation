@@ -2,17 +2,17 @@ package com.ss.ita.rozetka.ui.Modals;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.pages.OrderingPage;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class BasketModal {
-    private static final String PRODUCT_XPATH_WITH_NAME = "//single-modal-window//li[contains(., '%s')]";
+    // This pattern should only be used in String.format()
+    // with product name as second argument
+    private static final String PRODUCT_XPATH_PATTERN_FOR_NAME = "//single-modal-window//li[contains(., '%s')]";
 
     public OrderingPage order() {
         $x("//a[contains(@class, 'cart-receipt__submit')]").click();
@@ -40,7 +40,7 @@ public class BasketModal {
     public BasketModal setProductCount(String productName, int count) {
         int totalPrice = getProductsTotalPrice();
 
-        String countFieldXpath = String.format(PRODUCT_XPATH_WITH_NAME, productName) +
+        String countFieldXpath = String.format(PRODUCT_XPATH_PATTERN_FOR_NAME, productName) +
                 "//input[contains(@class, 'cart-counter__input')]";
         SelenideElement countField = $x(countFieldXpath);
 
@@ -53,7 +53,7 @@ public class BasketModal {
 
     private void waitForTotalPriceToUpdate(int totalPriceBefore) {
         SelenideElement totalPriceSpan = $x("//div[@class='cart-receipt__sum-price']/span[1]");
-        if (totalPriceSpan.is(Condition.exist)) {
+        if (isEmpty()) {
             totalPriceSpan.shouldNotHave(Condition.text(String.valueOf(totalPriceBefore)));
         }
     }
@@ -61,7 +61,7 @@ public class BasketModal {
     public BasketModal removeProduct(String productName) {
         int totalPrice = getProductsTotalPrice();
 
-        String productActionXpath = String.format(PRODUCT_XPATH_WITH_NAME, productName) + "//button[contains(@id, 'cartProductActions')]";
+        String productActionXpath = String.format(PRODUCT_XPATH_PATTERN_FOR_NAME, productName) + "//button[contains(@id, 'cartProductActions')]";
         $x(productActionXpath).click();
         $x("//rz-trash-icon/button").click();
 
