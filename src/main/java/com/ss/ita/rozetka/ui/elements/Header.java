@@ -44,6 +44,11 @@ public class Header {
         return new CatalogModal();
     }
 
+    public CatalogModal closeCatalogModal() {
+        $(By.id("fat-menu")).click();
+        return new CatalogModal();
+    }
+
     public BasketModal openBasketModal() {
         $x("//button[@class = 'header__button ng-star-inserted header__button--active']").click();
         return new BasketModal();
