@@ -12,19 +12,15 @@ public class HamburgerModalTest extends TestRunner {
     @Test
     public void verifyOpenHamburgerModal(){
         HomePage homePage = new HomePage().open();
-        HamburgerModal menu = homePage.header.openHamburgerModal();
-        Header header = homePage.header;
-        boolean actualIsMenuOpen = header.isVisibleHamburgerModal();
-        Assert.assertTrue(actualIsMenuOpen);
+        homePage.header.openHamburgerModal();
+        Assert.assertTrue(homePage.header.isVisibleHamburgerModal());
     }
 
     @Test
     public void verifyCloseHamburgerModal(){
         HomePage homePage = new HomePage().open();
-        HamburgerModal menu = homePage.header.openHamburgerModal();
-        Header header = homePage.header;
+        HamburgerModal menu =homePage.header.openHamburgerModal();
         menu.closeHamburgerModal();
-        boolean actualIsMenuClose = header.isVisibleHamburgerModal();
-        Assert.assertFalse(actualIsMenuClose);
+        Assert.assertFalse(homePage.header.isVisibleHamburgerModal());
      }
  }
