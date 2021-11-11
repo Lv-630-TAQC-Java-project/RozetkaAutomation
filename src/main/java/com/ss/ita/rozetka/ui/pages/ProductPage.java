@@ -6,7 +6,7 @@ public class ProductPage extends Header {
 
     public ProductPage addProductToComparison() {
         $x("//button[@class='compare-button ng-star-inserted']").click();
-        return new ProductPage();
+        return this;
     }
 
 }
