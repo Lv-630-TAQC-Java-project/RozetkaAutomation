@@ -1,7 +1,6 @@
 package com.ss.ita.rozetka.ui;
 
 import com.ss.ita.rozetka.ui.pages.HomePage;
-import com.ss.ita.rozetka.ui.elements.Header;
 import com.ss.ita.rozetka.ui.runner.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
