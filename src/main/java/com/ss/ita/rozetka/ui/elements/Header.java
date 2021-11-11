@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.WebDriverRunner.url;
 
 public class Header {
 
@@ -54,4 +55,7 @@ public class Header {
         return new HomePage();
     }
 
+    public String getCurrentUrl() {
+        return url();
+    }
 }
