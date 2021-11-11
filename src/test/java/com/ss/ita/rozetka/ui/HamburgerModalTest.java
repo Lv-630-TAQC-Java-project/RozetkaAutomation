@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class HamburgerModalTest extends TestRunner {
 
     @Test
-    public void verifyOpenHamburgerModalIs(){
+    public void verifyOpenHamburgerModal(){
         HomePage homePage = new HomePage().open();
         HamburgerModal menu = homePage.header.openHamburgerModal();
         Header header = homePage.header;
