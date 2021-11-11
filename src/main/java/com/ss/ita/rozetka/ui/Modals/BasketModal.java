@@ -1,6 +1,6 @@
 package com.ss.ita.rozetka.ui.Modals;
 
-import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Condition.*;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.pages.OrderingPage;
@@ -25,7 +25,7 @@ public class BasketModal {
     }
 
     public boolean isEmpty() {
-        $("single-modal-window").should(Condition.exist);
+        $("single-modal-window").should(exist);
         return getProductList().isEmpty();
     }
 
@@ -53,8 +53,8 @@ public class BasketModal {
 
     private void waitForTotalPriceToUpdate(int totalPriceBefore) {
         SelenideElement totalPriceSpan = $x("//div[@class='cart-receipt__sum-price']/span[1]");
-        if (isEmpty()) {
-            totalPriceSpan.shouldNotHave(Condition.text(String.valueOf(totalPriceBefore)));
+        if (totalPriceSpan.is(exist)) {
+            totalPriceSpan.shouldNotHave(text(String.valueOf(totalPriceBefore)));
         }
     }
 
