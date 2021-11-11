@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 import static com.codeborne.selenide.Selenide.*;
 
 public class BasketModal {
+    private static final  String PRODUCT_XPATH_WITH_NAME = "//single-modal-window//li[contains(., '%s')]";
+
     public OrderingPage order() {
         $x("//a[contains(@class, 'cart-receipt__submit')]").click();
         return new OrderingPage();
@@ -30,37 +32,27 @@ public class BasketModal {
         return $$x("//li[contains(@class, 'cart-list__item')]");
     }
 
-    private SelenideElement getProductByName(String productName) {
-        String productXpath = String.format(
-                "//single-modal-window//li[contains(., '%s')]",
-                productName);
-        return $x(productXpath);
-    }
-
     public List<String> getProductNames() {
-        return getProductList().stream()
-                .map(product -> product.$x(".//a[@class='cart-product__title']").text())
-                .collect(Collectors.toList());
+        return getProductList().texts();
     }
 
-    public BasketModal setProductCountByName(String productName, int count) {
-        SelenideElement countField = getProductByName(productName).$x(".//input[contains(@class, 'cart-counter__input')]");
+    public BasketModal setProductCount(String productName, int count) {
+        String countFieldXpath = String.format(PRODUCT_XPATH_WITH_NAME, productName) +
+                "%s//input[contains(@class, 'cart-counter__input')]";
+        SelenideElement countField = $x(countFieldXpath);
         countField.clear();
-        countField.sendKeys(count + "");
-        waitForCirclingDonutToDisappear();
+        countField.sendKeys(String.valueOf(count));
         return this;
     }
 
-    private void waitForCirclingDonutToDisappear() {
-        String loadingDonutXpath = "//div[contains(@class,'preloader_with_donut')]";
-        $x(loadingDonutXpath).should(Condition.exist);
-        $x(loadingDonutXpath).shouldNot(Condition.exist);
+    private void waitForTotalPriceToUpdate(int totalPriceBefore) {
+        $(".cart-receipt__sum-price > span").shouldNotHave(Condition.text(String.valueOf(totalPriceBefore)));
     }
 
-    public BasketModal removeProductByName(String productName) {
-        SelenideElement product = getProductByName(productName);
-        product.$x(".//button[contains(@id, 'cartProductActions')]").click();
-        product.$x(".//rz-trash-icon/button").click();
+    public BasketModal removeProduct(String productName) {
+        String productActionXpath = String.format(PRODUCT_XPATH_WITH_NAME, productName) + "//button[contains(@id, 'cartProductActions')]";
+        $x(productActionXpath).click();
+        $x("//rz-trash-icon/button").click();
         return this;
     }
 
