@@ -1,4 +1,4 @@
-package com.ss.ita.rozetka;
+package com.ss.ita.rozetka.ui;
 
 import com.ss.ita.rozetka.ui.pages.HomePage;
 import com.ss.ita.rozetka.ui.runner.TestRunner;
@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import static com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory.PRODUCTS_FOR_HOUSE;
 import static com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory.KITCHEN_APPLIANCES_CATEGORY;
 
-public class HeaderUiTest extends TestRunner {
+public class NavigatingToHomePageTest extends TestRunner {
 
     @Test
     public void verifyReturnToHomePage() {
