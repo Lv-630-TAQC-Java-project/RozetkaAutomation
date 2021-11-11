@@ -24,7 +24,7 @@ public class HamburgerModalTest extends TestRunner {
         HamburgerModal menu = homePage.header.openHamburgerModal();
         Header header = homePage.header;
         menu.closeHamburgerModal();
-        boolean actualIsMenuOpen = header.isVisibleHamburgerModal();
-        Assert.assertFalse(actualIsMenuOpen);
+        boolean actualIsMenuClose = header.isVisibleHamburgerModal();
+        Assert.assertFalse(actualIsMenuClose);
      }
  }
