@@ -13,6 +13,7 @@ public class OpeningAngClosingCatalogTest extends TestRunner {
         CatalogModal catalogModal = new HomePage().open().openCatalogModal();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(catalogModal.isCatalogModalDisplayed());
+
         catalogModal.openCatalogModal();
         softAssert.assertFalse(catalogModal.isCatalogModalDisplayed());
         softAssert.assertAll();
