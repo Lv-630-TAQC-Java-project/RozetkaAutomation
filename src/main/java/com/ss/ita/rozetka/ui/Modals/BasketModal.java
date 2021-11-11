@@ -1,6 +1,9 @@
 package com.ss.ita.rozetka.ui.Modals;
 
 import static com.codeborne.selenide.Condition.*;
+
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.pages.OrderingPage;
@@ -11,7 +14,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class BasketModal {
     // This pattern should only be used in String.format()
-    // with product name as second argument
+    // with product name as a second argument
     private static final String PRODUCT_XPATH_PATTERN_FOR_NAME = "//single-modal-window//li[contains(., '%s')]";
 
     public OrderingPage order() {
@@ -25,16 +28,13 @@ public class BasketModal {
     }
 
     public boolean isEmpty() {
-        $("single-modal-window").should(exist);
-        return getProductList().isEmpty();
-    }
-
-    private ElementsCollection getProductList() {
-        return $$x("//li[contains(@class, 'cart-list__item')]");
+        return $(".cart-dummy").is(exist);
     }
 
     public List<String> getProductNames() {
-        return getProductList().texts();
+        ElementsCollection names = $$("li.cart-list__item a.cart-product__title");
+        names.shouldHave(CollectionCondition.sizeGreaterThan(0));
+        return names.texts();
     }
 
     public BasketModal setProductCount(String productName, int count) {
