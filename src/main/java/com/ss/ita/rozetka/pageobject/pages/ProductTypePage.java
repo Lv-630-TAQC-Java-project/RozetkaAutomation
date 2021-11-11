@@ -20,6 +20,10 @@ public class ProductTypePage extends HeaderPage {
         return this;
     }
 
+    public String getProductTitle(int productNumber) {
+        return $$("span.goods-tile__title").get(productNumber).getText();
+    }
+
     @Step("ProductPage: verify that product type page heading is visible")
     public Boolean isProductTypePageHeadingVisible() {
         return $x("//h1[@class = 'catalog-heading ng-star-inserted']").isDisplayed();
