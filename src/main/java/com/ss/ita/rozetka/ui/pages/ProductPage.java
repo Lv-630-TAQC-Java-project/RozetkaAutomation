@@ -18,8 +18,3 @@ public class ProductPage extends Header {
     }
 
 }
-
-
-
-
-
