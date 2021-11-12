@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.ui.elements;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.Modals.BasketModal;
 import com.ss.ita.rozetka.ui.Modals.CatalogModal;
@@ -32,6 +33,11 @@ public class Header {
     public Header changeLanguage(String language) {
         $x("//a[normalize-space()='" + language + "']").click();
         return this;
+    }
+
+    public int getCountOfComparisonProducts() {
+        return Integer.parseInt($x("//span[@class='counter counter--gray ng-star-inserted']")
+                .shouldBe(Condition.visible).getText().replaceAll("[^0-9]", ""));
     }
 
     public HamburgerModal openHamburgerModal() {
