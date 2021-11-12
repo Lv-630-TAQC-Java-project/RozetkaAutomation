@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import static com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
 import static com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory.NOTEBOOKS;
 
-public class ProductsArePresentedTest extends TestRunner {
+public class ProductsInCategoryArePresentedTest extends TestRunner {
 
     @Test
     public void verifyThatProductsArePresentedInNotebookCategory() {
