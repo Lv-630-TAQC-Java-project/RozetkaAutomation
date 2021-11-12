@@ -6,12 +6,12 @@ import com.ss.ita.rozetka.ui.elements.Header;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class ProductPage extends Header {
+public class ProductPage extends HeaderPage {
 
-    public ProductPage addProductToComparison() {
+    public Header addProductToComparison() {
         $x("//button[@class='compare-button ng-star-inserted']")
                 .shouldBe(Condition.visible).click();
-        return this;
+        return new Header();
     }
 
     public BasketModal addProductToBasket() {
