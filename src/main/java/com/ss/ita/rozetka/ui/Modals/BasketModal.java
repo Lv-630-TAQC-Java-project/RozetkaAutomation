@@ -3,7 +3,6 @@ package com.ss.ita.rozetka.ui.Modals;
 import static com.codeborne.selenide.Condition.*;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.pages.OrderingPage;
@@ -17,7 +16,7 @@ public class BasketModal {
     // with product name as a second argument
     private static final String PRODUCT_XPATH_PATTERN_FOR_NAME = "//single-modal-window//li[contains(., '%s')]";
 
-    public OrderingPage order() {
+    public OrderingPage openOrderingPage() {
         $x("//a[contains(@class, 'cart-receipt__submit')]").click();
         return new OrderingPage();
     }
