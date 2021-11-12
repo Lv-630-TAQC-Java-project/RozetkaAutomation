@@ -9,7 +9,6 @@ public class ProductCategoryPage extends HeaderPage {
 
     public ProductTypePage openProductTypePage(ProductCategoryAndSubCategory categoryOrSubCategory) {
         $x(format("//a[contains(@href,'%s')]", categoryOrSubCategory.getName())).click();
-      
         return new ProductTypePage();
     }
 }
