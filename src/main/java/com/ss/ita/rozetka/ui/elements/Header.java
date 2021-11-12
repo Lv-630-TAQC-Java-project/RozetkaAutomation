@@ -39,14 +39,22 @@ public class Header {
         return new HamburgerModal();
     }
 
-    public CatalogModal openCatalogModal() {
+    private void clickOnCatalog() {
         $(By.id("fat-menu")).click();
+    }
+
+    public CatalogModal openCatalogModal() {
+        if (!CatalogModal.isCatalogModalDisplayed()) {
+            clickOnCatalog();
+        }
         return new CatalogModal();
     }
 
-    public CatalogModal closeCatalogModal() {
-        $(By.id("fat-menu")).click();
-        return new CatalogModal();
+    public Header closeCatalogModal() {
+        if (CatalogModal.isCatalogModalDisplayed()) {
+            clickOnCatalog();
+        }
+        return new Header();
     }
 
     public BasketModal openBasketModal() {

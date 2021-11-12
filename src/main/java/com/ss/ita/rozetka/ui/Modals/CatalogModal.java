@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class CatalogModal extends HeaderPage {
 
-    public boolean isCatalogModalDisplayed(){
-    return $(".menu-wrapper").isDisplayed();
+    public static boolean isCatalogModalDisplayed() {
+        return $(".menu-wrapper").isDisplayed();
     }
 }
