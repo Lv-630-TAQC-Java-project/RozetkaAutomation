@@ -6,6 +6,7 @@ import com.ss.ita.rozetka.ui.Modals.CatalogModal;
 import com.ss.ita.rozetka.ui.Modals.HamburgerModal;
 import com.ss.ita.rozetka.ui.pages.HomePage;
 import com.ss.ita.rozetka.ui.pages.ProductTypePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -49,12 +50,12 @@ public class Header {
         $x("//button[@class = 'header__button ng-star-inserted header__button--active']").click();
         return new BasketModal();
     }
-
+    @Step
     public HomePage openHomePage() {
         $x("//a[@class='header__logo']").click();
         return new HomePage();
     }
-
+    @Step
     public String getCurrentUrl() {
         return url();
     }

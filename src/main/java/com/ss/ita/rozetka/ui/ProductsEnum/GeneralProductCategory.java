@@ -15,4 +15,8 @@ public enum GeneralProductCategory {
     public String getName() {
         return name;
     }
+
+    public String toString(){
+        return this.name() +"(" + this.getName()+ ")";
+    }
 }

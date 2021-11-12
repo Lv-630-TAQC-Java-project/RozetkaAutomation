@@ -1,13 +1,15 @@
 package com.ss.ita.rozetka.ui.pages;
 
 import com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
-public class ProductTypePage extends HeaderPage {
 
+public class ProductTypePage extends HeaderPage {
+    @Step
     public ProductPage openProductPage(int productNumber) {
         $$x("//li[contains(@class,'catalog-grid')]").get(productNumber).click();
         return new ProductPage();
