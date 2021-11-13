@@ -23,6 +23,16 @@ public class BasketModal {
         return $x("//div[contains(@class,'sum-price')]").getAttribute("textContent");
     }
 
+    public BasketModal increaseAmountOfProductPerUnit() {
+        $x("(//button[contains(@class,'cart-counter__button')])[2]").click();
+        return this;
+    }
+
+    public BasketModal decreaseAmountOfProductPerUnit() {
+        $x("(//button[contains(@class,'cart-counter__button')])[1]").click();
+        return this;
+    }
+
     public int getTotalProductsPrice() {
         return Integer.parseInt(getTotalProductsPriceWithCurrency().replaceAll("\\D", ""));
     }
