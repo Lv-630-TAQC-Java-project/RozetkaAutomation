@@ -1,14 +1,13 @@
 package com.ss.ita.rozetka.ui.Modals;
 
-import static com.codeborne.selenide.Condition.*;
-
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.pages.OrderingPage;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 public class BasketModal {
@@ -22,8 +21,9 @@ public class BasketModal {
     }
 
     public int getProductsTotalPrice() {
-        String sum = $x("//div[contains(@class,'sum-price')]").getAttribute("textContent");
-        return Integer.parseInt(sum.replaceAll("\\D", ""));
+        String sum = $x("//div[contains(@class,'sum-price')]//span[1]")
+                .getAttribute("textContent");
+        return Integer.parseInt(sum);
     }
 
     public boolean isEmpty() {
