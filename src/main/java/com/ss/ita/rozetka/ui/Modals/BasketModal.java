@@ -3,7 +3,6 @@ package com.ss.ita.rozetka.ui.Modals;
 import static com.codeborne.selenide.Condition.*;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.pages.OrderingPage;
 
