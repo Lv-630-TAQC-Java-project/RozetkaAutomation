@@ -43,8 +43,6 @@ public class BasketModal {
                 "//input[contains(@class, 'cart-counter__input')]";
         SelenideElement countField = $x(countFieldXpath);
 
-        // Skips waiter if product count is changed to the same value
-        // as it was before (from 1 changed to 1 etc.)
         if (String.valueOf(count).equals(countField.attr("value"))){
             return this;
         }
