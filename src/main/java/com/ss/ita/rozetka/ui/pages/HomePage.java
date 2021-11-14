@@ -10,13 +10,11 @@ public class HomePage extends HeaderPage {
 
     public HomePage open() {
         Selenide.open("https://rozetka.com.ua");
-
         return this;
     }
 
     public ProductCategoryPage openProductCategoryPage(GeneralProductCategory category) {
         $x(format("//div[contains(@class,'menu-wrapper_state_static')]/descendant::a[contains(@href,'%s')]", category.getName())).click();
-
         return new ProductCategoryPage();
     }
 }

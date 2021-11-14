@@ -5,12 +5,7 @@ import com.ss.ita.rozetka.ui.elements.Header;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class ProductPage extends Header {
-
-    public ProductPage addProductToComparison() {
-        $x("//button[@class='compare-button ng-star-inserted']").click();
-        return this;
-    }
+public class ProductPage extends HeaderPage {
 
     public BasketModal addProductToBasket() {
         $x("//button[contains(@class,'buy-button button button_')]").click();
