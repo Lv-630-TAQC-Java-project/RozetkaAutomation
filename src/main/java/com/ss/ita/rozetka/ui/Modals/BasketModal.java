@@ -31,9 +31,9 @@ public class BasketModal {
     }
 
     public List<String> getProductNames() {
-        ElementsCollection names = $$("li.cart-list__item a.cart-product__title");
-        names.shouldHave(CollectionCondition.sizeGreaterThan(0));
-        return names.texts();
+        return $$("li.cart-list__item a.cart-product__title")
+                .shouldHave(CollectionCondition.sizeGreaterThan(0))
+                .texts();
     }
 
     public BasketModal setProductCount(String productName, int count) {
@@ -42,6 +42,10 @@ public class BasketModal {
         String countFieldXpath = String.format(PRODUCT_XPATH_PATTERN_FOR_NAME, productName) +
                 "//input[contains(@class, 'cart-counter__input')]";
         SelenideElement countField = $x(countFieldXpath);
+
+        if (String.valueOf(count).equals(countField.text())){
+            return this;
+        }
 
         countField.clear();
         countField.sendKeys(String.valueOf(count));
