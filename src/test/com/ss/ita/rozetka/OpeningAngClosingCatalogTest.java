@@ -11,7 +11,11 @@ public class OpeningAngClosingCatalogTest extends TestRunner {
 
     @Test
     public void verifyThatCatalogOpensAndCloses(){
-        Header catalog = new HomePage().open().getHeader().openCatalogModal().getHeader();
+        Header catalog = new HomePage()
+                .open()
+                .getHeader()
+                .openCatalogModal()
+                .getHeader();
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(catalog.isCatalogModalDisplayed());
