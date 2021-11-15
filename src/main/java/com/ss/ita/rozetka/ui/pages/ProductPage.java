@@ -8,8 +8,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class ProductPage extends HeaderPage {
 
     public Header addProductToComparison() {
-        $x("//button[@class='compare-button ng-star-inserted']")
-                .shouldBe(Condition.visible).click();
+        $x("//button[@class='compare-button ng-star-inserted']").click();
         return new Header();
     }
 

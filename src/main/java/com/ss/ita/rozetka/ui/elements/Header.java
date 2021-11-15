@@ -35,7 +35,7 @@ public class Header {
         return this;
     }
 
-    public int getCountOfComparisonProducts() {
+    public int getProductsForComparisonCount() {
         return Integer.parseInt($x("//span[@class='counter counter--gray ng-star-inserted']")
                 .shouldBe(Condition.visible).getText().replaceAll("[^0-9]", ""));
     }

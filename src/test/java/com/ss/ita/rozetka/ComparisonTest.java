@@ -16,6 +16,6 @@ public class ComparisonTest {
                 .openProductPage(1)
                 .addProductToComparison();
 
-        Assert.assertEquals(header.getCountOfComparisonProducts(),1);
+        Assert.assertEquals(header.getProductsForComparisonCount(),1);
     }
 }
