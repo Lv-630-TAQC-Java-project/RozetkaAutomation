@@ -16,6 +16,6 @@ public class ProductsInCategoryArePresentedTest extends TestRunner {
         ProductTypePage productTypePage = new HomePage().open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS);
-        Assert.assertTrue(productTypePage.isThereMoreThanNProductsOnPagePresented(10));
+        Assert.assertTrue(productTypePage.getProductsCount() > 10);
     }
 }

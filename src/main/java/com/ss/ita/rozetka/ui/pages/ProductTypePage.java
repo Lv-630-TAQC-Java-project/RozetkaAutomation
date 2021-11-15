@@ -1,6 +1,5 @@
 package com.ss.ita.rozetka.ui.pages;
 
-import com.codeborne.selenide.ElementsCollection;
 import com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -18,7 +17,7 @@ public class ProductTypePage extends HeaderPage {
         return this;
     }
 
-    public boolean isThereMoreThanNProductsOnPagePresented(int n) {
-        return $$(".catalog-grid__cell").size() > n;
+    public int getProductsCount() {
+        return $$(".catalog-grid__cell").size();
     }
 }

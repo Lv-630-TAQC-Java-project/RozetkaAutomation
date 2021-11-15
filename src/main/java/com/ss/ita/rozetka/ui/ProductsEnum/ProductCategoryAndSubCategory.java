@@ -1,7 +1,7 @@
 package com.ss.ita.rozetka.ui.ProductsEnum;
 
 public enum ProductCategoryAndSubCategory {
-    NOTEBOOKS("notebooks/c80004/"),
+    NOTEBOOKS("c80004"), //specific category
     GARDEN_TECH_CATEGORY("garden_tech"),
     GARDEN_EQUIP_CATEGORY("sadoviy-inventar"),
 
