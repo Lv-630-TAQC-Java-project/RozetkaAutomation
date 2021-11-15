@@ -14,13 +14,14 @@ public class RecentlyViewedProductsTest extends TestRunner {
 
     @Test
     public void verifyLastViewedProductAddedToTheList() {
-        ProductPage productPage = new HomePage().open()
+        ProductPage productPage = new HomePage()
+                .open()
                 .openProductCategoryPage(PRODUCTS_FOR_HOUSE)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY)
                 .openProductPage(1);
-        String productName = productPage
-                .getProductTitle();
-        String recentlyViewedProductName = productPage.header
+        String productName = productPage.getProductTitle();
+        String recentlyViewedProductName = productPage
+                .getHeader()
                 .openHomePage()
                 .getRecentlyViewedProductName(1);
         Assert.assertEquals(recentlyViewedProductName, productName);
