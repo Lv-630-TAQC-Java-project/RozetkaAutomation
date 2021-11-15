@@ -39,20 +39,20 @@ public class Header {
         return new HamburgerModal();
     }
 
-    private void clickOnCatalog() {
-        $(By.id("fat-menu")).click();
+    public static boolean isCatalogModalDisplayed() {
+        return $(".menu-wrapper").isDisplayed();
     }
 
     public CatalogModal openCatalogModal() {
-        if (!CatalogModal.isCatalogModalDisplayed()) {
-            clickOnCatalog();
+        if (!isCatalogModalDisplayed()) {
+            $(By.id("fat-menu")).click();
         }
         return new CatalogModal();
     }
 
     public Header closeCatalogModal() {
-        if (CatalogModal.isCatalogModalDisplayed()) {
-            clickOnCatalog();
+        if (isCatalogModalDisplayed()) {
+            $(By.id("fat-menu")).click();
         }
         return new Header();
     }
