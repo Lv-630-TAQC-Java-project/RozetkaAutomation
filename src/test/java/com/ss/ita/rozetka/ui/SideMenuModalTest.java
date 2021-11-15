@@ -9,17 +9,17 @@ import org.testng.annotations.Test;
 public class SideMenuModalTest extends TestRunner {
 
     @Test
-    public void verifyOpenHamburgerModal() {
-        HomePage homePage = new HomePage().open();
-        homePage.getHeader().openSideMenuModal();
-        Assert.assertTrue(homePage.getHeader().isVisibleSideMenuModal());
-    }
-
-    @Test
-    public void verifyCloseHamburgerModal() {
+    public void verifyOpenCloseSideMenuModal() {
         HomePage homePage = new HomePage().open();
         SideMenuModal menu = homePage.getHeader().openSideMenuModal();
+        Assert.assertTrue(homePage
+                            .getHeader()
+                            .isVisibleSideMenuModal(),
+                "Side Menu have to be visible but is invisible");
         menu.closeSideMenuModal();
-        Assert.assertFalse(homePage.getHeader().isVisibleSideMenuModal());
+        Assert.assertFalse(homePage
+                            .getHeader()
+                            .isVisibleSideMenuModal(),
+                "Side Menu have to be invisible but is visible");
     }
- }
+}
