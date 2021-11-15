@@ -59,9 +59,4 @@ public class Header {
         $x("//a[@class='header__logo']").click();
         return new HomePage();
     }
-
-    @Step("Header: get current Url")//think that it should be in another class (Util)
-    public String getCurrentUrl() {
-        return url();
-    }
 }
