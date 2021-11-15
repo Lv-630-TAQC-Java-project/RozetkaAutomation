@@ -39,7 +39,7 @@ public class Header {
         return new HamburgerModal();
     }
 
-    public static boolean isCatalogModalDisplayed() {
+    public boolean isCatalogModalDisplayed() {
         return $(".menu-wrapper").isDisplayed();
     }
 

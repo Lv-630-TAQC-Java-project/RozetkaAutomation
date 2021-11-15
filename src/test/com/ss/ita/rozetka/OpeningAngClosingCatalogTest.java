@@ -1,24 +1,23 @@
 package com.ss.ita.rozetka;
 
-import com.ss.ita.rozetka.ui.Modals.CatalogModal;
+import com.ss.ita.rozetka.ui.elements.Header;
 import com.ss.ita.rozetka.ui.pages.HomePage;
 import com.ss.ita.rozetka.ui.runner.TestRunner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static com.ss.ita.rozetka.ui.elements.Header.isCatalogModalDisplayed;
 
 public class OpeningAngClosingCatalogTest extends TestRunner {
 
     @Test
     public void verifyThatCatalogOpensAndCloses(){
-        CatalogModal catalogModal = new HomePage().open().getHeader().openCatalogModal();
+        Header catalog = new HomePage().open().getHeader().openCatalogModal().getHeader();
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(isCatalogModalDisplayed());
+        softAssert.assertTrue(catalog.isCatalogModalDisplayed());
 
-        catalogModal.getHeader().closeCatalogModal();
-        softAssert.assertFalse(isCatalogModalDisplayed());
+        catalog.closeCatalogModal();
+        softAssert.assertFalse(catalog.isCatalogModalDisplayed());
         softAssert.assertAll();
     }
 }
