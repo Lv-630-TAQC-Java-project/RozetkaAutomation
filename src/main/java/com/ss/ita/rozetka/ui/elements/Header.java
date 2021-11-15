@@ -36,7 +36,7 @@ public class Header {
         return this;
     }
 
-    @Step("Header: open side menu modal")//will be renamed
+    @Step("Header: open side menu modal")
     public HamburgerModal openHamburgerModal() {
         $x("//button[@class='header__button']").click();
         return new HamburgerModal();
