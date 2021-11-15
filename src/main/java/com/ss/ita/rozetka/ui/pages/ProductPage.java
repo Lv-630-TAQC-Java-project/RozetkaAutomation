@@ -1,7 +1,7 @@
 package com.ss.ita.rozetka.ui.pages;
 
-import com.codeborne.selenide.Condition;
 import com.ss.ita.rozetka.ui.Modals.BasketModal;
+import com.ss.ita.rozetka.ui.elements.Header;
 
 import static com.codeborne.selenide.Selenide.$x;
 
