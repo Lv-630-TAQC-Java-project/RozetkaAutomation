@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class BasketModal {
 
-    @Step("BasketModal: continue buying")
+    @Step("BasketModal: continue buying products")
     public ProductPage continueBuying() {
         $x("//a[contains(@class,'button button_size_medium ')]").click();
         return new ProductPage();

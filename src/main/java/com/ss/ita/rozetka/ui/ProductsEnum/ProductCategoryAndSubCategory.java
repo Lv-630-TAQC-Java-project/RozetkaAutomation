@@ -20,6 +20,6 @@ public enum ProductCategoryAndSubCategory {
     }
 
     public String toString() {
-        return format(this.name() + "(%s)", this.getName());
+        return format(this.name() + "(%s)", this.getName());//the same
     }
 }

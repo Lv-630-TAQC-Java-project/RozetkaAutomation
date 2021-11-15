@@ -7,7 +7,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.util.Base64;
-
+//class for doing screenshot
 public class TestNGListener implements ITestListener {
 
     @Attachment(value = "pageScreenshot", type = "image/png")

@@ -19,6 +19,6 @@ public enum GeneralProductCategory {
     }
 
     public String toString() {
-        return format(this.name() + "(%s)", this.getName());
+        return format(this.name() + "(%s)", this.getName());//method to see elements of enum with value in allure report
     }
 }
