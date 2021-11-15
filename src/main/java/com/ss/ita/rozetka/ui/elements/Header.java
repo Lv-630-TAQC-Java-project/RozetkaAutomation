@@ -34,7 +34,7 @@ public class Header {
         return this;
     }
 
-    public SideMenuModal openHamburgerModal() {
+    public SideMenuModal openSideMenuModal() {
         $x("//button[@class='header__button']").click();
         return new SideMenuModal();
     }

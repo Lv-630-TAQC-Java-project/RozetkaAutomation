@@ -11,15 +11,15 @@ public class SideMenuModalTest extends TestRunner {
     @Test
     public void verifyOpenHamburgerModal() {
         HomePage homePage = new HomePage().open();
-        homePage.header.openHamburgerModal();
-        Assert.assertTrue(homePage.header.isVisibleSideMenuModal());
+        homePage.getHeader().openSideMenuModal();
+        Assert.assertTrue(homePage.getHeader().isVisibleSideMenuModal());
     }
 
     @Test
     public void verifyCloseHamburgerModal() {
         HomePage homePage = new HomePage().open();
-        SideMenuModal menu = homePage.header.openHamburgerModal();
+        SideMenuModal menu = homePage.getHeader().openSideMenuModal();
         menu.closeSideMenuModal();
-        Assert.assertFalse(homePage.header.isVisibleSideMenuModal());
+        Assert.assertFalse(homePage.getHeader().isVisibleSideMenuModal());
     }
  }
