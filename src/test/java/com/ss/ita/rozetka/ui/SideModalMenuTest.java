@@ -1,25 +1,25 @@
 package com.ss.ita.rozetka.ui;
 
-import com.ss.ita.rozetka.ui.Modals.SideMenuModal;
+import com.ss.ita.rozetka.ui.Modals.SideModalMenu;
 import com.ss.ita.rozetka.ui.pages.HomePage;
 import com.ss.ita.rozetka.ui.runner.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SideMenuModalTest extends TestRunner {
+public class SideModalMenuTest extends TestRunner {
 
     @Test
-    public void verifyOpenCloseSideMenuModal() {
+    public void verifyOpenCloseSideModalMenu() {
         HomePage homePage = new HomePage().open();
-        SideMenuModal menu = homePage.getHeader().openSideMenuModal();
+        SideModalMenu menu = homePage.getHeader().openSideModalMenu();
         Assert.assertTrue(homePage
                             .getHeader()
-                            .isVisibleSideMenuModal(),
+                            .isVisibleSideModalMenu(),
                 "Side Menu have to be visible but is invisible");
-        menu.closeSideMenuModal();
+        menu.closeSideModalMenu();
         Assert.assertFalse(homePage
                             .getHeader()
-                            .isVisibleSideMenuModal(),
+                            .isVisibleSideModalMenu(),
                 "Side Menu have to be invisible but is visible");
     }
 }
