@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.ui.elements;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.Modals.BasketModal;
 import com.ss.ita.rozetka.ui.Modals.CatalogModal;
@@ -40,7 +41,7 @@ public class Header {
     }
 
     public boolean isCatalogModalDisplayed() {
-        return $(".menu-wrapper").isDisplayed();
+        return $(".menu-wrapper").is(Condition.visible);
     }
 
     public CatalogModal openCatalogModal() {
