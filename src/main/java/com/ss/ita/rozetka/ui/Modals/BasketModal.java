@@ -39,8 +39,8 @@ public class BasketModal {
     public BasketModal setProductCount(String productName, int count) {
         int totalPrice = getProductsTotalPrice();
 
-        String countFieldXpath = String.format(PRODUCT_XPATH_PATTERN_FOR_NAME, productName) +
-                "//input[contains(@class, 'cart-counter__input')]";
+        String countFieldXpath = String.format(
+                PRODUCT_XPATH_PATTERN_FOR_NAME + "//input[contains(@class, 'cart-counter__input')]", productName);
         SelenideElement countField = $x(countFieldXpath);
 
         if (String.valueOf(count).equals(countField.attr("value"))){
@@ -64,7 +64,8 @@ public class BasketModal {
     public BasketModal removeProduct(String productName) {
         int totalPrice = getProductsTotalPrice();
 
-        String productActionXpath = String.format(PRODUCT_XPATH_PATTERN_FOR_NAME, productName) + "//button[contains(@id, 'cartProductActions')]";
+        String productActionXpath = String.format(
+                PRODUCT_XPATH_PATTERN_FOR_NAME + "//button[contains(@id, 'cartProductActions')]", productName);
         $x(productActionXpath).click();
         $x("//rz-trash-icon/button").click();
 
