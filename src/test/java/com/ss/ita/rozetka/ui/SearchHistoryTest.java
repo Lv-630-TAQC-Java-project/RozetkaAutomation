@@ -11,8 +11,14 @@ public class SearchHistoryTest extends TestRunner {
     public void verifySearchHistoryText() {
         int numberSearchTerm = 1;
         String searchTerm = "DELL";
-        String actualTerm = new HomePage().open().header.doSearch(searchTerm).header.openHomePage()
-                .header.setFocusSearchInput().getTextFromSearchHistory(numberSearchTerm);
+        String actualTerm = new HomePage()
+                .open()
+                .getHeader()
+                .doSearch(searchTerm)
+                .getHeader()
+                .openHomePage().getHeader()
+                .setFocusSearchInput()
+                .getTextFromSearchHistory(numberSearchTerm);
         Assert.assertEquals(actualTerm, searchTerm);
     }
 }
