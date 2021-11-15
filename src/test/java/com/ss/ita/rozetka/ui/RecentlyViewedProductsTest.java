@@ -1,6 +1,7 @@
 package com.ss.ita.rozetka.ui;
 
 import com.ss.ita.rozetka.ui.pages.ProductPage;
+import com.ss.ita.rozetka.ui.pages.ProductTypePage;
 import com.ss.ita.rozetka.ui.runner.TestRunner;
 import com.ss.ita.rozetka.ui.pages.HomePage;
 
@@ -14,12 +15,12 @@ public class RecentlyViewedProductsTest extends TestRunner {
 
     @Test
     public void verifyLastViewedProductAddedToTheList() {
-        ProductPage productPage = new HomePage()
-                .open()
+        ProductTypePage productPage = new HomePage().open()
                 .openProductCategoryPage(PRODUCTS_FOR_HOUSE)
-                .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY)
-                .openProductPage(1);
-        String productName = productPage.getProductTitle();
+                .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
+        String productTypePageUrl = productPage.getHeader().getCurrentUrl();
+        Assert.assertEquals(productTypePageUrl, "https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/");
+        String productName = productPage.openProductPage(1).getProductTitle();
         String recentlyViewedProductName = productPage
                 .getHeader()
                 .openHomePage()
