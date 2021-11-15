@@ -2,6 +2,7 @@ package com.ss.ita.rozetka.ui.pages;
 
 import com.codeborne.selenide.Selenide;
 import com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory;
+import com.ss.ita.rozetka.ui.TestUtils.TestNGListener;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
@@ -14,7 +15,6 @@ public class HomePage extends HeaderPage {
     @Step("Open Rozetka home page")
     public HomePage open() {
         Selenide.open("https://rozetka.com.ua");
-        capturePNG();
         return this;
     }
     @Step("Open category {category}")
