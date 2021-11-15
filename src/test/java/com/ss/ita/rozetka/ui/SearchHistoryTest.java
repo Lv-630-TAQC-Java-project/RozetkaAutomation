@@ -21,16 +21,18 @@ public class SearchHistoryTest extends TestRunner {
                             .getHeader()
                             .isUrlContainsText(partOfUrl),
                 "Search Result didn't open");
-        HomePage homePage =  productsList.getHeader().openHomePage();
+        HomePage homePage =  productsList
+                                .getHeader()
+                                .openHomePage();
         Assert.assertEquals(homePage
                                 .getHeader()
                                 .getCurrentUrl(),
                     "https://rozetka.com.ua/",
                     "Home Page didn't open");
         String actualSearchTerm = homePage
-                                .getHeader()
-                                .setFocusSearchInput()
-                                .getTextFromSearchHistory(numberSearchTerm);
+                                    .getHeader()
+                                    .setFocusSearchInput()
+                                    .getTextFromSearchHistory(numberSearchTerm);
         Assert.assertEquals(actualSearchTerm, searchTerm);
    }
 }
