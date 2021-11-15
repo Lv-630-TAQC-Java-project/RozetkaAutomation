@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.Modals.BasketModal;
 import com.ss.ita.rozetka.ui.Modals.CatalogModal;
 import com.ss.ita.rozetka.ui.Modals.HamburgerModal;
+import com.ss.ita.rozetka.ui.Modals.ProfileModal;
 import com.ss.ita.rozetka.ui.pages.HomePage;
 import com.ss.ita.rozetka.ui.pages.ProductTypePage;
 import org.openqa.selenium.By;
@@ -47,6 +48,11 @@ public class Header {
     public BasketModal openBasketModal() {
         $x("//button[@class = 'header__button ng-star-inserted header__button--active']").click();
         return new BasketModal();
+    }
+
+    public ProfileModal openProfileModal() {
+        $x("//*[@href='#icon-user-simple']").click();
+        return new ProfileModal();
     }
 
     public HomePage openHomePage() {
