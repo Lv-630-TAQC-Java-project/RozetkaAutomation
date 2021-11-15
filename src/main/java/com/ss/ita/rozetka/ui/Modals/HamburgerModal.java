@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class HamburgerModal {
 
-    @Step("HamburgerModal: close hamburger modal")
+    @Step("SideMenuModal: close side menu modal")
     public Header closeHamburgerModal() {
         $x("//button[@class='side-menu__close']").click();
         return new Header();

@@ -4,9 +4,8 @@ import com.codeborne.selenide.Selenide;
 import com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
-
 
 public class HomePage extends HeaderPage {
 
