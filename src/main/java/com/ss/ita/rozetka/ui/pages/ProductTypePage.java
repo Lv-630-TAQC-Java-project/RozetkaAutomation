@@ -17,8 +17,4 @@ public class ProductTypePage extends HeaderPage {
         $x(format("//a[contains(@href,'%s')]", subCategory.getName())).click();
         return this;
     }
-    public ProductTypePage openProductsListPage(int numberPage){
-        $x(String.format("(//li[contains(@class, 'pagination__item')])[%s]", numberPage)).click();
-        return new ProductTypePage();
-    }
 }
