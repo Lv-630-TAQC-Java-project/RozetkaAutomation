@@ -3,7 +3,8 @@ package com.ss.ita.rozetka.pageobject.pages;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
 public class ProductTypePage extends HeaderPage {
@@ -20,8 +21,8 @@ public class ProductTypePage extends HeaderPage {
         return this;
     }
 
-    public String getProductTitle(int productNumber) {
-        return $$("span.goods-tile__title").get(productNumber).getText();
+    public String getFirstProductTitle() {
+        return $x("(//span[contains(@class,'goods-tile__title')])[1]").getText();
     }
 
     @Step("ProductPage: verify that product type page heading is visible")

@@ -10,10 +10,16 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class XiaomiSearchTest extends TestRunner {
+
+    String searchProduct = "Xiaomi";
+
     @Test
     public void verifyXiaomiWillBeInSearchResult() {
-        new HomePage().open().header.doSearch("Xiaomi");
+        ProductTypePage productTypePage = new HomePage()
+                .open()
+                .getHeader()
+                .doSearch(searchProduct);
 
-        Assert.assertTrue(new ProductTypePage().getProductTitle(1).contains("Xiaomi"));
+        Assert.assertTrue(productTypePage.getFirstProductTitle().contains(searchProduct));
     }
 }
