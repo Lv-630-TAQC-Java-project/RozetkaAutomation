@@ -1,5 +1,7 @@
 package com.ss.ita.rozetka.ui.ProductsEnum;
 
+import static java.lang.String.format;
+
 public enum GeneralProductCategory {
 
     NOTEBOOKS_AND_COMPUTERS("computers-notebooks"),
@@ -17,6 +19,6 @@ public enum GeneralProductCategory {
     }
 
     public String toString() {
-        return this.name() + "(" + this.getName() + ")";
+        return format(this.name() + "(%s)", this.getName());
     }
 }
