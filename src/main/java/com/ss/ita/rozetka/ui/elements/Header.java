@@ -3,7 +3,7 @@ package com.ss.ita.rozetka.ui.elements;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.Modals.BasketModal;
 import com.ss.ita.rozetka.ui.Modals.CatalogModal;
-import com.ss.ita.rozetka.ui.Modals.HamburgerModal;
+import com.ss.ita.rozetka.ui.Modals.SideMenuModal;
 import com.ss.ita.rozetka.ui.pages.HomePage;
 import com.ss.ita.rozetka.ui.pages.ProductTypePage;
 import org.openqa.selenium.By;
@@ -34,9 +34,9 @@ public class Header {
         return this;
     }
 
-    public HamburgerModal openHamburgerModal() {
+    public SideMenuModal openHamburgerModal() {
         $x("//button[@class='header__button']").click();
-        return new HamburgerModal();
+        return new SideMenuModal();
     }
 
     public CatalogModal openCatalogModal() {
@@ -54,7 +54,7 @@ public class Header {
         return new HomePage();
     }
 
-    public boolean isVisibleHamburgerModal() {
+    public boolean isVisibleSideMenuModal() {
         return $x("//nav[@class='drawer ng-star-inserted']").isDisplayed();
     }
 }

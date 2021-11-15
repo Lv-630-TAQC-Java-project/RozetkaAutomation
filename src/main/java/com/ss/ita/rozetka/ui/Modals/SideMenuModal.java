@@ -5,9 +5,9 @@ import com.ss.ita.rozetka.ui.elements.Header;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class HamburgerModal {
+public class SideMenuModal {
 
-    public Header closeHamburgerModal() {
+    public Header closeSideMenuModal() {
         $x("//button[@class='side-menu__close']").click();
         $x("//nav[@class='drawer ng-star-inserted']").shouldNotBe(Condition.visible);
         return new Header();
