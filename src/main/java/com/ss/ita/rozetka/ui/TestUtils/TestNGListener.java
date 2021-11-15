@@ -17,7 +17,7 @@ public class TestNGListener implements ITestListener {
     }
 
     @Override
-    public void onTestFailure(ITestResult result){
+    public void onTestFailure(ITestResult result) {
         capturePNG();
     }
 }

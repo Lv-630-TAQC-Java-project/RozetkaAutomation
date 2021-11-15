@@ -5,6 +5,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 
 import static com.codeborne.selenide.Configuration.browser;
+
 @Listeners(TestNGListener.class)
 public class TestRunner {
 
