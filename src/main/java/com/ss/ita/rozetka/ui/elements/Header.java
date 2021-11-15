@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.ui.elements;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.Modals.BasketModal;
 import com.ss.ita.rozetka.ui.Modals.CatalogModal;
@@ -60,8 +61,9 @@ public class Header {
     }
 
     public String getTextFromSearchHistory(int numberSearchedTerm) {
-        new Header().setFocusSearchInput();
+        setFocusSearchInput();
         return $x(String.format("(//li[@class='search-suggest__item ng-star-inserted'])[%s]", numberSearchedTerm))
                 .getText();
     }
+
 }
