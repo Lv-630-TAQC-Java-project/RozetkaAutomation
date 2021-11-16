@@ -18,12 +18,12 @@ public class SearchHistoryTest extends TestRunner {
         Header headerPage = new HomePage()
                 .open()
                 .getHeader();
-        ProductTypePage productsList = headerPage.doSearch(searchTerm);
+        headerPage.doSearch(searchTerm);
         Assert.assertTrue(PageUtil
                         .getCurrentUrl()
                         .contains(partOfUrl),
                 "Search Result should be open");
-        HomePage homePage = headerPage.openHomePage();
+        headerPage.openHomePage();
         Assert.assertEquals(PageUtil.getCurrentUrl(), "https://rozetka.com.ua/",
                 "Home Page should be open");
         String actualSearchTerm = headerPage
