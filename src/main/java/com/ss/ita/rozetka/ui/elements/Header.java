@@ -59,11 +59,13 @@ public class Header {
         return new HomePage();
     }
 
+    @Step("Header: set focus in search input")
     public Header setSearchInputInFocus() {
         $(By.name("search")).click();
         return this;
     }
 
+    @Step("Header: get text number {numberSearchedTerm} from search history")
     public String getTextFromSearchHistory(int numberSearchedTerm) {
         setSearchInputInFocus();
         return $x(String.format("(//li[@class='search-suggest__item ng-star-inserted'])[%s]", numberSearchedTerm))
