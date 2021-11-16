@@ -20,4 +20,9 @@ public class HomePage extends HeaderPage {
         $x(format("//div[contains(@class,'menu-wrapper_state_static')]/descendant::a[contains(@href,'%s')]", category.getName())).click();
         return new ProductCategoryPage();
     }
+
+    @Step("HomePage: get product №{itemNumber} from Recently Viewed Products list")
+    public String getRecentlyViewedProductName(int itemNumber) {
+        return $x(format("//section[@class = 'main-goods ng-star-inserted'][1]//ul/li[%s]//a[@class = 'tile__title']", itemNumber)).getText();
+    }
 }
