@@ -22,10 +22,10 @@ public class SearchHistoryTest extends TestRunner {
         Assert.assertTrue(PageUtil
                         .getCurrentUrl()
                         .contains(partOfUrl),
-                "Search Result should be open");
+                "Search Result should be opened");
         headerPage.openHomePage();
         Assert.assertEquals(PageUtil.getCurrentUrl(), "https://rozetka.com.ua/",
-                "Home Page should be open");
+                "Home Page should be opened");
         String actualSearchTerm = headerPage
                 .setSearchInputInFocus()
                 .getTextFromSearchHistory(numberSearchTerm);
