@@ -4,6 +4,8 @@ import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.Modals.*;
 import com.ss.ita.rozetka.ui.pages.*;
 import io.qameta.allure.Step;
+import com.ss.ita.rozetka.ui.pages.HomePage;
+import com.ss.ita.rozetka.ui.pages.ProductTypePage;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -36,9 +38,9 @@ public class Header {
     }
 
     @Step("Header: open side modal menu")
-    public HamburgerModal openHamburgerModal() {
+    public SideModalMenu openSideModalMenu() {
         $x("//button[@class='header__button']").click();
-        return new HamburgerModal();
+        return new SideModalMenu();
     }
 
     @Step("Header: open catalog modal")
@@ -57,5 +59,9 @@ public class Header {
     public HomePage openHomePage() {
         $x("//a[@class='header__logo']").click();
         return new HomePage();
+    }
+
+    public boolean isSideModalMenuVisible() {
+        return $x("//nav[@class='drawer ng-star-inserted']").isDisplayed();
     }
 }
