@@ -7,7 +7,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.url;
 
 public class Header {
 
@@ -36,7 +35,7 @@ public class Header {
         return this;
     }
 
-    @Step("Header: open side menu modal")
+    @Step("Header: open side modal menu")
     public HamburgerModal openHamburgerModal() {
         $x("//button[@class='header__button']").click();
         return new HamburgerModal();

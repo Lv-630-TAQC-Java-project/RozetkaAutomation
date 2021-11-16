@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.$x;
 // class should be renamed by another PR to SideMenuModal
 public class HamburgerModal {
 
-    @Step("SideMenuModal: close side menu modal")
+    @Step("SideModalMenu: close side modal menu")
     public Header closeHamburgerModal() {
         $x("//button[@class='side-menu__close']").click();
         return new Header();
