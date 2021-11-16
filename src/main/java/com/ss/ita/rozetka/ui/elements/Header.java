@@ -42,26 +42,28 @@ public class Header {
         return new HamburgerModal();
     }
 
-    @Step("Header: open catalog modal")
-    public boolean isCatalogModalDisplayed() {
+    @Step("Header: get catalog modal visibility status")
+    public boolean isCatalogModalVisible() {
         return $(".menu-wrapper").is(Condition.visible);
     }
 
+    @Step("Header: open catalog modal")
     public CatalogModal openCatalogModal() {
-        if (!isCatalogModalDisplayed()) {
+        if (!isCatalogModalVisible()) {
             $(By.id("fat-menu")).click();
         }
         return new CatalogModal();
     }
 
-    @Step("Header: open basket modal")
+    @Step("Header: close catalog modal")
     public Header closeCatalogModal() {
-        if (isCatalogModalDisplayed()) {
+        if (isCatalogModalVisible()) {
             $(By.id("fat-menu")).click();
         }
         return new Header();
     }
 
+    @Step("Header: open basket modal")
     public BasketModal openBasketModal() {
         $x("//button[@class = 'header__button ng-star-inserted header__button--active']").click();
         return new BasketModal();
