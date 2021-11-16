@@ -54,7 +54,7 @@ public class Header {
         return new HomePage();
     }
 
-    public boolean isVisibleSideModalMenu() {
+    public boolean isSideModalMenuVisible() {
         return $x("//nav[@class='drawer ng-star-inserted']").isDisplayed();
     }
 }

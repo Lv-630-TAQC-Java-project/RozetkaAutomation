@@ -13,13 +13,13 @@ public class SideModalMenuTest extends TestRunner {
         HomePage homePage = new HomePage().open();
         SideModalMenu menu = homePage.getHeader().openSideModalMenu();
         Assert.assertTrue(homePage
-                            .getHeader()
-                            .isVisibleSideModalMenu(),
+                        .getHeader()
+                        .isSideModalMenuVisible(),
                 "Side Menu have to be visible but is invisible");
         menu.closeSideModalMenu();
         Assert.assertFalse(homePage
-                            .getHeader()
-                            .isVisibleSideModalMenu(),
+                        .getHeader()
+                        .isSideModalMenuVisible(),
                 "Side Menu have to be invisible but is visible");
     }
 }
