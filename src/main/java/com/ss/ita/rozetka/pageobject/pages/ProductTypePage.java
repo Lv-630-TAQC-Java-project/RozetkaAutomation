@@ -21,8 +21,8 @@ public class ProductTypePage extends HeaderPage {
         return this;
     }
 
-    public String getFirstProductTitle() {
-        return $x("(//span[contains(@class,'goods-tile__title')])[1]").getText();
+    public String getProductTitle(int productNumber) {
+        return $x(String.format("(//span[contains(@class,'goods-tile__title')])[%s]", productNumber)).getText();
     }
 
     @Step("ProductPage: verify that product type page heading is visible")

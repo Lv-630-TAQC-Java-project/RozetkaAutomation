@@ -11,15 +11,15 @@ import org.testng.annotations.Test;
 
 public class XiaomiSearchTest extends TestRunner {
 
-    String searchProduct = "Xiaomi";
-
     @Test
     public void verifyXiaomiWillBeInSearchResult() {
+        String searchProduct = "Xiaomi";
+
         ProductTypePage productTypePage = new HomePage()
                 .open()
                 .getHeader()
                 .doSearch(searchProduct);
 
-        Assert.assertTrue(productTypePage.getFirstProductTitle().contains(searchProduct));
+        Assert.assertTrue(productTypePage.getProductTitle(1).contains(searchProduct));
     }
 }
