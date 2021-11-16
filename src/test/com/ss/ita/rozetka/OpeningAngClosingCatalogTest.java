@@ -19,13 +19,15 @@ public class OpeningAngClosingCatalogTest extends TestRunner {
 
         SoftAssertions softAssertion = new SoftAssertions();
         softAssertion
-                .assertThat(header.isCatalogModalVisible())
+                .assertThat(header
+                        .isCatalogModalVisible())
                 .as("Catalog modal should be visible")
                 .isTrue();
 
         header.closeCatalogModal();
         softAssertion
-                .assertThat(header.isCatalogModalVisible())
+                .assertThat(header
+                        .isCatalogModalVisible())
                 .as("Catalog modal shouldn't be visible")
                 .isFalse();
         softAssertion.assertAll();
