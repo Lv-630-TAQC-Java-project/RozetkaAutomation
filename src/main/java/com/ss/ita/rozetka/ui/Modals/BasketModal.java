@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 public class BasketModal <T>{
-    private T rootPage;
+    private final T rootPage;
 
     public BasketModal(T rootPage) {
         this.rootPage = rootPage;
@@ -47,7 +47,7 @@ public class BasketModal <T>{
     }
 
     @Step("BasketModal: set count for product with name {productName} to {count}")
-    public BasketModal setProductCount(String productName, int count) {
+    public BasketModal<T> setProductCount(String productName, int count) {
         int totalPrice = getProductsTotalPrice();
 
         String countFieldXpath = String.format(
@@ -73,7 +73,7 @@ public class BasketModal <T>{
     }
 
     @Step("BasketModal: remove product with name {productName}")
-    public BasketModal removeProduct(String productName) {
+    public BasketModal<T> removeProduct(String productName) {
         int totalPrice = getProductsTotalPrice();
 
         String productActionXpath = String.format(
@@ -85,7 +85,8 @@ public class BasketModal <T>{
         return this;
     }
 
-    @Step("BasketModal: continue buying products")
+
+    @Step("BasketModal: close basket window")
     public T close() {
         $x("//button[contains(@class, 'modal__close')]").click();
         return rootPage;
