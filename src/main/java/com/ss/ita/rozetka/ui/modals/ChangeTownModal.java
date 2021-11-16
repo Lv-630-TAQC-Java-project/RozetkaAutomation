@@ -24,13 +24,13 @@ public class ChangeTownModal {
     }
 
     @Step("ChangeTownModal: approve changing town and open home page")
-    public HomePage approveChangingTownAndOpenHomePage(){
+    public HomePage approveChangingTownAndOpenHomePage() {
         $x("//a[contains(@class, 'button_color_gray')]").click();
-        return new HomePage() ;
+        return new HomePage();
     }
 
     @Step("ChangeTownModal:approve changing town")
-    public <PageObject> PageObject approveChangingTown(Class<PageObject> pageObjectClass){
+    public <PageObject> PageObject approveChangingTown(Class<PageObject> pageObjectClass) {
         $x("//button[contains(@class, 'button_size_medium button_color_green')]").click();
         return page(pageObjectClass);
     }

@@ -20,7 +20,7 @@ public class HamburgerModal {
     }
 
     @Step("SideModalMenu: get town")
-    public String getTown(){
+    public String getTown() {
         return $x("//span[contains(@class, 'city-toggle')]").text();
     }
 }
