@@ -7,6 +7,8 @@ import com.ss.ita.rozetka.ui.pages.HomePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class SideModalMenuTest extends TestRunner {
 
     @Test
@@ -15,8 +17,12 @@ public class SideModalMenuTest extends TestRunner {
                 .open()
                 .getHeader();
         SideModalMenu menu = header.openSideModalMenu();
-        Assert.assertTrue(header.isSideModalMenuVisible(), "Side Menu should be visible");
+        assertThat(header.isSideModalMenuVisible())
+                .as("Side Menu should be visible")
+                .isTrue();
         menu.closeSideModalMenu();
-        Assert.assertFalse(header.isSideModalMenuVisible(), "Side Menu should be invisible");
+        assertThat(header.isSideModalMenuVisible())
+                .as("Side Menu should be invisible")
+                .isFalse();
     }
 }
