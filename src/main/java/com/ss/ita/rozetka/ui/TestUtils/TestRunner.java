@@ -1,10 +1,12 @@
-package com.ss.ita.rozetka.ui.runner;
+package com.ss.ita.rozetka.ui.TestUtils;
 
 import com.codeborne.selenide.Configuration;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 
 import static com.codeborne.selenide.Configuration.browser;
 
+@Listeners(TestListener.class)
 public class TestRunner {
 
     @BeforeClass

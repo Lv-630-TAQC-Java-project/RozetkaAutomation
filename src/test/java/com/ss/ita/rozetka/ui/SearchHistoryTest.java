@@ -1,8 +1,8 @@
 package com.ss.ita.rozetka.ui;
 
+import com.ss.ita.rozetka.ui.TestUtils.TestRunner;
 import com.ss.ita.rozetka.ui.pages.HomePage;
 import com.ss.ita.rozetka.ui.pages.ProductTypePage;
-import com.ss.ita.rozetka.ui.runner.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
