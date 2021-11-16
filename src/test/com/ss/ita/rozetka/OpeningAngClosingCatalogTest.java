@@ -1,11 +1,10 @@
 package com.ss.ita.rozetka;
 
-import com.ss.ita.rozetka.ui.Modals.CatalogModal;
 import com.ss.ita.rozetka.ui.TestUtils.TestRunner;
 import com.ss.ita.rozetka.ui.elements.Header;
 import com.ss.ita.rozetka.ui.pages.HomePage;
+import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 
 public class OpeningAngClosingCatalogTest extends TestRunner {
@@ -18,11 +17,17 @@ public class OpeningAngClosingCatalogTest extends TestRunner {
 
         header.openCatalogModal();
 
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(header.isCatalogModalVisible());
+        SoftAssertions softAssertion = new SoftAssertions();
+        softAssertion
+                .assertThat(header.isCatalogModalVisible())
+                .as("Catalog modal should be visible")
+                .isTrue();
 
         header.closeCatalogModal();
-        softAssert.assertFalse(header.isCatalogModalVisible());
-        softAssert.assertAll();
+        softAssertion
+                .assertThat(header.isCatalogModalVisible())
+                .as("Catalog modal shouldn't be visible")
+                .isFalse();
+        softAssertion.assertAll();
     }
 }
