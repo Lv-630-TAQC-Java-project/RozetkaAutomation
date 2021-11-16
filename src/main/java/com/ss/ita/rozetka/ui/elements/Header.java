@@ -60,13 +60,13 @@ public class Header {
         return url();
     }
 
-    public Header setFocusSearchInput() {
+    public Header setSearchInputInFocus() {
         $(By.name("search")).click();
         return this;
     }
 
     public String getTextFromSearchHistory(int numberSearchedTerm) {
-        setFocusSearchInput();
+        setSearchInputInFocus();
         return $x(String.format("(//li[@class='search-suggest__item ng-star-inserted'])[%s]", numberSearchedTerm))
                 .getText();
     }

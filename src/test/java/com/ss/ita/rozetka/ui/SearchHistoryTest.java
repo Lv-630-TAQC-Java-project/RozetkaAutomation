@@ -14,25 +14,25 @@ public class SearchHistoryTest extends TestRunner {
         String searchTerm = "DELL";
         String partOfUrl = "search";
         ProductTypePage productsList = new HomePage()
-                                            .open()
-                                            .getHeader()
-                                            .doSearch(searchTerm);
+                .open()
+                .getHeader()
+                .doSearch(searchTerm);
         Assert.assertTrue(productsList
-                            .getHeader()
-                            .isUrlContainsText(partOfUrl),
+                        .getHeader()
+                        .isUrlContainsText(partOfUrl),
                 "Search Result didn't open");
-        HomePage homePage =  productsList
-                                .getHeader()
-                                .openHomePage();
+        HomePage homePage = productsList
+                .getHeader()
+                .openHomePage();
         Assert.assertEquals(homePage
-                                .getHeader()
-                                .getCurrentUrl(),
-                    "https://rozetka.com.ua/",
-                    "Home Page didn't open");
+                        .getHeader()
+                        .getCurrentUrl(),
+                "https://rozetka.com.ua/",
+                "Home Page didn't open");
         String actualSearchTerm = homePage
-                                    .getHeader()
-                                    .setFocusSearchInput()
-                                    .getTextFromSearchHistory(numberSearchTerm);
+                .getHeader()
+                .setSearchInputInFocus()
+                .getTextFromSearchHistory(numberSearchTerm);
         Assert.assertEquals(actualSearchTerm, searchTerm);
    }
 }
