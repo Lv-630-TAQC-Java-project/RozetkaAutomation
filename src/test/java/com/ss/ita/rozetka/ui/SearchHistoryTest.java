@@ -8,6 +8,8 @@ import com.ss.ita.rozetka.ui.util.PageUtil;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class SearchHistoryTest extends TestRunner {
 
     @Test
@@ -19,16 +21,16 @@ public class SearchHistoryTest extends TestRunner {
                 .open()
                 .getHeader();
         headerPage.doSearch(searchTerm);
-        Assert.assertTrue(PageUtil
-                        .getCurrentUrl()
-                        .contains(partOfUrl),
-                "Search Result should be opened");
+        assertThat(PageUtil.getCurrentUrl())
+                .as("Search Result should be opened")
+                .contains(partOfUrl);
         headerPage.openHomePage();
-        Assert.assertEquals(PageUtil.getCurrentUrl(), "https://rozetka.com.ua/",
-                "Home Page should be opened");
+        assertThat(PageUtil.getCurrentUrl())
+                .as("Home Page should be opened")
+                .isEqualTo("https://rozetka.com.ua/");
         String actualSearchTerm = headerPage
                 .setSearchInputInFocus()
                 .getTextFromSearchHistory(numberSearchTerm);
-        Assert.assertEquals(actualSearchTerm, searchTerm);
+        assertThat(actualSearchTerm).isEqualTo(searchTerm);
     }
 }
