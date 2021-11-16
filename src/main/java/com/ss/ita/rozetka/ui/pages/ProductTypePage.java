@@ -1,6 +1,6 @@
 package com.ss.ita.rozetka.ui.pages;
 
-import com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory;
+import com.ss.ita.rozetka.ui.productsEnum.ProductCategoryAndSubCategory;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.*;

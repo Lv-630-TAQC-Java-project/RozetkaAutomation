@@ -1,4 +1,4 @@
-package com.ss.ita.rozetka.ui.Modals;
+package com.ss.ita.rozetka.ui.modals;
 
 import com.ss.ita.rozetka.ui.pages.HeaderPage;
 
