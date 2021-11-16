@@ -7,17 +7,17 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.util.Base64;
-//class for doing screenshot
-public class TestNGListener implements ITestListener {
+
+public class TestListener implements ITestListener {
 
     @Attachment(value = "pageScreenshot", type = "image/png")
-    public static byte[] capturePNG() {
+    public static byte[] doScreenshot() {
         String screenshot = Selenide.screenshot(OutputType.BASE64);
         return Base64.getDecoder().decode(screenshot);
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        capturePNG();
+        doScreenshot();
     }
 }
