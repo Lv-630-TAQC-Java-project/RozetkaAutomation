@@ -11,8 +11,7 @@ public class SideModalMenuTest extends TestRunner {
 
     @Test
     public void verifyOpenCloseSideModalMenu() {
-        HomePage homePage = new HomePage().open();
-        Header header = homePage.getHeader();
+        Header header = new HomePage().open().getHeader();
         SideModalMenu menu = header.openSideModalMenu();
         Assert.assertTrue(header.isSideModalMenuVisible(), "Side Menu should be visible");
         menu.closeSideModalMenu();
