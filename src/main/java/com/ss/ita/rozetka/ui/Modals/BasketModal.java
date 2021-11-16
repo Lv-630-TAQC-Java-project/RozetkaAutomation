@@ -11,15 +11,15 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
-public class BasketModal <T>{
-    private T rootPage;
+public class BasketModal<T> {
+    // This pattern should only be used in String.format()
+    // with product name as a second argument
+    private static final String PRODUCT_XPATH_PATTERN_FOR_NAME = "//single-modal-window//li[contains(., '%s')]";
+    private final T rootPage;
 
     public BasketModal(T rootPage) {
         this.rootPage = rootPage;
     }
-    // This pattern should only be used in String.format()
-    // with product name as a second argument
-    private static final String PRODUCT_XPATH_PATTERN_FOR_NAME = "//single-modal-window//li[contains(., '%s')]";
 
     @Step("BasketModal: order products you chose")
     public OrderingPage openOrderingPage() {
@@ -47,7 +47,7 @@ public class BasketModal <T>{
     }
 
     @Step("BasketModal: set count for product with name {productName} to {count}")
-    public BasketModal setProductCount(String productName, int count) {
+    public BasketModal<T> setProductCount(String productName, int count) {
         int totalPrice = getProductsTotalPrice();
 
         String countFieldXpath = String.format(
@@ -73,7 +73,7 @@ public class BasketModal <T>{
     }
 
     @Step("BasketModal: remove product with name {productName}")
-    public BasketModal removeProduct(String productName) {
+    public BasketModal<T> removeProduct(String productName) {
         int totalPrice = getProductsTotalPrice();
 
         String productActionXpath = String.format(
@@ -85,7 +85,8 @@ public class BasketModal <T>{
         return this;
     }
 
-    @Step("BasketModal: continue buying products")
+
+    @Step("BasketModal: close basket window")
     public T close() {
         $x("//button[contains(@class, 'modal__close')]").click();
         return rootPage;
