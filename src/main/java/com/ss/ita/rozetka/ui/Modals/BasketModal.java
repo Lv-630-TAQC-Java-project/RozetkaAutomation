@@ -49,7 +49,7 @@ public class BasketModal {
                 PRODUCT_XPATH_PATTERN_FOR_NAME + "//input[contains(@class, 'cart-counter__input')]", productName);
         SelenideElement countField = $x(countFieldXpath);
 
-        if (String.valueOf(count).equals(countField.attr("value"))){
+        if (String.valueOf(count).equals(countField.attr("value"))) {
             return this;
         }
 
