@@ -1,5 +1,7 @@
 package com.ss.ita.rozetka.ui.ProductsEnum;
 
+import static java.lang.String.format;
+
 public enum ProductCategoryAndSubCategory {
     NOTEBOOKS("c80004"), //specific category
     GARDEN_TECH_CATEGORY("garden_tech"),
@@ -15,5 +17,9 @@ public enum ProductCategoryAndSubCategory {
 
     public String getName() {
         return name;
+    }
+
+    public String toString() {
+        return format(this.name() + "(%s)", this.getName());//the same
     }
 }
