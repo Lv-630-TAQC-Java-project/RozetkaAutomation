@@ -18,9 +18,13 @@ public class RecentlyViewedProductsTest extends TestRunner {
         ProductTypePage productPage = new HomePage().open()
                 .openProductCategoryPage(PRODUCTS_FOR_HOUSE)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
-        String productTypePageUrl = productPage.getHeader().getCurrentUrl();
+        String productTypePageUrl = productPage
+                .getHeader()
+                .getCurrentUrl();
         Assert.assertEquals(productTypePageUrl, "https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/");
-        String productName = productPage.openProductPage(1).getProductTitle();
+        String productName = productPage
+                .openProductPage(1)
+                .getName();
         String recentlyViewedProductName = productPage
                 .getHeader()
                 .openHomePage()
