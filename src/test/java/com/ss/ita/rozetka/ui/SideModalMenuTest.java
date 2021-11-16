@@ -14,8 +14,8 @@ public class SideModalMenuTest extends TestRunner {
         HomePage homePage = new HomePage().open();
         Header header = homePage.getHeader();
         SideModalMenu menu = header.openSideModalMenu();
-        Assert.assertTrue(header.isSideModalMenuVisible(), "Side Menu have to be visible but is invisible");
+        Assert.assertTrue(header.isSideModalMenuVisible(), "Side Menu should be visible");
         menu.closeSideModalMenu();
-        Assert.assertFalse(header.isSideModalMenuVisible(), "Side Menu have to be invisible but is visible");
+        Assert.assertFalse(header.isSideModalMenuVisible(), "Side Menu should be invisible");
     }
 }

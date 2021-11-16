@@ -61,6 +61,7 @@ public class Header {
         return new HomePage();
     }
 
+    @Step("Header: verify that Side Modal Menu is opened")
     public boolean isSideModalMenuVisible() {
         return $x("//nav[@class='drawer ng-star-inserted']").isDisplayed();
     }
