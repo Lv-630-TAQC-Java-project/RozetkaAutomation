@@ -50,7 +50,7 @@ public class Header {
     @Step("Header: open basket modal")
     public BasketModal openBasketModal() {
         $x("//button[@class = 'header__button ng-star-inserted header__button--active']").click();
-        return new BasketModal();
+        return new BasketModal(Header.class);
     }
 
     @Step("Header: open home page")

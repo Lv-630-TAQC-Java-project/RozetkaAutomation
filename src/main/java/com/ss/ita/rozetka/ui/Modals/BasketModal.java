@@ -11,7 +11,12 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
-public class BasketModal {
+public class BasketModal <T>{
+    private T rootPage;
+
+    public BasketModal(T rootPage) {
+        this.rootPage = rootPage;
+    }
     // This pattern should only be used in String.format()
     // with product name as a second argument
     private static final String PRODUCT_XPATH_PATTERN_FOR_NAME = "//single-modal-window//li[contains(., '%s')]";
@@ -81,8 +86,8 @@ public class BasketModal {
     }
 
     @Step("BasketModal: continue buying products")
-    public BasketModal close() {
+    public T close() {
         $x("//button[contains(@class, 'modal__close')]").click();
-        return this;
+        return rootPage;
     }
 }
