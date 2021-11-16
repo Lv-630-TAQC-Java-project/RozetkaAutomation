@@ -29,8 +29,6 @@ public class NavigatingToHomePageTest extends TestRunner {
                 .getHeader()
                 .openHomePage()
                 .getHeader()
-                .openHomePage()
-                .getHeader()
                 .getCurrentUrl();
         Assert.assertEquals(homePageUrl, "https://rozetka.com.ua/");
     }
