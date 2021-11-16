@@ -1,11 +1,9 @@
 package com.ss.ita.rozetka.ui;
 
-import com.ss.ita.rozetka.ui.pages.ProductPage;
 import com.ss.ita.rozetka.ui.pages.ProductTypePage;
 import com.ss.ita.rozetka.ui.TestUtils.TestRunner;
 import com.ss.ita.rozetka.ui.pages.HomePage;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory.PRODUCTS_FOR_HOUSE;
