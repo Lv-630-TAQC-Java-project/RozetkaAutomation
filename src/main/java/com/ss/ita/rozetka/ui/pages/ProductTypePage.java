@@ -1,5 +1,7 @@
 package com.ss.ita.rozetka.ui.pages;
 
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.ElementsCollection;
 import com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory;
 import io.qameta.allure.Step;
 
@@ -20,7 +22,11 @@ public class ProductTypePage extends HeaderPage {
         return this;
     }
 
+    @Step("ProductPage: get products count presented on page")
     public int getProductsCount() {
-        return $$(".catalog-grid__cell").size();
+        return $$(".catalog-grid__cell")
+                .shouldHave(CollectionCondition
+                        .sizeGreaterThan(1))
+                .size();
     }
 }
