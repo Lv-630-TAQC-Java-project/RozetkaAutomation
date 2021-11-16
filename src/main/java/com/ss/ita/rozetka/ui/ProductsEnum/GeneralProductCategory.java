@@ -1,5 +1,7 @@
 package com.ss.ita.rozetka.ui.ProductsEnum;
 
+import static java.lang.String.format;
+
 public enum GeneralProductCategory {
 
     NOTEBOOKS_AND_COMPUTERS("computers-notebooks"),
@@ -14,5 +16,9 @@ public enum GeneralProductCategory {
 
     public String getName() {
         return name;
+    }
+
+    public String toString() {
+        return format(this.name() + "(%s)", this.getName());//method to see elements of enum with value in allure report
     }
 }
