@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.ui;
 
+import com.ss.ita.rozetka.ui.elements.Header;
 import com.ss.ita.rozetka.ui.pages.HomePage;
 import com.ss.ita.rozetka.ui.runner.TestRunner;
 import org.testng.Assert;
@@ -10,13 +11,14 @@ public class ChangeLanguageTest extends TestRunner {
     @Test
     public void verifyUserCanChangeLanguage() {
         HomePage homePage = new HomePage().open();
+        Header header = homePage.getHeader();
 
-        homePage.getHeader().changeLanguage("UA");
+        header.changeLanguage("UA");
 
         Assert.assertEquals(homePage
                 .getGreetingsText(), "Ласкаво просимо!", "Language wasn't changed");
 
-        homePage.getHeader().changeLanguage("RU");
+        header.changeLanguage("RU");
 
         Assert.assertEquals(homePage
                 .getGreetingsText(), "Добро пожаловать!", "Language wasn't changed");
