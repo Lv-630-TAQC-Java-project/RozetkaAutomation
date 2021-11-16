@@ -80,7 +80,7 @@ public class BasketModal {
         return this;
     }
 
-    @Step("BasketModal: continue buying products")
+    @Step("BasketModal: close basket window")
     public BasketModal close() {
         $x("//button[contains(@class, 'modal__close')]").click();
         return this;
