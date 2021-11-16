@@ -4,8 +4,6 @@ import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.Modals.*;
 import com.ss.ita.rozetka.ui.pages.*;
 import io.qameta.allure.Step;
-import com.ss.ita.rozetka.ui.pages.HomePage;
-import com.ss.ita.rozetka.ui.pages.ProductTypePage;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
