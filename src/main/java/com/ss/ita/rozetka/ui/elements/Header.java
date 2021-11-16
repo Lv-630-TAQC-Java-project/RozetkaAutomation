@@ -37,10 +37,12 @@ public class Header {
         return this;
     }
 
-
+    @Step("Header: get count of compared products")
     public int getProductsForComparisonCount() {
         return Integer.parseInt($x("//span[@class='counter counter--gray ng-star-inserted']")
-                .shouldBe(Condition.visible).getText().replaceAll("[^0-9]", ""));
+                .shouldBe(Condition.visible)
+                .getText()
+                .replaceAll("[^0-9]", ""));
     }
 
     @Step("Header: open side modal menu")
