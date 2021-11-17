@@ -21,7 +21,7 @@ public class BasketModal<T> {
         this.pageObject = pageObject;
     }
 
-    @Step("BasketModal: order products you chose")
+    @Step("BasketModal: order products added in basket")
     public OrderingPage openOrderingPage() {
         $x("//a[contains(@class, 'cart-receipt__submit')]").click();
         return new OrderingPage();
