@@ -14,7 +14,7 @@ public class SideModalMenuTest extends TestRunner {
     @Test
     @Issue("LVTAQC630-28")
     public void verifyChangingTown() {
-        String odessa = "Одеса";
+        String odesa = "Одеса";
         String lviv = "Львів";
 
         Header header = new HomePage()
@@ -23,33 +23,39 @@ public class SideModalMenuTest extends TestRunner {
         HamburgerModal sideModalMenu = header.openHamburgerModal();
         sideModalMenu
                 .startChangingTown()
-                .selectTown(odessa)
-                .approveChangingTownAndOpenHomePage();
+                .selectCity(odesa)
+                .approveChangingCityAndOpenHomePage();
         String currentTown = header
                 .openHamburgerModal()
                 .getTown();
 
-        assertThat(currentTown).as("currentTown should be the same like odessa").isEqualTo(odessa);
+        assertThat(currentTown)
+                .as("currentTown should be the same like odesa")
+                .isEqualTo(odesa);
 
         sideModalMenu
                 .startChangingTown()
-                .selectTown(lviv)
-                .approveChangingTown(HomePage.class);
+                .selectCity(lviv)
+                .approveChangingCity(HomePage.class);
         String chosenTown = header
                 .openHamburgerModal()
                 .getTown();
 
-        assertThat(chosenTown).as("chosenTown should be the same like lviv").isEqualTo(lviv);
+        assertThat(chosenTown)
+                .as("chosenTown should be the same like lviv")
+                .isEqualTo(lviv);
 
         sideModalMenu
                 .startChangingTown()
-                .setTown(odessa)
-                .approveChangingTownAndOpenHomePage();
+                .setCity(odesa)
+                .approveChangingCityAndOpenHomePage();
         String revertedTown = header
                 .openHamburgerModal()
                 .getTown();
 
-        assertThat(revertedTown).as("revertedTown should be the same like odessa").isEqualTo(odessa);
+        assertThat(revertedTown)
+                .as("revertedTown should be the same like odesa")
+                .isEqualTo(odesa);
     }
 }
            
