@@ -13,7 +13,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ComparisonTest {
     @Test
     public void verifyAddingToComparison() {
-        ProductTypePage productTypePage = new HomePage().open()
+        ProductTypePage productTypePage = new HomePage()
+                .open()
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS);
         assertThat(getCurrentUrl())
