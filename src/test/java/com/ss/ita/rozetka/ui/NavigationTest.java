@@ -4,9 +4,10 @@ import com.ss.ita.rozetka.ui.pages.HomePage;
 import com.ss.ita.rozetka.ui.pages.ProductCategoryPage;
 import com.ss.ita.rozetka.ui.TestUtils.TestRunner;
 
+import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
-import static com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory.PRODUCTS_FOR_HOUSE;
+import static com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory.HOUSEHOLD_APPLIANCES;
 import static com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory.KITCHEN_APPLIANCES_CATEGORY;
 import static com.ss.ita.rozetka.ui.util.PageUtil.getCurrentUrl;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,10 +15,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class NavigationTest extends TestRunner {
 
     @Test
+    @Issue("LVTAQC630-7")
     public void verifyReturnToHomePage() {
         ProductCategoryPage page = new HomePage()
                 .open()
-                .openProductCategoryPage(PRODUCTS_FOR_HOUSE);
+                .openProductCategoryPage(HOUSEHOLD_APPLIANCES);
         boolean isProductPageOpened = page.isProductCategoryPageHeadingVisible();
         assertThat(getCurrentUrl())
                 .as("Products for house category page should be opened")
