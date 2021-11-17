@@ -21,7 +21,7 @@ public class HomePage extends HeaderPage {
         return new ProductCategoryPage();
     }
 
-    @Step("HomePage: get product №{itemNumber} from Recently Viewed Products list")
+    @Step("HomePage: get product number {itemNumber} from Recently Viewed Products list")
     public String getRecentlyViewedProductName(int itemNumber) {
         return $x(format("//section[@class = 'main-goods ng-star-inserted'][1]//ul/li[%s]//a[@class = 'tile__title']", itemNumber)).getText();
     }

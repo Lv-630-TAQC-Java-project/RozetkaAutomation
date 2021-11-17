@@ -15,7 +15,8 @@ public class RecentlyViewedProductsTest extends TestRunner {
 
     @Test
     public void verifyLastViewedProductAddedToTheList() {
-        ProductTypePage productPage = new HomePage().open()
+        ProductTypePage productPage = new HomePage()
+                .open()
                 .openProductCategoryPage(PRODUCTS_FOR_HOUSE)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
         assertThat(getCurrentUrl())
