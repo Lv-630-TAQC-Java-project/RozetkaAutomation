@@ -5,8 +5,6 @@ import com.codeborne.selenide.ex.ElementNotFound;
 import com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory;
 import io.qameta.allure.Step;
 
-import java.time.Duration;
-
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
