@@ -11,7 +11,7 @@ import static com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory.K
 import static com.ss.ita.rozetka.ui.util.PageUtil.getCurrentUrl;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class NavigatingToHomePageTest extends TestRunner {
+public class NavigationTest extends TestRunner {
 
     @Test
     public void verifyReturnToHomePage() {
