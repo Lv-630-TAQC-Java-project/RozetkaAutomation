@@ -11,7 +11,7 @@ public class HomePage extends HeaderPage {
 
     @Step("HomePage: open Rozetka home page")
     public HomePage open() {
-        Selenide.open("https://rozetka.com.ua/");
+        Selenide.open("https://rozetka.com.ua");
         return this;
     }
 
