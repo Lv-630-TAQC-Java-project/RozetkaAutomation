@@ -20,7 +20,8 @@ public class ProductTypePage extends HeaderPage {
         return this;
     }
 
-    public Boolean isProductTypeHeadingVisible() {
+    @Step("ProductPage: verify that product type page heading is visible")
+    public Boolean isProductTypePageHeadingVisible() {
         return $x("//h1[@class = 'catalog-heading ng-star-inserted']").isDisplayed();
     }
 }
