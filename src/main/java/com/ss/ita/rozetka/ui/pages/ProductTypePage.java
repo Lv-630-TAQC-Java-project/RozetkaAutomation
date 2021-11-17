@@ -27,7 +27,7 @@ public class ProductTypePage extends HeaderPage {
     @Step("ProductTypePage: verify that Select Sorting Type is displayed")
     public boolean isSelectSortingTypeDisplayed() {
         try {
-            return $x("//select[contains(@class,'select-css')]")//$x("//div[@class='catalog-settings ng-star-inserted']")
+            return $x("//select[contains(@class,'select-css')]")
                     .shouldBe(Condition.visible)
                     .isDisplayed();
         } catch (ElementNotFound exception) {
