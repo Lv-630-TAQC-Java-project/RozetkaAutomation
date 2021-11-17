@@ -5,11 +5,13 @@ import com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.ui.pages.HomePage;
 import com.ss.ita.rozetka.ui.pages.ProductCategoryPage;
 import com.ss.ita.rozetka.ui.pages.ProductTypePage;
-import com.ss.ita.rozetka.ui.runner.TestRunner;
-import org.testng.Assert;
+import com.ss.ita.rozetka.ui.TestUtils.TestRunner;
 import org.testng.annotations.Test;
 
-public class XiaomiSearchTest extends TestRunner {
+import static org.assertj.core.api.Assertions.assertThat;
+
+
+public class SearchFunctionalityTests extends TestRunner {
 
     @Test
     public void verifyXiaomiWillBeInSearchResult() {
@@ -20,6 +22,7 @@ public class XiaomiSearchTest extends TestRunner {
                 .getHeader()
                 .doSearch(searchProduct);
 
-        Assert.assertTrue(productTypePage.getProductTitle(1).contains(searchProduct));
+        assertThat(productTypePage.getProductTitle(1))
+                .as("Product should have Xiaomi in title").contains(searchProduct);
     }
 }

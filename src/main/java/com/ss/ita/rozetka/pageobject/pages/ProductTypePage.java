@@ -21,6 +21,7 @@ public class ProductTypePage extends HeaderPage {
         return this;
     }
 
+    @Step("ProductTypePage: get {productNumber} product title")
     public String getProductTitle(int productNumber) {
         return $x(String.format("(//span[contains(@class,'goods-tile__title')])[%s]", productNumber)).getText();
     }
