@@ -7,7 +7,7 @@ import com.ss.ita.rozetka.ui.pages.HomePage;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
-import static com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory.PRODUCTS_FOR_HOUSE;
+import static com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory.HOUSEHOLD_APPLIANCES;
 import static com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory.KITCHEN_APPLIANCES_CATEGORY;
 import static com.ss.ita.rozetka.ui.util.PageUtil.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,7 +19,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
     public void verifyLastViewedProductAddedToTheList() {
         ProductTypePage productPage = new HomePage()
                 .open()
-                .openProductCategoryPage(PRODUCTS_FOR_HOUSE)
+                .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
         boolean isProductTypePageOpened = productPage.isProductTypePageHeadingVisible();
         assertThat(getCurrentUrl())
