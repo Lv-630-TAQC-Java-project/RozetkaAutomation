@@ -19,4 +19,8 @@ public class ProductTypePage extends HeaderPage {
         $x(format("//a[contains(@href,'%s')]", subCategory.getName())).click();
         return this;
     }
+
+    public Boolean isProductTypeTitleVisible() {
+        return $x("//h1[@class = 'catalog-heading ng-star-inserted']").isDisplayed();
+    }
 }
