@@ -3,9 +3,10 @@ package com.ss.ita.rozetka.ui.ProductsEnum;
 import static java.lang.String.format;
 
 public enum ProductCategoryAndSubCategory {
-    NOTEBOOKS("notebooks"),
+    NOTEBOOKS_CATEGORY("notebooks"),
     GARDEN_TECH_CATEGORY("garden_tech"),
     GARDEN_EQUIP_CATEGORY("sadoviy-inventar"),
+    BIG_HOUSEHOLD_APPLIANCES("bigbt"),
 
     TRIMMERS_SUBCATEGORY("trimmers");
 

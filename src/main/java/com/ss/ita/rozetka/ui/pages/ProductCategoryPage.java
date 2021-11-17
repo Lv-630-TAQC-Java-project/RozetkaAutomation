@@ -10,7 +10,7 @@ public class ProductCategoryPage extends HeaderPage {
 
     @Step("ProductCategoryPage: open product type page by category {categoryOrSubCategory}")
     public ProductTypePage openProductTypePage(ProductCategoryAndSubCategory categoryOrSubCategory) {
-        $x(format("//a[contains(@href,'%s')]", categoryOrSubCategory.getName())).click();
+        $x(format("//ul[@class = 'portal-grid portal-grid_type_1_4']//a[contains(@href,'%s')]", categoryOrSubCategory.getName())).click();
         return new ProductTypePage();
     }
 }
