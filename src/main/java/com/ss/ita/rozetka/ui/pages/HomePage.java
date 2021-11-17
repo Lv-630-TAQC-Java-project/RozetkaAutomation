@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.ui.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory;
 import io.qameta.allure.Step;
@@ -17,7 +18,9 @@ public class HomePage extends HeaderPage {
 
     @Step("HomePage: open category {category}")
     public ProductCategoryPage openProductCategoryPage(GeneralProductCategory category) {
-        $x(format("//div[contains(@class,'menu-wrapper_state_static')]/descendant::a[contains(@href,'%s')]", category.getName())).click();
+        $x(format("//div[contains(@class,'menu-wrapper_state_static')]/descendant::a[contains(@href,'%s')]", category.getName()))
+                .shouldBe(Condition.visible)
+                .click();
         return new ProductCategoryPage();
     }
 }

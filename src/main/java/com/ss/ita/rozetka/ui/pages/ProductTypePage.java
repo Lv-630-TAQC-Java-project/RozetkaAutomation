@@ -44,7 +44,7 @@ public class ProductTypePage extends HeaderPage {
     @Step("ProductTypePage: get prices products list")
     public List<BigDecimal> getProductsListPrices() {
         return $$x("//span[contains(@class, 'goods-tile__price-value')]")
-                .shouldBe(CollectionCondition.sizeLessThanOrEqual(60) , Duration.ofMillis(10000))
+                .shouldBe(CollectionCondition.sizeLessThanOrEqual(60), Duration.ofMillis(5000))
                 .texts()
                 .stream()
                 .map(price -> price.replaceAll(" ", StringUtils.EMPTY))
