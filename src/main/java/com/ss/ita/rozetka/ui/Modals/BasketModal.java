@@ -27,7 +27,7 @@ public class BasketModal<T> {
         return new OrderingPage();
     }
 
-    @Step("BasketModal: get total products price")
+    @Step("BasketModal: get products total price")
     public int getProductsTotalPrice() {
         String sum = $x("//div[contains(@class,'sum-price')]//span[1]")
                 .getAttribute("textContent");
