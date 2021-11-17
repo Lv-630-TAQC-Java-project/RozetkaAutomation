@@ -21,11 +21,12 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .open()
                 .openProductCategoryPage(PRODUCTS_FOR_HOUSE)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
+        boolean isProductTypePageOpened = productPage.isProductTypePageHeadingVisible();
         assertThat(getCurrentUrl())
                 .as("Kitchen appliances category page should be opened")
                 .isEqualTo("https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/");
-        assertThat(productPage.isProductTypePageHeadingVisible())
-                .as("Kitchen appliances category page should be opened")
+        assertThat(isProductTypePageOpened)
+                .as("Product type page should be opened")
                 .isTrue();
         String productName = productPage
                 .openProductPage(1)
