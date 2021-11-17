@@ -39,14 +39,14 @@ public class BasketModal<T> {
         return $(".cart-dummy").is(exist);
     }
 
-    @Step("BasketModal: get product names")
+    @Step("BasketModal: get product titles")
     public List<String> getProductTitles() {
         return $$("li.cart-list__item a.cart-product__title")
                 .shouldHave(CollectionCondition.sizeGreaterThan(0))
                 .texts();
     }
 
-    @Step("BasketModal: set count for product with name {productName} to {count}")
+    @Step("BasketModal: set count for product with title {productTitle} to {count}")
     public BasketModal<T> setProductCount(String productTitle, int count) {
         int totalPrice = getProductsTotalPrice();
 
@@ -73,7 +73,7 @@ public class BasketModal<T> {
         }
     }
 
-    @Step("BasketModal: remove product with name {productName}")
+    @Step("BasketModal: remove product with title {productTitle}")
     public BasketModal<T> removeProduct(String productTitle) {
         int totalPrice = getProductsTotalPrice();
 
