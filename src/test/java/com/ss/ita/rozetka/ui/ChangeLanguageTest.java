@@ -1,9 +1,8 @@
 package com.ss.ita.rozetka.ui;
 
+import com.ss.ita.rozetka.ui.TestUtils.TestRunner;
 import com.ss.ita.rozetka.ui.elements.Header;
 import com.ss.ita.rozetka.ui.pages.HomePage;
-import com.ss.ita.rozetka.ui.TestUtils.TestRunner;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
