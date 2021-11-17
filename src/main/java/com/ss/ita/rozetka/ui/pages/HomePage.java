@@ -21,7 +21,7 @@ public class HomePage extends HeaderPage {
         return new ProductCategoryPage();
     }
 
-    @Step("HomePage: verify that home page is opened")
+    @Step("HomePage: verify that home page slider is visible")
     public boolean isSliderVisible() {
         return $x("//div[@class = 'simple-slider__holder']").isDisplayed();
     }
