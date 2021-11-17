@@ -1,12 +1,10 @@
 package com.ss.ita.rozetka.ui.pages;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.ui.util.ProductsListSortType;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
-
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.List;
