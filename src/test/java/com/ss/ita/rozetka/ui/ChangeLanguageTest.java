@@ -2,9 +2,12 @@ package com.ss.ita.rozetka.ui;
 
 import com.ss.ita.rozetka.ui.elements.Header;
 import com.ss.ita.rozetka.ui.pages.HomePage;
-import com.ss.ita.rozetka.ui.runner.TestRunner;
+import com.ss.ita.rozetka.ui.TestUtils.TestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class ChangeLanguageTest extends TestRunner {
 
@@ -15,12 +18,12 @@ public class ChangeLanguageTest extends TestRunner {
 
         header.changeLanguage("UA");
 
-        Assert.assertEquals(homePage
-                .getGreetingsText(), "Ласкаво просимо!", "Language wasn't changed");
+        assertThat(homePage
+                .getGreetingsText()).as("Language should be changed").contains("Ласкаво просимо!");
 
         header.changeLanguage("RU");
 
-        Assert.assertEquals(homePage
-                .getGreetingsText(), "Добро пожаловать!", "Language wasn't changed");
+        assertThat(homePage
+                .getGreetingsText()).as("Language should be changed").contains("Добро пожаловать!");
     }
 }

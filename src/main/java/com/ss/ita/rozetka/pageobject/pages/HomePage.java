@@ -21,7 +21,7 @@ public class HomePage extends HeaderPage {
         $x(format("//div[contains(@class,'menu-wrapper_state_static')]/descendant::a[contains(@href,'%s')]", category.getName())).click();
         return new ProductCategoryPage();
     }
-
+    @Step("HomePage: get greetings text")
     public String getGreetingsText() {
         return $("h3.main-auth__heading").getText();
     }
