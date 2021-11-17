@@ -2,6 +2,7 @@ package com.ss.ita.pageobject;
 
 import com.ss.ita.rozetka.ui.TestUtils.TestRunner;
 import com.ss.ita.rozetka.ui.pages.*;
+import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory.PRODUCTS_FOR_HOUSE;
@@ -11,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class OrderingProductsTest extends TestRunner {
 
     @Test
+    @Issue("LVTAQC630-28")
     public void verifyOrderingProducts() {
         ProductPage productPage = new HomePage()
                 .open()
