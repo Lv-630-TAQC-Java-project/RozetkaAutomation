@@ -6,7 +6,7 @@ public enum ProductCategoryAndSubCategory {
     NOTEBOOKS_CATEGORY("notebooks"),
     GARDEN_TECH_CATEGORY("garden_tech"),
     GARDEN_EQUIP_CATEGORY("sadoviy-inventar"),
-    BIG_HOUSEHOLD_APPLIANCES("bigbt"),
+    BIG_HOUSEHOLD_APPLIANCES_CATEGORY("bigbt"),
 
     TRIMMERS_SUBCATEGORY("trimmers");
 

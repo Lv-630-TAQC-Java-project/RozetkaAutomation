@@ -19,4 +19,9 @@ public class OrderingPage {
         $x("//div[@class = 'checkout-sidebar ng-star-inserted']").shouldBe(Condition.visible);
         return this;
     }
+
+    @Step("OrderingPage: get product title")
+    public String getProductTitle(){
+        return $x("//div[@class = 'checkout-product__title-product']").text();
+    }
 }
