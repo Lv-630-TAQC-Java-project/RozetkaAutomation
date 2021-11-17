@@ -20,4 +20,9 @@ public class HomePage extends HeaderPage {
         $x(format("//div[contains(@class,'menu-wrapper_state_static')]/descendant::a[contains(@href,'%s')]", category.getName())).click();
         return new ProductCategoryPage();
     }
+
+    @Step("HomePage: verify that home page is opened")
+    public boolean isSliderVisible() {
+        return $x("//div[@class = 'simple-slider__holder']").isDisplayed();
+    }
 }

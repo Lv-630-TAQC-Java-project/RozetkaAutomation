@@ -13,5 +13,10 @@ public class ProductCategoryPage extends HeaderPage {
         $x(format("//a[contains(@href,'%s')]", categoryOrSubCategory.getName())).click();
         return new ProductTypePage();
     }
+
+    @Step("ProductCategoryPage: verify that Product category page is opened")
+    public Boolean isProductCategoryPageHeadingVisible() {
+        return $x("//h1[@class = 'portal__heading ng-star-inserted']").isDisplayed();
+    }
 }
 
