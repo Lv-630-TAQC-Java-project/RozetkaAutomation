@@ -14,13 +14,12 @@ public class SearchHistoryTest extends TestRunner {
 
     @Test
     public void verifySearchHistoryText() {
-        int numberSearchTerm = 1;
-        String searchTerm = "DELL";
-        String partOfUrl = "search";
         Header headerPage = new HomePage()
                 .open()
                 .getHeader();
+        String searchTerm = "DELL";
         headerPage.doSearch(searchTerm);
+        String partOfUrl = "search";
         assertThat(PageUtil.getCurrentUrl())
                 .as("Search Result should be opened")
                 .contains(partOfUrl);
@@ -28,9 +27,12 @@ public class SearchHistoryTest extends TestRunner {
         assertThat(PageUtil.getCurrentUrl())
                 .as("Home Page should be opened")
                 .isEqualTo("https://rozetka.com.ua/");
+        int numberSearchTerm = 1;
         String actualSearchTerm = headerPage
                 .setSearchInputInFocus()
                 .getTextFromSearchHistory(numberSearchTerm);
-        assertThat(actualSearchTerm).isEqualTo(searchTerm);
+        assertThat(actualSearchTerm)
+                .as("Last search term and first text in search history should be equals")
+                .isEqualTo(searchTerm);
     }
 }
