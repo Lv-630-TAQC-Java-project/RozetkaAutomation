@@ -5,7 +5,8 @@ import static java.lang.String.format;
 public enum GeneralProductCategory {
 
     NOTEBOOKS_AND_COMPUTERS("computers-notebooks"),
-    PRODUCTS_FOR_HOUSE("bt"),
+    PRODUCTS_FOR_HOUSE("tovary-dlya-doma"),
+    HOUSEHOLD_APPLIANCES("bt"),
     COTTAGE_GARDEN_BACKYARD("dacha-sad-ogorod");
 
     private final String name;
