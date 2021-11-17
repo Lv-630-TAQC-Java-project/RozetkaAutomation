@@ -21,7 +21,7 @@ public class OrderingPage {
     }
 
     @Step("OrderingPage: get product title")
-    public String getProductTitle(){
+    public String getProductTitle() {
         return $x("//div[@class = 'checkout-product__title-product']").text();
     }
 }

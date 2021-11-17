@@ -27,7 +27,7 @@ public class OrderingProductsTest extends TestRunner {
                 .sidebarShouldBeVisible();
 
         int totalPrice = orderingPage.getTotalProductsPrice();
-        String orderingProductTitle =orderingPage.getProductTitle();
+        String orderingProductTitle = orderingPage.getProductTitle();
 
         assertThat(totalPrice)
                 .as("should be the same like productPrice")
