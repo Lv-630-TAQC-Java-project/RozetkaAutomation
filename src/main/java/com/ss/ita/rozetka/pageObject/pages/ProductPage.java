@@ -1,7 +1,8 @@
-package com.ss.ita.rozetka.ui.pages;
+package com.ss.ita.rozetka.pageObject.pages;
 
-import com.ss.ita.rozetka.ui.modals.BasketModal;
+import com.ss.ita.rozetka.pageObject.modals.BasketModal;
 import io.qameta.allure.Step;
+import org.apache.commons.lang3.StringUtils;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -22,7 +23,7 @@ public class ProductPage extends HeaderPage {
     @Step("ProductPage: get product price")
     public int getPrice() {
         String value = $x("//p[contains(@class, 'product-prices__big')]").text();
-        return Integer.parseInt(value.replaceAll("\\D", ""));
+        return Integer.parseInt(value.replaceAll("\\D", StringUtils.EMPTY));
     }
 
     @Step("ProductPage: get product name")

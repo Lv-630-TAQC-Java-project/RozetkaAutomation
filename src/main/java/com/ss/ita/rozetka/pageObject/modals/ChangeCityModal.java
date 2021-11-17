@@ -1,22 +1,22 @@
-package com.ss.ita.rozetka.ui.modals;
+package com.ss.ita.rozetka.pageObject.modals;
 
 import com.codeborne.selenide.SelenideElement;
-import com.ss.ita.rozetka.ui.pages.HomePage;
+import com.ss.ita.rozetka.pageObject.pages.HomePage;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
-public class ChangeTownModal {
+public class ChangeCityModal {
 
     @Step("ChangeTownModal: choose town")
-    public ChangeTownModal chooseTown(String town) {
-        $x(format("//a[contains(text(),'%s')]", town)).click();
+    public ChangeCityModal selectTown(String town) {
+        $x(format("//ul[contains(@class, 'header-location__popular')]/descendant::a[contains(text(),'%s')]", town)).click();
         return this;
     }
 
     @Step("ChangeTownModal: set town")
-    public ChangeTownModal setTown(String town) {
+    public ChangeCityModal setTown(String town) {
         SelenideElement selenideElement = $x("//input[contains(@class, 'autocomplete')]");
         selenideElement.sendKeys(town);
         selenideElement.pressEnter();
@@ -29,6 +29,7 @@ public class ChangeTownModal {
         return new HomePage();
     }
 
+    //method that open different PO's
     @Step("ChangeTownModal:approve changing town")
     public <PageObject> PageObject approveChangingTown(Class<PageObject> pageObjectClass) {
         $x("//button[contains(@class, 'button_size_medium button_color_green')]").click();

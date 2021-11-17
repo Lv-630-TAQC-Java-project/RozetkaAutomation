@@ -1,7 +1,7 @@
-package com.ss.ita.rozetka.ui.pages;
+package com.ss.ita.rozetka.pageObject.pages;
 
 import com.codeborne.selenide.Selenide;
-import com.ss.ita.rozetka.ui.productsEnum.GeneralProductCategory;
+import com.ss.ita.rozetka.pageObject.product.GeneralProductCategory;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.*;

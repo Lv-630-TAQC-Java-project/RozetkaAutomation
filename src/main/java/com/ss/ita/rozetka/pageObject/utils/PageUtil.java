@@ -1,4 +1,4 @@
-package com.ss.ita.rozetka.ui.util;
+package com.ss.ita.rozetka.pageObject.utils;
 
 import static com.codeborne.selenide.WebDriverRunner.url;
 

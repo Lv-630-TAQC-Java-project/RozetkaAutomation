@@ -1,6 +1,6 @@
-package com.ss.ita.rozetka.ui.modals;
+package com.ss.ita.rozetka.pageObject.modals;
 
-import com.ss.ita.rozetka.ui.elements.Header;
+import com.ss.ita.rozetka.pageObject.elements.Header;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
@@ -14,9 +14,9 @@ public class HamburgerModal {
     }
 
     @Step("SideModalMenu: open change town modal")
-    public ChangeTownModal openChangeTownModal() {
+    public ChangeCityModal startChangingTown() {
         $x("//button[contains(@class, 'city-toggle')]").click();
-        return new ChangeTownModal();
+        return new ChangeCityModal();
     }
 
     @Step("SideModalMenu: get town")
