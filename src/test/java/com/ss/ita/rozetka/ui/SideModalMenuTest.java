@@ -17,11 +17,11 @@ public class SideModalMenuTest extends TestRunner {
                 .open()
                 .getHeader();
         SideModalMenu menu = header.openSideModalMenu();
-        assertThat(header.isSideModalMenuVisible())
+        assertThat(header.isSideModalMenuOpened())
                 .as("Side Menu should be visible")
                 .isTrue();
         menu.closeSideModalMenu();
-        assertThat(header.isSideModalMenuVisible())
+        assertThat(header.isSideModalMenuOpened())
                 .as("Side Menu should be invisible")
                 .isFalse();
     }
