@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.ui;
 
+import com.codeborne.selenide.Condition;
 import com.ss.ita.rozetka.ui.TestUtils.TestRunner;
 import com.ss.ita.rozetka.ui.elements.Header;
 import com.ss.ita.rozetka.ui.pages.HomePage;
@@ -8,9 +9,13 @@ import com.ss.ita.rozetka.ui.util.PageUtil;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.sleep;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SearchHistoryTest extends TestRunner {
+public class SearchFunctionalityTest extends TestRunner {
 
     @Test
     public void verifySearchHistoryText() {
@@ -18,15 +23,14 @@ public class SearchHistoryTest extends TestRunner {
                 .open()
                 .getHeader();
         String searchTerm = "DELL";
-        headerPage.doSearch(searchTerm);
-        String partOfUrl = "search";
-        assertThat(PageUtil.getCurrentUrl())
-                .as("Search Result should be opened")
-                .contains(partOfUrl);
-        headerPage.openHomePage();
-        assertThat(PageUtil.getCurrentUrl())
-                .as("Home Page should be opened")
-                .isEqualTo("https://rozetka.com.ua/");
+        ProductTypePage productsList = headerPage.doSearch(searchTerm);
+        assertThat(productsList.isSelectSortingTypeDisplayed())
+                .as("Select sorting type should be displayed")
+                .isTrue();
+        HomePage homePage = headerPage.openHomePage();
+        assertThat(homePage.isMainMenuCategoriesDisplayed())
+                .as("Main Menu Categories should be displayed")
+                .isTrue();
         int numberSearchTerm = 1;
         String actualSearchTerm = headerPage
                 .setSearchInputInFocus()

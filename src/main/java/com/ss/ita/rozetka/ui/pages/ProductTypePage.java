@@ -1,7 +1,11 @@
 package com.ss.ita.rozetka.ui.pages;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ex.ElementNotFound;
 import com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory;
 import io.qameta.allure.Step;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
@@ -18,5 +22,16 @@ public class ProductTypePage extends HeaderPage {
     public ProductTypePage chooseSubCategory(ProductCategoryAndSubCategory subCategory) {
         $x(format("//a[contains(@href,'%s')]", subCategory.getName())).click();
         return this;
+    }
+
+    @Step("ProductTypePage: verify that Select Sorting Type is displayed")
+    public boolean isSelectSortingTypeDisplayed() {
+        try {
+            return $x("//select[contains(@class,'select-css')]")//$x("//div[@class='catalog-settings ng-star-inserted']")
+                    .shouldBe(Condition.visible)
+                    .isDisplayed();
+        } catch (ElementNotFound exception) {
+            return false;
+        }
     }
 }

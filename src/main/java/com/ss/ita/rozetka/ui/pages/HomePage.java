@@ -20,4 +20,9 @@ public class HomePage extends HeaderPage {
         $x(format("//div[contains(@class,'menu-wrapper_state_static')]/descendant::a[contains(@href,'%s')]", category.getName())).click();
         return new ProductCategoryPage();
     }
+
+    @Step("HomePage: verify that Main Menu Categories is displayed")
+    public boolean isMainMenuCategoriesDisplayed(){
+        return $x("//ul[@class='menu-categories menu-categories_type_main']").isDisplayed();
+    }
 }
