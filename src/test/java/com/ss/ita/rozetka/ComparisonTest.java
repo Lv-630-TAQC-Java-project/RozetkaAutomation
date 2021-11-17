@@ -23,6 +23,8 @@ public class ComparisonTest {
                 .openProductPage(1)
                 .addProductToComparison();
 
-        assertThat(header.getProductsForComparisonCount()).isEqualTo(1);
+        assertThat(header.getProductsForComparisonCount())
+                .as("Count of comparison products should be equal to 1")
+                .isEqualTo(1);
     }
 }

@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.Modals.*;
 import com.ss.ita.rozetka.ui.pages.*;
 import io.qameta.allure.Step;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -42,7 +43,7 @@ public class Header {
         return Integer.parseInt($x("//span[@class='counter counter--gray ng-star-inserted']")
                 .shouldBe(Condition.visible)
                 .getText()
-                .replaceAll("[^0-9]", ""));
+                .replaceAll("[^0-9]", StringUtils.EMPTY));
     }
 
     @Step("Header: open side modal menu")
