@@ -18,8 +18,7 @@ public class ProductsInCategoryArePresentedTest extends TestRunner {
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS);
 
-        assertThat(productTypePage
-                .getProductsCount())
+        assertThat(productTypePage.getProductsCount())
                 .as("There should be presented at least 10 products")
                 .isGreaterThan(10);
     }
