@@ -24,7 +24,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
         assertThat(getCurrentUrl())
                 .as("Kitchen appliances category page should be opened")
                 .isEqualTo("https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/");
-        assertThat(productPage.isProductTypeTitleVisible())
+        assertThat(productPage.isProductTypeHeadingVisible())
                 .as("Kitchen appliances category page should be opened")
                 .isTrue();
         String productName = productPage
