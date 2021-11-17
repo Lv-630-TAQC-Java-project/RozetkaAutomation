@@ -15,10 +15,10 @@ public class BasketModal<T> {
     // This pattern should only be used in String.format()
     // with product name as a second argument
     private static final String PRODUCT_XPATH_PATTERN_FOR_NAME = "//single-modal-window//li[contains(., '%s')]";
-    private final T rootPage;
+    private final T pageObject;
 
-    public BasketModal(T rootPage) {
-        this.rootPage = rootPage;
+    public BasketModal(T pageObject) {
+        this.pageObject = pageObject;
     }
 
     @Step("BasketModal: order products you chose")
@@ -39,19 +39,19 @@ public class BasketModal<T> {
         return $(".cart-dummy").is(exist);
     }
 
-    @Step("BasketModal: get product names ")
-    public List<String> getProductNames() {
+    @Step("BasketModal: get product names")
+    public List<String> getProductTitles() {
         return $$("li.cart-list__item a.cart-product__title")
                 .shouldHave(CollectionCondition.sizeGreaterThan(0))
                 .texts();
     }
 
     @Step("BasketModal: set count for product with name {productName} to {count}")
-    public BasketModal<T> setProductCount(String productName, int count) {
+    public BasketModal<T> setProductCount(String productTitle, int count) {
         int totalPrice = getProductsTotalPrice();
 
         String countFieldXpath = String.format(
-                PRODUCT_XPATH_PATTERN_FOR_NAME + "//input[contains(@class, 'cart-counter__input')]", productName);
+                PRODUCT_XPATH_PATTERN_FOR_NAME + "//input[contains(@class, 'cart-counter__input')]", productTitle);
         SelenideElement countField = $x(countFieldXpath);
 
         if (String.valueOf(count).equals(countField.attr("value"))) {
@@ -65,6 +65,7 @@ public class BasketModal<T> {
         return this;
     }
 
+    @Step("BasketModal: waiting for price to change from {totalPriceBefore}")
     private void waitForTotalPriceToUpdate(int totalPriceBefore) {
         SelenideElement totalPriceSpan = $x("//div[@class='cart-receipt__sum-price']/span[1]");
         if (totalPriceSpan.is(exist)) {
@@ -73,11 +74,11 @@ public class BasketModal<T> {
     }
 
     @Step("BasketModal: remove product with name {productName}")
-    public BasketModal<T> removeProduct(String productName) {
+    public BasketModal<T> removeProduct(String productTitle) {
         int totalPrice = getProductsTotalPrice();
 
         String productActionXpath = String.format(
-                PRODUCT_XPATH_PATTERN_FOR_NAME + "//button[contains(@id, 'cartProductActions')]", productName);
+                PRODUCT_XPATH_PATTERN_FOR_NAME + "//button[contains(@id, 'cartProductActions')]", productTitle);
         $x(productActionXpath).click();
         $x("//rz-trash-icon/button").click();
 
@@ -85,10 +86,9 @@ public class BasketModal<T> {
         return this;
     }
 
-
     @Step("BasketModal: close basket window")
     public T close() {
         $x("//button[contains(@class, 'modal__close')]").click();
-        return rootPage;
+        return pageObject;
     }
 }
