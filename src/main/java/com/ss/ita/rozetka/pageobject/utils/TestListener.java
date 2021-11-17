@@ -1,4 +1,4 @@
-package com.ss.ita.rozetka.pageObject.utils;
+package com.ss.ita.rozetka.pageobject.utils;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Attachment;

@@ -1,6 +1,6 @@
-package com.ss.ita.rozetka.pageObject.modals;
+package com.ss.ita.rozetka.pageobject.modals;
 
-import com.ss.ita.rozetka.pageObject.pages.HeaderPage;
+import com.ss.ita.rozetka.pageobject.pages.HeaderPage;
 
 public class CatalogModal extends HeaderPage {
     //for writing methods in close future

@@ -1,4 +1,4 @@
-package com.ss.ita.rozetka.pageObject.product;
+package com.ss.ita.rozetka.pageobject.product;
 
 import static java.lang.String.format;
 

@@ -1,9 +1,9 @@
-package com.ss.ita.rozetka.pageObject;
+package com.ss.ita.rozetka.pageobject;
 
-import com.ss.ita.rozetka.pageObject.elements.Header;
-import com.ss.ita.rozetka.pageObject.modals.HamburgerModal;
-import com.ss.ita.rozetka.pageObject.pages.HomePage;
-import com.ss.ita.rozetka.pageObject.utils.TestRunner;
+import com.ss.ita.rozetka.pageobject.elements.Header;
+import com.ss.ita.rozetka.pageobject.modals.HamburgerModal;
+import com.ss.ita.rozetka.pageobject.pages.HomePage;
+import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 

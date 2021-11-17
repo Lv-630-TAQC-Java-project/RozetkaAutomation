@@ -1,7 +1,7 @@
-package com.ss.ita.rozetka.pageObject.modals;
+package com.ss.ita.rozetka.pageobject.modals;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.ss.ita.rozetka.pageObject.pages.*;
+import com.ss.ita.rozetka.pageobject.pages.*;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.*;

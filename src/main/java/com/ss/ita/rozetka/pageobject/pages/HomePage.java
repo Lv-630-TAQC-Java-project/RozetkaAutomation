@@ -1,7 +1,7 @@
-package com.ss.ita.rozetka.pageObject.pages;
+package com.ss.ita.rozetka.pageobject.pages;
 
 import com.codeborne.selenide.Selenide;
-import com.ss.ita.rozetka.pageObject.product.GeneralProductCategory;
+import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -11,7 +11,7 @@ public class HomePage extends HeaderPage {
 
     @Step("HomePage: open Rozetka home page")
     public HomePage open() {
-        Selenide.open("https://rozetka.com.ua/ua/");
+        Selenide.open("https://rozetka.com.ua/");
         return this;
     }
 

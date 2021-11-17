@@ -1,6 +1,6 @@
-package com.ss.ita.rozetka.pageObject.pages;
+package com.ss.ita.rozetka.pageobject.pages;
 
-import com.ss.ita.rozetka.pageObject.modals.BasketModal;
+import com.ss.ita.rozetka.pageobject.modals.BasketModal;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
 

@@ -1,6 +1,6 @@
-package com.ss.ita.rozetka.pageObject.modals;
+package com.ss.ita.rozetka.pageobject.modals;
 
-import com.ss.ita.rozetka.pageObject.elements.Header;
+import com.ss.ita.rozetka.pageobject.elements.Header;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
