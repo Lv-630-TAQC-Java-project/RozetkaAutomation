@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.ui.pages;
 
+import com.codeborne.selenide.Condition;
 import com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory;
 import io.qameta.allure.Step;
 
@@ -22,6 +23,6 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductPage: get Product type page heading visibility status")
     public Boolean isProductTypePageHeadingVisible() {
-        return $x("//h1[@class = 'catalog-heading ng-star-inserted']").isDisplayed();
+        return $x("//h1[@class = 'catalog-heading ng-star-inserted']").is(Condition.visible);
     }
 }

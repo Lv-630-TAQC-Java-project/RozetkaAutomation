@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.ui.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory;
 import io.qameta.allure.Step;
@@ -23,7 +24,7 @@ public class HomePage extends HeaderPage {
 
     @Step("HomePage: get Home page slider visibility status")
     public boolean isSliderVisible() {
-        return $x("//div[@class = 'simple-slider__holder']").isDisplayed();
+        return $x("//div[@class = 'simple-slider__holder']").is(Condition.visible);
     }
 
     @Step("HomePage: get product number {itemNumber} from Recently Viewed Products list")
