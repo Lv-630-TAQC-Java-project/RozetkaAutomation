@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 public class BasketModal<T> {
-    // This pattern should only be used in String.format()
+    // This template should only be used in String.format()
     // with product name as a second argument
     private static final String PRODUCT_XPATH_TEMPLATE_FOR_TITLE = "//single-modal-window//li[contains(., '%s')]";
     private final T pageObject;
