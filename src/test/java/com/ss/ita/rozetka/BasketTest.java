@@ -14,11 +14,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BasketTest {
     @Test
-    public void verifyAddButtonFunctionality(){
+    public void verifyAddButtonFunctionality() {
         ProductTypePage productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS);
+
         assertThat(getCurrentUrl())
                 .as("Notebooks subcategory page should be opened")
                 .contains("https://rozetka.com.ua/notebooks/c80004/");
@@ -28,9 +29,12 @@ public class BasketTest {
                 .addProductToBasket();
 
         int priceBeforeIncreasing = basketModal.getTotalProductsPrice();
+        assertThat(priceBeforeIncreasing)
+                .as("Price of the product shouldn't be equal to 0")
+                .isNotEqualTo(0);
 
-         basketModal
-                .increaseAmountOfProductPerUnit()
+        basketModal
+                .addNumberOfProducts(2)
                 .continueBuying()
                 .getHeader()
                 .openBasketModal()

@@ -43,16 +43,21 @@ public class BasketModal {
         return $$x("//li[contains(@class, 'cart-list__item')]");
     }
 
-    @Step("BasketModal: Add one item")
-    public BasketModal increaseAmountOfProductPerUnit() {
-        $x("(//button[contains(@class,'cart-counter__button')])[2]").click();
-        waitForTotalPriceToUpdate(getTotalProductsPrice());
+    @Step("BasketModal: add {number} item(s)")
+    public BasketModal addNumberOfProducts(int numberOfProducts) {
+        for (int i = 0; i < numberOfProducts; i++) {
+            $x("(//button[contains(@class,'cart-counter__button')])[2]").click();
+            waitForTotalPriceToUpdate(getTotalProductsPrice());
+        }
         return this;
     }
-    @Step("BasketModal: Remove one item")
-    public BasketModal decreaseAmountOfProductPerUnit() {
-        $x("(//button[contains(@class,'cart-counter__button')])[1]").click();
-        waitForTotalPriceToUpdate(getTotalProductsPrice());
+
+    @Step("BasketModal: remove {number} item(s)")
+    public BasketModal removeNumberOfProducts(int numberOfProducts) {
+        for (int i = 0; i < numberOfProducts; i++) {
+            $x("(//button[contains(@class,'cart-counter__button')])[1]").click();
+            waitForTotalPriceToUpdate(getTotalProductsPrice());
+        }
         return this;
     }
 
