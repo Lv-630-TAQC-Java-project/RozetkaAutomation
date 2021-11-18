@@ -16,9 +16,9 @@ public class ChangeCityModal {
     }
 
     @Step("ChangeTownModal: set city")
-    public ChangeCityModal setCity(String town) {
+    public ChangeCityModal setCity(String city) {
         SelenideElement selenideElement = $x("//input[contains(@class, 'autocomplete')]");
-        selenideElement.sendKeys(town);
+        selenideElement.sendKeys(city);
         selenideElement.pressEnter();
         return this;
     }
