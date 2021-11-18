@@ -26,7 +26,7 @@ public class HomePage extends HeaderPage {
         return $x(format("//section[@class = 'main-goods ng-star-inserted'][1]//ul/li[%s]//a[@class = 'tile__title']", itemNumber)).getText();
     }
 
-    @Step("HomePage: verify that Main Menu Categories is displayed")
+    @Step("HomePage: get display status main menu categories")
     public boolean isMainMenuCategoriesDisplayed(){
         return $x("//ul[@class='menu-categories menu-categories_type_main']").isDisplayed();
     }
