@@ -18,9 +18,7 @@ public class HomePage extends HeaderPage {
 
     @Step("HomePage: open category {category}")
     public ProductCategoryPage openProductCategoryPage(GeneralProductCategory category) {
-        $x(format("//div[contains(@class,'menu-wrapper_state_static')]/descendant::a[contains(@href,'%s')]", category.getName()))
-                .shouldBe(Condition.visible)
-                .click();
+        $x(format("//div[contains(@class,'menu-wrapper_state_static')]/descendant::a[contains(@href,'%s')]", category.getName())).click();
         return new ProductCategoryPage();
     }
 

@@ -2,7 +2,7 @@ package com.ss.ita.rozetka.ui.util;
 
 public enum ProductsListSortType {
     CHEAP_TO_EXPENSIVE("cheap to expensive", "1: cheap"),
-    EXPENSIVE_TO_CHEAP("Eepensive to cheap", "2: expensive"),
+    EXPENSIVE_TO_CHEAP("expensive to cheap", "2: expensive"),
     BY_POPULARITY("by popularity", "3: popularity"),
     BY_NOVELTY("by novelty", "4: novelty"),
     ACTION("Action", "5: action"),
