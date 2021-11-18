@@ -9,7 +9,7 @@ public class ProductPage extends HeaderPage {
 
     @Step("ProductPage: add product to basket")
     public BasketModal addProductToBasket() {
-        $x("//button[contains(@class,'buy-button button button_')]").click();
+        actions().moveToElement($x("//button[contains(@class,'buy-button button button_')]")).click().perform();
         return new BasketModal();
     }
 
