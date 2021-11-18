@@ -2,6 +2,7 @@ package com.ss.ita.rozetka.ui;
 
 import com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory;
 import com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory;
+import com.ss.ita.rozetka.ui.TestUtils.TestRunner;
 import com.ss.ita.rozetka.ui.pages.HomePage;
 import com.ss.ita.rozetka.ui.pages.ProductTypePage;
 import com.ss.ita.rozetka.ui.util.ProductsListSortType;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 import static com.codeborne.selenide.Selenide.sleep;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SortProductsListTest {
+public class SortProductsListTest extends TestRunner {
 
     @Test
     public void verifyFromCheapToExpensiveSortingTest(){
