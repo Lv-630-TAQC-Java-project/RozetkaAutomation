@@ -6,7 +6,6 @@ import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory.HOUSEHOLD_APPLIANCES;
-import static com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory.PRODUCTS_FOR_HOUSE;
 import static com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory.BIG_HOUSEHOLD_APPLIANCES_CATEGORY;
 import static org.assertj.core.api.Assertions.assertThat;
 
