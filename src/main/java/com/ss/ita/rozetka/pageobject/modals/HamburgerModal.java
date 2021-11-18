@@ -14,13 +14,13 @@ public class HamburgerModal {
         return new Header();
     }
 
-    @Step("SideModalMenu: open change town modal")
+    @Step("SideModalMenu: open change city modal")
     public ChangeCityModal startChangingCity() {
         $x("//button[contains(@class, 'city-toggle')]").click();
         return new ChangeCityModal();
     }
 
-    @Step("SideModalMenu: get town")
+    @Step("SideModalMenu: get city")
     public String getCity() {
         return $x("//span[contains(@class, 'city-toggle')]").text();
     }
