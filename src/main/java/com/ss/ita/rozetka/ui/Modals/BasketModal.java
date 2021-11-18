@@ -40,14 +40,5 @@ public class BasketModal {
         return $$x("//li[contains(@class, 'cart-list__item')]");
     }
 
-    @Step("BasketModal: Add one item")
-    public BasketModal increaseAmountOfProductPerUnit() {
-        $x("(//button[contains(@class,'cart-counter__button')])[2]").click();
-        return this;
-    }
-    @Step("BasketModal: Remove one item")
-    public BasketModal decreaseAmountOfProductPerUnit() {
-        $x("(//button[contains(@class,'cart-counter__button')])[1]").click();
-        return this;
-    }
+
 }
