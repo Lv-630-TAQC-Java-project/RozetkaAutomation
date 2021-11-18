@@ -10,8 +10,8 @@ import static java.lang.String.format;
 public class ChangeCityModal {
 
     @Step("ChangeTownModal: choose city")
-    public ChangeCityModal selectCity(String town) {
-        $x(format("//ul[contains(@class, 'header-location__popular')]/descendant::a[contains(text(),'%s')]", town)).click();
+    public ChangeCityModal selectCity(String city) {
+        $x(format("//ul[contains(@class, 'header-location__popular')]/descendant::a[contains(text(),'%s')]", city)).click();
         return this;
     }
 
