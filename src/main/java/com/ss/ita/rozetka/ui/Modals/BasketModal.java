@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.pages.*;
 import io.qameta.allure.Step;
 
+import static java.lang.String.format;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
@@ -43,19 +44,28 @@ public class BasketModal {
         return $$x("//li[contains(@class, 'cart-list__item')]");
     }
 
-    @Step("BasketModal: add {number} item(s)")
-    public BasketModal addNumberOfProducts(int numberOfProducts) {
+    @Step("BasketModal: increase on {numberOfProducts} product(s)")
+    public BasketModal increaseAmountOfProduct(int numberOfProducts, int sequenceNumberOfProduct) {
+        if (numberOfProducts < 0) throw new IllegalArgumentException("number of products should be more than 0");
+        if (sequenceNumberOfProduct <= 0 || sequenceNumberOfProduct > getProductsList().size())
+            throw new IllegalArgumentException(format("sequence number should be in range (0;%d] ", getProductsList().size()));
+        int specificNumber = sequenceNumberOfProduct + 1;
+        SelenideElement increaseButton = $x(format("(//div[@class='cart-product__footer']//button[contains(@class,'cart-counter__button')])[%d]", specificNumber));
         for (int i = 0; i < numberOfProducts; i++) {
-            $x("(//button[contains(@class,'cart-counter__button')])[2]").click();
+            increaseButton.click();
             waitForTotalPriceToUpdate(getTotalProductsPrice());
         }
         return this;
     }
 
-    @Step("BasketModal: remove {number} item(s)")
-    public BasketModal removeNumberOfProducts(int numberOfProducts) {
+    @Step("BasketModal: increase on {number} product(s)")
+    public BasketModal decreaseAmountOfProduct(int numberOfProducts, int sequenceNumberOfProduct) {
+        if (numberOfProducts < 0) throw new IllegalArgumentException("number of products should be more than 0");
+        if (sequenceNumberOfProduct <= 0 || sequenceNumberOfProduct > getProductsList().size())
+            throw new IllegalArgumentException(format("sequence number should be in range (0;%d] ", getProductsList().size()));
+        SelenideElement decreaseButton = $x(format("(//div[@class='cart-product__footer']//button[contains(@class,'cart-counter__button')])[%d]", sequenceNumberOfProduct));
         for (int i = 0; i < numberOfProducts; i++) {
-            $x("(//button[contains(@class,'cart-counter__button')])[1]").click();
+            decreaseButton.click();
             waitForTotalPriceToUpdate(getTotalProductsPrice());
         }
         return this;

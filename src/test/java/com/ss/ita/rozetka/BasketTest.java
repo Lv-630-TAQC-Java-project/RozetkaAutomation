@@ -32,9 +32,8 @@ public class BasketTest {
         assertThat(priceBeforeIncreasing)
                 .as("Price of the product shouldn't be equal to 0")
                 .isNotEqualTo(0);
-
         basketModal
-                .addNumberOfProducts(2)
+                .increaseAmountOfProduct(1, 1)
                 .continueBuying()
                 .getHeader()
                 .openBasketModal()
