@@ -14,14 +14,14 @@ import static com.codeborne.selenide.Selenide.*;
 public class BasketModal<T> {
     // This pattern should only be used in String.format()
     // with product name as a second argument
-    private static final String PRODUCT_XPATH_PATTERN_FOR_NAME = "//single-modal-window//li[contains(., '%s')]";
+    private static final String PRODUCT_XPATH_TEMPLATE_FOR_NAME = "//single-modal-window//li[contains(., '%s')]";
     private final T pageObject;
 
     public BasketModal(T pageObject) {
         this.pageObject = pageObject;
     }
 
-    @Step("BasketModal: order products added in basket")
+    @Step("BasketModal: order products added to basket")
     public OrderingPage openOrderingPage() {
         $x("//a[contains(@class, 'cart-receipt__submit')]").click();
         return new OrderingPage();
