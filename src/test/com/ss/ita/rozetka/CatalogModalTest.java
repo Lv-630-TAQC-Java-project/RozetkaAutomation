@@ -7,7 +7,7 @@ import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
 
-public class OpeningAngClosingCatalogTest extends TestRunner {
+public class CatalogModalTest extends TestRunner {
 
     @Test
     public void verifyThatCatalogOpensAndCloses() {
