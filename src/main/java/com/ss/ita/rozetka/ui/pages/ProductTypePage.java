@@ -21,6 +21,11 @@ public class ProductTypePage extends HeaderPage {
         return this;
     }
 
+    @Step("ProductPage: verify that product type page heading is visible")
+    public Boolean isProductTypePageHeadingVisible() {
+        return $x("//h1[@class = 'catalog-heading ng-star-inserted']").isDisplayed();
+    }
+
     @Step("ProductPage: get products count presented on page")
     public int getProductsCount() {
         return $$(".catalog-grid__cell").shouldHave(CollectionCondition.sizeGreaterThan(1)).size();
