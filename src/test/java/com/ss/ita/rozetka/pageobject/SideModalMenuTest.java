@@ -22,41 +22,41 @@ public class SideModalMenuTest extends TestRunner {
         String odesa = "Одеса";
 
         sideModalMenu
-                .startChangingTown()
+                .startChangingCity()
                 .selectCity(odesa)
                 .approveChangingCityAndOpenHomePage();
-        String currentTown = header
+        String currentCity = header
                 .openHamburgerModal()
-                .getTown();
+                .getCity();
 
-        assertThat(currentTown)
+        assertThat(currentCity)
                 .as("currentTown should be the same like odesa")
                 .isEqualTo(odesa);
 
         String lviv = "Львів";
 
         sideModalMenu
-                .startChangingTown()
+                .startChangingCity()
                 .selectCity(lviv)
                 .approveChangingCity(HomePage.class);
-        String chosenTown = header
+        String chosenCity = header
                 .openHamburgerModal()
-                .getTown();
+                .getCity();
 
-        assertThat(chosenTown)
-                .as("chosenTown should be the same like lviv")
+        assertThat(chosenCity)
+                .as("chosenCity should be the same like lviv")
                 .isEqualTo(lviv);
 
         sideModalMenu
-                .startChangingTown()
+                .startChangingCity()
                 .setCity(odesa)
                 .approveChangingCityAndOpenHomePage();
-        String revertedTown = header
+        String revertedCity = header
                 .openHamburgerModal()
-                .getTown();
+                .getCity();
 
-        assertThat(revertedTown)
-                .as("revertedTown should be the same like odesa")
+        assertThat(revertedCity)
+                .as("revertedCity should be the same like odesa")
                 .isEqualTo(odesa);
     }
 }
