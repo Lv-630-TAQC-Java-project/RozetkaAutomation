@@ -14,14 +14,14 @@ import static com.codeborne.selenide.Selenide.*;
 public class BasketModal<T> {
     // This pattern should only be used in String.format()
     // with product name as a second argument
-    private static final String PRODUCT_XPATH_PATTERN_FOR_NAME = "//single-modal-window//li[contains(., '%s')]";
+    private static final String PRODUCT_XPATH_TEMPLATE_FOR_TITLE = "//single-modal-window//li[contains(., '%s')]";
     private final T pageObject;
 
     public BasketModal(T pageObject) {
         this.pageObject = pageObject;
     }
 
-    @Step("BasketModal: order products added in basket")
+    @Step("BasketModal: order products added to basket")
     public OrderingPage openOrderingPage() {
         $x("//a[contains(@class, 'cart-receipt__submit')]").click();
         return new OrderingPage();
@@ -51,7 +51,7 @@ public class BasketModal<T> {
         int totalPrice = getProductsTotalPrice();
 
         String countFieldXpath = String.format(
-                PRODUCT_XPATH_PATTERN_FOR_NAME + "//input[contains(@class, 'cart-counter__input')]", productTitle);
+                PRODUCT_XPATH_TEMPLATE_FOR_TITLE + "//input[contains(@class, 'cart-counter__input')]", productTitle);
         SelenideElement countField = $x(countFieldXpath);
 
         if (String.valueOf(count).equals(countField.attr("value"))) {
@@ -78,7 +78,7 @@ public class BasketModal<T> {
         int totalPrice = getProductsTotalPrice();
 
         String productActionXpath = String.format(
-                PRODUCT_XPATH_PATTERN_FOR_NAME + "//button[contains(@id, 'cartProductActions')]", productTitle);
+                PRODUCT_XPATH_TEMPLATE_FOR_TITLE + "//button[contains(@id, 'cartProductActions')]", productTitle);
         $x(productActionXpath).click();
         $x("//rz-trash-icon/button").click();
 
