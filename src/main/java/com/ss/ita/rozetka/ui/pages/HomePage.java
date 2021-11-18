@@ -25,4 +25,9 @@ public class HomePage extends HeaderPage {
     public boolean isSliderVisible() {
         return $x("//div[@class = 'simple-slider__holder']").isDisplayed();
     }
+
+    @Step("HomePage: get product number {itemNumber} from Recently Viewed Products list")
+    public String getRecentlyViewedProductName(int itemNumber) {
+        return $x(format("//section[@class = 'main-goods ng-star-inserted'][1]//ul/li[%s]//a[@class = 'tile__title']", itemNumber)).getText();
+    }
 }

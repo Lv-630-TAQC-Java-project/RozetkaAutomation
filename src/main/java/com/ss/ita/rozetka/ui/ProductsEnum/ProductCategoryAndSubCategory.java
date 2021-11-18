@@ -8,6 +8,7 @@ public enum ProductCategoryAndSubCategory {
     GARDEN_EQUIP_CATEGORY("sadoviy-inventar"),
     KITCHEN_APPLIANCES_CATEGORY("tehnika-dlya-kuhni"),
 
+
     TRIMMERS_SUBCATEGORY("trimmers");
 
     private final String name;
