@@ -1,7 +1,6 @@
 package com.ss.ita.rozetka.ui.pages;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ex.ElementNotFound;
 import com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory;
 import io.qameta.allure.Step;
 
@@ -27,13 +26,13 @@ public class ProductTypePage extends HeaderPage {
         return $x("//h1[@class = 'catalog-heading ng-star-inserted']").isDisplayed();
     }
 
-    @Step("ProductTypePage: verify that Select Sorting Type is displayed")
+    @Step("ProductTypePage: get display status select sorting type")
     public boolean isSelectSortingTypeDisplayed() {
         try {
             return $x("//select[contains(@class,'select-css')]")
                     .shouldBe(Condition.visible)
                     .isDisplayed();
-        } catch (ElementNotFound exception) {
+        } catch (AssertionError exception) {
             return false;
         }
     }
