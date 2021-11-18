@@ -36,7 +36,7 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: sort products list {sortType}")
     public ProductTypePage sortProductsListBy(ProductsListSortType sortType) {
-        $x(String.format("//select[contains(@class,select-css)]/option[@value='%s']", sortType.getValue())).click();
+        $x(String.format("//select[contains(@class,select-css)]/option[@value='%s']", sortType.getXPathValue())).click();
         return this;
     }
 
@@ -46,10 +46,10 @@ public class ProductTypePage extends HeaderPage {
         return this;
     }
 
-    @Step("ProductTypePage: get prices products list")
+    @Step("ProductTypePage: get products list prices")
     public List<BigDecimal> getProductsListPrices() {
         return $$x("//span[contains(@class, 'goods-tile__price-value')]")
-                .shouldBe(CollectionCondition.sizeLessThanOrEqual(60))
+                .shouldBe(CollectionCondition. sizeLessThanOrEqual(60))
                 .texts()
                 .stream()
                 .map(price -> price.replaceAll(" ", StringUtils.EMPTY))

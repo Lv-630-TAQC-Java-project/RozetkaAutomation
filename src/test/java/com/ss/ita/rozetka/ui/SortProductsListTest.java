@@ -18,12 +18,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SortProductsListTest extends TestRunner {
 
     @Test
-    public void verifyFromCheapToExpensiveSortingTest(){
+    public void verifyCheapToExpensiveSortingTest(){
         ProductTypePage productsList = new HomePage()
                 .open()
                 .openProductCategoryPage(GeneralProductCategory.COTTAGE_GARDEN_BACKYARD)
                 .openProductTypePage(ProductCategoryAndSubCategory.TRIMMERS_SUBCATEGORY)
-                .sortProductsListBy(ProductsListSortType.FROM_CHEAP_TO_EXPENSIVE);
+                .sortProductsListBy(ProductsListSortType.CHEAP_TO_EXPENSIVE);
         int numberProductsListPage = 3;
         List<BigDecimal> actualOrderPrices = productsList
                 .openProductsListPage(numberProductsListPage)
