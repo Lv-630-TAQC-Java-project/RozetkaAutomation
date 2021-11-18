@@ -59,7 +59,7 @@ public class Header {
         return new HomePage();
     }
 
-    @Step("Header: get display status Side Modal Menu")
+    @Step("Header: get display status side modal menu")
     public boolean isSideModalMenuOpened() {
         return $x("//nav[@class='drawer ng-star-inserted']").isDisplayed();
     }

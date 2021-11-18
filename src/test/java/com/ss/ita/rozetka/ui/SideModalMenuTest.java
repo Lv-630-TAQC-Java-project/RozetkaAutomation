@@ -12,17 +12,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SideModalMenuTest extends TestRunner {
 
     @Test
-    public void verifyOpenCloseSideModalMenu() {
+    public void verifySideModalMenuOpensAndCloses() {
         Header header = new HomePage()
                 .open()
                 .getHeader();
         SideModalMenu menu = header.openSideModalMenu();
         assertThat(header.isSideModalMenuOpened())
-                .as("Side Menu should be visible")
+                .as("Side Menu should be opened")
                 .isTrue();
         menu.closeSideModalMenu();
         assertThat(header.isSideModalMenuOpened())
-                .as("Side Menu should be invisible")
+                .as("Side Menu should be closed")
                 .isFalse();
     }
 }
