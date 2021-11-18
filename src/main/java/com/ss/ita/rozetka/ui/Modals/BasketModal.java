@@ -39,6 +39,4 @@ public class BasketModal {
     private ElementsCollection getProductsList() {
         return $$x("//li[contains(@class, 'cart-list__item')]");
     }
-
-
 }
