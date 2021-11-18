@@ -15,7 +15,7 @@ public class ProductCategoryPage extends HeaderPage {
         return new ProductTypePage();
     }
 
-    @Step("ProductCategoryPage: get Product category page heading visibility status")
+    @Step("ProductCategoryPage: get product category page heading visibility status")
     public Boolean isProductCategoryPageHeadingVisible() {
         return $x("//h1[@class = 'portal__heading ng-star-inserted']").is(Condition.visible);
     }

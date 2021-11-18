@@ -22,7 +22,7 @@ public class HomePage extends HeaderPage {
         return new ProductCategoryPage();
     }
 
-    @Step("HomePage: get Home page slider visibility status")
+    @Step("HomePage: get home page slider visibility status")
     public boolean isSliderVisible() {
         return $x("//div[@class = 'simple-slider__holder']").is(Condition.visible);
     }
