@@ -9,7 +9,7 @@ import static com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory.NOTEBOOK
 import static com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory.NOTEBOOKS;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ProductsInCategoryArePresentedTest extends TestRunner {
+public class ProductTypePageTest extends TestRunner {
 
     @Test
     public void verifyThatProductsArePresentedInNotebookCategory() {
