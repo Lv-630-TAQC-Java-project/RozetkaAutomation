@@ -29,8 +29,7 @@ public class BasketModal<T> {
 
     @Step("BasketModal: get products total price")
     public int getProductsTotalPrice() {
-        String sum = $x("//div[contains(@class,'sum-price')]//span[1]")
-                .getAttribute("textContent");
+        String sum = $x("//div[contains(@class,'sum-price')]//span[1]").text();
         return Integer.parseInt(sum);
     }
 
@@ -77,9 +76,9 @@ public class BasketModal<T> {
     public BasketModal<T> removeProduct(String productTitle) {
         int totalPrice = getProductsTotalPrice();
 
-        String productActionXpath = String.format(
+        String productActionsXpath = String.format(
                 PRODUCT_XPATH_TEMPLATE_FOR_TITLE + "//button[contains(@id, 'cartProductActions')]", productTitle);
-        $x(productActionXpath).click();
+        $x(productActionsXpath).click();
         $x("//rz-trash-icon/button").click();
 
         waitForTotalPriceToUpdate(totalPrice);
