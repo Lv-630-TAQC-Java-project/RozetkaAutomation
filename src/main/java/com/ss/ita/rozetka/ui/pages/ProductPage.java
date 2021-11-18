@@ -31,6 +31,6 @@ public class ProductPage extends HeaderPage {
     }
 
     public String getName() {
-        return $("h1").text();
+        return $x("//h1[@class = 'product__title']").text();
     }
 }
