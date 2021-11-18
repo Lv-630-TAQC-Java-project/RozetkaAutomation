@@ -46,11 +46,8 @@ public class BasketModal {
 
     @Step("BasketModal: increase on {numberOfProducts} product(s)")
     public BasketModal increaseAmountOfProduct(int numberOfProducts, int sequenceNumberOfProduct) {
-        if (numberOfProducts < 0) throw new IllegalArgumentException("number of products should be more than 0");
-        if (sequenceNumberOfProduct <= 0 || sequenceNumberOfProduct > getProductsList().size())
-            throw new IllegalArgumentException(format("sequence number should be in range (0;%d] ", getProductsList().size()));
-        int specificNumber = sequenceNumberOfProduct + 1;
-        SelenideElement increaseButton = $x(format("(//div[@class='cart-product__footer']//button[contains(@class,'cart-counter__button')])[%d]", specificNumber));
+      int specificNumber = sequenceNumberOfProduct + 1;
+        SelenideElement increaseButton = $x(format("(//button[contains(@class,'cart-counter__button')])[%d]", specificNumber));
         for (int i = 0; i < numberOfProducts; i++) {
             increaseButton.click();
             waitForTotalPriceToUpdate(getTotalProductsPrice());
@@ -60,10 +57,7 @@ public class BasketModal {
 
     @Step("BasketModal: increase on {number} product(s)")
     public BasketModal decreaseAmountOfProduct(int numberOfProducts, int sequenceNumberOfProduct) {
-        if (numberOfProducts < 0) throw new IllegalArgumentException("number of products should be more than 0");
-        if (sequenceNumberOfProduct <= 0 || sequenceNumberOfProduct > getProductsList().size())
-            throw new IllegalArgumentException(format("sequence number should be in range (0;%d] ", getProductsList().size()));
-        SelenideElement decreaseButton = $x(format("(//div[@class='cart-product__footer']//button[contains(@class,'cart-counter__button')])[%d]", sequenceNumberOfProduct));
+       SelenideElement decreaseButton = $x(format("(//button[contains(@class,'cart-counter__button')])[%d]", sequenceNumberOfProduct));
         for (int i = 0; i < numberOfProducts; i++) {
             decreaseButton.click();
             waitForTotalPriceToUpdate(getTotalProductsPrice());
