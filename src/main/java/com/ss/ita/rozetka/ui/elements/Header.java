@@ -43,7 +43,7 @@ public class Header {
         return Integer.parseInt($x("//span[@class='counter counter--gray ng-star-inserted']")
                 .shouldBe(Condition.visible)
                 .getText()
-                .replaceAll("[^0-9]", StringUtils.EMPTY));
+                .replaceAll("\\D", StringUtils.EMPTY));
     }
 
     @Step("Header: open side modal menu")
