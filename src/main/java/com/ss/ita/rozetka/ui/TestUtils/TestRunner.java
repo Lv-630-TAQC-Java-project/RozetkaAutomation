@@ -13,5 +13,6 @@ public class TestRunner {
     protected void setBrowser() {
         browser = "chrome";
         Configuration.browserSize = "1920x1080";
+        Configuration.timeout = 120000;
     }
 }
