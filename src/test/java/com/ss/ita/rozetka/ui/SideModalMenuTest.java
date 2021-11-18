@@ -15,11 +15,11 @@ public class SideMenuModalTest extends TestRunner {
         Header header = new HomePage()
                 .open()
                 .getHeader();
-        SideMenuModal menu = header.openSideModalMenu();
+        SideMenuModal menu = header.openSideMenuModal();
         assertThat(header.isSideMenuModalOpened())
                 .as("Side Menu should be opened")
                 .isTrue();
-        menu.closeSideModalMenu();
+        menu.closeSideMenuModal();
         assertThat(header.isSideMenuModalOpened())
                 .as("Side Menu should be closed")
                 .isFalse();

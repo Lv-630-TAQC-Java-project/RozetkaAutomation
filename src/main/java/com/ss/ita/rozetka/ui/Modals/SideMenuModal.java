@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class SideMenuModal {
 
     @Step("SideMenuModal: close side menu  modal")
-    public Header closeSideModalMenu() {
+    public Header closeSideMenuModal() {
         $x("//button[@class='side-menu__close']").click();
         $x("//nav[@class='drawer ng-star-inserted']").shouldNotBe(Condition.visible);
         return new Header();
