@@ -9,13 +9,13 @@ import static java.lang.String.format;
 
 public class ChangeCityModal {
 
-    @Step("ChangeTownModal: choose city")
+    @Step("ChangeCityModal: choose city")
     public ChangeCityModal selectCity(String city) {
         $x(format("//ul[contains(@class, 'header-location__popular')]/descendant::a[contains(text(),'%s')]", city)).click();
         return this;
     }
 
-    @Step("ChangeTownModal: set city")
+    @Step("ChangeCityModal: set city")
     public ChangeCityModal setCity(String city) {
         SelenideElement selenideElement = $x("//input[contains(@class, 'autocomplete')]");
         selenideElement.sendKeys(city);
@@ -23,14 +23,14 @@ public class ChangeCityModal {
         return this;
     }
 
-    @Step("ChangeTownModal: approve changing city and open home page")
+    @Step("ChangeCityModal: approve changing city and open home page")
     public HomePage approveChangingCityAndOpenHomePage() {
         $x("//a[contains(@class, 'button_color_gray')]").click();
         return new HomePage();
     }
 
     //method that open different PO's
-    @Step("ChangeTownModal:approve changing city")
+    @Step("ChangeCityModal:approve changing city")
     public <PageObject> PageObject approveChangingCity(Class<PageObject> pageObjectClass) {
         $x("//button[contains(@class, 'button_size_medium button_color_green')]").click();
         return page(pageObjectClass);

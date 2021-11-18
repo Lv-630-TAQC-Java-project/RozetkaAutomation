@@ -30,7 +30,7 @@ public class SideModalMenuTest extends TestRunner {
                 .getCity();
 
         assertThat(currentCity)
-                .as("currentTown should be the same like odesa")
+                .as("currentCity should be the same like odesa")
                 .isEqualTo(odesa);
 
         String lviv = "Львів";
