@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class ChangeLanguageTest extends TestRunner {
+public class HomePageNavigationTests extends TestRunner {
 
     @Test
     public void verifyUserCanChangeLanguage() {
@@ -17,12 +17,14 @@ public class ChangeLanguageTest extends TestRunner {
 
         header.changeLanguage("UA");
 
-        assertThat(homePage
-                .getGreetingsText()).as("Language should be changed").contains("Ласкаво просимо!");
+        assertThat(homePage.getGreetingsText())
+                .as("Language should be changed")
+                .contains("Ласкаво просимо!");
 
         header.changeLanguage("RU");
 
-        assertThat(homePage
-                .getGreetingsText()).as("Language should be changed").contains("Добро пожаловать!");
+        assertThat(homePage.getGreetingsText())
+                .as("Language should be changed")
+                .contains("Добро пожаловать!");
     }
 }
