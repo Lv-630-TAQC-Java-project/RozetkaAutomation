@@ -39,8 +39,8 @@ public class SortProductsListTest {
             System.out.print(price + ", ");
         }
         System.out.println("\n" + expectedOrderPrices.size());
-//        assertThat(actualOrderPrices)
-//                .as("Products list should be sorted")
-//                .isEqualTo(expectedOrderPrices);
+        assertThat(actualOrderPrices)
+                .as("Products list should be sorted")
+                .isEqualTo(expectedOrderPrices);
     }
 }
