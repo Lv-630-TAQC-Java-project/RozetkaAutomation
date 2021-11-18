@@ -1,31 +1,27 @@
 package com.ss.ita.rozetka.ui.util;
 
 public enum ProductsListSortType {
-    FROM_CHEAP_TO_EXPENSIVE("From cheap to expensive", "1: cheap"),
-    FROM_EXPENSIVE_TO_CHEAP("From expensive to cheap", "2: expensive"),
-    BY_POPULARITY("By popularity", "3: popularity"),
-    BY_NOVELTY("BY novelty", "4: novelty"),
+    CHEAP_TO_EXPENSIVE("cheap to expensive", "1: cheap"),
+    EXPENSIVE_TO_CHEAP("Eepensive to cheap", "2: expensive"),
+    BY_POPULARITY("by popularity", "3: popularity"),
+    BY_NOVELTY("by novelty", "4: novelty"),
     ACTION("Action", "5: action"),
-    BY_RANK("BY rank", "6: rank");
+    BY_RANK("by rank", "6: rank");
 
-    private String name;
-    private String value;
+    private String nameForReport;
+    private String xPathValue;
 
-    ProductsListSortType(String name, String value) {
-        this.name = name;
-        this.value = value;
+    ProductsListSortType(String nameForReport, String xPathValue) {
+        this.nameForReport = nameForReport;
+        this.xPathValue = xPathValue;
     }
 
-    public String getValue() {
-        return value;
-    }
-
-    public String getName() {
-        return name;
+    public String getXPathValue() {
+        return xPathValue;
     }
 
     @Override
     public String toString() {
-        return name;
+        return nameForReport;
     }
 }
