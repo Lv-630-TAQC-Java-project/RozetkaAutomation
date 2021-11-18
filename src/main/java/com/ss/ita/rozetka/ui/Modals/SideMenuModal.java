@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class SideMenuModal {
 
-    @Step("SideModalMenu: close Side Modal Menu")
+    @Step("SideMenuModal: close side menu  modal")
     public Header closeSideModalMenu() {
         $x("//button[@class='side-menu__close']").click();
         $x("//nav[@class='drawer ng-star-inserted']").shouldNotBe(Condition.visible);
