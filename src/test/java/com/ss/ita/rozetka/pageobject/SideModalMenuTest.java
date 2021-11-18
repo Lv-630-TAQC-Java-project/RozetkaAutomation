@@ -19,11 +19,11 @@ public class SideModalMenuTest extends TestRunner {
                 .getHeader();
         HamburgerModal sideModalMenu = header.openHamburgerModal();
 
-        String odesa = "Одеса";
+        String odessa = "Одеса";
 
         sideModalMenu
                 .startChangingCity()
-                .selectCity(odesa)
+                .selectCity(odessa)
                 .approveChangingCityAndOpenHomePage();
         String currentCity = header
                 .openHamburgerModal()
@@ -31,7 +31,7 @@ public class SideModalMenuTest extends TestRunner {
 
         assertThat(currentCity)
                 .as("currentCity should be the same like odesa")
-                .isEqualTo(odesa);
+                .isEqualTo(odessa);
 
         String lviv = "Львів";
 
@@ -39,17 +39,17 @@ public class SideModalMenuTest extends TestRunner {
                 .startChangingCity()
                 .selectCity(lviv)
                 .approveChangingCity(HomePage.class);
-        String chosenCity = header
+        String selectedCity = header
                 .openHamburgerModal()
                 .getCity();
 
-        assertThat(chosenCity)
-                .as("chosenCity should be the same like lviv")
+        assertThat(selectedCity)
+                .as("selectedCity should be the same like lviv")
                 .isEqualTo(lviv);
 
         sideModalMenu
                 .startChangingCity()
-                .setCity(odesa)
+                .setCity(odessa)
                 .approveChangingCityAndOpenHomePage();
         String revertedCity = header
                 .openHamburgerModal()
@@ -57,7 +57,7 @@ public class SideModalMenuTest extends TestRunner {
 
         assertThat(revertedCity)
                 .as("revertedCity should be the same like odesa")
-                .isEqualTo(odesa);
+                .isEqualTo(odessa);
     }
 }
            
