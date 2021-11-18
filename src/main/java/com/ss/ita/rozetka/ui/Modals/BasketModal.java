@@ -44,7 +44,7 @@ public class BasketModal {
         return $$x("//li[contains(@class, 'cart-list__item')]");
     }
 
-    @Step("BasketModal: increase on {numberOfProducts} product(s)")
+    @Step("BasketModal: increase amount on {numberOfProducts} product(s)")
     public BasketModal increaseAmountOfProduct(int numberOfProducts, int sequenceNumberOfProduct) {
       int specificNumber = sequenceNumberOfProduct + 1;
         SelenideElement increaseButton = $x(format("(//button[contains(@class,'cart-counter__button')])[%d]", specificNumber));
@@ -55,7 +55,7 @@ public class BasketModal {
         return this;
     }
 
-    @Step("BasketModal: increase on {number} product(s)")
+    @Step("BasketModal: decrease amount on {number} product(s)")
     public BasketModal decreaseAmountOfProduct(int numberOfProducts, int sequenceNumberOfProduct) {
        SelenideElement decreaseButton = $x(format("(//button[contains(@class,'cart-counter__button')])[%d]", sequenceNumberOfProduct));
         for (int i = 0; i < numberOfProducts; i++) {
