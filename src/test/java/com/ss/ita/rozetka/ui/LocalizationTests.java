@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class HomePageNavigationTests extends TestRunner {
+public class LocalizationTests extends TestRunner {
 
     @Test
     public void verifyUserCanChangeLanguage() {
