@@ -14,7 +14,7 @@ public class OrderingPage {
         return Integer.parseInt(price.replaceAll("[^0-9]", StringUtils.EMPTY));
     }
 
-    @Step("OrderingPage: get sidebar status")
+    @Step("OrderingPage: get sidebar status, assert in test")
     public OrderingPage sidebarShouldBeVisible() {
         $x("//div[@class = 'checkout-sidebar ng-star-inserted']").shouldBe(Condition.visible);
         return this;
