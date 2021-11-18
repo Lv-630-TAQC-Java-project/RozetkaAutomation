@@ -1,10 +1,11 @@
 package com.ss.ita.rozetka;
 
 import com.ss.ita.rozetka.ui.Modals.BasketModal;
+
 import com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory;
 import com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.ui.pages.HomePage;
-import com.ss.ita.rozetka.ui.pages.ProductPage;
+
 import com.ss.ita.rozetka.ui.pages.ProductTypePage;
 import org.testng.annotations.Test;
 
