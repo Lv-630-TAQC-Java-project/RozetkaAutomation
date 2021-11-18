@@ -20,22 +20,19 @@ public class NavigationTest extends TestRunner {
         ProductCategoryPage page = new HomePage()
                 .open()
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES);
+
         boolean isProductPageOpened = page.isProductCategoryPageHeadingVisible();
-        assertThat(getCurrentUrl())
-                .as("Products for house category page should be opened")
-                .isEqualTo("https://bt.rozetka.com.ua/");
         assertThat(isProductPageOpened)
                 .as("Product category page should be opened")
                 .isTrue();
+
         boolean isProductTypePageOpened = page
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY)
                 .isProductTypePageHeadingVisible();
-        assertThat(getCurrentUrl())
-                .as("Kitchen appliances category page should be opened")
-                .isEqualTo("https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/");
         assertThat(isProductTypePageOpened)
                 .as("Product type page should be opened")
                 .isTrue();
+
         boolean isHomePageOpened = page
                 .getHeader()
                 .openHomePage()
