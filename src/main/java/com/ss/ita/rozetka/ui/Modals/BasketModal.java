@@ -44,7 +44,7 @@ public class BasketModal {
         return $$x("//li[contains(@class, 'cart-list__item')]");
     }
 
-    @Step("BasketModal: increase on {numberOfProducts} product(s)")
+    @Step("BasketModal: increase amount on {numberOfProducts} product(s)")
     public BasketModal increaseAmountOfProduct(int numberOfProducts, int sequenceNumberOfProduct) {
         if (numberOfProducts < 0) throw new IllegalArgumentException("number of products should be more than 0");
         if (sequenceNumberOfProduct <= 0 || sequenceNumberOfProduct > getProductsList().size())
@@ -58,7 +58,7 @@ public class BasketModal {
         return this;
     }
 
-    @Step("BasketModal: increase on {number} product(s)")
+    @Step("BasketModal: decrease amount on {number} product(s)")
     public BasketModal decreaseAmountOfProduct(int numberOfProducts, int sequenceNumberOfProduct) {
         if (numberOfProducts < 0) throw new IllegalArgumentException("number of products should be more than 0");
         if (sequenceNumberOfProduct <= 0 || sequenceNumberOfProduct > getProductsList().size())
