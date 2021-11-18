@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import static com.ss.ita.rozetka.ui.util.PageUtil.getCurrentUrl;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AddButtonTest {
+public class BasketTest {
     @Test
     public void verifyAddButtonFunctionality(){
         ProductTypePage productTypePage = new HomePage()
@@ -23,20 +23,20 @@ public class AddButtonTest {
                 .as("Notebooks subcategory page should be opened")
                 .contains("https://rozetka.com.ua/notebooks/c80004/");
 
-
         BasketModal basketModal = productTypePage
                 .openProductPage(0)
                 .addProductToBasket();
+
         int priceBeforeIncreasing = basketModal.getTotalProductsPrice();
-        int after = basketModal
+
+         basketModal
                 .increaseAmountOfProductPerUnit()
                 .continueBuying()
                 .getHeader()
                 .openBasketModal()
                 .getTotalProductsPrice();
 
-
-        assertThat(after)
+        assertThat(basketModal.getTotalProductsPrice())
                 .as("Price after increasing should be changed")
                 .isNotEqualTo(priceBeforeIncreasing);
     }
