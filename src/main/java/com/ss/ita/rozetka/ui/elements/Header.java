@@ -36,9 +36,9 @@ public class Header {
     }
 
     @Step("Header: open side modal menu")
-    public SideModalMenu openSideModalMenu() {
+    public SideMenuModal openSideModalMenu() {
         $x("//button[@class='header__button']").click();
-        return new SideModalMenu();
+        return new SideMenuModal();
     }
 
     @Step("Header: open catalog modal")
@@ -60,7 +60,7 @@ public class Header {
     }
 
     @Step("Header: get display status side modal menu")
-    public boolean isSideModalMenuOpened() {
+    public boolean isSideMenuModalOpened() {
         return $x("//nav[@class='drawer ng-star-inserted']").isDisplayed();
     }
 }

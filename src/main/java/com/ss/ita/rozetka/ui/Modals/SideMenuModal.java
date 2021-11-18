@@ -6,7 +6,7 @@ import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class SideModalMenu {
+public class SideMenuModal {
 
     @Step("SideModalMenu: close Side Modal Menu")
     public Header closeSideModalMenu() {
