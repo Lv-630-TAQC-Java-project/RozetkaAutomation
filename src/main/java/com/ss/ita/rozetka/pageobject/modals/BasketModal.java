@@ -24,6 +24,17 @@ public class BasketModal<T> {
         this.pageObject = pageObject;
     }
 
+    @Step("BasketModal: order products added to basket")
+    public OrderingPage openOrderingPage() {
+        $x("//a[contains(@class, 'cart-receipt__submit')]").click();
+        return new OrderingPage();
+    }
+
+    @Step("BasketModal: get products total price")
+    public int getProductsTotalPrice() {
+        String sum = $x("//div[contains(@class,'sum-price')]//span[1]").text();
+        return Integer.parseInt(sum);
+    }
 
     @Step("BasketModal: get the basket emptiness status")
     public boolean isEmpty() {
@@ -54,17 +65,6 @@ public class BasketModal<T> {
 
         waitForTotalPriceToUpdate(totalPrice);
         return this;
-    }
-    @Step("BasketModal: order products added to basket")
-    public OrderingPage openOrderingPage() {
-        $x("//a[contains(@class, 'cart-receipt__submit')]").click();
-        return new OrderingPage();
-    }
-
-    @Step("BasketModal: get products total price")
-    public int getProductsTotalPrice() {
-        String sum = $x("//div[contains(@class,'sum-price')]//span[1]").text();
-        return Integer.parseInt(sum);
     }
 
     @Step("BasketModal: waiting for price to change from {totalPriceBefore}")
