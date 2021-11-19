@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.ss.ita.rozetka.pageobject.pages.HeaderPage;
 import com.ss.ita.rozetka.pageobject.pages.ProductPage;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
+import com.codeborne.selenide.CollectionCondition;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$$x;
@@ -32,6 +33,13 @@ public class ProductTypePage extends HeaderPage {
     @Step("ProductPage: verify that product type page heading is visible")
     public Boolean isProductTypePageHeadingVisible() {
         return $x("//h1[@class = 'catalog-heading ng-star-inserted']").isDisplayed();
+    }
+
+    @Step("ProductTypePage: get products count presented on page")
+    public int getProductsCount() {
+        return $$(".catalog-grid__cell")
+                .shouldHave(CollectionCondition.sizeGreaterThan(1))
+                .size();
     }
   
     @Step("ProductPage: get product type page visibility status by locating page heading")
