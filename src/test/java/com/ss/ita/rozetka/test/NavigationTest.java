@@ -1,15 +1,15 @@
 package com.ss.ita.rozetka.ui;
 
-import com.ss.ita.rozetka.ui.pages.HomePage;
-import com.ss.ita.rozetka.ui.pages.ProductCategoryPage;
-import com.ss.ita.rozetka.ui.TestUtils.TestRunner;
+import com.ss.ita.rozetka.pageobject.pages.HomePage;
+import com.ss.ita.rozetka.pageobject.pages.ProductCategoryPage;
+import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
-import static com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory.HOUSEHOLD_APPLIANCES;
-import static com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory.KITCHEN_APPLIANCES_CATEGORY;
-import static com.ss.ita.rozetka.ui.util.PageUtil.getCurrentUrl;
+import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.HOUSEHOLD_APPLIANCES;
+import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.KITCHEN_APPLIANCES_CATEGORY;
+import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class NavigationTest extends TestRunner {

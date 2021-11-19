@@ -1,8 +1,8 @@
-package com.ss.ita.rozetka.ui.pages;
+package com.ss.ita.rozetka.pageobject.pages;
 
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.codeborne.selenide.Condition;
-import com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory;
+import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.*;
