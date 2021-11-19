@@ -1,6 +1,8 @@
 package com.ss.ita.rozetka.pageobject.pages;
 
 import com.codeborne.selenide.Condition;
+import com.ss.ita.rozetka.pageobject.pages.HeaderPage;
+import com.ss.ita.rozetka.pageobject.pages.ProductPage;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import io.qameta.allure.Step;
 
@@ -24,5 +26,16 @@ public class ProductTypePage extends HeaderPage {
     @Step("ProductPage: get product type page visibility status by locating page heading")
     public Boolean isOpened() {
         return $x("//h1[@class = 'catalog-heading ng-star-inserted']").is(Condition.visible);
+    }
+
+    @Step("ProductTypePage: get display status select sorting type")
+    public boolean isSelectSortingTypeDisplayed() {
+        try {
+            return $x("//select[contains(@class,'select-css')]")
+                    .shouldBe(Condition.visible)
+                    .isDisplayed();
+        } catch (AssertionError exception) {
+            return false;
+        }
     }
 }

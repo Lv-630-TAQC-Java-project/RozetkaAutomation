@@ -37,4 +37,9 @@ public class HomePage extends HeaderPage {
     public String getRecentlyViewedProductName(int itemNumber) {
         return $x(format("//section[@class = 'main-goods ng-star-inserted'][1]//ul/li[%s]//a[@class = 'tile__title']", itemNumber)).getText();
     }
+
+    @Step("HomePage: get display status main menu categories")
+    public boolean isMainMenuCategoriesDisplayed(){
+        return $x("//ul[@class='menu-categories menu-categories_type_main']").isDisplayed();
+    }
 }
