@@ -1,10 +1,12 @@
 package com.ss.ita.rozetka.pageobject.modals;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.pageobject.pages.*;
 import io.qameta.allure.Step;
 
 
+import java.util.List;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
@@ -22,6 +24,37 @@ public class BasketModal<T> {
         this.pageObject = pageObject;
     }
 
+
+    @Step("BasketModal: get the basket emptiness status")
+    public boolean isEmpty() {
+        return $(".cart-dummy").is(exist);
+    }
+
+    @Step("BasketModal: get product titles")
+    public List<String> getProductTitles() {
+        return $$("li.cart-list__item a.cart-product__title")
+                .shouldHave(CollectionCondition.sizeGreaterThan(0))
+                .texts();
+    }
+
+    @Step("BasketModal: set count for product with title {productTitle} to {count}")
+    public BasketModal<T> setProductCount(String productTitle, int count) {
+        int totalPrice = getProductsTotalPrice();
+
+        String countFieldXpath = String.format(
+                PRODUCT_XPATH_TEMPLATE_FOR_TITLE + "//input[contains(@class, 'cart-counter__input')]", productTitle);
+        SelenideElement countField = $x(countFieldXpath);
+
+        if (String.valueOf(count).equals(countField.attr("value"))) {
+            return this;
+        }
+
+        countField.clear();
+        countField.sendKeys(String.valueOf(count));
+
+        waitForTotalPriceToUpdate(totalPrice);
+        return this;
+    }
     @Step("BasketModal: order products added to basket")
     public OrderingPage openOrderingPage() {
         $x("//a[contains(@class, 'cart-receipt__submit')]").click();
