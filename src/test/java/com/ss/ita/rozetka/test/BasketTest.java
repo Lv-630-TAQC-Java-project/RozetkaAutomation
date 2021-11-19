@@ -26,18 +26,15 @@ public class BasketTest {
                 .openProductPage(1)
                 .addProductToBasket();
 
-        int priceBeforeIncreasing = basketModal.getTotalProductsPrice();
+        int priceBeforeIncreasing = basketModal.getProductsTotalPrice();
         assertThat(priceBeforeIncreasing)
                 .as("Price of the product shouldn't be equal to 0")
                 .isNotEqualTo(0);
         basketModal
                 .increaseAmountOfProduct(1, 1)
-                .continueBuying()
-                .getHeader()
-                .openBasketModal()
-                .getTotalProductsPrice();
+                .getProductsTotalPrice();
 
-        assertThat(basketModal.getTotalProductsPrice())
+        assertThat(basketModal.getProductsTotalPrice())
                 .as("Price after increasing should be changed")
                 .isNotEqualTo(priceBeforeIncreasing);
     }
