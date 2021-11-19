@@ -1,4 +1,4 @@
-package com.ss.ita.rozetka;
+package com.ss.ita.rozetka.ui;
 
 import com.ss.ita.rozetka.ui.TestUtils.TestRunner;
 import com.ss.ita.rozetka.ui.elements.Header;
