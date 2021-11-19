@@ -1,4 +1,4 @@
-package com.ss.ita.rozetka.ui.TestUtils;
+package com.ss.ita.rozetka.pageobject.utils;
 
 import com.codeborne.selenide.Configuration;
 import org.testng.annotations.BeforeClass;
@@ -13,5 +13,6 @@ public class TestRunner {
     protected void setBrowser() {
         browser = "chrome";
         Configuration.browserSize = "1920x1080";
+        Configuration.timeout = 120000;
     }
 }
