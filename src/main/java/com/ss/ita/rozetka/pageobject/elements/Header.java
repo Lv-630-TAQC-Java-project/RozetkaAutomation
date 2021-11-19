@@ -34,7 +34,7 @@ public class Header {
 
     @Step("Header: change language to {language}")
     public Header changeLanguage(String language) {
-        $x("//a[normalize-space()='" + language + "']").click();
+        $x(String.format("//a[normalize-space()='%s']", language)).click();
         return this;
     }
 
@@ -88,5 +88,18 @@ public class Header {
     @Step("Header: get display status side menu modal")
     public boolean isSideMenuModalOpened() {
         return $x("//nav[@class='drawer ng-star-inserted']").isDisplayed();
+    }
+
+    @Step("Header: set focus in search input")
+    public Header setSearchInputInFocus() {
+        $(By.name("search")).click();
+        return this;
+    }
+
+    @Step("Header: get text number {numberSearchedTerm} from search history")
+    public String getTextFromSearchHistory(int numberSearchedTerm) {
+        setSearchInputInFocus();
+        return $x(String.format("(//li[@class='search-suggest__item ng-star-inserted'])[%s]", numberSearchedTerm))
+                .getText();
     }
 }
