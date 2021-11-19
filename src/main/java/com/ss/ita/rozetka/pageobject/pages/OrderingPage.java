@@ -16,7 +16,7 @@ public class OrderingPage {
                 .replaceAll("[^0-9]", StringUtils.EMPTY));
     }
 
-    @Step("OrderingPage: get ordering page status, assert in test")
+    @Step("OrderingPage: get ordering page status")
     public boolean isOrderingPageOpened() {
         return $x("//div[@class = 'checkout-sidebar ng-star-inserted']")
                 .shouldBe(Condition.visible)

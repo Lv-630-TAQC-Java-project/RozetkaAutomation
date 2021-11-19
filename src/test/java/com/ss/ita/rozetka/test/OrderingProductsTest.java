@@ -28,7 +28,7 @@ public class OrderingProductsTest extends TestRunner {
                 .orderProducts();
 
         assertThat(orderingPage.isOrderingPageOpened())
-                .as("OpderingPage should be opened")
+                .as("OrderingPage should be opened")
                 .isTrue();
 
         int totalPrice = orderingPage.getTotalProductsPrice();
