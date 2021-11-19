@@ -14,7 +14,7 @@ public class HamburgerModal {
         return new Header();
     }
 
-    @Step("SideModalMenu: open change city modal")
+    @Step("SideModalMenu: start changing city")
     public ChangeCityModal startChangingCity() {
         $x("//button[contains(@class, 'city-toggle')]").click();
         return new ChangeCityModal();

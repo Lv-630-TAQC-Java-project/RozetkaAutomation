@@ -1,7 +1,7 @@
 package com.ss.ita.rozetka.pageobject;
 
 import com.ss.ita.rozetka.pageobject.elements.Header;
-import com.ss.ita.rozetka.pageobject.modals.HamburgerModal;
+import com.ss.ita.rozetka.pageobject.modals.SideMenuModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Issue;
@@ -17,7 +17,7 @@ public class SideMenuModalTest extends TestRunner {
         Header header = new HomePage()
                 .open()
                 .getHeader();
-        HamburgerModal sideModalMenu = header.openHamburgerModal();
+        SideMenuModal sideModalMenu = header.openSideMenuModal();
 
         String odessa = "Одеса";
 
@@ -26,7 +26,7 @@ public class SideMenuModalTest extends TestRunner {
                 .selectCity(odessa)
                 .approveChangingCityAndOpenHomePage();
         String currentCity = header
-                .openHamburgerModal()
+                .openSideMenuModal()
                 .getCity();
 
         assertThat(currentCity)
@@ -40,7 +40,7 @@ public class SideMenuModalTest extends TestRunner {
                 .selectCity(lviv)
                 .approveChangingCity(HomePage.class);
         String selectedCity = header
-                .openHamburgerModal()
+                .openSideMenuModal()
                 .getCity();
 
         assertThat(selectedCity)
@@ -52,7 +52,7 @@ public class SideMenuModalTest extends TestRunner {
                 .setCity(odessa)
                 .approveChangingCityAndOpenHomePage();
         String revertedCity = header
-                .openHamburgerModal()
+                .openSideMenuModal()
                 .getCity();
 
         assertThat(revertedCity)

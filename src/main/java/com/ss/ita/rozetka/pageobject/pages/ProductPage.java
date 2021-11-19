@@ -2,11 +2,18 @@ package com.ss.ita.rozetka.pageobject.pages;
 
 import com.ss.ita.rozetka.pageobject.modals.BasketModal;
 import io.qameta.allure.Step;
+import com.ss.ita.rozetka.pageobject.elements.Header;
 import org.apache.commons.lang3.StringUtils;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class ProductPage extends HeaderPage {
+
+    @Step("ProductPage: add product to comparison")
+    public Header addProductToComparison() {
+        $x("//button[@class='compare-button ng-star-inserted']").click();
+        return new Header();
+    }
 
     @Step("ProductPage: add product to basket")
     public BasketModal addProductToBasket() {
