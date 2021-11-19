@@ -12,6 +12,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SearchFunctionalityTest extends TestRunner {
 
     @Test
+    public void verifyXiaomiWillBeInSearchResult() {
+        String searchProduct = "Xiaomi";
+
+        ProductTypePage productTypePage = new HomePage()
+                .open()
+                .getHeader()
+                .doSearch(searchProduct);
+
+        assertThat(productTypePage.getProductTitle(1))
+                .as("Product should have Xiaomi in title")
+                .contains(searchProduct);
+    }
+  
+    @Test
     public void verifySearchHistoryText() {
         Header header = new HomePage()
                 .open()
