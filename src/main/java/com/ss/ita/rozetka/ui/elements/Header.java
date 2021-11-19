@@ -5,9 +5,11 @@ import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.Modals.*;
 import com.ss.ita.rozetka.ui.pages.*;
 import io.qameta.allure.Step;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class Header {
 
@@ -34,6 +36,14 @@ public class Header {
     public Header changeLanguage(String language) {
         $x("//a[normalize-space()='" + language + "']").click();
         return this;
+    }
+
+    @Step("Header: get count of compared products")
+    public int getProductsForComparisonCount() {
+        return Integer.parseInt($x("//span[@class='counter counter--gray ng-star-inserted']")
+                .shouldBe(Condition.visible)
+                .getText()
+                .replaceAll("\\D", StringUtils.EMPTY));
     }
 
     @Step("Header: open side menu modal")
