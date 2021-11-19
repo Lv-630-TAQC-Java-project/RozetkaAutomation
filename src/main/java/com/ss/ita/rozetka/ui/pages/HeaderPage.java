@@ -1,6 +1,6 @@
 package com.ss.ita.rozetka.ui.pages;
 
-import com.ss.ita.rozetka.ui.elements.Header;
+import com.ss.ita.rozetka.pageobject.elements.Header;
 
 public abstract class HeaderPage {
     protected Header header = new Header();
