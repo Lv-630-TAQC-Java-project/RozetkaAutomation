@@ -1,15 +1,30 @@
-package com.ss.ita.rozetka.pageobject;
+package com.ss.ita.rozetka.test;
 
-import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.modals.SideMenuModal;
-import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
+import com.ss.ita.rozetka.pageobject.elements.Header;
+import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SideMenuModalTest extends TestRunner {
+public class SideModalMenuTest extends TestRunner {
+
+    @Test
+    public void verifySideMenuModalOpensAndCloses() {
+        Header header = new HomePage()
+                .open()
+                .getHeader();
+        SideMenuModal menu = header.openSideMenuModal();
+        assertThat(header.isSideMenuModalOpened())
+                .as("Side Menu should be opened")
+                .isTrue();
+        menu.closeSideMenuModal();
+        assertThat(header.isSideMenuModalOpened())
+                .as("Side Menu should be closed")
+                .isFalse();
+    }
 
     @Test
     @Issue("LVTAQC630-28")
@@ -60,4 +75,3 @@ public class SideMenuModalTest extends TestRunner {
                 .isEqualTo(odessa);
     }
 }
-           

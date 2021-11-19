@@ -1,4 +1,4 @@
-package com.ss.ita.rozetka.pageobject;
+package com.ss.ita.rozetka.test;
 
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import com.ss.ita.rozetka.pageobject.elements.Header;
