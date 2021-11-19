@@ -16,9 +16,9 @@ public class ProductPage extends HeaderPage {
     }
 
     @Step("ProductPage: add product to basket")
-    public BasketModal addProductToBasket() {
+    public BasketModal<ProductPage> addProductToBasket() {
         $x("//button[contains(@class,'buy-button button button_')]").click();
-        return new BasketModal();
+        return new BasketModal<ProductPage>(this);
     }
 
     @Step("ProductPage: add product to comparison")
