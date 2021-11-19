@@ -46,16 +46,31 @@ public class Header {
                 .replaceAll("\\D", StringUtils.EMPTY));
     }
 
-    @Step("Header: open side modal menu")
-    public HamburgerModal openHamburgerModal() {
+    @Step("Header: open side menu modal")
+    public SideMenuModal openSideMenuModal() {
         $x("//button[@class='header__button']").click();
-        return new HamburgerModal();
+        return new SideMenuModal();
+    }
+
+    @Step("Header: get catalog modal visibility status")
+    public boolean isCatalogModalVisible() {
+        return $(".menu-wrapper").is(Condition.visible);
     }
 
     @Step("Header: open catalog modal")
     public CatalogModal openCatalogModal() {
-        $(By.id("fat-menu")).click();
+        if (!isCatalogModalVisible()) {
+            $(By.id("fat-menu")).click();
+        }
         return new CatalogModal();
+    }
+
+    @Step("Header: close catalog modal")
+    public Header closeCatalogModal() {
+        if (isCatalogModalVisible()) {
+            $(By.id("fat-menu")).click();
+        }
+        return new Header();
     }
 
     @Step("Header: open basket modal")
@@ -68,5 +83,10 @@ public class Header {
     public HomePage openHomePage() {
         $x("//a[@class='header__logo']").click();
         return new HomePage();
+    }
+
+    @Step("Header: get display status side menu modal")
+    public boolean isSideMenuModalOpened() {
+        return $x("//nav[@class='drawer ng-star-inserted']").isDisplayed();
     }
 }
