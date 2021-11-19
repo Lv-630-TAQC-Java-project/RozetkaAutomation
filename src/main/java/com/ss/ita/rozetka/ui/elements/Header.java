@@ -35,10 +35,10 @@ public class Header {
         return this;
     }
 
-    @Step("Header: open side modal menu")
-    public HamburgerModal openHamburgerModal() {
+    @Step("Header: open side menu modal")
+    public SideMenuModal openSideMenuModal() {
         $x("//button[@class='header__button']").click();
-        return new HamburgerModal();
+        return new SideMenuModal();
     }
 
     @Step("Header: open catalog modal")
@@ -57,5 +57,10 @@ public class Header {
     public HomePage openHomePage() {
         $x("//a[@class='header__logo']").click();
         return new HomePage();
+    }
+
+    @Step("Header: get display status side menu modal")
+    public boolean isSideMenuModalOpened() {
+        return $x("//nav[@class='drawer ng-star-inserted']").isDisplayed();
     }
 }
