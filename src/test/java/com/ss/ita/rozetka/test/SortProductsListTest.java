@@ -1,10 +1,10 @@
-package com.ss.ita.rozetka.ui;
+package com.ss.ita.rozetka.test;
 
-import com.ss.ita.rozetka.ui.ProductsEnum.GeneralProductCategory;
-import com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory;
-import com.ss.ita.rozetka.ui.TestUtils.TestRunner;
-import com.ss.ita.rozetka.ui.pages.HomePage;
-import com.ss.ita.rozetka.ui.util.ProductsListSortType;
+import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
+import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
+import com.ss.ita.rozetka.pageobject.utils.TestRunner;
+import com.ss.ita.rozetka.pageobject.pages.HomePage;
+import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
@@ -25,9 +25,9 @@ public class SortProductsListTest extends TestRunner {
                 .openProductTypePage(ProductCategoryAndSubCategory.TRIMMERS_SUBCATEGORY)
                 .sortProductsListBy(ProductsListSortType.CHEAP_TO_EXPENSIVE)
                 .openProductsListPage(numberProductsListPage)
-                .getProductsListPrices();
-        List<BigDecimal> expectedProductsListPrices = actualProductsListPrices.
-                stream()
+                .getProductPricesList();
+        List<BigDecimal> expectedProductsListPrices = actualProductsListPrices
+                .stream()
                 .sorted()
                 .collect(Collectors.toList());
         assertThat(actualProductsListPrices)
