@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.pageobject.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
 import io.qameta.allure.Step;
@@ -25,6 +26,11 @@ public class HomePage extends HeaderPage {
     @Step("HomePage: get greetings text")
     public String getGreetingsText() {
         return $("h3.main-auth__heading").getText();
+    }
+  
+    @Step("HomePage: get home page visibility status by locating slider")
+    public boolean isOpened() {
+        return $x("//div[@class = 'simple-slider__holder']").is(Condition.visible);
     }
 
     @Step("HomePage: get product number {itemNumber} from Recently Viewed Products list")
