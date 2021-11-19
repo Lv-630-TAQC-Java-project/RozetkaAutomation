@@ -17,23 +17,23 @@ public class NavigationTest extends TestRunner {
     @Test
     @Issue("LVTAQC630-7")
     public void verifyReturnToHomePage() {
-        ProductCategoryPage page = new HomePage()
+        ProductCategoryPage productCategoryPage = new HomePage()
                 .open()
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES);
 
-        boolean isProductPageOpened = page.isOpened();
+        boolean isProductPageOpened = productCategoryPage.isOpened();
         assertThat(isProductPageOpened)
                 .as("Product category page should be opened")
                 .isTrue();
 
-        boolean isProductTypePageOpened = page
+        boolean isProductTypePageOpened = productCategoryPage
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY)
                 .isOpened();
         assertThat(isProductTypePageOpened)
                 .as("Product type page should be opened")
                 .isTrue();
 
-        boolean isHomePageOpened = page
+        boolean isHomePageOpened = productCategoryPage
                 .getHeader()
                 .openHomePage()
                 .isOpened();
