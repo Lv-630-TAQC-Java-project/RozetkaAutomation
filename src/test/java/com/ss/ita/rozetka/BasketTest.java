@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BasketTest {
     @Test
-    public void verifyAddButtonFunctionality() {
+    public void verifyAddProductFunctionality() {
         ProductTypePage productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
@@ -25,7 +25,7 @@ public class BasketTest {
                 .contains("https://rozetka.com.ua/notebooks/c80004/");
 
         BasketModal basketModal = productTypePage
-                .openProductPage(0)
+                .openProductPage(1)
                 .addProductToBasket();
 
         int priceBeforeIncreasing = basketModal.getTotalProductsPrice();
