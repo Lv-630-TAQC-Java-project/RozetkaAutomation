@@ -34,7 +34,7 @@ public class Header {
 
     @Step("Header: change language to {language}")
     public Header changeLanguage(String language) {
-        $x("//a[normalize-space()='" + language + "']").click();
+        $x(String.format("//a[normalize-space()='%s']", language)).click();
         return this;
     }
 

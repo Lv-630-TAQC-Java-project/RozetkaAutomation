@@ -5,7 +5,8 @@ import com.codeborne.selenide.Selenide;
 import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
 public class HomePage extends HeaderPage {
@@ -22,6 +23,11 @@ public class HomePage extends HeaderPage {
         return new ProductCategoryPage();
     }
 
+    @Step("HomePage: get greetings text")
+    public String getGreetingsText() {
+        return $("h3.main-auth__heading").getText();
+    }
+  
     @Step("HomePage: get home page visibility status by locating slider")
     public boolean isOpened() {
         return $x("//div[@class = 'simple-slider__holder']").is(Condition.visible);
