@@ -9,7 +9,6 @@ public enum ProductCategoryAndSubCategory {
     BIG_HOUSEHOLD_APPLIANCES_CATEGORY("bigbt"),
     KITCHEN_APPLIANCES_CATEGORY("tehnika-dlya-kuhni"),
 
-
     TRIMMERS_SUBCATEGORY("trimmers");
 
     private final String name;
