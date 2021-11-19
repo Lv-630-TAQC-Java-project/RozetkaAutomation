@@ -6,7 +6,7 @@ import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
-import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.NOTEBOOKS;
+import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ProductTypePageTest extends TestRunner {
@@ -16,7 +16,7 @@ public class ProductTypePageTest extends TestRunner {
         ProductTypePage productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
-                .openProductTypePage(NOTEBOOKS);
+                .openProductTypePage(NOTEBOOKS_CATEGORY);
 
         assertThat(productTypePage.getProductsCount())
                 .as("There should be presented at least 10 products")
