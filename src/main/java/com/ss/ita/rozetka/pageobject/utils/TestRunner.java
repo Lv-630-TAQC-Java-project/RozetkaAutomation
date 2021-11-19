@@ -1,4 +1,4 @@
-package com.ss.ita.rozetka.ui.TestUtils;
+package com.ss.ita.rozetka.pageobject.utils;
 
 import com.codeborne.selenide.Configuration;
 import org.testng.annotations.BeforeClass;

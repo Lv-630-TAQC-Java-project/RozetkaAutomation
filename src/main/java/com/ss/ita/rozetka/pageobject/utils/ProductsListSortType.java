@@ -1,4 +1,4 @@
-package com.ss.ita.rozetka.ui.util;
+package com.ss.ita.rozetka.pageobject.utils;
 
 public enum ProductsListSortType {
     CHEAP_TO_EXPENSIVE("cheap to expensive", "1: cheap"),

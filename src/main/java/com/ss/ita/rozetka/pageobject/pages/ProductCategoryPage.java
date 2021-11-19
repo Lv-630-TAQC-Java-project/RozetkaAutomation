@@ -1,6 +1,8 @@
-package com.ss.ita.rozetka.ui.pages;
+package com.ss.ita.rozetka.pageobject.pages;
 
-import com.ss.ita.rozetka.ui.ProductsEnum.ProductCategoryAndSubCategory;
+import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
+import com.codeborne.selenide.Condition;
+import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -12,6 +14,11 @@ public class ProductCategoryPage extends HeaderPage {
     public ProductTypePage openProductTypePage(ProductCategoryAndSubCategory categoryOrSubCategory) {
         $x(format("//a[contains(@href,'%s')]", categoryOrSubCategory.getName())).click();
         return new ProductTypePage();
+    }
+
+    @Step("ProductCategoryPage: get product category page visibility status by locating page heading")
+    public Boolean isOpened() {
+        return $x("//h1[@class = 'portal__heading ng-star-inserted']").is(Condition.visible);
     }
 }
 
