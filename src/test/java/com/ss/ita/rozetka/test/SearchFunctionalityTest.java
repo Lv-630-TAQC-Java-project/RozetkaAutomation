@@ -13,20 +13,20 @@ public class SearchFunctionalityTest extends TestRunner {
 
     @Test
     public void verifySearchHistoryText() {
-        Header headerPage = new HomePage()
+        Header header = new HomePage()
                 .open()
                 .getHeader();
         String searchTerm = "DELL";
-        ProductTypePage productsList = headerPage.doSearch(searchTerm);
-        assertThat(productsList.isSelectSortingTypeDisplayed())
+        ProductTypePage searchResultPage = header.doSearch(searchTerm);
+        assertThat(searchResultPage.isSelectSortingTypeDisplayed())
                 .as("Select sorting type should be displayed")
                 .isTrue();
-        HomePage homePage = headerPage.openHomePage();
+        HomePage homePage = header.openHomePage();
         assertThat(homePage.isMainMenuCategoriesDisplayed())
                 .as("Main Menu Categories should be displayed")
                 .isTrue();
         int numberSearchTerm = 1;
-        String actualSearchTerm = headerPage
+        String actualSearchTerm = header
                 .setSearchInputInFocus()
                 .getTextFromSearchHistory(numberSearchTerm);
         assertThat(actualSearchTerm)
