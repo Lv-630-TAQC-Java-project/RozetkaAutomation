@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SideMenuModalTest extends TestRunner {
+public class SideModalMenuTest extends TestRunner {
 
     @Test
     public void verifySideMenuModalOpensAndCloses() {
