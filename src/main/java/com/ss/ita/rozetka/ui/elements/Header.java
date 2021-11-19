@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.ui.elements;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.Modals.*;
 import com.ss.ita.rozetka.ui.pages.*;
@@ -41,10 +42,25 @@ public class Header {
         return new SideMenuModal();
     }
 
+    @Step("Header: get catalog modal visibility status")
+    public boolean isCatalogModalVisible() {
+        return $(".menu-wrapper").is(Condition.visible);
+    }
+
     @Step("Header: open catalog modal")
     public CatalogModal openCatalogModal() {
-        $(By.id("fat-menu")).click();
+        if (!isCatalogModalVisible()) {
+            $(By.id("fat-menu")).click();
+        }
         return new CatalogModal();
+    }
+
+    @Step("Header: close catalog modal")
+    public Header closeCatalogModal() {
+        if (isCatalogModalVisible()) {
+            $(By.id("fat-menu")).click();
+        }
+        return new Header();
     }
 
     @Step("Header: open basket modal")
