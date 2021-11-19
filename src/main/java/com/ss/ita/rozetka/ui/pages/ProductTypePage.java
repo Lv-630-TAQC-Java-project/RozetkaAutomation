@@ -28,6 +28,8 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductPage: get products count presented on page")
     public int getProductsCount() {
-        return $$(".catalog-grid__cell").shouldHave(CollectionCondition.sizeGreaterThan(1)).size();
+        return $$(".catalog-grid__cell")
+                .shouldHave(CollectionCondition.sizeGreaterThan(1))
+                .size();
     }
 }
