@@ -1,5 +1,7 @@
-package com.ss.ita.rozetka.ui.Modals;
+package com.ss.ita.rozetka.pageobject.modals;
 
+import com.codeborne.selenide.ElementsCollection;
+import com.ss.ita.rozetka.pageobject.pages.*;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.pages.OrderingPage;

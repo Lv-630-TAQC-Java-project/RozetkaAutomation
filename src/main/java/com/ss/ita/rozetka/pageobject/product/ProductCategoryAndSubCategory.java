@@ -1,12 +1,12 @@
-package com.ss.ita.rozetka.ui.ProductsEnum;
+package com.ss.ita.rozetka.pageobject.product;
 
 import static java.lang.String.format;
 
 public enum ProductCategoryAndSubCategory {
-    NOTEBOOKS("notebooks"),
+    NOTEBOOKS("c80004"), //specific category
     GARDEN_TECH_CATEGORY("garden_tech"),
     GARDEN_EQUIP_CATEGORY("sadoviy-inventar"),
-
+    NOTEBOOK_CATEGORY("https://rozetka.com.ua/notebooks/"),
     TRIMMERS_SUBCATEGORY("trimmers");
 
     private final String name;
