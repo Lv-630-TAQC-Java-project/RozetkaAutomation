@@ -1,9 +1,9 @@
 package com.ss.ita.rozetka.test;
 
-import com.ss.ita.rozetka.pageobject.modals.SideMenuModal;
-import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import com.ss.ita.rozetka.pageobject.elements.Header;
+import com.ss.ita.rozetka.pageobject.modals.SideMenuModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
+import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 

@@ -1,11 +1,10 @@
 package com.ss.ita.rozetka.pageobject.pages;
 
-import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.codeborne.selenide.Condition;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
 public class ProductCategoryPage extends HeaderPage {

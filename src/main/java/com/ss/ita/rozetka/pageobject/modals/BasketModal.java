@@ -3,15 +3,13 @@ package com.ss.ita.rozetka.pageobject.modals;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.pageobject.pages.*;
+import com.ss.ita.rozetka.pageobject.pages.OrderingPage;
 import io.qameta.allure.Step;
-
 
 import java.util.List;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
-import static java.lang.String.format;
-
 import static com.codeborne.selenide.Selenide.*;
 
 public class BasketModal<T> {
