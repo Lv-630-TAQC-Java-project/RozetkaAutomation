@@ -36,7 +36,7 @@ public class SortProductsListTest extends TestRunner {
                 .sortProductsListBy(ProductsListSortType.CHEAP_TO_EXPENSIVE)
                 .openProductsListPage(numberProductsListPage);
         assertThat(productTypePage.isOpened())
-                .as("Product type page by should number products list page be opened")
+                .as("Product type page by number products list should be opened")
                 .isTrue();
         List<BigDecimal> actualProductsListPrices = productTypePage.getProductPricesList();
         List<BigDecimal> expectedProductsListPrices = actualProductsListPrices
@@ -44,7 +44,7 @@ public class SortProductsListTest extends TestRunner {
                 .sorted()
                 .collect(Collectors.toList());
         assertThat(actualProductsListPrices)
-                .as("Products list prices shout be sorted")
+                .as("Product prices list should be sorted")
                 .isEqualTo(expectedProductsListPrices);
     }
 }
