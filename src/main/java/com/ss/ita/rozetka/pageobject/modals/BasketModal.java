@@ -2,6 +2,7 @@ package com.ss.ita.rozetka.pageobject.modals;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
+import com.ss.ita.rozetka.pageobject.pages.*;
 import com.ss.ita.rozetka.pageobject.pages.OrderingPage;
 import io.qameta.allure.Step;
 
@@ -10,6 +11,7 @@ import java.util.List;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
+import static java.lang.String.format;
 
 public class BasketModal<T> {
     // This template should only be used in String.format()
@@ -49,7 +51,7 @@ public class BasketModal<T> {
     public BasketModal<T> setProductCount(String productTitle, int count) {
         int totalPrice = getProductsTotalPrice();
 
-        String countFieldXpath = String.format(
+        String countFieldXpath = format(
                 PRODUCT_XPATH_TEMPLATE_FOR_TITLE + "//input[contains(@class, 'cart-counter__input')]", productTitle);
         SelenideElement countField = $x(countFieldXpath);
 
@@ -76,7 +78,7 @@ public class BasketModal<T> {
     public BasketModal<T> removeProduct(String productTitle) {
         int totalPrice = getProductsTotalPrice();
 
-        String productActionsXpath = String.format(
+        String productActionsXpath = format(
                 PRODUCT_XPATH_TEMPLATE_FOR_TITLE + "//button[contains(@id, 'cartProductActions')]", productTitle);
         $x(productActionsXpath).click();
         $x("//rz-trash-icon/button").click();
@@ -89,5 +91,26 @@ public class BasketModal<T> {
     public T close() {
         $x("//button[contains(@class, 'modal__close')]").click();
         return pageObject;
+    }
+
+    @Step("BasketModal: increase amount on {numberOfProducts} product(s)")
+    public BasketModal increaseAmountOfProduct(int productNumber, int increaseNumber) {
+        int specificNumber = increaseNumber + 1;
+        SelenideElement increaseButton = $x(format("(//button[contains(@class,'cart-counter__button')])[%d]", specificNumber));
+        for (int i = 0; i < productNumber; i++) {
+            increaseButton.click();
+            waitForTotalPriceToUpdate(getProductsTotalPrice());
+        }
+        return this;
+    }
+
+    @Step("BasketModal: decrease amount on {number} product(s)")
+    public BasketModal decreaseAmountOfProduct(int productNumber, int decreaseNumber) {
+        SelenideElement decreaseButton = $x(format("(//button[contains(@class,'cart-counter__button')])[%d]", decreaseNumber));
+        for (int i = 0; i < productNumber; i++) {
+            decreaseButton.click();
+            waitForTotalPriceToUpdate(getProductsTotalPrice());
+        }
+        return this;
     }
 }
