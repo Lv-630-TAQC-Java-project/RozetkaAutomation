@@ -1,4 +1,4 @@
-package com.ss.ita.rozetka;
+package com.ss.ita.rozetka.test;
 
 import com.ss.ita.rozetka.pageobject.modals.BasketModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
