@@ -19,6 +19,7 @@ public class SearchFunctionalityTest extends TestRunner {
                 .doSearch(searchProduct);
 
         assertThat(productTypePage.getProductTitle(1))
-                .as("Product should have Xiaomi in title").contains(searchProduct);
+                .as("Product should have Xiaomi in title")
+                .contains(searchProduct);
     }
 }
