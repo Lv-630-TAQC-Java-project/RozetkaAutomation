@@ -7,6 +7,7 @@ public enum ProductCategoryAndSubCategory {
     GARDEN_TECH_CATEGORY("garden_tech"),
     GARDEN_EQUIP_CATEGORY("sadoviy-inventar"),
     NOTEBOOK_CATEGORY("https://rozetka.com.ua/notebooks/"),
+    KITCHEN_APPLIANCES_CATEGORY("tehnika-dlya-kuhni"),
     TRIMMERS_SUBCATEGORY("trimmers");
 
     private final String name;
