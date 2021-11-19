@@ -25,8 +25,11 @@ public class OrderingProductsTest extends TestRunner {
 
         OrderingPage orderingPage = productPage
                 .addProductToBasket()
-                .orderProducts()
-                .orderingPageShouldBeOpened();
+                .orderProducts();
+
+        assertThat(orderingPage.isOrderingPageOpened())
+                .as("OpderingPage should be opened")
+                .isTrue();
 
         int totalPrice = orderingPage.getTotalProductsPrice();
         String orderingProductTitle = orderingPage.getProductTitle();

@@ -17,9 +17,8 @@ public class OrderingPage {
     }
 
     @Step("OrderingPage: get ordering page status, assert in test")
-    public OrderingPage orderingPageShouldBeOpened() {
-        $x("//div[@class = 'checkout-sidebar ng-star-inserted']").shouldBe(Condition.visible);
-        return this;
+    public boolean isOrderingPageOpened() {
+        return $x("//div[@class = 'checkout-sidebar ng-star-inserted']").shouldBe(Condition.visible).isDisplayed();
     }
 
     @Step("OrderingPage: get product title")
