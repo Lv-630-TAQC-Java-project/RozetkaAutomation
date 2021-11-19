@@ -1,8 +1,9 @@
-package com.ss.ita.rozetka.ui.Modals;
+package com.ss.ita.rozetka.pageobject.modals;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.ui.pages.*;
+import com.ss.ita.rozetka.pageobject.pages.*;
 import io.qameta.allure.Step;
 
 import static java.lang.String.format;
