@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class SearchFunctionalityTests extends TestRunner {
+public class SearchFunctionalityTest extends TestRunner {
 
     @Test
     public void verifyXiaomiWillBeInSearchResult() {
