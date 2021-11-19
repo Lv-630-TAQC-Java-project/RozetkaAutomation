@@ -33,7 +33,7 @@ public class BasketModal<T> {
         return Integer.parseInt(sum);
     }
 
-    @Step("BasketModal: check if basket is empty")
+    @Step("BasketModal: get basket fullness status")
     public boolean isEmpty() {
         return $(".cart-dummy").is(exist);
     }
