@@ -1,9 +1,9 @@
-package com.ss.ita.rozetka.ui.elements;
+package com.ss.ita.rozetka.pageobject.elements;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.ss.ita.rozetka.ui.Modals.*;
-import com.ss.ita.rozetka.ui.pages.*;
+import com.ss.ita.rozetka.pageobject.modals.*;
+import com.ss.ita.rozetka.pageobject.pages.*;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;

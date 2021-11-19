@@ -1,4 +1,4 @@
-package com.ss.ita.rozetka.ui.ProductsEnum;
+package com.ss.ita.rozetka.pageobject.product;
 
 import static java.lang.String.format;
 
