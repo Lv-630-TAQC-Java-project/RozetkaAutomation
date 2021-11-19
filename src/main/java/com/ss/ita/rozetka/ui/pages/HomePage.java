@@ -22,8 +22,8 @@ public class HomePage extends HeaderPage {
         return new ProductCategoryPage();
     }
 
-    @Step("HomePage: get home page slider visibility status")
-    public boolean isSliderVisible() {
+    @Step("HomePage: get home page visibility status by locating slider")
+    public boolean isOpened() {
         return $x("//div[@class = 'simple-slider__holder']").is(Condition.visible);
     }
 

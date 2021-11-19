@@ -21,14 +21,14 @@ public class NavigationTest extends TestRunner {
                 .open()
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES);
 
-        boolean isProductPageOpened = page.isProductCategoryPageHeadingVisible();
+        boolean isProductPageOpened = page.isOpened();
         assertThat(isProductPageOpened)
                 .as("Product category page should be opened")
                 .isTrue();
 
         boolean isProductTypePageOpened = page
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY)
-                .isProductTypePageHeadingVisible();
+                .isOpened();
         assertThat(isProductTypePageOpened)
                 .as("Product type page should be opened")
                 .isTrue();
@@ -36,7 +36,7 @@ public class NavigationTest extends TestRunner {
         boolean isHomePageOpened = page
                 .getHeader()
                 .openHomePage()
-                .isSliderVisible();
+                .isOpened();
         assertThat(getCurrentUrl())
                 .as("Home page should be opened")
                 .isEqualTo("https://rozetka.com.ua/");

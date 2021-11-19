@@ -21,7 +21,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .open()
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
-        boolean isProductTypePageOpened = productPage.isProductTypePageHeadingVisible();
+        boolean isProductTypePageOpened = productPage.isOpened();
         assertThat(getCurrentUrl())
                 .as("Kitchen appliances category page should be opened")
                 .isEqualTo("https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/");
