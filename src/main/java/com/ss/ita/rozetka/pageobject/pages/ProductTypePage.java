@@ -3,7 +3,12 @@ package com.ss.ita.rozetka.pageobject.pages;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
+import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
+import org.apache.commons.lang3.StringUtils;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
@@ -53,5 +58,28 @@ public class ProductTypePage extends HeaderPage {
         } catch (AssertionError exception) {
             return false;
         }
+    }
+
+    @Step("ProductTypePage: sort products list {sortType}")
+    public ProductTypePage sortProductsListBy(ProductsListSortType sortType) {
+        $x(String.format("//select[contains(@class,select-css)]/option[@value='%s']", sortType.getXPathValue())).click();
+        return this;
+    }
+
+    @Step("ProductTypePage: open products list page number - {numberProductsListPage}")
+    public ProductTypePage openProductsListPage(int numberProductsListPage) {
+        $x(String.format("//li[contains(@class,'pagination__item')]/a[contains(@href, 'page=%s')]", numberProductsListPage)).click();
+        return this;
+    }
+
+    @Step("ProductTypePage: get product prices list")
+    public List<BigDecimal> getProductPricesList() {
+        return $$x("//span[contains(@class, 'goods-tile__price-value')]")
+                .shouldBe(CollectionCondition.sizeLessThanOrEqual(60))
+                .texts()
+                .stream()
+                .map(price -> price.replaceAll(" ", StringUtils.EMPTY))
+                .map(price -> new BigDecimal(price))
+                .collect(Collectors.toList());
     }
 }
