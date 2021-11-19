@@ -1,8 +1,8 @@
-package com.ss.ita.rozetka;
+package com.ss.ita.rozetka.test;
 
-import com.ss.ita.rozetka.ui.TestUtils.TestRunner;
-import com.ss.ita.rozetka.ui.elements.Header;
-import com.ss.ita.rozetka.ui.pages.HomePage;
+import com.ss.ita.rozetka.pageobject.utils.TestRunner;
+import com.ss.ita.rozetka.pageobject.elements.Header;
+import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
