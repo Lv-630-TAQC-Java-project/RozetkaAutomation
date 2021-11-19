@@ -95,10 +95,10 @@ public class BasketModal<T> {
     }
 
     @Step("BasketModal: increase amount on {numberOfProducts} product(s)")
-    public BasketModal increaseAmountOfProduct(int numberOfProducts, int sequenceNumberOfProduct) {
-        int specificNumber = sequenceNumberOfProduct + 1;
+    public BasketModal increaseAmountOfProduct(int productNumber, int increaseNumber) {
+        int specificNumber = increaseNumber + 1;
         SelenideElement increaseButton = $x(format("(//button[contains(@class,'cart-counter__button')])[%d]", specificNumber));
-        for (int i = 0; i < numberOfProducts; i++) {
+        for (int i = 0; i < productNumber; i++) {
             increaseButton.click();
             waitForTotalPriceToUpdate(getProductsTotalPrice());
         }
@@ -106,9 +106,9 @@ public class BasketModal<T> {
     }
 
     @Step("BasketModal: decrease amount on {number} product(s)")
-    public BasketModal decreaseAmountOfProduct(int numberOfProducts, int sequenceNumberOfProduct) {
-        SelenideElement decreaseButton = $x(format("(//button[contains(@class,'cart-counter__button')])[%d]", sequenceNumberOfProduct));
-        for (int i = 0; i < numberOfProducts; i++) {
+    public BasketModal decreaseAmountOfProduct(int productNumber, int decreaseNumber) {
+        SelenideElement decreaseButton = $x(format("(//button[contains(@class,'cart-counter__button')])[%d]", decreaseNumber));
+        for (int i = 0; i < productNumber; i++) {
             decreaseButton.click();
             waitForTotalPriceToUpdate(getProductsTotalPrice());
         }
