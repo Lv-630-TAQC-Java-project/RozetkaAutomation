@@ -1,6 +1,7 @@
 package com.ss.ita.rozetka.test;
 
-import com.ss.ita.rozetka.pageobject.pages.*;
+import com.ss.ita.rozetka.pageobject.pages.HomePage;
+import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
@@ -19,7 +20,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .open()
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
-        boolean isProductTypePageOpened = productPage.isProductTypePageHeadingVisible();
+        boolean isProductTypePageOpened = productPage.isOpened();
         assertThat(getCurrentUrl())
                 .as("Kitchen appliances category page should be opened")
                 .isEqualTo("https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/");

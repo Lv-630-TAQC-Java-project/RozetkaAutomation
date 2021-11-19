@@ -1,10 +1,12 @@
 package com.ss.ita.rozetka.pageobject.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
 public class HomePage extends HeaderPage {
@@ -21,8 +23,23 @@ public class HomePage extends HeaderPage {
         return new ProductCategoryPage();
     }
 
+    @Step("HomePage: get greetings text")
+    public String getGreetingsText() {
+        return $("h3.main-auth__heading").getText();
+    }
+
+    @Step("HomePage: get home page visibility status by locating slider")
+    public boolean isOpened() {
+        return $x("//div[@class = 'simple-slider__holder']").is(Condition.visible);
+    }
+
     @Step("HomePage: get product number {itemNumber} from Recently Viewed Products list")
     public String getRecentlyViewedProductName(int itemNumber) {
         return $x(format("//section[@class = 'main-goods ng-star-inserted'][1]//ul/li[%s]//a[@class = 'tile__title']", itemNumber)).getText();
+    }
+
+    @Step("HomePage: get display status main menu categories")
+    public boolean isMainMenuCategoriesDisplayed() {
+        return $x("//ul[@class='menu-categories menu-categories_type_main']").isDisplayed();
     }
 }

@@ -1,11 +1,11 @@
 package com.ss.ita.rozetka.pageobject.pages;
 
+import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.modals.BasketModal;
 import io.qameta.allure.Step;
-import com.ss.ita.rozetka.pageobject.elements.Header;
 import org.apache.commons.lang3.StringUtils;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class ProductPage extends HeaderPage {
 
@@ -16,12 +16,9 @@ public class ProductPage extends HeaderPage {
     }
 
     @Step("ProductPage: add product to basket")
-    public BasketModal addProductToBasket() {
-        actions()
-                .moveToElement($x("//button[contains(@class,'buy-button button button_')]"))
-                .click()
-                .perform();
-        return new BasketModal();
+    public BasketModal<ProductPage> addProductToBasket() {
+        $x("//button[contains(@class,'buy-button button button_')]").click();
+        return new BasketModal<ProductPage>(this);
     }
 
     @Step("ProductPage: add product to comparison")

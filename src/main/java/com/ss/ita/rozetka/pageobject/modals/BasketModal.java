@@ -1,42 +1,93 @@
 package com.ss.ita.rozetka.pageobject.modals;
 
-import com.codeborne.selenide.ElementsCollection;
-import com.ss.ita.rozetka.pageobject.pages.*;
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.SelenideElement;
+import com.ss.ita.rozetka.pageobject.pages.OrderingPage;
 import io.qameta.allure.Step;
 
+import java.util.List;
+
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
-public class BasketModal {
+public class BasketModal<T> {
+    // This template should only be used in String.format()
+    // with product name as a second argument
+    private static final String PRODUCT_XPATH_TEMPLATE_FOR_TITLE = "//single-modal-window//li[contains(., '%s')]";
+    private final T pageObject;
 
-    @Step("BasketModal: continue buying products")
-    public ProductPage continueBuying() {
-        $x("//a[contains(@class,'button button_size_medium ')]").click();
-        return new ProductPage();
+    public BasketModal(T pageObject) {
+        this.pageObject = pageObject;
     }
 
-    @Step("BasketModal: order products you choose")
-    public OrderingPage orderProducts() {
+    @Step("BasketModal: order products added to basket")
+    public OrderingPage openOrderingPage() {
         $x("//a[contains(@class, 'cart-receipt__submit')]").click();
         return new OrderingPage();
     }
 
-    @Step("BasketModal: get total products price with currency")
-    public String getTotalProductsPriceWithCurrency() {
-        return $x("//div[contains(@class,'sum-price')]").getAttribute("textContent");
+    @Step("BasketModal: get products total price")
+    public int getProductsTotalPrice() {
+        String sum = $x("//div[contains(@class,'sum-price')]//span[1]").text();
+        return Integer.parseInt(sum);
     }
 
-    @Step("BasketModal: get total products price")
-    public int getTotalProductsPrice() {
-        return Integer.parseInt(getTotalProductsPriceWithCurrency().replaceAll("\\D", ""));
+    @Step("BasketModal: get the basket emptiness status")
+    public boolean isEmpty() {
+        return $(".cart-dummy").is(exist);
     }
 
-    @Step("BasketModal: get basket status")
-    public boolean isBasketEmpty() {
-        return getProductsList().isEmpty();
+    @Step("BasketModal: get product titles")
+    public List<String> getProductTitles() {
+        return $$("li.cart-list__item a.cart-product__title")
+                .shouldHave(CollectionCondition.sizeGreaterThan(0))
+                .texts();
     }
 
-    @Step("BasketModal: get all products")
-    private ElementsCollection getProductsList() {
-        return $$x("//li[contains(@class, 'cart-list__item')]");
+    @Step("BasketModal: set count for product with title {productTitle} to {count}")
+    public BasketModal<T> setProductCount(String productTitle, int count) {
+        int totalPrice = getProductsTotalPrice();
+
+        String countFieldXpath = String.format(
+                PRODUCT_XPATH_TEMPLATE_FOR_TITLE + "//input[contains(@class, 'cart-counter__input')]", productTitle);
+        SelenideElement countField = $x(countFieldXpath);
+
+        if (String.valueOf(count).equals(countField.attr("value"))) {
+            return this;
+        }
+
+        countField.clear();
+        countField.sendKeys(String.valueOf(count));
+
+        waitForTotalPriceToUpdate(totalPrice);
+        return this;
+    }
+
+    @Step("BasketModal: waiting for price to change from {totalPriceBefore}")
+    private void waitForTotalPriceToUpdate(int totalPriceBefore) {
+        SelenideElement totalPriceSpan = $x("//div[@class='cart-receipt__sum-price']/span[1]");
+        if (totalPriceSpan.is(exist)) {
+            totalPriceSpan.shouldNotHave(text(String.valueOf(totalPriceBefore)));
+        }
+    }
+
+    @Step("BasketModal: remove product with title {productTitle}")
+    public BasketModal<T> removeProduct(String productTitle) {
+        int totalPrice = getProductsTotalPrice();
+
+        String productActionsXpath = String.format(
+                PRODUCT_XPATH_TEMPLATE_FOR_TITLE + "//button[contains(@id, 'cartProductActions')]", productTitle);
+        $x(productActionsXpath).click();
+        $x("//rz-trash-icon/button").click();
+
+        waitForTotalPriceToUpdate(totalPrice);
+        return this;
+    }
+
+    @Step("BasketModal: close basket window")
+    public T close() {
+        $x("//button[contains(@class, 'modal__close')]").click();
+        return pageObject;
     }
 }

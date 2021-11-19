@@ -25,7 +25,7 @@ public class OrderingProductsTest extends TestRunner {
 
         OrderingPage orderingPage = productPage
                 .addProductToBasket()
-                .orderProducts();
+                .openOrderingPage();
 
         assertThat(orderingPage.isOrderingPageOpened())
                 .as("OrderingPage should be opened")
