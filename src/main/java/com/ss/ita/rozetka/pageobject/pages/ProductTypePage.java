@@ -6,6 +6,7 @@ import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;

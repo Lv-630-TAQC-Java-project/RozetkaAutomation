@@ -1,7 +1,9 @@
 package com.ss.ita.rozetka.test;
 
+import com.ss.ita.rozetka.pageobject.pages.HomePage;
+import com.ss.ita.rozetka.pageobject.pages.OrderingPage;
+import com.ss.ita.rozetka.pageobject.pages.ProductPage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
-import com.ss.ita.rozetka.pageobject.pages.*;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
