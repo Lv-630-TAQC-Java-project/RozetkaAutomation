@@ -2,13 +2,11 @@ package com.ss.ita.rozetka.test;
 
 import com.ss.ita.rozetka.pageobject.pages.ProductCategoryPage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
-import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
-import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
+import com.ss.ita.rozetka.pageobject.product.*;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import org.testng.annotations.Test;
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
