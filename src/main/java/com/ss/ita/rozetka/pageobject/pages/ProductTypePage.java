@@ -2,7 +2,6 @@ package com.ss.ita.rozetka.pageobject.pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import com.ss.ita.rozetka.pageobject.pages.HeaderPage;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
@@ -73,8 +72,8 @@ public class ProductTypePage extends HeaderPage {
         return this;
     }
 
-    @Step("ProductTypePage: get products list prices")
-    public List<BigDecimal> getProductsListPrices() {
+    @Step("ProductTypePage: get product prices list")
+    public List<BigDecimal> getProductPricesList() {
         return $$x("//span[contains(@class, 'goods-tile__price-value')]")
                 .shouldBe(CollectionCondition.sizeLessThanOrEqual(60))
                 .texts()
