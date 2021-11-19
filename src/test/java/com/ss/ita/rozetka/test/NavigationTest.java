@@ -1,4 +1,4 @@
-package com.ss.ita.rozetka.ui;
+package com.ss.ita.rozetka.test;
 
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductCategoryPage;
