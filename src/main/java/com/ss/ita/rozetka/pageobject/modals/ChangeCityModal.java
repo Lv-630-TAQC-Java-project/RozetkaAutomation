@@ -4,7 +4,8 @@ import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.page;
 import static java.lang.String.format;
 
 public class ChangeCityModal {

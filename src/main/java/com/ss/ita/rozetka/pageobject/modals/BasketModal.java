@@ -1,8 +1,8 @@
 package com.ss.ita.rozetka.pageobject.modals;
 
-import com.ss.ita.rozetka.pageobject.pages.*;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
+import com.ss.ita.rozetka.pageobject.pages.OrderingPage;
 import io.qameta.allure.Step;
 
 import java.util.List;

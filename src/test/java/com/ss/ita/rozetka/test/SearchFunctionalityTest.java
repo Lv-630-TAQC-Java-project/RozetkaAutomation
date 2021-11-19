@@ -1,10 +1,9 @@
 package com.ss.ita.rozetka.test;
 
+import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
-import com.ss.ita.rozetka.pageobject.elements.Header;
-
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,7 +23,7 @@ public class SearchFunctionalityTest extends TestRunner {
                 .as("Product should have Xiaomi in title")
                 .contains(searchProduct);
     }
-  
+
     @Test
     public void verifySearchHistoryText() {
         Header header = new HomePage()

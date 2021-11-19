@@ -1,14 +1,11 @@
 package com.ss.ita.rozetka.pageobject.pages;
 
-import com.codeborne.selenide.Condition;
-import com.ss.ita.rozetka.pageobject.pages.HeaderPage;
-import com.ss.ita.rozetka.pageobject.pages.ProductPage;
-import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
+import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Selenide.$$x;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
 public class ProductTypePage extends HeaderPage {
@@ -41,7 +38,7 @@ public class ProductTypePage extends HeaderPage {
                 .shouldHave(CollectionCondition.sizeGreaterThan(1))
                 .size();
     }
-  
+
     @Step("ProductPage: get product type page visibility status by locating page heading")
     public Boolean isOpened() {
         return $x("//h1[@class = 'catalog-heading ng-star-inserted']").is(Condition.visible);

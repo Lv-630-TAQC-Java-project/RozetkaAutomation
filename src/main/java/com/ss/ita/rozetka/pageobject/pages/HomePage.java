@@ -27,7 +27,7 @@ public class HomePage extends HeaderPage {
     public String getGreetingsText() {
         return $("h3.main-auth__heading").getText();
     }
-  
+
     @Step("HomePage: get home page visibility status by locating slider")
     public boolean isOpened() {
         return $x("//div[@class = 'simple-slider__holder']").is(Condition.visible);
@@ -39,7 +39,7 @@ public class HomePage extends HeaderPage {
     }
 
     @Step("HomePage: get display status main menu categories")
-    public boolean isMainMenuCategoriesDisplayed(){
+    public boolean isMainMenuCategoriesDisplayed() {
         return $x("//ul[@class='menu-categories menu-categories_type_main']").isDisplayed();
     }
 }
