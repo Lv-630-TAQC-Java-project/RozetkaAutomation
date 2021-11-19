@@ -11,6 +11,7 @@ import java.util.List;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
+import static java.lang.String.format;
 
 public class BasketModal<T> {
     // This template should only be used in String.format()
@@ -50,7 +51,7 @@ public class BasketModal<T> {
     public BasketModal<T> setProductCount(String productTitle, int count) {
         int totalPrice = getProductsTotalPrice();
 
-        String countFieldXpath = String.format(
+        String countFieldXpath = format(
                 PRODUCT_XPATH_TEMPLATE_FOR_TITLE + "//input[contains(@class, 'cart-counter__input')]", productTitle);
         SelenideElement countField = $x(countFieldXpath);
 
@@ -77,7 +78,7 @@ public class BasketModal<T> {
     public BasketModal<T> removeProduct(String productTitle) {
         int totalPrice = getProductsTotalPrice();
 
-        String productActionsXpath = String.format(
+        String productActionsXpath = format(
                 PRODUCT_XPATH_TEMPLATE_FOR_TITLE + "//button[contains(@id, 'cartProductActions')]", productTitle);
         $x(productActionsXpath).click();
         $x("//rz-trash-icon/button").click();
