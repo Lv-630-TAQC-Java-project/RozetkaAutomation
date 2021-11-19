@@ -26,7 +26,7 @@ public class OrderingProductsTest extends TestRunner {
         OrderingPage orderingPage = productPage
                 .addProductToBasket()
                 .orderProducts()
-                .sidebarShouldBeVisible();
+                .orderingPageShouldBeOpened();
 
         int totalPrice = orderingPage.getTotalProductsPrice();
         String orderingProductTitle = orderingPage.getProductTitle();

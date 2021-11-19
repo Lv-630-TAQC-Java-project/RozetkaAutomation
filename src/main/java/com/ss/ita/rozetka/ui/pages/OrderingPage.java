@@ -16,8 +16,8 @@ public class OrderingPage {
                 .replaceAll("[^0-9]", StringUtils.EMPTY));
     }
 
-    @Step("OrderingPage: get sidebar status, assert in test")
-    public OrderingPage sidebarShouldBeVisible() {
+    @Step("OrderingPage: get ordering page status, assert in test")
+    public OrderingPage orderingPageShouldBeOpened() {
         $x("//div[@class = 'checkout-sidebar ng-star-inserted']").shouldBe(Condition.visible);
         return this;
     }
