@@ -7,6 +7,7 @@ import static java.lang.String.format;
 
 @RequiredArgsConstructor
 public enum GeneralProductCategory {
+
     NOTEBOOKS_AND_COMPUTERS("computers-notebooks"),
     PRODUCTS_FOR_HOUSE("tovary-dlya-doma"),
     HOUSEHOLD_APPLIANCES("bt"),
