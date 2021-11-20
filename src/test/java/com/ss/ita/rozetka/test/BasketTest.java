@@ -5,18 +5,19 @@ import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
+import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BasketTest {
+public class BasketTest extends TestRunner {
     @Test
     public void verifyAddProductFunctionality() {
         ProductTypePage productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
-                .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS);
+                .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY);
 
         assertThat(getCurrentUrl())
                 .as("Notebooks subcategory page should be opened")
