@@ -3,6 +3,7 @@ package com.ss.ita.rozetka.test;
 import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
+import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
@@ -10,7 +11,7 @@ import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategor
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ComparisonTest {
+public class ComparisonTest extends TestRunner {
 
     @Test
     public void verifyAddingProductToComparison() {
