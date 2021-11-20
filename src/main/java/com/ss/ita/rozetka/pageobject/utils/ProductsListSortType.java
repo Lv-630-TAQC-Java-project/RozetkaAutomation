@@ -1,5 +1,9 @@
 package com.ss.ita.rozetka.pageobject.utils;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public enum ProductsListSortType {
     CHEAP_TO_EXPENSIVE("cheap to expensive", "1: cheap"),
     EXPENSIVE_TO_CHEAP("expensive to cheap", "2: expensive"),
@@ -8,17 +12,9 @@ public enum ProductsListSortType {
     ACTION("Action", "5: action"),
     BY_RANK("by rank", "6: rank");
 
-    private String nameForReport;
-    private String xPathValue;
-
-    ProductsListSortType(String nameForReport, String xPathValue) {
-        this.nameForReport = nameForReport;
-        this.xPathValue = xPathValue;
-    }
-
-    public String getXPathValue() {
-        return xPathValue;
-    }
+    private final String nameForReport;
+    @Getter
+    private final String xPathValue;
 
     @Override
     public String toString() {
