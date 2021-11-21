@@ -37,4 +37,12 @@ public class ProductPage extends HeaderPage {
     public String getName() {
         return $x("//h1[@class = 'product__title']").text();
     }
+
+    @Step("ProductPage: open {number}-th related product")
+    public ProductPage openRelatedProductPage(int number) {
+        String xpathTemplate =
+                "//section[contains(@class,'product-related')]//li[contains(@class,'simple-slider__item')][%d]";
+        $x(String.format(xpathTemplate, number)).click();
+        return this;
+    }
 }
