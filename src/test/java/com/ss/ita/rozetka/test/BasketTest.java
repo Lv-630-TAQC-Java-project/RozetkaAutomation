@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BasketTest extends TestRunner {
     @Test
-    public void verifyProductCountChangesAndProductRemoves(){
+    public void verifyProductCountChangesAndProductRemoves() {
         BasketModal<ProductPage> basket = new HomePage()
                 .open()
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
@@ -74,7 +74,7 @@ public class BasketTest extends TestRunner {
     }
 
     @AfterMethod
-    public void closeBrowser(){
+    public void closeBrowser() {
         Selenide.closeWebDriver();
     }
 }
