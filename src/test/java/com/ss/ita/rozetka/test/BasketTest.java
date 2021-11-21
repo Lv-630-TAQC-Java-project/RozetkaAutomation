@@ -1,6 +1,5 @@
 package com.ss.ita.rozetka.test;
 
-import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.modals.BasketModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductPage;
@@ -15,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BasketTest extends TestRunner {
     @Test
-    public void verifyTotalPriceOfTwoProductsIsCorrect(){
+    public void verifyTotalPriceOfTwoProductsIsCorrect() {
         ProductPage firstProductPage = new HomePage()
                 .open()
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
