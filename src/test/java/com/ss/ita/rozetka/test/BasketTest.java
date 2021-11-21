@@ -16,17 +16,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BasketTest extends TestRunner {
     @Test
     public void verifyTotalPriceOfTwoProductsIsCorrect(){
-        HomePage homePage = new HomePage().open();
-        
-        ProductPage firstProductPage = homePage
+        ProductPage firstProductPage = new HomePage()
+                .open()
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY)
                 .openProductPage(1);
         int firstProductPrice = firstProductPage.getPrice();
 
-        firstProductPage.addProductToBasket().close();
-
         ProductPage secondProductPage = firstProductPage
+                .addProductToBasket()
+                .close()
                 .openRelatedProductPage(1);
         int secondProductPrice = secondProductPage.getPrice();
 
