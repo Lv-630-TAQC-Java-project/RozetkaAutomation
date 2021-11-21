@@ -40,9 +40,9 @@ public class ProductPage extends HeaderPage {
 
     @Step("ProductPage: open {number}-th related product")
     public ProductPage openRelatedProductPage(int number) {
-        String xpathTemplate =
+        String relatedProductXpathTemplate =
                 "//section[contains(@class,'product-related')]//li[contains(@class,'simple-slider__item')][%d]";
-        $x(String.format(xpathTemplate, number)).click();
+        $x(String.format(relatedProductXpathTemplate, number)).click();
         return this;
     }
 }
