@@ -16,10 +16,14 @@ public class ProductCategoryPage extends HeaderPage {
     }
 
     @Step("ProductCategoryPage: get product category page visibility status by locating page heading")
-    public Boolean isOpened() {
-        return $x("//h1[@class = 'portal__heading ng-star-inserted']")
-                .shouldBe(Condition.exist)
-                .is(Condition.visible);
+    public boolean isOpened() {
+        try {
+            return $x("//h1[@class = 'portal__heading ng-star-inserted']")
+                    .should(Condition.exist)
+                    .is(Condition.visible);
+        } catch (AssertionError exception) {
+            return false;
+        }
     }
 }
 

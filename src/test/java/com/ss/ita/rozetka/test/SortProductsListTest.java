@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.test;
 
+import com.google.common.collect.Ordering;
 import com.ss.ita.rozetka.pageobject.pages.ProductCategoryPage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.product.*;
@@ -36,13 +37,11 @@ public class SortProductsListTest extends TestRunner {
         assertThat(productTypePage.isOpened())
                 .as("Product type page by number products list should be opened")
                 .isTrue();
-        List<BigDecimal> actualProductsListPrices = productTypePage.getProductPricesList();
-        List<BigDecimal> expectedProductsListPrices = actualProductsListPrices
-                .stream()
-                .sorted()
-                .collect(Collectors.toList());
-        assertThat(actualProductsListPrices)
+        boolean isProductsListPricesSorted = Ordering
+                .natural()
+                .isOrdered(productTypePage.getProductPricesList());
+        assertThat(isProductsListPricesSorted)
                 .as("Product prices list should be sorted")
-                .isEqualTo(expectedProductsListPrices);
+                .isTrue();
     }
 }

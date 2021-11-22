@@ -6,6 +6,7 @@ import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
+import org.testng.asserts.Assertion;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -46,10 +47,14 @@ public class ProductTypePage extends HeaderPage {
     }
 
     @Step("ProductPage: get product type page visibility status by locating page heading")
-    public Boolean isOpened() {
-        return $x("//h1[@class = 'catalog-heading ng-star-inserted']")
-                .shouldBe(Condition.exist)
-                .is(Condition.visible);
+    public boolean isOpened() {
+        try {
+            return $x("//h1[@class = 'catalog-heading ng-star-inserted']")
+                    .should(Condition.exist)
+                    .is(Condition.visible);
+        } catch (AssertionError exception) {
+            return false;
+        }
     }
 
     @Step("ProductTypePage: get display status select sorting type")
