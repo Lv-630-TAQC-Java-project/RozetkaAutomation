@@ -22,14 +22,14 @@ public class BasketTest extends TestRunner {
                 .openProductPage(1);
         int productPrice = productPage.getPrice();
 
-        ProductPage secondProductPage = productPage
+        ProductPage relatedProductPage = productPage
                 .addProductToBasket()
                 .close()
                 .openRelatedProduct(1);
-        int relatedProductPrice = secondProductPage.getPrice();
+        int relatedProductPrice = relatedProductPage.getPrice();
 
         int expectedTotalPrice = productPrice + relatedProductPrice;
-        int actualTotalPrice = secondProductPage
+        int actualTotalPrice = relatedProductPage
                 .addProductToBasket()
                 .getProductsTotalPrice();
 
