@@ -8,6 +8,8 @@ public enum ProductCategoryAndSubCategory {
     GARDEN_EQUIP_CATEGORY("sadoviy-inventar"),
     BIG_HOUSEHOLD_APPLIANCES_CATEGORY("bigbt"),
     KITCHEN_APPLIANCES_CATEGORY("tehnika-dlya-kuhni"),
+    TV_ACCESSORIES_CATEGORY("c80015"), //specific
+    SPA_POOLS_CATEGORY("spa-basseyni"),
 
     TRIMMERS_SUBCATEGORY("trimmers");
 
