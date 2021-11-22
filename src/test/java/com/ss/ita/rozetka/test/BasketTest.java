@@ -15,20 +15,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BasketTest extends TestRunner {
     @Test
     public void verifyTotalPriceOfTwoProductsIsCorrect() {
-        ProductPage firstProductPage = new HomePage()
+        ProductPage productPage = new HomePage()
                 .open()
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY)
                 .openProductPage(1);
-        int firstProductPrice = firstProductPage.getPrice();
+        int productPrice = productPage.getPrice();
 
-        ProductPage secondProductPage = firstProductPage
+        ProductPage secondProductPage = productPage
                 .addProductToBasket()
                 .close()
-                .openRelatedProductPage(1);
-        int secondProductPrice = secondProductPage.getPrice();
+                .openRelatedProduct(1);
+        int relatedProductPrice = secondProductPage.getPrice();
 
-        int expectedTotalPrice = firstProductPrice + secondProductPrice;
+        int expectedTotalPrice = productPrice + relatedProductPrice;
         int actualTotalPrice = secondProductPage
                 .addProductToBasket()
                 .getProductsTotalPrice();
