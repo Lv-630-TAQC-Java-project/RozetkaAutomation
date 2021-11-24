@@ -1,6 +1,8 @@
 package com.ss.ita.rozetka.test;
 
+import com.ss.ita.rozetka.pageobject.modals.BasketModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
+import com.ss.ita.rozetka.pageobject.pages.ProductPage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import org.testng.annotations.Test;
@@ -13,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class FilterFunctionalityTest extends TestRunner {
 
     @Test
-    public void verifyUserCanFilterProducts() {
+    public void verifyUserCanFilterProducts() throws InterruptedException {
         ProductTypePage productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
@@ -34,10 +36,23 @@ public class FilterFunctionalityTest extends TestRunner {
                 .as("Title should be Samsung")
                 .contains(company);
 
-        assertThat(productTypePage
-                .openProductPage(1)
+        ProductPage productPage = productTypePage.openProductPage(1);
+
+        assertThat(productPage
                 .getProductCharacteristics())
                 .as("In characteristics should be 1920 x 1080 resolution")
                 .contains("1920 x 1080");
+
+        BasketModal<ProductPage> basket = productPage.addProductToBasket();
+
+        int totalPriceWithoutOptions = basket.getProductsTotalPrice();
+
+        basket.addAdditionalServices();
+
+        int totalPriceWithOptions = basket.getProductsTotalPrice();
+
+        assertThat(totalPriceWithoutOptions)
+                .as("Total price should be changed")
+                .isLessThan(totalPriceWithOptions);
     }
 }

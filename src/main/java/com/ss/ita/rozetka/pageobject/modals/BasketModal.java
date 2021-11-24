@@ -93,6 +93,14 @@ public class BasketModal<T> {
         return pageObject;
     }
 
+    public BasketModal<T> addAdditionalServices() {
+        int totalPrice = getProductsTotalPrice();
+
+        $("div > label").click();
+        waitForTotalPriceToUpdate(totalPrice);
+        return this;
+    }
+
     @Step("BasketModal: increase amount on {numberOfProducts} product(s)")
     public BasketModal increaseAmountOfProduct(int productNumber, int increaseNumber) {
         int specificNumber = increaseNumber + 1;
