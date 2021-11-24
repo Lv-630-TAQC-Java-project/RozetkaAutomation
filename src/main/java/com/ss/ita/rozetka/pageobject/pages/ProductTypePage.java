@@ -17,9 +17,6 @@ import static java.lang.String.format;
 
 public class ProductTypePage extends HeaderPage {
 
-    private List<Product> productsList;
-    private Product productItem;
-
     @Step("ProductTypePage: open product page by product number {productNumber}")
     public ProductPage openProductPage(int productNumber) {
         $$x("//li[contains(@class,'catalog-grid')]").get(productNumber).click();
@@ -88,6 +85,7 @@ public class ProductTypePage extends HeaderPage {
                 .collect(Collectors.toList());
     }
 
+    @Step("ProductTypePage: get product by number {numberProduct}")
     public Product getProduct(int numberProduct) {
         return new Product(String.format(("(//div[@class='goods-tile__inner'])[%s]"), numberProduct));
     }
