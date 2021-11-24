@@ -13,7 +13,8 @@ public enum ProductCategoryAndSubCategory {
     GARDEN_EQUIP_CATEGORY("sadoviy-inventar"),
     BIG_HOUSEHOLD_APPLIANCES_CATEGORY("bigbt"),
     KITCHEN_APPLIANCES_CATEGORY("tehnika-dlya-kuhni"),
-    TRIMMERS_SUBCATEGORY("trimmers");
+    TRIMMERS_SUBCATEGORY("trimmers"),
+    MOBILE_PHONES_CATEGORY("mobile-phones");
 
     @Getter
     private final String name;

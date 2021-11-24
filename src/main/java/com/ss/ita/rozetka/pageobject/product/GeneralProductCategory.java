@@ -11,7 +11,8 @@ public enum GeneralProductCategory {
     NOTEBOOKS_AND_COMPUTERS("computers-notebooks"),
     PRODUCTS_FOR_HOUSE("tovary-dlya-doma"),
     HOUSEHOLD_APPLIANCES("bt"),
-    COTTAGE_GARDEN_BACKYARD("dacha-sad-ogorod");
+    COTTAGE_GARDEN_BACKYARD("dacha-sad-ogorod"),
+    SMARTPHONE_TV_ELECTRONICS("telefony-tv-i-ehlektronika");
 
     @Getter
     private final String name;

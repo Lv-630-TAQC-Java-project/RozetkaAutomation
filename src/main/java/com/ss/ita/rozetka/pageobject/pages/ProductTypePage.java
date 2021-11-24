@@ -2,6 +2,7 @@ package com.ss.ita.rozetka.pageobject.pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
@@ -15,6 +16,9 @@ import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
 public class ProductTypePage extends HeaderPage {
+
+    private List<Product> productsList;
+    private Product productItem;
 
     @Step("ProductTypePage: open product page by product number {productNumber}")
     public ProductPage openProductPage(int productNumber) {
@@ -82,5 +86,9 @@ public class ProductTypePage extends HeaderPage {
                 .map(price -> price.replaceAll(" ", StringUtils.EMPTY))
                 .map(price -> new BigDecimal(price))
                 .collect(Collectors.toList());
+    }
+
+    public Product getProduct(int numberProduct) {
+        return new Product(String.format(("(//div[@class='goods-tile__inner'])[%s]"), numberProduct));
     }
 }
