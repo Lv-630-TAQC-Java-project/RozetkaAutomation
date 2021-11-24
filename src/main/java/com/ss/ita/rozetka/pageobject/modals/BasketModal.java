@@ -93,6 +93,7 @@ public class BasketModal<T> {
         return pageObject;
     }
 
+    @Step("BasketModal: Add additional services")
     public BasketModal<T> addAdditionalServices() {
         int totalPrice = getProductsTotalPrice();
 
