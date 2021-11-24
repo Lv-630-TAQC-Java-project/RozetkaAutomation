@@ -8,7 +8,7 @@ import static java.lang.String.format;
 @RequiredArgsConstructor
 public enum ProductCategoryAndSubCategory {
 
-    NOTEBOOKS_CATEGORY("notebooks/c80004"),
+    NOTEBOOKS_CATEGORY("c80004"),
     GARDEN_TECH_CATEGORY("garden_tech"),
     GARDEN_EQUIP_CATEGORY("sadoviy-inventar"),
     BIG_HOUSEHOLD_APPLIANCES_CATEGORY("bigbt"),
