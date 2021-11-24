@@ -14,13 +14,13 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class FilterStack {
-    private static final String DATA_FILTER_TEMPLATE_FOR_NAME = "//rz-filter-stack/div[@data-filter-name='%s']";
-    private static final By MIN_PRICE_FIELD_LOCATOR = By.xpath("//rz-filter-stack//input[@formcontrolname='min']");
-    private static final By MAX_PRICE_FIELD_LOCATOR = By.xpath("//rz-filter-stack//input[@formcontrolname='max']");
+    private static final String FILTER_TEMPLATE_FOR_NAME = "//rz-filter-stack/div[@data-filter-name='%s']";
+    private static final By MIN_PRICE_FIELD = By.xpath("//rz-filter-stack//input[@formcontrolname='min']");
+    private static final By MAX_PRICE_FIELD = By.xpath("//rz-filter-stack//input[@formcontrolname='max']");
     private static final By PRICE_OK_BUTTON = By.xpath("//rz-filter-slider//fieldset//button");
 
     public Filter getFilter(String filterName) {
-        String filterXpath = String.format(DATA_FILTER_TEMPLATE_FOR_NAME, filterName);
+        String filterXpath = String.format(FILTER_TEMPLATE_FOR_NAME, filterName);
         $x(filterXpath).should(exist);
         return new Filter(filterXpath);
     }
@@ -37,7 +37,7 @@ public class FilterStack {
     }
 
     public int getMinPrice() {
-        String minPrice = $(MIN_PRICE_FIELD_LOCATOR).getAttribute("value");
+        String minPrice = $(MIN_PRICE_FIELD).getAttribute("value");
         if (minPrice == null) {
             return 0;
         } else {
@@ -46,7 +46,7 @@ public class FilterStack {
     }
 
     public FilterStack setMinPrice(int minPrice) {
-        SelenideElement minPriceField = $(MIN_PRICE_FIELD_LOCATOR);
+        SelenideElement minPriceField = $(MIN_PRICE_FIELD);
         minPriceField.click();
         minPriceField.clear();
         minPriceField.sendKeys(String.valueOf(minPrice));
@@ -54,7 +54,7 @@ public class FilterStack {
     }
 
     public int getMaxPrice() {
-        String maxPrice = $(MAX_PRICE_FIELD_LOCATOR).getAttribute("value");
+        String maxPrice = $(MAX_PRICE_FIELD).getAttribute("value");
         if (maxPrice == null) {
             return 0;
         } else {
@@ -63,7 +63,7 @@ public class FilterStack {
     }
 
     public FilterStack setMaxPrice(int maxPrice) {
-        SelenideElement minPriceField = $(MAX_PRICE_FIELD_LOCATOR);
+        SelenideElement minPriceField = $(MAX_PRICE_FIELD);
         minPriceField.click();
         minPriceField.clear();
         minPriceField.sendKeys(String.valueOf(maxPrice));
