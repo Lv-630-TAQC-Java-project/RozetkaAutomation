@@ -9,7 +9,6 @@ import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -94,8 +93,4 @@ public class ProductTypePage extends HeaderPage {
 
         return new ProductTypePage();
     }
-
-//    public Boolean waitForFilterChecked(String parameter) {
-//        return $(String.format("label[for='%s']", parameter)).isSelected();
-//    }
 }
