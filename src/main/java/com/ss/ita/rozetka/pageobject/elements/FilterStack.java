@@ -19,10 +19,10 @@ public class FilterStack {
     private static final By MAX_PRICE_FIELD_LOCATOR = By.xpath("//rz-filter-stack//input[@formcontrolname='max']");
     private static final By PRICE_OK_BUTTON = By.xpath("//rz-filter-slider//fieldset//button");
 
-    public Filter getFilter(String dataFilterName) {
-        String dataFilterXpath = String.format(DATA_FILTER_TEMPLATE_FOR_NAME, dataFilterName);
-        $x(dataFilterXpath).should(exist);
-        return new Filter(dataFilterXpath);
+    public Filter getFilter(String filterName) {
+        String filterXpath = String.format(DATA_FILTER_TEMPLATE_FOR_NAME, filterName);
+        $x(filterXpath).should(exist);
+        return new Filter(filterXpath);
     }
 
     public Filter getFilter(FilterName filterName) {
@@ -37,9 +37,12 @@ public class FilterStack {
     }
 
     public int getMinPrice() {
-        return Integer.parseInt(
-                $(MIN_PRICE_FIELD_LOCATOR).getAttribute("value")
-        );
+        String minPrice = $(MIN_PRICE_FIELD_LOCATOR).getAttribute("value");
+        if (minPrice == null) {
+            return 0;
+        } else {
+            return Integer.parseInt(minPrice);
+        }
     }
 
     public FilterStack setMinPrice(int minPrice) {
@@ -51,9 +54,12 @@ public class FilterStack {
     }
 
     public int getMaxPrice() {
-        return Integer.parseInt(
-                $(MAX_PRICE_FIELD_LOCATOR).getAttribute("value")
-        );
+        String maxPrice = $(MAX_PRICE_FIELD_LOCATOR).getAttribute("value");
+        if (maxPrice == null) {
+            return 0;
+        } else {
+            return Integer.parseInt(maxPrice);
+        }
     }
 
     public FilterStack setMaxPrice(int maxPrice) {
@@ -73,8 +79,6 @@ public class FilterStack {
         return this;
     }
 
-    // TODO price bounds methods
-
     @ToString
     @RequiredArgsConstructor
     public enum FilterName {
@@ -90,46 +94,44 @@ public class FilterStack {
     }
 
     public static class Filter {
-        private final String dataFilterXpath;
+        private final String filterXpath;
 
-        private Filter(String dataFilterXpath) {
-            this.dataFilterXpath = dataFilterXpath;
+        private Filter(String filterXpath) {
+            this.filterXpath = filterXpath;
         }
 
         public boolean isOpened() {
-            return $x(dataFilterXpath + "//rz-filter-checkbox").is(visible);
+            return $x(filterXpath + "//rz-filter-checkbox").is(visible);
         }
 
         public Filter toggleBlock() {
-            $x(dataFilterXpath + "//button[contains(@class,'sidebar-block__toggle')]/span")
-                    //.shouldBe(clickable)
-                    .click();
+            $x(filterXpath + "//button[contains(@class,'sidebar-block__toggle')]/span").click();
             return this;
         }
 
         public String getTitle() {
-            return $x(dataFilterXpath + "//span[@class='sidebar-block__toggle-title']")
+            return $x(filterXpath + "//span[@class='sidebar-block__toggle-title']")
                     .text()
                     .replaceAll("\\d", "")
                     .trim();
         }
 
         public List<String> getOptionNames() {
-            return $$x(dataFilterXpath + "//input[@class='custom-checkbox']")
+            return $$x(filterXpath + "//input[@class='custom-checkbox']")
                     .stream()
                     .map(element -> element.getAttribute("id"))
                     .collect(Collectors.toList());
         }
 
         public Filter selectOption(String optionName) {
-            String optionXpath = String.format(dataFilterXpath + "//input[@id='%s']/parent::a", optionName);
+            String optionXpath = String.format(filterXpath + "//input[@id='%s']/parent::a", optionName);
             $x(optionXpath).click();
             return this;
         }
 
         public int getOptionQuantity(String optionName) {
             String optionQuantityXpath =
-                    String.format(dataFilterXpath + "//label[@for='%s']/span", optionName);
+                    String.format(filterXpath + "//label[@for='%s']/span", optionName);
 
             return Integer.parseInt(
                     $x(optionQuantityXpath)
