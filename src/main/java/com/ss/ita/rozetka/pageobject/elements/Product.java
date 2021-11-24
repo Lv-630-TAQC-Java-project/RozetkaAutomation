@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.pageobject.elements;
 
+import io.qameta.allure.Step;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -18,19 +19,20 @@ public class Product {
     private final String xPath;
     private String promoLabelTitle;
     private String productTitle;
-    private BigDecimal oldProductPrice;
+    private BigDecimal productOldPrice;
     private BigDecimal productPrice;
     private List<String> availableColors;
     private String availability;
     private int amountReviews;
     private String productDescription;
 
-
+    @Step("Product: get product title")
     public String getProductTitle() {
         productTitle = $x(String.format("%s%s", xPath, "//span[@class='goods-tile__title']")).text();
         return productTitle;
     }
 
+    @Step("Product: get promo label title")
     public String getPromoLabelTitle() {
         try {
             promoLabelTitle = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__label')]")).text();
@@ -40,6 +42,7 @@ public class Product {
         return promoLabelTitle;
     }
 
+    @Step("Product: get available colors")
     public List<String> getAvailableColors() {
         try {
             availableColors = $$x(String.format("%s%s", xPath, "//span[@class='goods-tile__colors-content']"))
@@ -52,18 +55,20 @@ public class Product {
         return availableColors;
     }
 
-    public BigDecimal getOldProductPrice() {
+    @Step("Product: get product old price")
+    public BigDecimal getProductOldPrice() {
         try {
             String oldPriceString = $x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__price--old')]"))
                     .text()
                     .replaceAll("\\D", StringUtils.EMPTY);
-            oldProductPrice = new BigDecimal(oldPriceString);
+            productOldPrice = new BigDecimal(oldPriceString);
         } catch (AssertionError exception) {
-            oldProductPrice = BigDecimal.ZERO;
+            productOldPrice = BigDecimal.ZERO;
         }
-        return oldProductPrice;
+        return productOldPrice;
     }
 
+    @Step("Product: get product price")
     public BigDecimal getProductPrice() {
         try {
             String price = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__price-value')]"))
@@ -76,6 +81,7 @@ public class Product {
         return productPrice;
     }
 
+    @Step("Product: get product availability")
     public String getAvailability() {
         try {
             availability = $x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__availability')]")).text();
@@ -85,6 +91,7 @@ public class Product {
         return availability;
     }
 
+    @Step("Product: get amount reviews")
     public int getAmountReviews() {
         try {
             amountReviews = Integer.parseInt($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__reviews-link')]"))
@@ -96,6 +103,7 @@ public class Product {
         return amountReviews;
     }
 
+    @Step("Product: get product description")
     public String getProductDescription() {
         try {
             actions().moveToElement($x(xPath)).perform();
