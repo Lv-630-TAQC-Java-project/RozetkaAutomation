@@ -42,18 +42,18 @@ public class FilterStack {
         );
     }
 
-    public int getMaxPrice() {
-        return Integer.parseInt(
-                $(MAX_PRICE_FIELD_LOCATOR).getAttribute("value")
-        );
-    }
-
     public FilterStack setMinPrice(int minPrice) {
         SelenideElement minPriceField = $(MIN_PRICE_FIELD_LOCATOR);
         minPriceField.click();
         minPriceField.clear();
         minPriceField.sendKeys(String.valueOf(minPrice));
         return this;
+    }
+
+    public int getMaxPrice() {
+        return Integer.parseInt(
+                $(MAX_PRICE_FIELD_LOCATOR).getAttribute("value")
+        );
     }
 
     public FilterStack setMaxPrice(int maxPrice) {
@@ -64,11 +64,11 @@ public class FilterStack {
         return this;
     }
 
-    public boolean isPriceOK(){
+    public boolean isPriceOK() {
         return $(PRICE_OK_BUTTON).isEnabled();
     }
 
-    public FilterStack doFilterByPrice(){
+    public FilterStack doFilterByPrice() {
         $(PRICE_OK_BUTTON).click();
         return this;
     }
@@ -89,10 +89,10 @@ public class FilterStack {
         private final String name;
     }
 
-    private static class Filter {
+    public static class Filter {
         private final String dataFilterXpath;
 
-        public Filter(String dataFilterXpath) {
+        private Filter(String dataFilterXpath) {
             this.dataFilterXpath = dataFilterXpath;
         }
 
@@ -101,7 +101,9 @@ public class FilterStack {
         }
 
         public Filter toggleBlock() {
-            $x(dataFilterXpath + "//button[contains(@class,'sidebar-block__toggle')]").click();
+            $x(dataFilterXpath + "//button[contains(@class,'sidebar-block__toggle')]/span")
+                    //.shouldBe(clickable)
+                    .click();
             return this;
         }
 
@@ -113,8 +115,10 @@ public class FilterStack {
         }
 
         public List<String> getOptionNames() {
-
-            return null;
+            return $$x(dataFilterXpath + "//input[@class='custom-checkbox']")
+                    .stream()
+                    .map(element -> element.getAttribute("id"))
+                    .collect(Collectors.toList());
         }
 
         public Filter selectOption(String optionName) {
@@ -125,12 +129,13 @@ public class FilterStack {
 
         public int getOptionQuantity(String optionName) {
             String optionQuantityXpath =
-                    String.format(dataFilterXpath + "//label[@for='%s']/span)", optionName);
+                    String.format(dataFilterXpath + "//label[@for='%s']/span", optionName);
 
             return Integer.parseInt(
                     $x(optionQuantityXpath)
                             .text()
                             .replaceAll("\\D", "")
+                            .trim()
             );
         }
     }
