@@ -91,4 +91,5 @@ public class ProductTypePage extends HeaderPage {
     public Product getProduct(int numberProduct) {
         return new Product(String.format(("(//div[@class='goods-tile__inner'])[%s]"), numberProduct));
     }
+    
 }
