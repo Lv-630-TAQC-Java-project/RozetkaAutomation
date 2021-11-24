@@ -1,6 +1,7 @@
 package com.ss.ita.rozetka.pageobject.elements;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -19,6 +20,7 @@ public class FilterStack {
     private static final By MAX_PRICE_FIELD = By.xpath("//rz-filter-stack//input[@formcontrolname='max']");
     private static final By PRICE_OK_BUTTON = By.xpath("//rz-filter-slider//fieldset//button");
 
+    @Step("FilterStack: get filter with name {filterName}")
     public Filter getFilter(String filterName) {
         String filterXpath = String.format(FILTER_TEMPLATE_FOR_NAME, filterName);
         $x(filterXpath).should(exist);
@@ -29,6 +31,7 @@ public class FilterStack {
         return getFilter(filterName.getName());
     }
 
+    @Step("FilterStack: get filter names")
     public List<String> getFilterNames() {
         return $$x("//rz-filter-stack/div[contains(@class,'sidebar-block')]")
                 .stream()
@@ -36,6 +39,7 @@ public class FilterStack {
                 .collect(Collectors.toList());
     }
 
+    @Step("FilterStack: get minimum price bound")
     public int getMinPrice() {
         String minPrice = $(MIN_PRICE_FIELD).getAttribute("value");
         if (minPrice == null) {
@@ -45,6 +49,7 @@ public class FilterStack {
         }
     }
 
+    @Step("FilterStack: set minimum price bound to {minPrice}")
     public FilterStack setMinPrice(int minPrice) {
         SelenideElement minPriceField = $(MIN_PRICE_FIELD);
         minPriceField.click();
@@ -53,6 +58,7 @@ public class FilterStack {
         return this;
     }
 
+    @Step("FilterStack: get maximum price bound")
     public int getMaxPrice() {
         String maxPrice = $(MAX_PRICE_FIELD).getAttribute("value");
         if (maxPrice == null) {
@@ -62,6 +68,7 @@ public class FilterStack {
         }
     }
 
+    @Step("FilterStack: set maximum price bound to {maxPrice}")
     public FilterStack setMaxPrice(int maxPrice) {
         SelenideElement minPriceField = $(MAX_PRICE_FIELD);
         minPriceField.click();
@@ -70,10 +77,12 @@ public class FilterStack {
         return this;
     }
 
+    @Step("FilterStack: get price correctness status")
     public boolean isPriceOK() {
         return $(PRICE_OK_BUTTON).isEnabled();
     }
 
+    @Step("FilterStack: submit price filter")
     public FilterStack doFilterByPrice() {
         $(PRICE_OK_BUTTON).click();
         return this;
@@ -100,15 +109,18 @@ public class FilterStack {
             this.filterXpath = filterXpath;
         }
 
-        public boolean isOpened() {
+        @Step("Filter: get options visibility status")
+        public boolean isOptionsBlockVisible() {
             return $x(filterXpath + "//rz-filter-checkbox").is(visible);
         }
 
+        @Step("Filter: toggle filter block")
         public Filter toggleBlock() {
             $x(filterXpath + "//button[contains(@class,'sidebar-block__toggle')]/span").click();
             return this;
         }
 
+        @Step("Filter: get filter title")
         public String getTitle() {
             return $x(filterXpath + "//span[@class='sidebar-block__toggle-title']")
                     .text()
@@ -116,6 +128,7 @@ public class FilterStack {
                     .trim();
         }
 
+        @Step("Filter: get filter options")
         public List<String> getOptionNames() {
             return $$x(filterXpath + "//input[@class='custom-checkbox']")
                     .stream()
@@ -123,12 +136,14 @@ public class FilterStack {
                     .collect(Collectors.toList());
         }
 
-        public Filter selectOption(String optionName) {
+        @Step("Filter: check option with name {optionName}")
+        public Filter checkOption(String optionName) {
             String optionXpath = String.format(filterXpath + "//input[@id='%s']/parent::a", optionName);
             $x(optionXpath).click();
             return this;
         }
 
+        @Step("Filter: get quantity of option with name {optionName}")
         public int getOptionQuantity(String optionName) {
             String optionQuantityXpath =
                     String.format(filterXpath + "//label[@for='%s']/span", optionName);
