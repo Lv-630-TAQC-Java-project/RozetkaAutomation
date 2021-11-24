@@ -25,6 +25,7 @@ public class Product {
     private int amountReviews;
     private String productDescription;
 
+
     public String getProductTitle() {
         productTitle = $x(String.format("%s%s", xPath, "//span[@class='goods-tile__title']")).text();
         return productTitle;
