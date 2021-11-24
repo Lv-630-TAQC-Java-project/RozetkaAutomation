@@ -85,7 +85,7 @@ public class ProductTypePage extends HeaderPage {
                 .collect(Collectors.toList());
     }
 
-    @Step("ProductTypePage: get product number {numberProduct}")
+    @Step("ProductTypePage: get product by number {numberProduct}")
     public Product getProduct(int numberProduct) {
         return new Product(String.format(("(//div[@class='goods-tile__inner'])[%s]"), numberProduct));
     }
