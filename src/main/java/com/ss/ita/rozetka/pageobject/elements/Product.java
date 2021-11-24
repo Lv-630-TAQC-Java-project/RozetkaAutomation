@@ -3,13 +3,11 @@ package com.ss.ita.rozetka.pageobject.elements;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.Color;
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.*;
-
 
 public class Product {
     @Getter
@@ -95,7 +93,7 @@ public class Product {
     private void setProductDescription(String xPath){
         try{
             actions().moveToElement($x(xPath)).perform();
-            productDescription = $x(String.format("%s%s", xPath, "//p[contains(@class,'goods-tile__description')]")).text();
+            productDescription = $x(String.format("%s%s", xPath, "//*[contains(@class,'goods-tile__description')]")).text();
         }catch(AssertionError exception){
             productDescription = StringUtils.EMPTY;
         }

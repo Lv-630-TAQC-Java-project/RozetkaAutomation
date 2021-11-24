@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.test;
 
+import com.codeborne.selenide.WebDriverRunner;
 import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
@@ -31,5 +32,8 @@ public class ProductTest extends TestRunner {
         }
         System.out.println("product description - " + productItem.getProductDescription());
 
+    }
+    public void quit(){
+        WebDriverRunner.closeWebDriver();
     }
 }
