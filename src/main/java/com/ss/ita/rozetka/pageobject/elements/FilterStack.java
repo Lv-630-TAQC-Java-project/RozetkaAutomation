@@ -102,6 +102,11 @@ public class FilterStack {
         private final String name;
     }
 
+    //TODO
+    // add method to receive options quantity in filter
+    // add methods that will work with search in filter
+    // add method to receive a list of selected options
+    // rename getQuantityOfOption()
     public static class Filter {
         private final String filterXpath;
 
@@ -115,8 +120,10 @@ public class FilterStack {
         }
 
         @Step("Filter: toggle filter block")
-        public Filter toggleBlock() {
-            $x(filterXpath + "//button[contains(@class,'sidebar-block__toggle')]/span").click();
+        public Filter toggleFilterBlock() {
+            $x(filterXpath + "//button[contains(@class,'sidebar-block__toggle')]")
+                    .scrollIntoView(false)
+                    .click();
             return this;
         }
 
@@ -137,14 +144,14 @@ public class FilterStack {
         }
 
         @Step("Filter: check option with name {optionName}")
-        public Filter checkOption(String optionName) {
+        public Filter selectOption(String optionName) {
             String optionXpath = String.format(filterXpath + "//input[@id='%s']/parent::a", optionName);
-            $x(optionXpath).click();
+            $x(optionXpath).scrollIntoView(false).click();
             return this;
         }
 
         @Step("Filter: get quantity of option with name {optionName}")
-        public int getOptionQuantity(String optionName) {
+        public int getQuantityOfOption(String optionName) {
             String optionQuantityXpath =
                     String.format(filterXpath + "//label[@for='%s']/span", optionName);
 
