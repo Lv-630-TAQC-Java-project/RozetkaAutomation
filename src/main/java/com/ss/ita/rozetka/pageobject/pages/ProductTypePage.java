@@ -2,6 +2,8 @@ package com.ss.ita.rozetka.pageobject.pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
@@ -9,6 +11,7 @@ import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -89,5 +92,19 @@ public class ProductTypePage extends HeaderPage {
     public Product getProduct(int numberProduct) {
         return new Product(String.format(("(//div[@class='goods-tile__inner'])[%s]"), numberProduct));
     }
-    
+
+    @Step("ProductTypePage: get action price products list")
+    public List <Product> getActionPriceProductsList(){
+        List<Product> productsList = new ArrayList<Product>();
+        for (int i = 1; i <= $$x("//div[@class='goods-tile__inner']").size(); i++) {
+            Product productItem = getProduct(i);
+            if((productItem.getProductOldPrice()).compareTo(BigDecimal.ZERO) > 0) {
+                productItem.getProductPrice();
+                productsList.add(productItem);
+            }
+        }
+        return productsList;
+    }
+
+
 }

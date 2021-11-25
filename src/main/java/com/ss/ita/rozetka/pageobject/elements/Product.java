@@ -61,7 +61,11 @@ public class Product {
             String oldPriceString = $x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__price--old')]"))
                     .text()
                     .replaceAll("\\D", StringUtils.EMPTY);
-            productOldPrice = new BigDecimal(oldPriceString);
+            if (oldPriceString.equals(StringUtils.EMPTY)) {
+                productOldPrice = BigDecimal.ZERO;
+            }else{
+                productOldPrice = new BigDecimal(oldPriceString);
+            }
         } catch (AssertionError exception) {
             productOldPrice = BigDecimal.ZERO;
         }
@@ -74,6 +78,9 @@ public class Product {
             String price = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__price-value')]"))
                     .text()
                     .replaceAll("\\D", StringUtils.EMPTY);
+            if (!price.equals(StringUtils.EMPTY)) {
+                productPrice = BigDecimal.ZERO;
+            }
             productPrice = new BigDecimal(price);
         } catch (AssertionError exception) {
             productPrice = BigDecimal.ZERO;
@@ -112,5 +119,24 @@ public class Product {
             productDescription = StringUtils.EMPTY;
         }
         return productDescription;
+    }
+
+    @Step("ProductTypePage: get status product discount price")
+    public boolean isProductDiscountPriceValid() {
+        return ((productOldPrice).subtract(productPrice)).compareTo(BigDecimal.valueOf(0.01)) >= 0;
+    }
+
+    @Step("ProductTypePage: get old price text color")
+    public String getOldPriceTextColor() {
+        return Color.fromString($x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__price--old')]"))
+                        .getCssValue("color"))
+                .asHex();
+    }
+
+    @Step("ProductTypePage: get price text color")
+    public String getPriceTextColor(){
+        return Color.fromString($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__price-value')]"))
+                        .getCssValue("color"))
+                .asHex();
     }
 }
