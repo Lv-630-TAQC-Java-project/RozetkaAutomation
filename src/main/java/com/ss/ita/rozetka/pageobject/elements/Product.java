@@ -61,12 +61,8 @@ public class Product {
             String oldPriceString = $x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__price--old')]"))
                     .text()
                     .replaceAll("\\D", StringUtils.EMPTY);
-            if (oldPriceString.equals(StringUtils.EMPTY)) {
-                productOldPrice = BigDecimal.ZERO;
-            }else{
-                productOldPrice = new BigDecimal(oldPriceString);
-            }
-        } catch (AssertionError exception) {
+            productOldPrice = new BigDecimal(oldPriceString);
+        } catch (AssertionError | NumberFormatException exception) {
             productOldPrice = BigDecimal.ZERO;
         }
         return productOldPrice;
@@ -78,11 +74,8 @@ public class Product {
             String price = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__price-value')]"))
                     .text()
                     .replaceAll("\\D", StringUtils.EMPTY);
-            if (!price.equals(StringUtils.EMPTY)) {
-                productPrice = BigDecimal.ZERO;
-            }
             productPrice = new BigDecimal(price);
-        } catch (AssertionError exception) {
+        } catch (AssertionError | NumberFormatException exception) {
             productPrice = BigDecimal.ZERO;
         }
         return productPrice;
