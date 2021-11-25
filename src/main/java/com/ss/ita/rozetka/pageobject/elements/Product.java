@@ -62,7 +62,7 @@ public class Product {
                     .text()
                     .replaceAll("\\D", StringUtils.EMPTY);
             productOldPrice = new BigDecimal(oldPriceString);
-        } catch (AssertionError exception) {
+        } catch (AssertionError | NumberFormatException exception) {
             productOldPrice = BigDecimal.ZERO;
         }
         return productOldPrice;
@@ -75,7 +75,7 @@ public class Product {
                     .text()
                     .replaceAll("\\D", StringUtils.EMPTY);
             productPrice = new BigDecimal(price);
-        } catch (AssertionError exception) {
+        } catch (AssertionError | NumberFormatException exception) {
             productPrice = BigDecimal.ZERO;
         }
         return productPrice;
