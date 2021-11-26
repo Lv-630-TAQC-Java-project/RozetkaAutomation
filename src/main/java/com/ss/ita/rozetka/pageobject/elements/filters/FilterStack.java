@@ -2,9 +2,6 @@ package com.ss.ita.rozetka.pageobject.elements.filters;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 import org.openqa.selenium.By;
 
 import java.util.List;
@@ -14,14 +11,14 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.*;
 
 public class FilterStack {
-    private static final String FILTER_TEMPLATE_FOR_NAME = "//rz-filter-stack/div[@data-filter-name='%s']";
-    private static final By MIN_PRICE_FIELD = By.xpath("//rz-filter-stack//input[@formcontrolname='min']");
-    private static final By MAX_PRICE_FIELD = By.xpath("//rz-filter-stack//input[@formcontrolname='max']");
-    private static final By PRICE_OK_BUTTON = By.xpath("//rz-filter-slider//fieldset//button");
+    private final By minPriceFieldXpath = By.xpath("//rz-filter-stack//input[@formcontrolname='min']");
+    private final By maxPriceFieldXpath = By.xpath("//rz-filter-stack//input[@formcontrolname='max']");
+    private final By priceOkButton = By.xpath("//rz-filter-slider//fieldset//button");
 
     @Step("FilterStack: get filter with name {filterName}")
     public Filter getFilter(String filterName) {
-        String filterXpath = String.format(FILTER_TEMPLATE_FOR_NAME, filterName);
+        String filterXpathTemplateForName = "//rz-filter-stack/div[@data-filter-name='%s']";
+        String filterXpath = String.format(filterXpathTemplateForName, filterName);
         $x(filterXpath).should(exist);
         return new Filter(filterXpath);
     }
@@ -40,7 +37,7 @@ public class FilterStack {
 
     @Step("FilterStack: get minimum price bound")
     public int getMinPrice() {
-        String minPrice = $(MIN_PRICE_FIELD).getAttribute("value");
+        String minPrice = $(minPriceFieldXpath).getAttribute("value");
         if (minPrice == null) {
             return 0;
         } else {
@@ -50,7 +47,7 @@ public class FilterStack {
 
     @Step("FilterStack: set minimum price bound to {minPrice}")
     public FilterStack setMinPrice(int minPrice) {
-        SelenideElement minPriceField = $(MIN_PRICE_FIELD);
+        SelenideElement minPriceField = $(minPriceFieldXpath);
         minPriceField.click();
         minPriceField.clear();
         minPriceField.sendKeys(String.valueOf(minPrice));
@@ -59,7 +56,7 @@ public class FilterStack {
 
     @Step("FilterStack: get maximum price bound")
     public int getMaxPrice() {
-        String maxPrice = $(MAX_PRICE_FIELD).getAttribute("value");
+        String maxPrice = $(maxPriceFieldXpath).getAttribute("value");
         if (maxPrice == null) {
             return 0;
         } else {
@@ -69,7 +66,7 @@ public class FilterStack {
 
     @Step("FilterStack: set maximum price bound to {maxPrice}")
     public FilterStack setMaxPrice(int maxPrice) {
-        SelenideElement minPriceField = $(MAX_PRICE_FIELD);
+        SelenideElement minPriceField = $(maxPriceFieldXpath);
         minPriceField.click();
         minPriceField.clear();
         minPriceField.sendKeys(String.valueOf(maxPrice));
@@ -78,12 +75,12 @@ public class FilterStack {
 
     @Step("FilterStack: get price correctness status")
     public boolean isPriceOK() {
-        return $(PRICE_OK_BUTTON).isEnabled();
+        return $(priceOkButton).isEnabled();
     }
 
     @Step("FilterStack: submit price filter")
     public FilterStack doFilterByPrice() {
-        $(PRICE_OK_BUTTON).click();
+        $(priceOkButton).click();
         return this;
     }
 }
