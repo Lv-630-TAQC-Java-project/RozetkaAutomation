@@ -1,17 +1,17 @@
 package com.ss.ita.rozetka.pageobject.elements.filters;
 
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebElement;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.codeborne.selenide.CollectionCondition.*;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
+import static com.codeborne.selenide.CollectionCondition.sizeLessThan;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
 public class Filter {
@@ -57,25 +57,28 @@ public class Filter {
     @Step("Filter: select option with name {optionName}")
     public Filter selectOption(String optionName) {
         String optionXpath = format(filterContainerXpath + optionXpathPostfixTemplate, optionName);
+        SelenideElement optionCheckBox = getOptionInputCheckBox(optionName);
+
+        optionCheckBox.shouldNotBe(checked);
         $x(optionXpath)
-                .shouldNotBe(checked)
                 .scrollIntoView(false)
                 .click();
 
-        getOptionInputCheckBox(optionName).shouldBe(checked);
+        optionCheckBox.shouldBe(checked);
         return this;
     }
 
     @Step("Filter: unselect option with name {optionName}")
     public Filter unselectOption(String optionName) {
         String optionXpath = format(filterContainerXpath + optionXpathPostfixTemplate, optionName);
+        SelenideElement optionCheckBox = getOptionInputCheckBox(optionName);
 
+        optionCheckBox.shouldBe(checked);
         $x(optionXpath)
-                .shouldBe(checked)
                 .scrollIntoView(false)
                 .click();
 
-        getOptionInputCheckBox(optionName).shouldNotBe(checked);
+        optionCheckBox.shouldNotBe(checked);
         return this;
     }
 
@@ -137,11 +140,10 @@ public class Filter {
     @Step("Filter: get all selected options")
     public List<String> getNamesOfSelectedOptions() {
         String selectedOptionsXpath = filterContainerXpath + "//input[@type='checkbox']";
-        return $$(selectedOptionsXpath)
+        return $$x(selectedOptionsXpath)
                 .filter(checked)
-                .texts()
                 .stream()
-                .map(String::trim)
+                .map(element -> element.getAttribute("id"))
                 .collect(Collectors.toList());
     }
 }
