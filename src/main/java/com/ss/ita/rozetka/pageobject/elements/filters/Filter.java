@@ -1,21 +1,23 @@
 package com.ss.ita.rozetka.pageobject.elements.filters;
 
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$$x;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.CollectionCondition.*;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
 public class Filter {
     private final String filterName;
     private final String filterXpath;
-    private final String searchFieldXpath = "//div[@class='sidebar-search']/input";
+    private final String searchFieldXpathPostfix = "//div[@class='sidebar-search']/input";
+    private final String optionXpathPostfixTemplate = "//input[@id='%s']/parent::a";
 
     protected Filter(String filterName, String filterXpath) {
         this.filterName = filterName;
@@ -45,17 +47,35 @@ public class Filter {
 
     @Step("Filter: get filter options")
     public List<String> getOptionNames() {
-        return $$x(filterXpath + "//input[@class='custom-checkbox']")
+        return $$x(filterXpath + "//input[@class='custom-checkbox']/following-sibling::label")
+                .texts()
                 .stream()
-                .map(element -> element.getAttribute("id"))
+                .map(name -> name.replaceAll("[\\(]\\d+[\\)]", ""))
+                .map(String::trim)
                 .collect(Collectors.toList());
     }
 
-    @Step("Filter: check option with name {optionName}")
+    @Step("Filter: select option with name {optionName}")
     public Filter selectOption(String optionName) {
-        String optionXpath = format(filterXpath + "//input[@id='%s']/parent::a", optionName);
+        String optionXpath = format(filterXpath + optionXpathPostfixTemplate, optionName);
         $x(optionXpath).scrollIntoView(false).click();
+
+        getOptionInputCheckBox(optionName).shouldBe(checked);
         return this;
+    }
+
+    @Step("Filter: unselect option with name {optionName}")
+    public Filter unselectOption(String optionName) {
+        String optionXpath = format(filterXpath + optionXpathPostfixTemplate, optionName);
+
+        $x(optionXpath).scrollIntoView(false).click();
+
+        getOptionInputCheckBox(optionName).shouldNotBe(checked);
+        return this;
+    }
+
+    private SelenideElement getOptionInputCheckBox(String optionName) {
+        return $x(format("//input[@id='%s']", optionName));
     }
 
     @Step("Filter: get quantity of options in filter")
@@ -73,34 +93,52 @@ public class Filter {
         return Integer.parseInt(
                 $x(optionQuantityXpath)
                         .text()
-                        .replaceAll("\\D", "")
-                        .trim()
+                        .replaceAll("\\D|\\s", "")
         );
     }
 
     @Step("Filter: get search field presence status")
     public boolean hasSearchField() {
-        return $x(filterXpath + searchFieldXpath).is(exist);
+        return $x(filterXpath + searchFieldXpathPostfix).is(exist);
     }
 
+    //TODO
+    // wait until options will be sorted
     @Step("Filter: set search term to filter options")
     public Filter searchOptions(String optionName) {
-        SelenideElement field = $x(filterXpath + searchFieldXpath);
-        field.clear();
-        field.sendKeys(optionName);
+        int optionsQuantityBeforeSearch = getAllOptions().size();
+        System.out.println("optionsQuantityBeforeSearch" + optionsQuantityBeforeSearch);
+
+        SelenideElement searchInput = $x(filterXpath + searchFieldXpathPostfix);
+        searchInput.sendKeys(optionName);
+        searchInput.pressEnter();
+
+        getAllOptions().shouldHave(sizeLessThan(optionsQuantityBeforeSearch));
         return this;
+    }
+
+    private ElementsCollection getAllOptions() {
+        return $$x(filterXpath + "//li[contains(@class, 'checkbox-filter__item')]/a");
     }
 
     @Step("Filter: clear search field")
     public Filter clearSearch() {
-        $x(filterXpath + "//button[contains(@class='sidebar-search__clear')]").click();
+        int optionsQuantityBeforeClearing = getAllOptions().size();
+
+        $x(filterXpath + "//button[contains(@class,'sidebar-search__clear')]").click();
+
+        getAllOptions().shouldHave(sizeGreaterThan(optionsQuantityBeforeClearing));
         return this;
     }
 
     @Step("Filter: get all selected options")
-    public List<String> getSelectedOptions() {
+    public List<String> getNamesOfSelectedOptions() {
         String selectedOptionsCssLocator =
                 format("rz-filter-stack > div[data-filter-name='%s'] input:checked[type='checkbox'] ~ label", filterName);
-        return $$x(selectedOptionsCssLocator).texts();
+        return $$(selectedOptionsCssLocator)
+                .texts()
+                .stream()
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 }
