@@ -23,7 +23,7 @@ public class FilterStack {
     public Filter getFilter(String filterName) {
         String filterXpath = String.format(FILTER_TEMPLATE_FOR_NAME, filterName);
         $x(filterXpath).should(exist);
-        return new Filter(filterName, filterXpath);
+        return new Filter(filterXpath);
     }
 
     public Filter getFilter(FilterName filterName) {
