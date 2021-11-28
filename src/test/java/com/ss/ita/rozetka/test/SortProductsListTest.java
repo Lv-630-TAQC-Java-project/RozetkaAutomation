@@ -7,6 +7,7 @@ import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
+import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SortProductsListTest extends TestRunner {
 
     @Test
+    @Issue("LVTAQC630-30")
     public void verifyActionSorting() {
         ProductTypePage productTypePage = new HomePage()
                 .open()
