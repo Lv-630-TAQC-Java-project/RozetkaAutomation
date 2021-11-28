@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.*;
 
+/**
+ * Represents a general filter stack on product type page.
+ * Can create Filter instances and work with price filter
+ */
 public class FilterStack {
     private final By minPriceFieldLocator = By.xpath("//rz-filter-stack//input[@formcontrolname='min']");
     private final By maxPriceFieldLocator = By.xpath("//rz-filter-stack//input[@formcontrolname='max']");

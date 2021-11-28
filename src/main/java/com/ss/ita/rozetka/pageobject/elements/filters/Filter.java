@@ -14,6 +14,10 @@ import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
+/**
+ * Represents a single filter block with options and, if exists, a search field.<br>
+ * <b>Can be created only from FilterStack.</b>
+ */
 public class Filter {
     private final String filterContainerXpath;
 
