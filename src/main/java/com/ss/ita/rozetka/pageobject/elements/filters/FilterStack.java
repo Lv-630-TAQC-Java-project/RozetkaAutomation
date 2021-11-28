@@ -11,9 +11,9 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.*;
 
 public class FilterStack {
-    private final By minPriceFieldXpath = By.xpath("//rz-filter-stack//input[@formcontrolname='min']");
-    private final By maxPriceFieldXpath = By.xpath("//rz-filter-stack//input[@formcontrolname='max']");
-    private final By priceOkButtonXpath = By.xpath("//rz-filter-slider//fieldset//button");
+    private final By minPriceFieldLocator = By.xpath("//rz-filter-stack//input[@formcontrolname='min']");
+    private final By maxPriceFieldLocator = By.xpath("//rz-filter-stack//input[@formcontrolname='max']");
+    private final By priceOkButtonLocator = By.xpath("//rz-filter-slider//fieldset//button");
 
     @Step("FilterStack: get filter with name {filterName}")
     public Filter getFilter(String filterName) {
@@ -36,17 +36,13 @@ public class FilterStack {
 
     @Step("FilterStack: get minimum price bound")
     public int getMinPrice() {
-        String minPrice = $(minPriceFieldXpath).getAttribute("value");
-        if (minPrice == null) {
-            return 0;
-        } else {
-            return Integer.parseInt(minPrice);
-        }
+        String minPrice = $(minPriceFieldLocator).getAttribute("value");
+        return Integer.parseInt(minPrice);
     }
 
     @Step("FilterStack: set minimum price bound to {minPrice}")
     public FilterStack setMinPrice(int minPrice) {
-        SelenideElement minPriceField = $(minPriceFieldXpath);
+        SelenideElement minPriceField = $(minPriceFieldLocator);
         minPriceField.click();
         minPriceField.clear();
         minPriceField.sendKeys(String.valueOf(minPrice));
@@ -55,17 +51,13 @@ public class FilterStack {
 
     @Step("FilterStack: get maximum price bound")
     public int getMaxPrice() {
-        String maxPrice = $(maxPriceFieldXpath).getAttribute("value");
-        if (maxPrice == null) {
-            return 0;
-        } else {
-            return Integer.parseInt(maxPrice);
-        }
+        String maxPrice = $(maxPriceFieldLocator).getAttribute("value");
+        return Integer.parseInt(maxPrice);
     }
 
     @Step("FilterStack: set maximum price bound to {maxPrice}")
     public FilterStack setMaxPrice(int maxPrice) {
-        SelenideElement minPriceField = $(maxPriceFieldXpath);
+        SelenideElement minPriceField = $(maxPriceFieldLocator);
         minPriceField.click();
         minPriceField.clear();
         minPriceField.sendKeys(String.valueOf(maxPrice));
@@ -74,12 +66,12 @@ public class FilterStack {
 
     @Step("FilterStack: get price correctness status")
     public boolean isPriceRangeCorrect() {
-        return $(priceOkButtonXpath).isEnabled();
+        return $(priceOkButtonLocator).isEnabled();
     }
 
     @Step("FilterStack: submit price filter")
     public FilterStack doFilterByPrice() {
-        $(priceOkButtonXpath).click();
+        $(priceOkButtonLocator).click();
         return this;
     }
 }
