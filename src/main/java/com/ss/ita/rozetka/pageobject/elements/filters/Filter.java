@@ -16,15 +16,30 @@ import static java.lang.String.format;
 
 public class Filter {
     private final String filterContainerXpath;
-    private final String searchFieldXpathPostfix = "//div[@class='sidebar-search']/input";
-    private final String optionXpathPostfixTemplate = "//input[@id='%s']/parent::a";
 
     protected Filter(String filterContainerXpath) {
         this.filterContainerXpath = filterContainerXpath;
     }
 
+    private SelenideElement getOptionCheckBox(String optionName) {
+        return $x(format(filterContainerXpath + "//input[@id='%s']", optionName));
+    }
+
+    private SelenideElement getOptionCheckBoxLink(String optionName) {
+        return $x(format(filterContainerXpath + "//input[@id='%s']/parent::a", optionName));
+    }
+
+    private SelenideElement getSearchField() {
+        String searchFieldXpathPostfix = "//div[@class='sidebar-search']/input";
+        return $x(filterContainerXpath + searchFieldXpathPostfix);
+    }
+
+    private ElementsCollection getAllOptionCheckBoxes() {
+        return $$x(filterContainerXpath + "//input[@type='checkbox']");
+    }
+
     @Step("Filter: get options visibility status")
-    public boolean isOptionsBlockVisible() {
+    public boolean isFilterBlockToggledOn() {
         return $x(filterContainerXpath + "//rz-filter-checkbox").is(visible);
     }
 
@@ -56,11 +71,10 @@ public class Filter {
 
     @Step("Filter: select option with name {optionName}")
     public Filter selectOption(String optionName) {
-        String optionXpath = format(filterContainerXpath + optionXpathPostfixTemplate, optionName);
-        SelenideElement optionCheckBox = getOptionInputCheckBox(optionName);
+        SelenideElement optionCheckBox = getOptionCheckBox(optionName);
 
         optionCheckBox.shouldNotBe(checked);
-        $x(optionXpath)
+        getOptionCheckBoxLink(optionName)
                 .scrollIntoView(false)
                 .click();
 
@@ -70,11 +84,10 @@ public class Filter {
 
     @Step("Filter: unselect option with name {optionName}")
     public Filter unselectOption(String optionName) {
-        String optionXpath = format(filterContainerXpath + optionXpathPostfixTemplate, optionName);
-        SelenideElement optionCheckBox = getOptionInputCheckBox(optionName);
+        SelenideElement optionCheckBox = getOptionCheckBox(optionName);
 
         optionCheckBox.shouldBe(checked);
-        $x(optionXpath)
+        getOptionCheckBoxLink(optionName)
                 .scrollIntoView(false)
                 .click();
 
@@ -82,10 +95,15 @@ public class Filter {
         return this;
     }
 
-    private SelenideElement getOptionInputCheckBox(String optionName) {
-        return $x(format("//input[@id='%s']", optionName));
+    @Step("Filter: get selection status of option with name {optionName}")
+    public boolean isOptionSelected(String optionName) {
+        return getOptionCheckBox(optionName).isSelected();
     }
 
+    /**
+     * @return quantity of options that filter has
+     * Example: "Seller (3)"
+     */
     @Step("Filter: get quantity of options in filter")
     public int getOptionsQuantityInFilter() {
         return Integer.parseInt(
@@ -93,6 +111,10 @@ public class Filter {
         );
     }
 
+    /**
+     * @return quantity of products that corresponds to filter option
+     * Example: "Asus (28)"
+     */
     @Step("Filter: get products quantity that corresponds to option with name {optionName}")
     public int getProductsQuantityOfOption(String optionName) {
         String optionQuantityXpath =
@@ -106,41 +128,33 @@ public class Filter {
     }
 
     @Step("Filter: get search field presence status")
-    public boolean hasSearchField() {
-        return $x(filterContainerXpath + searchFieldXpathPostfix).is(exist);
+    public boolean hasOptionsSearch() {
+        return getSearchField().is(exist);
     }
 
-    @Step("Filter: set search term to filter options")
-    public Filter searchOptions(String optionName) {
-        int optionsQuantityBeforeSearch = getAllOptions().size();
-        System.out.println("optionsQuantityBeforeSearch" + optionsQuantityBeforeSearch);
+    @Step("Filter: set search term {searchTerm} to filter options")
+    public Filter searchOptions(String searchTerm) {
+        int optionsQuantityBeforeSearch = getAllOptionCheckBoxes().size();
 
-        SelenideElement searchInput = $x(filterContainerXpath + searchFieldXpathPostfix);
-        searchInput.sendKeys(optionName);
-        searchInput.pressEnter();
+        getSearchField().sendKeys(searchTerm);
 
-        getAllOptions().shouldHave(sizeLessThan(optionsQuantityBeforeSearch));
+        getAllOptionCheckBoxes().shouldHave(sizeLessThan(optionsQuantityBeforeSearch));
         return this;
-    }
-
-    private ElementsCollection getAllOptions() {
-        return $$x(filterContainerXpath + "//li[contains(@class, 'checkbox-filter__item')]/a");
     }
 
     @Step("Filter: clear search field")
     public Filter clearSearch() {
-        int optionsQuantityBeforeClearing = getAllOptions().size();
+        int optionsQuantityBeforeClearing = getAllOptionCheckBoxes().size();
 
         $x(filterContainerXpath + "//button[contains(@class,'sidebar-search__clear')]").click();
 
-        getAllOptions().shouldHave(sizeGreaterThan(optionsQuantityBeforeClearing));
+        getAllOptionCheckBoxes().shouldHave(sizeGreaterThan(optionsQuantityBeforeClearing));
         return this;
     }
 
     @Step("Filter: get all selected options")
     public List<String> getNamesOfSelectedOptions() {
-        String selectedOptionsXpath = filterContainerXpath + "//input[@type='checkbox']";
-        return $$x(selectedOptionsXpath)
+        return getAllOptionCheckBoxes()
                 .filter(checked)
                 .stream()
                 .map(element -> element.getAttribute("id"))

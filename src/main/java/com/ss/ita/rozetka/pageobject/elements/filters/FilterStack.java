@@ -13,12 +13,11 @@ import static com.codeborne.selenide.Selenide.*;
 public class FilterStack {
     private final By minPriceFieldXpath = By.xpath("//rz-filter-stack//input[@formcontrolname='min']");
     private final By maxPriceFieldXpath = By.xpath("//rz-filter-stack//input[@formcontrolname='max']");
-    private final By priceOkButton = By.xpath("//rz-filter-slider//fieldset//button");
+    private final By priceOkButtonXpath = By.xpath("//rz-filter-slider//fieldset//button");
 
     @Step("FilterStack: get filter with name {filterName}")
     public Filter getFilter(String filterName) {
-        String filterXpathTemplateForName = "//rz-filter-stack/div[@data-filter-name='%s']";
-        String filterXpath = String.format(filterXpathTemplateForName, filterName);
+        String filterXpath = String.format("//rz-filter-stack/div[@data-filter-name='%s']", filterName);
         $x(filterXpath).should(exist);
         return new Filter(filterXpath);
     }
@@ -74,13 +73,13 @@ public class FilterStack {
     }
 
     @Step("FilterStack: get price correctness status")
-    public boolean isPriceOK() {
-        return $(priceOkButton).isEnabled();
+    public boolean isPriceRangeCorrect() {
+        return $(priceOkButtonXpath).isEnabled();
     }
 
     @Step("FilterStack: submit price filter")
     public FilterStack doFilterByPrice() {
-        $(priceOkButton).click();
+        $(priceOkButtonXpath).click();
         return this;
     }
 }
