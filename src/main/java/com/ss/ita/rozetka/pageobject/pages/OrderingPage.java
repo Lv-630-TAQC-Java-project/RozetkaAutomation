@@ -1,8 +1,6 @@
 package com.ss.ita.rozetka.pageobject.pages;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.conditions.Or;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
 
