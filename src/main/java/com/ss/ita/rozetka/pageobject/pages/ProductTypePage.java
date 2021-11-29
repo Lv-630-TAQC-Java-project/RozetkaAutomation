@@ -87,13 +87,19 @@ public class ProductTypePage extends HeaderPage {
                 .collect(Collectors.toList());
     }
 
-    @Step("BasketModal: add products to  comparison")
-    public List<SelenideElement> addNumberOfProductsToComparison(int productCount) {
+    private List<SelenideElement> getProductComparisonIcons(int productCount){
         List<SelenideElement> iconList = new ArrayList<>();
         for (int i = 0; i < productCount; i++) {
-            iconList.add($x(format("(//button[@class='compare-button ng-star-inserted'])[%s]", i + 1)));
-            iconList.get(i).click();
+            SelenideElement icon = $x(format("(//button[@class='compare-button ng-star-inserted'])[%s]", i + 1));
+            icon.click();
+            iconList.add(icon);
         }
         return iconList;
+    }
+
+    @Step("ProductTypePage: add products to  comparison")
+    public ProductTypePage addNumberOfProductsToComparison(int productCount) {
+        getProductComparisonIcons(productCount);
+        return this;
     }
 }

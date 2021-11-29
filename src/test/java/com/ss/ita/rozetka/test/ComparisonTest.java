@@ -19,21 +19,19 @@ public class ComparisonTest extends TestRunner {
                 .open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS_CATEGORY);
+        int productCount = 5;
+                productTypePage.addNumberOfProductsToComparison(productCount);
         assertThat(getCurrentUrl())
                 .as("Notebooks subcategory page should be opened")
                 .isEqualTo("https://rozetka.com.ua/notebooks/c80004/");
-        int productCount = 5;
-        assertThat(productTypePage.addNumberOfProductsToComparison(productCount).size())
-                .as("Count of comparison products")
-                .isEqualTo(productCount);
 
         int comparisonProductListSize = new Header()
                 .openComparisonModal()
                 .openComparisonPage()
-                .getProductList().size();
+                .sizeOfProductComparisonList();
         assertThat(comparisonProductListSize)
                 .as("List size should be equal to count we added at the ProductTypePage")
-                .isEqualTo(productCount);
+                .isEqualTo(5);
     }
 
 }
