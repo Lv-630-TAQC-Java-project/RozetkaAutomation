@@ -22,12 +22,17 @@ public class ComparisonTest extends TestRunner {
         assertThat(getCurrentUrl())
                 .as("Notebooks subcategory page should be opened")
                 .isEqualTo("https://rozetka.com.ua/notebooks/c80004/");
-        Header header = productTypePage
-                .openProductPage(1)
-                .addProductToComparison();
+        int productCount = 5;
+        assertThat(productTypePage.addNumberOfProductsToComparison(productCount).size())
+                .as("Count of comparison products")
+                .isEqualTo(productCount);
 
-        assertThat(header.getProductsForComparisonCount())
-                .as("Count of comparison products should be equal to 1")
-                .isEqualTo(1);
+        int comparisonProductListSize = new Header()
+                .openComparisonModal()
+                .openComparisonPage()
+                .getProductListSize();
+        assertThat(comparisonProductListSize)
+                .as("Count of comparison products")
+                .isEqualTo(productCount);
     }
 }

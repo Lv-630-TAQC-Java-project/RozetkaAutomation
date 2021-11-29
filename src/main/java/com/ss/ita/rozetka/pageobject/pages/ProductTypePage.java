@@ -2,12 +2,15 @@ package com.ss.ita.rozetka.pageobject.pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -82,5 +85,20 @@ public class ProductTypePage extends HeaderPage {
                 .map(price -> price.replaceAll(" ", StringUtils.EMPTY))
                 .map(price -> new BigDecimal(price))
                 .collect(Collectors.toList());
+    }
+
+    private Header addProductToComparison() {
+        $x("//button[@class='compare-button ng-star-inserted']").click();
+        return new Header();
+    }
+
+    @Step("BasketModal: add products to  comparison")
+    public List<SelenideElement> addNumberOfProductsToComparison(int productCount) {
+        List<SelenideElement> iconList = new ArrayList<>();
+        for (int i = 0; i < productCount; i++) {
+            iconList.add($x(format("(//button[@class='compare-button ng-star-inserted'])[%s]", i + 1)));
+            iconList.get(i).click();
+        }
+        return iconList;
     }
 }
