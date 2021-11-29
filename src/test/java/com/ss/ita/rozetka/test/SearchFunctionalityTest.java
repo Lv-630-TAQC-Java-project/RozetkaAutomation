@@ -52,17 +52,4 @@ public class SearchFunctionalityTest extends TestRunner {
                 .as("Last search term and first text in search history should be equals")
                 .isEqualTo(searchTerm);
     }
-
-    @Test
-    @Description("Verify that items in the search history in right order and search works correct")
-    public void verifySearchFromSearchHistoryTest(){
-        Header header = new HomePage()
-                .open()
-                .getHeader();
-        List<String> searchTerms = new ArrayList<>(Arrays.asList("Dell", "HP", "IPhone", "Stihl", "Bosch") );
-        for(String searchTerm : searchTerms){
-            header.doSearch(searchTerm);
-            sleep(5000);
-        }
-    }
 }
