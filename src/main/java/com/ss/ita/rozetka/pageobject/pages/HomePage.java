@@ -36,12 +36,12 @@ public class HomePage extends HeaderPage {
         return $x("//div[@class = 'simple-slider__holder']").is(Condition.visible);
     }
 
-    @Step("HomePage: get product number {itemNumber} from Recently Viewed Products list")
+    @Step("HomePage: get product name number {itemNumber} from Recently Viewed Products list")
     public String getRecentlyViewedProductName(int itemNumber) {
         return $x(format("//section[@class = 'main-goods ng-star-inserted'][1]//ul/li[%s]//a[@class = 'tile__title']", itemNumber)).getText();
     }
 
-    @Step("HomePage: get product names from first to {intNumber} Recently Viewed Products list")
+    @Step("HomePage: get recently viewed products names list from first to {intNumber} Recently Viewed Products list")
     public List<String> getRecentlyViewedProductsNames(int itemNumber){
         List<String> names = new ArrayList<>();
         for (int i = 1; i <= itemNumber; i++){
