@@ -2,6 +2,7 @@ package com.ss.ita.rozetka.test;
 
 import com.ss.ita.rozetka.pageobject.modals.LoginModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
+import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,7 +14,7 @@ public class LoginModalTest {
                 .getHeader()
                 .openLoginModal()
                 .setLogin("default")
-                .setPassword("");
+                .setPassword(StringUtils.EMPTY);
 
         assertThat(loginModal.isInvalidLoginIconVisible())
                 .as("as invalid login")

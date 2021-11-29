@@ -21,8 +21,12 @@ public class LoginModal {
         SelenideElement input = $x("//input[@type='email']");
         input.clear();
         input.sendKeys(login);
-        $x("//button[@class='button_type_link form__toggle-password']").click();
+        getPasswordVisibilityToogle().click();
         return this;
+    }
+
+    private SelenideElement getPasswordVisibilityToogle(){
+        return $x("//button[@class='button_type_link form__toggle-password']");
     }
 
     @Step("LoginModal: set password")
@@ -30,13 +34,8 @@ public class LoginModal {
         SelenideElement input = $("#auth_pass");
         input.clear();
         input.sendKeys(password);
-        $x("//button[@class='button_type_link form__toggle-password']").click();
+        getPasswordVisibilityToogle().click();
         return this;
-    }
-
-    @Step("LoginModal: approve login button")
-    private SelenideElement getApproveLoginButton(){
-        return $("button button--large");
     }
 
     @Step("LoginModal: check invalid login icon visibility")
