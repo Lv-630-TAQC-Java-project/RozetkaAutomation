@@ -15,6 +15,7 @@ public class LoginModal {
         $x("//button[@class='modal__close ng-star-inserted']").click();
         return new Header();
     }
+
     @Step("LoginModal: get password visibility toogle")
     private SelenideElement getPasswordVisibilityToogle() {
         return $x("//button[@class='button_type_link form__toggle-password']");
