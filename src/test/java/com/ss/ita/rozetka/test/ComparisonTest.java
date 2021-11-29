@@ -30,7 +30,7 @@ public class ComparisonTest extends TestRunner {
         int comparisonProductListSize = new Header()
                 .openComparisonModal()
                 .openComparisonPage()
-                .getProductListSize();
+                .getProductList().size();
         assertThat(comparisonProductListSize)
                 .as("Count of comparison products")
                 .isEqualTo(productCount);

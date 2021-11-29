@@ -12,7 +12,4 @@ public class ComparisonPage {
                 .shouldHave(CollectionCondition.sizeGreaterThan(0));
     }
 
-    public int getProductListSize() {
-        return getProductList().size();
-    }
 }
