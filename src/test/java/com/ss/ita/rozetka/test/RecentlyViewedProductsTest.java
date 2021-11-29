@@ -5,7 +5,7 @@ import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
-import java.util.ArrayList;
+import java.util.List;
 
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.HOUSEHOLD_APPLIANCES;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.KITCHEN_APPLIANCES_CATEGORY;
@@ -60,24 +60,20 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .openProductPage(1)
                 .getName();
 
-        HomePage homePage = productPage
+        List<String> recentlyViewedProductNames = productPage
                 .getHeader()
-                .openHomePage();
+                .openHomePage()
+                .getRecentlyViewedProductsNames(3);
 
-        ArrayList<String> firstRecentlyOpenedProductName = new ArrayList<>();
-        for (int i = 0; i <= 2; i++) {
-            firstRecentlyOpenedProductName.add(homePage.getRecentlyViewedProductName(i + 1));
-        }
-
-        assertThat(firstRecentlyOpenedProductName.get(0))
+        assertThat(recentlyViewedProductNames.get(0))
                 .as("First product name in Recently Opened products should be equal to last viewed product name")
                 .isEqualTo(thirdOpenedProductName);
 
-        assertThat(firstRecentlyOpenedProductName.get(1))
+        assertThat(recentlyViewedProductNames.get(1))
                 .as("Second product name in Recently Opened products should be equal to second viewed product name")
                 .isEqualTo(secondOpenedProductName);
 
-        assertThat(firstRecentlyOpenedProductName.get(2))
+        assertThat(recentlyViewedProductNames.get(2))
                 .as("Third product name in Recently Opened products should be equal to first viewed product name")
                 .isEqualTo(firstOpenedProductName);
     }

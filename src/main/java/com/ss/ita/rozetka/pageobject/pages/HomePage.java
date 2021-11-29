@@ -5,8 +5,11 @@ import com.codeborne.selenide.Selenide;
 import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.lang.String.format;
 
 public class HomePage extends HeaderPage {
@@ -36,6 +39,15 @@ public class HomePage extends HeaderPage {
     @Step("HomePage: get product number {itemNumber} from Recently Viewed Products list")
     public String getRecentlyViewedProductName(int itemNumber) {
         return $x(format("//section[@class = 'main-goods ng-star-inserted'][1]//ul/li[%s]//a[@class = 'tile__title']", itemNumber)).getText();
+    }
+
+    @Step("HomePage: get product names from first to {intNumber} Recently Viewed Products list")
+    public List<String> getRecentlyViewedProductsNames(int itemNumber){
+        List<String> names = new ArrayList<>();
+        for (int i = 1; i <= itemNumber; i++){
+            names.add($x(format("//section[@class = 'main-goods ng-star-inserted'][1]//ul/li[%s]//a[@class = 'tile__title']", i)).getText());
+        }
+        return names;
     }
 
     @Step("HomePage: get display status main menu categories")
