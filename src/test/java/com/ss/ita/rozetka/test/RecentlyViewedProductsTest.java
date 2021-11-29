@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RecentlyViewedProductsTest extends TestRunner {
 
     @Test
-    @Issue("LVTAQC630-8")
+    @Issue("LVTAQC630-30")
     public void verifyLastViewedProductAddedToTheList() {
         ProductTypePage productPage = new HomePage()
                 .open()
