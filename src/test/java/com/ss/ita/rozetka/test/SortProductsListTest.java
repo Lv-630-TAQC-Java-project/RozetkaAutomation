@@ -2,6 +2,7 @@ package com.ss.ita.rozetka.test;
 
 import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
+import com.ss.ita.rozetka.pageobject.pages.ProductCategoryPage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
@@ -19,14 +20,21 @@ public class SortProductsListTest extends TestRunner {
 
     @Test
     @Description("Verify that sort by Action products list contains products which have higher old price" +
-            " than price with discount and price text color is grey for old price, red for price with discount")
+            " than price with discount and price text color is grey for without price, red for price with discount")
     @Issue("LVTAQC630-33")
     public void verifyActionSorting() {
-        ProductTypePage productTypePage = new HomePage()
+        ProductCategoryPage productCategoryPage = new HomePage()
                 .open()
-                .openProductCategoryPage(GeneralProductCategory.SMARTPHONE_TV_ELECTRONICS)
-                .openProductTypePage(ProductCategoryAndSubCategory.MOBILE_PHONES_CATEGORY)
-                .sortProductsListBy(ProductsListSortType.ACTION);
+                .openProductCategoryPage(GeneralProductCategory.SMARTPHONE_TV_ELECTRONICS);
+        assertThat(productCategoryPage.isOpened())
+                .as("Product category page should be opened")
+                .isTrue();
+        ProductTypePage productTypePage = productCategoryPage
+                .openProductTypePage(ProductCategoryAndSubCategory.MOBILE_PHONES_CATEGORY);
+        assertThat(productTypePage.isOpened())
+                .as("Product type page should be opened")
+                .isTrue();
+        productTypePage.sortProductsListBy(ProductsListSortType.ACTION);
         List<Product> promoPriceProductsList = productTypePage.getActionPriceProductsList();
         for (Product promoPriceProduct : promoPriceProductsList) {
             assertThat(promoPriceProduct.isProductDiscountPriceValid())
