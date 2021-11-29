@@ -14,7 +14,10 @@ public class ComparisonPage {
         return $$x("//a[@class='product__heading']")
                 .shouldHave(CollectionCondition.sizeGreaterThan(0));
     }
+
     @Step("ComparisonPage: get product comparison list size")
-    public int sizeOfProductComparisonList(){return getProductList().size();}
+    public int sizeOfProductComparisonList() {
+        return getProductList().size();
+    }
 
 }

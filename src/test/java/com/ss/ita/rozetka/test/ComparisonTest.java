@@ -20,7 +20,7 @@ public class ComparisonTest extends TestRunner {
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS_CATEGORY);
         int productCount = 5;
-                productTypePage.addNumberOfProductsToComparison(productCount);
+        productTypePage.addNumberOfProductsToComparison(productCount);
         assertThat(getCurrentUrl())
                 .as("Notebooks subcategory page should be opened")
                 .isEqualTo("https://rozetka.com.ua/notebooks/c80004/");
