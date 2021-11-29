@@ -2,6 +2,7 @@ package com.ss.ita.rozetka.pageobject.pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
+
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$$x;
