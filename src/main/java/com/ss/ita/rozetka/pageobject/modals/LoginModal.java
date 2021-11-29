@@ -40,11 +40,12 @@ public class LoginModal {
 
     @Step("LoginModal: check invalid login icon visibility")
     public boolean isInvalidLoginIconVisible() {
-        return $x("(//input[contains(@class,'ng-invalid')])[1]").is(Condition.visible);
+        return $x("//p[@class='error-message ng-star-inserted']").is(Condition.visible);
     }
 
     @Step("LoginModal: check invalid password icon visibility")
     public boolean isInvalidPasswordIconVisible() {
-        return $x("(//input[contains(@class,'ng-invalid')])[last()]").is(Condition.visible);
+        return $x("(//div[@class='form__row_with_button']//input[contains(@class,'ng-invalid')])[last()]")
+                .is(Condition.visible);
     }
 }
