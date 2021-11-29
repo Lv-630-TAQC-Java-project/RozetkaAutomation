@@ -4,11 +4,12 @@ import com.ss.ita.rozetka.pageobject.modals.LoginModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginModalTest {
     @Test
-    public void checkLoginValidationTest(){
+    public void checkLoginValidationTest() {
         LoginModal loginModal = new HomePage()
                 .open()
                 .getHeader()

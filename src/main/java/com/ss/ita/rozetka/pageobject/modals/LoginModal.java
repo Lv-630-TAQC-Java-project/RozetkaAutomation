@@ -16,6 +16,10 @@ public class LoginModal {
         return new Header();
     }
 
+    private SelenideElement getPasswordVisibilityToogle() {
+        return $x("//button[@class='button_type_link form__toggle-password']");
+    }
+
     @Step("LoginModal: set login")
     public LoginModal setLogin(String login) {
         SelenideElement input = $x("//input[@type='email']");
@@ -23,10 +27,6 @@ public class LoginModal {
         input.sendKeys(login);
         getPasswordVisibilityToogle().click();
         return this;
-    }
-
-    private SelenideElement getPasswordVisibilityToogle(){
-        return $x("//button[@class='button_type_link form__toggle-password']");
     }
 
     @Step("LoginModal: set password")
@@ -39,12 +39,12 @@ public class LoginModal {
     }
 
     @Step("LoginModal: check invalid login icon visibility")
-    public boolean isInvalidLoginIconVisible(){
+    public boolean isInvalidLoginIconVisible() {
         return $x("(//input[contains(@class,'ng-invalid')])[1]").is(Condition.visible);
     }
 
     @Step("LoginModal: check invalid password icon visibility")
-    public boolean isInvalidPasswordIconVisible(){
+    public boolean isInvalidPasswordIconVisible() {
         return $x("(//input[contains(@class,'ng-invalid')])[last()]").is(Condition.visible);
     }
 }
