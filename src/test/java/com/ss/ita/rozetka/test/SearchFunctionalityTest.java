@@ -1,6 +1,7 @@
 package com.ss.ita.rozetka.test;
 
 import com.ss.ita.rozetka.pageobject.elements.Header;
+import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
@@ -60,6 +61,7 @@ public class SearchFunctionalityTest extends TestRunner {
                 .open()
                 .getHeader();
         List<String> searchTerms = new ArrayList<>(Arrays.asList("Dell", "HP", "IPhone", "Stihl", "Bosch") );
+        List<Product> productsList = new ArrayList<>();
         for(String searchTerm : searchTerms){
             header.doSearch(searchTerm);
             sleep(5000);
