@@ -31,21 +31,25 @@ public class OrderingPage {
         return $x("//div[@class = 'checkout-product__title-product']").text();
     }
 
+    @Step("OrderingPage: set Surname")
     public OrderingPage setSurname(String surname) {
         $("div[class='form__row js-surname'] input[type='text']").sendKeys(surname);
         return this;
     }
 
+    @Step("OrderingPage: set Name")
     public OrderingPage setName(String name) {
         $("div[class='form__row js-name'] input[type='text']").sendKeys(name);
         return this;
     }
 
+    @Step("OrderingPage: set phoneNumber")
     public OrderingPage setPhoneNumber(String number) {
         $("input[class='ng-invalid ng-dirty ng-touched']").sendKeys(number);
         return this;
     }
 
+    @Step("OrderingPage: set required field")
     public OrderingPage setRequiredFields(String surname, String name, String number) {
         setSurname(surname);
         setName(name);
@@ -53,18 +57,22 @@ public class OrderingPage {
         return this;
     }
 
+    @Step("OrderingPage: get name error message")
     public boolean getNameErrorMessage() {
         return $x("//p[contains(text(),\"Введіть своє ім'я кирилицею\")]").isDisplayed();
     }
 
+    @Step("OrderingPage: get surname error message")
     public boolean getSurnameErrorMessage() {
         return $x("//p[contains(text(),'Введіть своє прізвище кирилицею')]").isDisplayed();
     }
 
+    @Step("OrderingPage: get phone number  error message")
     public boolean getPhoneNumberErrorMessage() {
         return $x("//p[contains(text(),'Введіть номер мобільного телефону')]").isDisplayed();
     }
 
+    @Step("OrderingPage: confirm the order")
     public void confirmTheOrder() {
         $("input.button--green").click();
     }
