@@ -37,4 +37,9 @@ public class ProductPage extends HeaderPage {
     public String getName() {
         return $x("//h1[@class = 'product__title']").text();
     }
+
+    @Step("ProductPage: get product description")
+    public String getDescription() {
+        return $x("//p[@class = 'product-about__brief ng-star-inserted']").text();
+    }
 }

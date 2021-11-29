@@ -7,6 +7,8 @@ import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -19,7 +21,12 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: open product page by product number {productNumber}")
     public ProductPage openProductPage(int productNumber) {
-        $$x("//li[contains(@class,'catalog-grid')]").get(productNumber).click();
+        int productIndex = productNumber - 1; // to open page 1 instead of 0, which is clearer to user
+        //actions().moveToElement($x("//li[contains(@class,'catalog-grid')][productIndex]"));
+        $$x("//li[contains(@class,'catalog-grid')]")
+                .get(productIndex)
+                .shouldBe(Condition.visible)
+                .click();
         return new ProductPage();
     }
 
