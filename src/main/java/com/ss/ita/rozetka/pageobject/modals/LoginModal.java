@@ -39,12 +39,12 @@ public class LoginModal {
     }
 
     @Step("LoginModal: check invalid login icon visibility")
-    public boolean getVisibilityStatusOfInvalidLoginIcon() {
+    public boolean isInvalidLoginIconVisible() {
         return $x("//p[@class='error-message ng-star-inserted']").is(Condition.visible);
     }
 
     @Step("LoginModal: check invalid password icon visibility")
-    public boolean getVisibilityStatusOfInvalidPasswordIcon() {
+    public boolean isInvalidPasswordIconVisible() {
         return $x("(//div[@class='form__row_with_button']//input[contains(@class,'ng-invalid')])[last()]")
                 .is(Condition.visible);
     }

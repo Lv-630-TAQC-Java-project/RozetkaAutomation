@@ -17,20 +17,20 @@ public class LoginModalTest {
                 .setLogin("default")
                 .setPassword(StringUtils.EMPTY);
 
-        assertThat(loginModal.getVisibilityStatusOfInvalidLoginIcon())
+        assertThat(loginModal.isInvalidLoginIconVisible())
                 .as("visibility of invalid login icon should be equal true")
                 .isEqualTo(true);
 
-        assertThat(loginModal.getVisibilityStatusOfInvalidPasswordIcon())
+        assertThat(loginModal.isInvalidPasswordIconVisible())
                 .as("visibility of invalid password icon should be equal true")
                 .isEqualTo(true);
 
         loginModal.setLogin("test@gmail.com").setPassword("1111");
-        assertThat(loginModal.getVisibilityStatusOfInvalidLoginIcon())
+        assertThat(loginModal.isInvalidLoginIconVisible())
                 .as("visibility of invalid login icon should be equal false")
                 .isEqualTo(false);
 
-        assertThat(loginModal.getVisibilityStatusOfInvalidPasswordIcon())
+        assertThat(loginModal.isInvalidPasswordIconVisible())
                 .as("visibility of invalid password icon should be equal false")
                 .isEqualTo(false);
     }
