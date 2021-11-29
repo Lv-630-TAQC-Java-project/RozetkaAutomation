@@ -87,11 +87,6 @@ public class ProductTypePage extends HeaderPage {
                 .collect(Collectors.toList());
     }
 
-    private Header addProductToComparison() {
-        $x("//button[@class='compare-button ng-star-inserted']").click();
-        return new Header();
-    }
-
     @Step("BasketModal: add products to  comparison")
     public List<SelenideElement> addNumberOfProductsToComparison(int productCount) {
         List<SelenideElement> iconList = new ArrayList<>();
