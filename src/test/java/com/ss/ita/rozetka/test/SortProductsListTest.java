@@ -7,6 +7,7 @@ import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
+import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
@@ -17,7 +18,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SortProductsListTest extends TestRunner {
 
     @Test
-    @Issue("LVTAQC630-30")
+    @Description("Verify that sort by Action products list contains products which have higher old price" +
+            " than price with discount and price text color is grey for old price, red for price with discount")
+    @Issue("LVTAQC630-33")
     public void verifyActionSorting() {
         ProductTypePage productTypePage = new HomePage()
                 .open()
