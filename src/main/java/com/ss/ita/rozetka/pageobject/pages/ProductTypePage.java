@@ -87,11 +87,11 @@ public class ProductTypePage extends HeaderPage {
                 .collect(Collectors.toList());
     }
 
+    @Step("ProductTypePage: get product comparison icons")
     private List<SelenideElement> getProductComparisonIcons(int productCount){
         List<SelenideElement> iconList = new ArrayList<>();
         for (int i = 0; i < productCount; i++) {
             SelenideElement icon = $x(format("(//button[@class='compare-button ng-star-inserted'])[%s]", i + 1));
-            icon.click();
             iconList.add(icon);
         }
         return iconList;
@@ -99,7 +99,11 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: add products to  comparison")
     public ProductTypePage addNumberOfProductsToComparison(int productCount) {
-        getProductComparisonIcons(productCount);
+        List<SelenideElement> list = getProductComparisonIcons(productCount);
+        for (int i = 0;i<productCount;i++){
+            list.get(i).click();
+        }
         return this;
     }
+
 }
