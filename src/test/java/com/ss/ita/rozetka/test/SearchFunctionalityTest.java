@@ -11,7 +11,9 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
+import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.sleep;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -56,15 +58,25 @@ public class SearchFunctionalityTest extends TestRunner {
 
     @Test
     @Description("Verify that items in the search history in right order and search works correct")
-    public void verifySearchFromSearchHistoryTest(){
+    public void verifySearchFromSearchHistoryTest() {
         Header header = new HomePage()
                 .open()
                 .getHeader();
-        List<String> searchTerms = new ArrayList<>(Arrays.asList("Dell", "HP", "IPhone", "Stihl", "Bosch") );
-        List<Product> productsList = new ArrayList<>();
-        for(String searchTerm : searchTerms){
-            header.doSearch(searchTerm);
-            sleep(5000);
+        List<String> searchTerms = new ArrayList<>(Arrays.asList("Dell", "НР", "IPhone", "Stihl"));
+        Product productItem;
+        ProductTypePage searchResultPage;
+        for (String searchTerm : searchTerms){
+            searchResultPage = header.doSearch(searchTerm);
+            for (int i = 1; i <= $$x("//div[@class='goods-tile__inner']").size(); i++){
+                productItem = searchResultPage.getProduct(i);
+                assertThat(productItem
+                        .getProductTitle()
+                        .toUpperCase())
+                        .as("Product title should contains search term")
+                        .contains(searchTerm.toUpperCase());
+            }
+            header.openHomePage();
         }
+        header.setSearchInputInFocus();
     }
 }
