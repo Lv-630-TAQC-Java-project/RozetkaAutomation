@@ -7,7 +7,7 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.$$x;
 
 public class ComparisonPage {
-    private List<SelenideElement> getProductList() {
+    public List<SelenideElement> getProductList() {
         return $$x("//a[@class='product__heading']")
                 .shouldHave(CollectionCondition.sizeGreaterThan(0));
     }
