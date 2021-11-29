@@ -9,6 +9,7 @@ import static java.lang.String.format;
 public enum GeneralProductCategory {
 
     NOTEBOOKS_AND_COMPUTERS("computers-notebooks"),
+    SMARTPHONES_TV_AND_ELECTRONICS("telefony-tv-i-ehlektronika"),
     PRODUCTS_FOR_HOUSE("tovary-dlya-doma"),
     HOUSEHOLD_APPLIANCES("bt"),
     COTTAGE_GARDEN_BACKYARD("dacha-sad-ogorod");
