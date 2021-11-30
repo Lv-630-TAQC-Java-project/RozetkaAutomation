@@ -8,8 +8,7 @@ public enum GeneralProductCategory {
     PRODUCTS_FOR_HOUSE("tovary-dlya-doma"),
     HOUSEHOLD_APPLIANCES("bt"),
     COTTAGE_GARDEN_BACKYARD("dacha-sad-ogorod"),
-    PHONES_AND_TV_CATEGORY("telefony-tv-i-ehlektronika"),
-    PLUMBING_AND_REPAIR_CATEGORY("santekhnika-i-remont");
+    PHONES_AND_TV("telefony-tv-i-ehlektronika");
 
     private final String name;
 
