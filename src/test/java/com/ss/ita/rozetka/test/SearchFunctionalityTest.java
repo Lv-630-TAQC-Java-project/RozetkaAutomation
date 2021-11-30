@@ -67,7 +67,8 @@ public class SearchFunctionalityTest extends TestRunner {
         ProductTypePage searchResultPage;
         for (String searchTerm : searchTerms){
             searchResultPage = header.doSearch(searchTerm);
-            for (int i = 1; i <= $$x("//div[@class='goods-tile__inner']").size(); i++){
+            int productCount = $$x("//div[@class='goods-tile__inner']").size();
+            for (int i = 1; i <= productCount; i++){
                 productItem = searchResultPage.getProduct(i);
                 assertThat(productItem
                         .getProductTitle()
