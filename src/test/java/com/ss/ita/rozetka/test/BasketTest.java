@@ -2,6 +2,7 @@ package com.ss.ita.rozetka.test;
 
 import com.ss.ita.rozetka.pageobject.modals.BasketModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
+import com.ss.ita.rozetka.pageobject.pages.ProductPage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
@@ -12,6 +13,31 @@ import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BasketTest extends TestRunner {
+    @Test
+    public void verifyTotalPriceOfTwoProductsIsCorrect() {
+        ProductPage productPage = new HomePage()
+                .open()
+                .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
+                .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY)
+                .openProductPage(1);
+        int productPrice = productPage.getPrice();
+
+        ProductPage relatedProductPage = productPage
+                .addProductToBasket()
+                .close()
+                .openRelatedProduct(1);
+        int relatedProductPrice = relatedProductPage.getPrice();
+
+        int expectedTotalPrice = productPrice + relatedProductPrice;
+        int actualTotalPrice = relatedProductPage
+                .addProductToBasket()
+                .getProductsTotalPrice();
+
+        assertThat(actualTotalPrice)
+                .as("Total price of products in basket should be equal to sum of their prices")
+                .isEqualTo(expectedTotalPrice);
+    }
+
     @Test
     public void verifyAddProductFunctionality() {
         ProductTypePage productTypePage = new HomePage()
