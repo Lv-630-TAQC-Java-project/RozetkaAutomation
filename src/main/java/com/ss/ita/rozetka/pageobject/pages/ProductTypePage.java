@@ -83,4 +83,10 @@ public class ProductTypePage extends HeaderPage {
                 .map(price -> new BigDecimal(price))
                 .collect(Collectors.toList());
     }
+
+    @Step("ProductTypePage: filter products by {parameter}")
+    public ProductTypePage filterProductsByParameters(String parameter) {
+        $(String.format("label[for='%s']", parameter)).click();
+        return new ProductTypePage();
+    }
 }

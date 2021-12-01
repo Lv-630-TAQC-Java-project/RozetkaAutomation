@@ -9,6 +9,7 @@ import static java.lang.String.format;
 public enum ProductCategoryAndSubCategory {
 
     NOTEBOOKS_CATEGORY("c80004"),
+    MONITORS("monitors"),
     GARDEN_TECH_CATEGORY("garden_tech"),
     GARDEN_EQUIP_CATEGORY("sadoviy-inventar"),
     BIG_HOUSEHOLD_APPLIANCES_CATEGORY("bigbt"),
