@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.ss.ita.rozetka.pageobject.utils.PageUtil.isElementVisible;
 import static java.lang.String.format;
 
 public class ProductTypePage extends HeaderPage {
@@ -48,13 +49,7 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductPage: get product type page visibility status by locating page heading")
     public boolean isOpened() {
-        try {
-            return $x("//h1[@class = 'catalog-heading ng-star-inserted']")
-                    .should(Condition.exist)
-                    .is(Condition.visible);
-        } catch (AssertionError exception) {
-            return false;
-        }
+        return isElementVisible("//h1[@class = 'catalog-heading ng-star-inserted']");
     }
 
     @Step("ProductTypePage: get display status select sorting type")
