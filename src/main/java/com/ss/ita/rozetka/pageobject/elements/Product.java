@@ -24,7 +24,7 @@ public class Product {
     private BigDecimal productPrice;
     private List<String> availableColors;
     private String availability;
-    private int amountReviews;
+    private int reviewAmount;
     private String productDescription;
 
     @Step("Product: get product title")
@@ -95,13 +95,13 @@ public class Product {
     @Step("Product: get amount reviews")
     public int getReviewAmount() {
         if ($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__reviews-link')]")).exists()) {
-            amountReviews = Integer.parseInt($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__reviews-link')]"))
+            reviewAmount = Integer.parseInt($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__reviews-link')]"))
                     .text()
                     .replaceAll("\\D", StringUtils.EMPTY));
         } else {
-            amountReviews = 0;
+            reviewAmount = 0;
         }
-        return amountReviews;
+        return reviewAmount;
     }
 
     @Step("Product: get product description")
