@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.Color;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,16 +28,16 @@ public class Product {
     private String productDescription;
 
     @Step("Product: get product title")
-    public String getProductTitle() {
+    public String getTitle() {
         productTitle = $x(String.format("%s%s", xPath, "//span[@class='goods-tile__title']")).text();
         return productTitle;
     }
 
     @Step("Product: get promo label title")
     public String getPromoLabelTitle() {
-        try {
+        if($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__label')]")).exists()){
             promoLabelTitle = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__label')]")).text();
-        } catch (AssertionError exception) {
+        }else{
             promoLabelTitle = StringUtils.EMPTY;
         }
         return promoLabelTitle;
@@ -44,38 +45,38 @@ public class Product {
 
     @Step("Product: get available colors")
     public List<String> getAvailableColors() {
-        try {
+        if ($$x(String.format("%s%s", xPath, "//span[@class='goods-tile__colors-content']")).first().exists()) {
             availableColors = $$x(String.format("%s%s", xPath, "//span[@class='goods-tile__colors-content']"))
                     .stream()
                     .map(element -> Color.fromString(element.getCssValue("background-color")).asHex())
                     .collect(Collectors.toList());
-        } catch (AssertionError exception) {
+        } else {
             availableColors = null;
         }
         return availableColors;
     }
 
     @Step("Product: get product old price")
-    public BigDecimal getProductOldPrice() {
-        try {
+    public BigDecimal getOldPrice() {
+        if($x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__price--old')]")).exists()){
             String oldPriceString = $x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__price--old')]"))
                     .text()
                     .replaceAll("\\D", StringUtils.EMPTY);
             productOldPrice = new BigDecimal(oldPriceString);
-        } catch (AssertionError | NumberFormatException exception) {
+        }else{
             productOldPrice = BigDecimal.ZERO;
         }
         return productOldPrice;
     }
 
     @Step("Product: get product price")
-    public BigDecimal getProductPrice() {
-        try {
+    public BigDecimal getPrice() {
+        if ($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__price-value')]")).exists()) {
             String price = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__price-value')]"))
                     .text()
                     .replaceAll("\\D", StringUtils.EMPTY);
             productPrice = new BigDecimal(price);
-        } catch (AssertionError | NumberFormatException exception) {
+        } else {
             productPrice = BigDecimal.ZERO;
         }
         return productPrice;
@@ -83,32 +84,32 @@ public class Product {
 
     @Step("Product: get product availability")
     public String getAvailability() {
-        try {
+        if($x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__availability')]")).exists()){
             availability = $x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__availability')]")).text();
-        } catch (AssertionError exception) {
+        }else{
             availability = StringUtils.EMPTY;
         }
         return availability;
     }
 
     @Step("Product: get amount reviews")
-    public int getAmountReviews() {
-        try {
+    public int getReviewAmount() {
+        if ($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__reviews-link')]")).exists()) {
             amountReviews = Integer.parseInt($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__reviews-link')]"))
                     .text()
                     .replaceAll("\\D", StringUtils.EMPTY));
-        } catch (AssertionError exception) {
+        } else {
             amountReviews = 0;
         }
         return amountReviews;
     }
 
     @Step("Product: get product description")
-    public String getProductDescription() {
-        try {
-            actions().moveToElement($x(xPath)).perform();
+    public String getDescription() {
+        actions().moveToElement($x(xPath)).perform();
+        if ($x(String.format("%s%s", xPath, "//*[contains(@class,'goods-tile__description')]")).exists()) {
             productDescription = $x(String.format("%s%s", xPath, "//*[contains(@class,'goods-tile__description')]")).text();
-        } catch (AssertionError exception) {
+        } else {
             productDescription = StringUtils.EMPTY;
         }
         return productDescription;
