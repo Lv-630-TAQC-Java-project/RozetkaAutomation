@@ -3,6 +3,8 @@ package com.ss.ita.rozetka.test;
 import com.google.common.collect.Ordering;
 import com.ss.ita.rozetka.pageobject.pages.*;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
+import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.*;
@@ -13,8 +15,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SortProductsListTest extends TestRunner {
 
     @Test
+    @Issue("LVTAQC630-29")
+    @Description("Verify sorting functionality from cheap to expensive")
     public void verifyCheapToExpensiveSorting() {
-
         ProductCategoryPage productCategoryPage = new HomePage()
                 .open()
                 .openProductCategoryPage(COTTAGE_GARDEN_BACKYARD);
