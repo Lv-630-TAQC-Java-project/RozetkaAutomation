@@ -25,8 +25,8 @@ public class LoginModalTest {
                 .as("visibility of invalid password icon should be equal true")
                 .isTrue();
 
-        loginModal.
-                setEmail("test@gmail.com")
+        loginModal
+                .setEmail("test@gmail.com")
                 .setPassword("1111");
 
         assertThat(loginModal.isInvalidLoginIconVisible())
