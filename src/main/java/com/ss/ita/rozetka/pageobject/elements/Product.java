@@ -58,26 +58,26 @@ public class Product {
 
     @Step("Product: get product old price")
     public BigDecimal getOldPrice() {
-        if($x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__price--old')]")).exists()){
-            String oldPriceString = $x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__price--old')]"))
-                    .text()
-                    .replaceAll("\\D", StringUtils.EMPTY);
-            productOldPrice = new BigDecimal(oldPriceString);
-        }else{
+        String oldPriceString = $x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__price--old')]"))
+                .text()
+                .replaceAll("\\D", StringUtils.EMPTY);
+        if (oldPriceString.isEmpty()) {
             productOldPrice = BigDecimal.ZERO;
+        } else {
+            productOldPrice = new BigDecimal(oldPriceString);
         }
         return productOldPrice;
     }
 
     @Step("Product: get product price")
     public BigDecimal getPrice() {
-        if ($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__price-value')]")).exists()) {
-            String price = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__price-value')]"))
-                    .text()
-                    .replaceAll("\\D", StringUtils.EMPTY);
-            productPrice = new BigDecimal(price);
-        } else {
+        String price = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__price-value')]"))
+                .text()
+                .replaceAll("\\D", StringUtils.EMPTY);
+        if (price.isEmpty()) {
             productPrice = BigDecimal.ZERO;
+        } else {
+            productPrice = new BigDecimal(price);
         }
         return productPrice;
     }
