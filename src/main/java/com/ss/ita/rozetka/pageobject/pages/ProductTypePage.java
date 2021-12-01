@@ -3,7 +3,6 @@ package com.ss.ita.rozetka.pageobject.pages;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
@@ -85,6 +84,13 @@ public class ProductTypePage extends HeaderPage {
                 .map(price -> price.replaceAll(" ", StringUtils.EMPTY))
                 .map(price -> new BigDecimal(price))
                 .collect(Collectors.toList());
+    }
+
+    @Step("ProductTypePage: filter products by {parameter}")
+    public ProductTypePage filterProductsByParameters(String parameter) {
+        $(String.format("label[for='%s']", parameter)).shouldBe(Condition.enabled).click();
+
+        return new ProductTypePage();
     }
 
     @Step("ProductTypePage: add products to  comparison")
