@@ -25,10 +25,10 @@ public class ComparisonTest extends TestRunner {
                 .as("Notebooks subcategory page should be opened")
                 .isEqualTo("https://rozetka.com.ua/notebooks/c80004/");
 
-        int comparisonProductListSize = new Header()
+        int comparisonProductListSize = productTypePage.getHeader()
                 .openComparisonModal()
                 .openComparisonPage()
-                .sizeOfProductComparisonList();
+                .getSizeOfComparisonList();
         assertThat(comparisonProductListSize)
                 .as("List size should be equal to count we added at the ProductTypePage")
                 .isEqualTo(5);
