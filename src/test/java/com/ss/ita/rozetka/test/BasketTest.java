@@ -42,6 +42,31 @@ public class BasketTest extends TestRunner {
                 .as("Basket should be empty - a product was removed")
                 .isTrue();
     }
+  
+    @Test
+    public void verifyTotalPriceOfTwoProductsIsCorrect() {
+        ProductPage productPage = new HomePage()
+                .open()
+                .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
+                .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY)
+                .openProductPage(1);
+        int productPrice = productPage.getPrice();
+
+        ProductPage relatedProductPage = productPage
+                .addProductToBasket()
+                .close()
+                .openRelatedProduct(1);
+        int relatedProductPrice = relatedProductPage.getPrice();
+
+        int expectedTotalPrice = productPrice + relatedProductPrice;
+        int actualTotalPrice = relatedProductPage
+                .addProductToBasket()
+                .getProductsTotalPrice();
+
+        assertThat(actualTotalPrice)
+                .as("Total price of products in basket should be equal to sum of their prices")
+                .isEqualTo(expectedTotalPrice);
+    }
 
     @Test
     public void verifyAddProductFunctionality() {
