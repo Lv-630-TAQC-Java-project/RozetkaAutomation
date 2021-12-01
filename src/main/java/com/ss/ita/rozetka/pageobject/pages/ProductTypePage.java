@@ -101,11 +101,11 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: get action price products list")
     public List <Product> getActionPriceProductsList(){
-        List<Product> productsList = new ArrayList<Product>();
+        List<Product> productsList = new ArrayList<>();
         for (int i = 1; i <= $$x("//div[@class='goods-tile__inner']").size(); i++) {
             Product productItem = getProduct(i);
-            if((productItem.getProductOldPrice()).compareTo(BigDecimal.ZERO) > 0) {
-                productItem.getProductPrice();
+            if((productItem.getOldPrice()).compareTo(BigDecimal.ZERO) > 0) {
+                productItem.getPrice();
                 productsList.add(productItem);
             }
         }
