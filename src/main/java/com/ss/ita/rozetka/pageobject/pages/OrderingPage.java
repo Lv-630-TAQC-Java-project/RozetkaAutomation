@@ -29,50 +29,51 @@ public class OrderingPage {
         return $x("//div[@class = 'checkout-product__title-product']").text();
     }
 
-    @Step("OrderingPage: set Surname")
+    @Step("OrderingPage: set {surname}")
     public OrderingPage setSurname(String surname) {
         $("div[class='form__row js-surname'] input[type='text']").sendKeys(surname);
         return this;
     }
 
-    @Step("OrderingPage: set Name")
+    @Step("OrderingPage: set {name}")
     public OrderingPage setName(String name) {
         $("div[class='form__row js-name'] input[type='text']").sendKeys(name);
         return this;
     }
 
-    @Step("OrderingPage: set phoneNumber")
-    public OrderingPage setPhoneNumber(String number) {
-        $("input[class='ng-invalid ng-dirty ng-touched']").sendKeys(number);
+    @Step("OrderingPage: set {phoneNumber}")
+    public OrderingPage setPhoneNumber(String phoneNumber) {
+        $("input[class='ng-invalid ng-dirty ng-touched']").sendKeys(phoneNumber);
         return this;
     }
 
-    @Step("OrderingPage: set required field")
-    public OrderingPage setRequiredFields(String surname, String name, String number) {
+    @Step("OrderingPage: set {surname}, {name}, {phoneNumber}")
+    public OrderingPage setRequiredFields(String surname, String name, String phoneNumber) {
         setSurname(surname);
         setName(name);
-        setPhoneNumber(number);
+        setPhoneNumber(phoneNumber);
         return this;
     }
 
     @Step("OrderingPage: get name error message")
-    public boolean getNameErrorMessage() {
-        return $x("//p[contains(text(),\"Введіть своє ім'я кирилицею\")]").isDisplayed();
+    public boolean isNameErrorMessageDisplayed() {
+        return $(".form__row .js-name >form-error> p").isDisplayed();
     }
 
     @Step("OrderingPage: get surname error message")
-    public boolean getSurnameErrorMessage() {
-        return $x("//p[contains(text(),'Введіть своє прізвище кирилицею')]").isDisplayed();
+    public boolean isSurnameErrorMessageDisplayed() {
+        return $(".form__row .js-surname >form-error> p").isDisplayed();
     }
 
-    @Step("OrderingPage: get phone number  error message")
-    public boolean getPhoneNumberErrorMessage() {
-        return $x("//p[contains(text(),'Введіть номер мобільного телефону')]").isDisplayed();
+    @Step("OrderingPage: get phoneNumber error message")
+    public boolean isPhoneNumberErrorMessageDisplayed() {
+        return $(".form__row .js-phone >form-error> p").isDisplayed();
     }
 
-    @Step("OrderingPage: confirm the order")
-    public void confirmTheOrder() {
+    @Step("OrderingPage: confirm ordering")
+    public OrderingPage confirmOrdering() {
         $("input.button--green").click();
+        return this;
     }
 
 }

@@ -38,24 +38,24 @@ public class BuyProductTest extends TestRunner {
 
         orderingPage.setRequiredFields("TestUserSurname", "TestUserPhone", "093123456");
 
-        assertThat(orderingPage.getSurnameErrorMessage())
-                .as("You set valid data! Should be invalid!")
+        assertThat(orderingPage.isSurnameErrorMessageDisplayed())
+                .as("Error message should be visible")
                 .isTrue();
-        assertThat(orderingPage.getNameErrorMessage())
-                .as("You set valid data! Should be invalid!")
+        assertThat(orderingPage.isNameErrorMessageDisplayed())
+                .as("Error message should be visible")
                 .isTrue();
-        assertThat(orderingPage.getPhoneNumberErrorMessage())
-                .as("You set valid data! Should be invalid!")
+        assertThat(orderingPage.isPhoneNumberErrorMessageDisplayed())
+                .as("Error message should be visible")
                 .isTrue();
 
         String urlBeforeConfirmingOrder = getCurrentUrl();
 
-        orderingPage.confirmTheOrder();
+        orderingPage.confirmOrdering();
 
         String urlAfterConfirmingOrder = getCurrentUrl();
 
         assertThat(urlBeforeConfirmingOrder)
-                .as("Url should be different")
+                .as("Url should not be different")
                 .isEqualTo(urlAfterConfirmingOrder);
     }
 }
