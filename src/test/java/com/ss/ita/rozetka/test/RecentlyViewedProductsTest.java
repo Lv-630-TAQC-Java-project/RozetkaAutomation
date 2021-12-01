@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.test;
 
+import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
@@ -36,34 +37,33 @@ public class RecentlyViewedProductsTest extends TestRunner {
         String firstOpenedProductName = productPage
                 .openProductPage(1)
                 .getName();
-        String recentlyViewedProductName = productPage
-                .getHeader()
+
+        Header header = productPage.getHeader();
+
+        String recentlyViewedProductName = header
                 .openHomePage()
                 .getRecentlyViewedProductName(1);
         assertThat(recentlyViewedProductName)
                 .as("First product name in Recently Opened products should be equal to last viewed product name")
                 .isEqualTo(firstOpenedProductName);
 
-        String secondOpenedProductName = productPage
-                .getHeader()
+        String secondOpenedProductName = header
                 .openHomePage()
                 .openProductCategoryPage(COTTAGE_GARDEN_BACKYARD)
                 .openProductTypePage(GARDEN_TECH_CATEGORY)
                 .openProductPage(1)
                 .getName();
 
-        String thirdOpenedProductName = productPage
-                .getHeader()
+        String thirdOpenedProductName = header
                 .openHomePage()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS_CATEGORY)
                 .openProductPage(1)
                 .getName();
 
-        List<String> recentlyViewedProductNames = productPage
-                .getHeader()
+        List<String> recentlyViewedProductNames = header
                 .openHomePage()
-                .getRecentlyViewedProductsNames(3);
+                .getRecentlyViewedProductsNames();
 
         assertThat(recentlyViewedProductNames.get(0))
                 .as("First product name in Recently Opened products should be equal to last viewed product name")
