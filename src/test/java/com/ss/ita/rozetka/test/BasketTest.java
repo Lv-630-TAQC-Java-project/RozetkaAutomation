@@ -14,6 +14,36 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BasketTest extends TestRunner {
     @Test
+    public void verifyChangingProductCountAndRemovingFromBasket() {
+        BasketModal<ProductPage> basket = new HomePage()
+                .open()
+                .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
+                .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY)
+                .openProductPage(1)
+                .addProductToBasket();
+
+        assertThat(basket.isEmpty())
+                .as("Basket can not be empty - a product was added")
+                .isFalse();
+
+        String productTitle = basket.getProductTitles().get(0);
+        int newProductCount = 3;
+        int totalPriceBeforeChangingCount = basket.getProductsTotalPrice();
+
+        basket.setProductCount(productTitle, newProductCount);
+
+        assertThat(basket.getProductsTotalPrice())
+                .as("Total price should be updated multiplied by %d due to product count changing", newProductCount)
+                .isEqualTo(totalPriceBeforeChangingCount * newProductCount);
+
+        basket.removeProduct(productTitle);
+
+        assertThat(basket.isEmpty())
+                .as("Basket should be empty - a product was removed")
+                .isTrue();
+    }
+  
+    @Test
     public void verifyTotalPriceOfTwoProductsIsCorrect() {
         ProductPage productPage = new HomePage()
                 .open()
