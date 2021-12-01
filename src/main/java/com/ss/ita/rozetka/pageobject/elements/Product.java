@@ -51,7 +51,7 @@ public class Product {
                     .map(element -> Color.fromString(element.getCssValue("background-color")).asHex())
                     .collect(Collectors.toList());
         } else {
-            availableColors = null;
+            availableColors = new ArrayList<>();
         }
         return availableColors;
     }
