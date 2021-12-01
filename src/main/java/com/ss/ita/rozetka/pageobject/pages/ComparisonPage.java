@@ -10,9 +10,8 @@ import static com.codeborne.selenide.Selenide.$$x;
 
 public class ComparisonPage {
 
-
     @Step("ComparisonPage: get product comparison list size")
-    public int getSizeOfComparisonList() {
+    public int getComparisonListSize() {
         return $$x("//a[@class='product__heading']")
                 .shouldHave(CollectionCondition.sizeGreaterThan(0))
                 .size();
