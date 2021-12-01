@@ -102,7 +102,8 @@ public class ProductTypePage extends HeaderPage {
     @Step("ProductTypePage: get action price products list")
     public List <Product> getActionPriceProductsList(){
         List<Product> productsList = new ArrayList<>();
-        for (int i = 1; i <= $$x("//div[@class='goods-tile__inner']").size(); i++) {
+        int productsCollectionSize = $$x("//div[@class='goods-tile__inner']").size();
+        for (int i = 1; i <= productsCollectionSize; i++) {
             Product productItem = getProduct(i);
             if((productItem.getOldPrice()).compareTo(BigDecimal.ZERO) > 0) {
                 productItem.getPrice();
