@@ -15,5 +15,5 @@ public enum FilterName {
     SELL_STATUS("sell_status");
 
     @Getter
-    private final String name;
+    private final String filterName;
 }
