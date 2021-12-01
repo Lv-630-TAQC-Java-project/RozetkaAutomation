@@ -2,6 +2,7 @@ package com.ss.ita.rozetka.test;
 
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
+import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import org.testng.annotations.Test;
 
@@ -14,6 +15,7 @@ public class ProductTypePageTest2 extends TestRunner {
         ProductTypePage productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(STATIONERY_AND_BOOKS)
-                .openProductTypePage(BOOKS_CATEGORY);
+                .openProductTypePage(BOOKS_CATEGORY)
+                .sortProductsListBy(ProductsListSortType.ACTION);
     }
 }
