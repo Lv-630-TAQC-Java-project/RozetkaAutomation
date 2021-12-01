@@ -95,6 +95,7 @@ public class BasketModal<T> {
 
     @Step("BasketModal: Add additional services")
     public BasketModal<T> addAdditionalServices() {
+        // totalPrice is needed to verify that total price of the Product was changed
         int totalPrice = getProductsTotalPrice();
 
         $("div > label").click();

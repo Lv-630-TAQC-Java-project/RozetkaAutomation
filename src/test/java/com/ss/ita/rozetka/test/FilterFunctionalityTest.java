@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class FilterFunctionalityTest extends TestRunner {
 
     @Test
-    public void verifyUserCanFilterProducts() throws InterruptedException {
+    public void verifyUserCanFilterProducts() {
         ProductTypePage productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
