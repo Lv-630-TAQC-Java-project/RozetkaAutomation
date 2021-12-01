@@ -12,7 +12,7 @@ import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategor
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class buyProductTest extends TestRunner {
+public class BuyProductTest extends TestRunner {
 
     @Test
     public void verifyUserCantBuyProductWithInvalidData() {
