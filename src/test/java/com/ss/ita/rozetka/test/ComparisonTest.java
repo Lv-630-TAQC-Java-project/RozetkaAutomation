@@ -25,7 +25,8 @@ public class ComparisonTest extends TestRunner {
                 .as("Notebooks subcategory page should be opened")
                 .isEqualTo("https://rozetka.com.ua/notebooks/c80004/");
 
-        int comparisonProductListSize = productTypePage.getHeader()
+        int comparisonProductListSize = productTypePage
+                .getHeader()
                 .openComparisonModal()
                 .openComparisonPage()
                 .getComparisonListSize();
