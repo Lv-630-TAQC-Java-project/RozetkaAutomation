@@ -1,6 +1,7 @@
 package com.ss.ita.rozetka.pageobject.utils;
 
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.WebDriverRunner.url;
