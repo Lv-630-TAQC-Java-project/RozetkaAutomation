@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class LoginModal {
 
     @Step("LoginModal: close login modal")
-    public Header closeLoginModal() {
+    public Header close() {
         $x("//button[@class='modal__close ng-star-inserted']").click();
         return new Header();
     }
@@ -22,19 +22,19 @@ public class LoginModal {
     }
 
     @Step("LoginModal: set login {login}")
-    public LoginModal setLogin(String login) {
-        SelenideElement input = $x("//input[@type='email']");
-        input.clear();
-        input.sendKeys(login);
+    public LoginModal setLoginEmail(String login) {
+        SelenideElement inputField = $x("//input[@type='email']");
+        inputField.clear();
+        inputField.sendKeys(login);
         getPasswordVisibilityToogle().click();
         return this;
     }
 
     @Step("LoginModal: set password {password}")
     public LoginModal setPassword(String password) {
-        SelenideElement input = $("#auth_pass");
-        input.clear();
-        input.sendKeys(password);
+        SelenideElement inputField = $("#auth_pass");
+        inputField.clear();
+        inputField.sendKeys(password);
         getPasswordVisibilityToogle().click();
         return this;
     }

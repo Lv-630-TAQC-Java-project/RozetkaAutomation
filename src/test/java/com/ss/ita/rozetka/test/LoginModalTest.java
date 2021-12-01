@@ -14,24 +14,27 @@ public class LoginModalTest {
                 .open()
                 .getHeader()
                 .openLoginModal()
-                .setLogin("default")
+                .setLoginEmail("default")
                 .setPassword(StringUtils.EMPTY);
 
         assertThat(loginModal.isInvalidLoginIconVisible())
                 .as("visibility of invalid login icon should be equal true")
-                .isEqualTo(true);
+                .isTrue();
 
         assertThat(loginModal.isInvalidPasswordIconVisible())
                 .as("visibility of invalid password icon should be equal true")
-                .isEqualTo(true);
+                .isTrue();
 
-        loginModal.setLogin("test@gmail.com").setPassword("1111");
+        loginModal.
+                setLoginEmail("test@gmail.com")
+                .setPassword("1111");
+
         assertThat(loginModal.isInvalidLoginIconVisible())
                 .as("visibility of invalid login icon should be equal false")
-                .isEqualTo(false);
+                .isFalse();
 
         assertThat(loginModal.isInvalidPasswordIconVisible())
                 .as("visibility of invalid password icon should be equal false")
-                .isEqualTo(false);
+                .isFalse();
     }
 }
