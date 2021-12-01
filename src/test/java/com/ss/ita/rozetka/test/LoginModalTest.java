@@ -14,7 +14,7 @@ public class LoginModalTest {
                 .open()
                 .getHeader()
                 .openLoginModal()
-                .setLoginEmail("default")
+                .setEmail("default")
                 .setPassword(StringUtils.EMPTY);
 
         assertThat(loginModal.isInvalidLoginIconVisible())
@@ -26,7 +26,7 @@ public class LoginModalTest {
                 .isTrue();
 
         loginModal.
-                setLoginEmail("test@gmail.com")
+                setEmail("test@gmail.com")
                 .setPassword("1111");
 
         assertThat(loginModal.isInvalidLoginIconVisible())

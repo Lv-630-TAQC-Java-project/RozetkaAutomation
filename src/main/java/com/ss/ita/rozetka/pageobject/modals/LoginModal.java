@@ -22,19 +22,19 @@ public class LoginModal {
     }
 
     @Step("LoginModal: set login {login}")
-    public LoginModal setLoginEmail(String login) {
-        SelenideElement inputField = $x("//input[@type='email']");
-        inputField.clear();
-        inputField.sendKeys(login);
+    public LoginModal setEmail(String login) {
+        SelenideElement emailField = $x("//input[@type='email']");
+        emailField.clear();
+        emailField.sendKeys(login);
         getPasswordVisibilityToogle().click();
         return this;
     }
 
     @Step("LoginModal: set password {password}")
     public LoginModal setPassword(String password) {
-        SelenideElement inputField = $("#auth_pass");
-        inputField.clear();
-        inputField.sendKeys(password);
+        SelenideElement passwordField = $("#auth_pass");
+        passwordField.clear();
+        passwordField.sendKeys(password);
         getPasswordVisibilityToogle().click();
         return this;
     }
