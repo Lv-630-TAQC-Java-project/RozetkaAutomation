@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.pageobject.elements;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.NonNull;
