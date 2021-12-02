@@ -83,4 +83,9 @@ public class ProductTypePage extends HeaderPage {
                 .map(price -> new BigDecimal(price))
                 .collect(Collectors.toList());
     }
+
+    @Step("ProductPage: get product tile label")
+    public String getLabel() {
+        return $x("//span[contains(@class,'goods-tile__label promo-label promo-label_type_action')]").text();
+    }
 }
