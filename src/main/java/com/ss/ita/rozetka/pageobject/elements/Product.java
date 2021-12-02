@@ -1,12 +1,13 @@
 package com.ss.ita.rozetka.pageobject.elements;
 
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.Color;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,11 +21,11 @@ public class Product {
     private final String xPath;
     private String promoLabelTitle;
     private String productTitle;
-    private BigDecimal productOldPrice;
-    private BigDecimal productPrice;
+    private int productOldPrice;
+    private int productPrice;
     private List<String> availableColors;
     private String availability;
-    private int amountReviews;
+    private int reviewAmount;
     private String productDescription;
 
     @Step("Product: get product title")
@@ -35,9 +36,10 @@ public class Product {
 
     @Step("Product: get promo label title")
     public String getPromoLabelTitle() {
-        if($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__label')]")).exists()){
-            promoLabelTitle = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__label')]")).text();
-        }else{
+        SelenideElement promoLabelElement = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__label')]"));
+        if (promoLabelElement.exists()) {
+            promoLabelTitle = promoLabelElement.text();
+        } else {
             promoLabelTitle = StringUtils.EMPTY;
         }
         return promoLabelTitle;
@@ -45,70 +47,74 @@ public class Product {
 
     @Step("Product: get available colors")
     public List<String> getAvailableColors() {
-        if ($$x(String.format("%s%s", xPath, "//span[@class='goods-tile__colors-content']")).first().exists()) {
-            availableColors = $$x(String.format("%s%s", xPath, "//span[@class='goods-tile__colors-content']"))
+        List<SelenideElement> availableColorsList = $$x(String.format("%s%s", xPath, "//span[@class='goods-tile__colors-content']"));
+        if (availableColorsList.isEmpty()) {
+            availableColors = new ArrayList<>();
+        } else {
+            availableColors = availableColorsList
                     .stream()
                     .map(element -> Color.fromString(element.getCssValue("background-color")).asHex())
                     .collect(Collectors.toList());
-        } else {
-            availableColors = new ArrayList<>();
         }
         return availableColors;
     }
 
     @Step("Product: get product old price")
-    public BigDecimal getOldPrice() {
+    public int getOldPrice() {
         String oldPriceString = $x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__price--old')]"))
                 .text()
                 .replaceAll("\\D", StringUtils.EMPTY);
         if (oldPriceString.isEmpty()) {
-            productOldPrice = BigDecimal.ZERO;
+            productOldPrice = 0;
         } else {
-            productOldPrice = new BigDecimal(oldPriceString);
+            productOldPrice = Integer.parseInt(oldPriceString);
         }
         return productOldPrice;
     }
 
     @Step("Product: get product price")
-    public BigDecimal getPrice() {
+    public int getPrice() {
         String price = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__price-value')]"))
                 .text()
                 .replaceAll("\\D", StringUtils.EMPTY);
         if (price.isEmpty()) {
-            productPrice = BigDecimal.ZERO;
+            productPrice = 0;
         } else {
-            productPrice = new BigDecimal(price);
+            productPrice = Integer.parseInt(price);
         }
         return productPrice;
     }
 
     @Step("Product: get product availability")
     public String getAvailability() {
-        if($x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__availability')]")).exists()){
-            availability = $x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__availability')]")).text();
-        }else{
+        SelenideElement availabilityElement = $x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__availability')]"));
+        if (availabilityElement.exists()) {
+            availability = availabilityElement.text();
+        } else {
             availability = StringUtils.EMPTY;
         }
         return availability;
     }
 
-    @Step("Product: get amount reviews")
+    @Step("Product: get review amount ")
     public int getReviewAmount() {
-        if ($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__reviews-link')]")).exists()) {
-            amountReviews = Integer.parseInt($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__reviews-link')]"))
+        SelenideElement reviewAmountElement = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__reviews-link')]"));
+        if (reviewAmountElement.exists()) {
+            reviewAmount = Integer.parseInt((reviewAmountElement)
                     .text()
                     .replaceAll("\\D", StringUtils.EMPTY));
         } else {
-            amountReviews = 0;
+            reviewAmount = 0;
         }
-        return amountReviews;
+        return reviewAmount;
     }
 
     @Step("Product: get product description")
     public String getDescription() {
         actions().moveToElement($x(xPath)).perform();
-        if ($x(String.format("%s%s", xPath, "//*[contains(@class,'goods-tile__description')]")).exists()) {
-            productDescription = $x(String.format("%s%s", xPath, "//*[contains(@class,'goods-tile__description')]")).text();
+        SelenideElement descriptionElement = $x(String.format("%s%s", xPath, "//*[contains(@class,'goods-tile__description')]"));
+        if (descriptionElement.exists()) {
+            productDescription = descriptionElement.text();
         } else {
             productDescription = StringUtils.EMPTY;
         }
@@ -117,7 +123,7 @@ public class Product {
 
     @Step("ProductTypePage: get status product discount price")
     public boolean isProductDiscountPriceValid() {
-        return ((productOldPrice).subtract(productPrice)).compareTo(BigDecimal.valueOf(0.01)) >= 0;
+        return (productOldPrice - productPrice) > 0;
     }
 
     @Step("ProductTypePage: get old price text color")
