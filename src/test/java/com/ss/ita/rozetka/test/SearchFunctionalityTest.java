@@ -62,7 +62,7 @@ public class SearchFunctionalityTest extends TestRunner {
         Header header = new HomePage()
                 .open()
                 .getHeader();
-        List<String> searchTerms = new ArrayList<>(Arrays.asList("Dell", "НР", "IPhone", "Stihl"));
+        List<String> searchTerms = new ArrayList<>(Arrays.asList("Dell", "НР", "Bosh", "IPhone", "Stihl"));
         Product productItem;
         ProductTypePage searchResultPage;
         for (String searchTerm : searchTerms){
