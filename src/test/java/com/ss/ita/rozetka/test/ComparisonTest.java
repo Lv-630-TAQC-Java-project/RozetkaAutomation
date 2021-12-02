@@ -31,7 +31,7 @@ public class ComparisonTest extends TestRunner {
                 .getComparisonListSize();
         assertThat(comparisonProductListSize)
                 .as("List size should be equal to count we added at the ProductTypePage")
-                .isEqualTo(5);
+                .isEqualTo(productCount);
     }
 
 }
