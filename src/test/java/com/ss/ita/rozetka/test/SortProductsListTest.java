@@ -6,6 +6,7 @@ import com.ss.ita.rozetka.pageobject.pages.*;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
+import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -49,8 +50,8 @@ public class SortProductsListTest extends TestRunner {
     @Test
     @Issue("LVTAQC630-33")
     @Description("Verify that sort by Action products list contains products which have higher old price" +
-            " than price with discount and price text color is grey for without price, red for price with discount")
-    public void verifyActionSorting() {
+            " than price with discount and price text color is grey for old price, red for new price")
+    public void verifyProductDiscountPrice() {
         ProductCategoryPage productCategoryPage = new HomePage()
                 .open()
                 .openProductCategoryPage(SMARTPHONE_TV_ELECTRONICS);
@@ -63,15 +64,16 @@ public class SortProductsListTest extends TestRunner {
                 .as("Product type page should be opened")
                 .isTrue();
         productTypePage.sortProductsListBy(ACTION);
-        List<Product> promoPriceProductsList = productTypePage.getActionPriceProductsList();
-        for (Product promoPriceProduct : promoPriceProductsList) {
-            assertThat(promoPriceProduct.isProductDiscountPriceValid())
+        List<Product> discountPriceProductsList = productTypePage.getDiscountPriceProductsList();
+        SoftAssertions softAssert = new SoftAssertions();
+        for (Product discountPriceProduct : discountPriceProductsList) {
+            softAssert.assertThat(discountPriceProduct.isProductDiscountPriceValid())
                     .as("Price with discount must be less than price without discount")
                     .isTrue();
-            assertThat(promoPriceProduct.getOldPriceTextColor())
+            softAssert.assertThat(discountPriceProduct.getOldPriceTextColor())
                     .as("Price color text must be grey: #797878")
                     .isEqualTo("#797878");
-            assertThat(promoPriceProduct.getPriceTextColor())
+            softAssert.assertThat(discountPriceProduct.getPriceTextColor())
                     .as("Price color text must be red: #f84147")
                     .isEqualTo("#f84147");
         }

@@ -123,7 +123,7 @@ public class Product {
 
     @Step("ProductTypePage: get status product discount price")
     public boolean isProductDiscountPriceValid() {
-        return (productOldPrice - productPrice) > 0;
+        return productOldPrice < productPrice;
     }
 
     @Step("ProductTypePage: get old price text color")
@@ -134,7 +134,7 @@ public class Product {
     }
 
     @Step("ProductTypePage: get price text color")
-    public String getPriceTextColor(){
+    public String getPriceTextColor() {
         return Color.fromString($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__price-value')]"))
                         .getCssValue("color"))
                 .asHex();

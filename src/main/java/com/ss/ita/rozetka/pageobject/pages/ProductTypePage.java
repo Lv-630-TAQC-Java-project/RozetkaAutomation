@@ -100,10 +100,12 @@ public class ProductTypePage extends HeaderPage {
         return new Product(String.format(("(//div[@class='goods-tile__inner'])[%s]"), numberProduct));
     }
 
-    @Step("ProductTypePage: get action price products list")
-    public List<Product> getActionPriceProductsList() {
+    @Step("ProductTypePage: get products action prices list")
+    public List<Product> getDiscountPriceProductsList() {
         List<Product> productsList = new ArrayList<>();
-        int productsCollectionSize = $$x("//div[@class='goods-tile__inner']").size();
+        int productsCollectionSize = $$x("//div[@class='goods-tile__inner']")
+                .shouldBe(CollectionCondition.sizeLessThanOrEqual(60))
+                .size();
         for (int i = 1; i <= productsCollectionSize; i++) {
             Product productItem = getProduct(i);
             if (productItem.getOldPrice() > 0) {
