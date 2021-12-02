@@ -2,7 +2,6 @@ package com.ss.ita.rozetka.pageobject.pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
