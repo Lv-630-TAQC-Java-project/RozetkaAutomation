@@ -77,6 +77,7 @@ public class SortProductsListTest extends TestRunner {
                     .as("Price color text must be red: #f84147")
                     .isEqualTo("#f84147");
         }
+        softAssert.assertAll();
     }
 }
 
