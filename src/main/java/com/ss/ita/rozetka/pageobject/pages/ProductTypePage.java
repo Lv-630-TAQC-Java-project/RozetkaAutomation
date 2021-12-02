@@ -97,11 +97,8 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: add product count to comparison")
     public ProductTypePage addProductCountToComparison(int productCount) {
-        List<SelenideElement> iconList = new ArrayList<>();
         for (int i = 0; i < productCount; i++) {
-            SelenideElement icon = $x(format("(//button[@class='compare-button ng-star-inserted'])[%s]", i + 1));
-            icon.click();
-            iconList.add(icon);
+            $x(format("(//button[@class='compare-button ng-star-inserted'])[%s]", i + 1)).click();
         }
         return this;
     }
