@@ -34,7 +34,7 @@ public class SearchFunctionalityTest extends TestRunner {
     }
 
     @Test
-    public void verifySearchHistoryTest() {
+    public void verifySearchHistoryText() {
         Header header = new HomePage()
                 .open()
                 .getHeader();
@@ -58,7 +58,7 @@ public class SearchFunctionalityTest extends TestRunner {
 
     @Test
     @Description("Verify that items in the search history in right order and search works correct")
-    public void verifySearchFromSearchHistoryTest() {
+    public void verifySearchFromSearchHistory() {
         Header header = new HomePage()
                 .open()
                 .getHeader();
@@ -71,7 +71,7 @@ public class SearchFunctionalityTest extends TestRunner {
             for (int i = 1; i <= productCount; i++){
                 productItem = searchResultPage.getProduct(i);
                 assertThat(productItem
-                        .getProductTitle()
+                        .getTitle()
                         .toUpperCase())
                         .as("Product title should contains search term")
                         .contains(searchTerm.toUpperCase());
