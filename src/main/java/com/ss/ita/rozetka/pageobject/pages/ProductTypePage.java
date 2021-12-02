@@ -85,7 +85,7 @@ public class ProductTypePage extends HeaderPage {
     }
 
     @Step("ProductPage: get product tile label")
-    public String getLabel() {
-        return $x("//span[contains(@class,'goods-tile__label promo-label promo-label_type_action')]").text();
+    public String getLabelProductStatus() {
+        return $x("//span[contains(@class,'goods-tile__label promo-label promo-label_type_action')]").getAttribute("class");
     }
 }

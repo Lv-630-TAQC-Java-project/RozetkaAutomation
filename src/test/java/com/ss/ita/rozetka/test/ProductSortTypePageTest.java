@@ -1,7 +1,6 @@
 package com.ss.ita.rozetka.test;
 
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
-import com.ss.ita.rozetka.pageobject.pages.ProductPage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
@@ -20,8 +19,10 @@ public class ProductSortTypePageTest extends TestRunner {
                 .openProductTypePage(BOOKS_CATEGORY)
                 .sortProductsListBy(ProductsListSortType.ACTION);
 
-        assertThat(productTypePage.getLabel())
+        String labelClassAction = "goods-tile__label promo-label promo-label_type_action ng-star-inserted";
+
+        assertThat(productTypePage.getLabelProductStatus())
                 .as("Product must have tile label 'action'")
-                .isEqualTo(productTypePage.getLabel());
+                .isEqualTo(labelClassAction);
     }
 }
