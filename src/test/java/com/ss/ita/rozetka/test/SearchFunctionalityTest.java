@@ -64,14 +64,14 @@ public class SearchFunctionalityTest extends TestRunner {
         Header header = new HomePage()
                 .open()
                 .getHeader();
-        List<String> searchTerms = new ArrayList<>(Arrays.asList("Dell", "НР", "Bosh", "IPhone", "Stihl"));
+        List<String> searchTerms = new ArrayList<>(Arrays.asList("Dell", "НР", "Bosch", "IPhone", "Stihl"));
         ProductTypePage searchResultPage;
         int productCount;
         SoftAssertions softAssert = new SoftAssertions();
         for (String searchTerm : searchTerms) {
             searchResultPage = header.doSearch(searchTerm);
             productCount = $$x("//div[@class='goods-tile__inner']")
-                    .shouldBe(CollectionCondition.sizeLessThanOrEqual(36))
+                    .shouldBe(CollectionCondition. sizeLessThanOrEqual(36))
                     .size();
             for (int i = 1; i <= productCount; i++) {
                 String productTitle = searchResultPage
@@ -86,5 +86,6 @@ public class SearchFunctionalityTest extends TestRunner {
         }
         softAssert.assertAll();
         header.setSearchInputInFocus();
+        sleep(10000);
     }
 }
