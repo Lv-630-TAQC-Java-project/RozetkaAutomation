@@ -6,6 +6,7 @@ import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.CollectionCondition.*;
 
 import java.util.List;
 
@@ -42,9 +43,7 @@ public class HomePage extends HeaderPage {
 
     @Step("HomePage: get recently viewed products names list from first to {intNumber} Recently Viewed Products list")
     public List<String> getRecentlyViewedProductsNames(){
-        String recentlyViewedProductsXpath = "//section[@class = 'main-goods ng-star-inserted'][1]//ul/li//a[@class = 'tile__title']";
-        $x(recentlyViewedProductsXpath).shouldBe(Condition.visible);
-        return  $$x(recentlyViewedProductsXpath).texts();
+        return  $$x("//section[@class = 'main-goods ng-star-inserted'][1]//ul/li//a[@class = 'tile__title']").shouldBe(empty).texts();
     }
 
     @Step("HomePage: get display status main menu categories")

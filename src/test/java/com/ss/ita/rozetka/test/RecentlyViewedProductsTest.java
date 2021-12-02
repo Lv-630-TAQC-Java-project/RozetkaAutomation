@@ -5,7 +5,9 @@ import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Issue;
+import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
+
 import java.util.List;
 
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.HOUSEHOLD_APPLIANCES;
@@ -65,16 +67,16 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .openHomePage()
                 .getRecentlyViewedProductsNames();
 
-        assertThat(recentlyViewedProductNames.get(0))
+        SoftAssertions softly = new SoftAssertions();
+        softly.assertThat(recentlyViewedProductNames.get(0))
                 .as("First product name in Recently Opened products should be equal to last viewed product name")
                 .isEqualTo(thirdOpenedProductName);
-
-        assertThat(recentlyViewedProductNames.get(1))
+        softly.assertThat(recentlyViewedProductNames.get(1))
                 .as("Second product name in Recently Opened products should be equal to second viewed product name")
                 .isEqualTo(secondOpenedProductName);
-
-        assertThat(recentlyViewedProductNames.get(2))
+        softly.assertThat(recentlyViewedProductNames.get(2))
                 .as("Third product name in Recently Opened products should be equal to first viewed product name")
                 .isEqualTo(firstOpenedProductName);
+        softly.assertAll();
     }
 }
