@@ -1,6 +1,5 @@
 package com.ss.ita.rozetka.test;
 
-import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
@@ -20,7 +19,7 @@ public class ComparisonTest extends TestRunner {
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS_CATEGORY);
         int productCount = 5;
-        productTypePage.addNumberOfProductsToComparison(productCount);
+        productTypePage.addProductCountToComparison(productCount);
         assertThat(getCurrentUrl())
                 .as("Notebooks subcategory page should be opened")
                 .isEqualTo("https://rozetka.com.ua/notebooks/c80004/");

@@ -2,6 +2,7 @@ package com.ss.ita.rozetka.pageobject.pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
@@ -94,15 +95,13 @@ public class ProductTypePage extends HeaderPage {
         return new ProductTypePage();
     }
 
-    @Step("ProductTypePage: add products to  comparison")
-    public ProductTypePage addNumberOfProductsToComparison(int productCount) {
+    @Step("ProductTypePage: add product count to comparison")
+    public ProductTypePage addProductCountToComparison(int productCount) {
         List<SelenideElement> iconList = new ArrayList<>();
         for (int i = 0; i < productCount; i++) {
             SelenideElement icon = $x(format("(//button[@class='compare-button ng-star-inserted'])[%s]", i + 1));
+            icon.click();
             iconList.add(icon);
-            iconList
-                    .get(i)
-                    .click();
         }
         return this;
     }
