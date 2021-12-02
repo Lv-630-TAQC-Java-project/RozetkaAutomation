@@ -11,7 +11,7 @@ import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.STATI
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.BOOKS_CATEGORY;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ProductTypePageTest2 extends TestRunner {
+public class ProductSortTypePageTest extends TestRunner {
     @Test
     public void verifyThatProductsArePresentedInBooksCategory(){
         ProductTypePage productTypePage = new HomePage()
