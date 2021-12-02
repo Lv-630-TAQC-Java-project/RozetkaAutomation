@@ -9,9 +9,7 @@ import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
-import org.testng.asserts.Assertion;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -80,13 +78,13 @@ public class ProductTypePage extends HeaderPage {
     }
 
     @Step("ProductTypePage: get product prices list")
-    public List<BigDecimal> getProductPricesList() {
+    public List<Integer> getProductPricesList() {
         return $$x("//span[contains(@class, 'goods-tile__price-value')]")
                 .shouldBe(CollectionCondition.sizeLessThanOrEqual(60))
                 .texts()
                 .stream()
                 .map(price -> price.replaceAll(" ", StringUtils.EMPTY))
-                .map(price -> new BigDecimal(price))
+                .map(price -> Integer.valueOf(price))
                 .collect(Collectors.toList());
     }
 
@@ -115,6 +113,4 @@ public class ProductTypePage extends HeaderPage {
         }
         return productsList;
     }
-
-
 }
