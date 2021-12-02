@@ -40,7 +40,7 @@ public class BuyProductTest extends TestRunner {
                 .addProductToBasket()
                 .openOrderingPage();
 
-        orderingPage.setRequiredFields("TestUserSurname", "TestUserPhone", "093123456");
+        orderingPage.setRequiredFields("TestUserSurname", "TestUserName", "093123456");
 
         assertThat(orderingPage.isSurnameErrorMessageDisplayed())
                 .as("Error message should be visible")
