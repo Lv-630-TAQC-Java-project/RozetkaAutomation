@@ -95,7 +95,7 @@ public class Product {
         return availability;
     }
 
-    @Step("Product: get amount reviews")
+    @Step("Product: get review amount ")
     public int getReviewAmount() {
         SelenideElement reviewAmountElement = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__reviews-link')]"));
         if (reviewAmountElement.exists()) {
