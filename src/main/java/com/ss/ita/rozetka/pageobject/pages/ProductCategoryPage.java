@@ -1,10 +1,10 @@
 package com.ss.ita.rozetka.pageobject.pages;
 
-import com.codeborne.selenide.Condition;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static com.ss.ita.rozetka.pageobject.utils.PageUtil.isElementVisible;
 import static java.lang.String.format;
 
 public class ProductCategoryPage extends HeaderPage {
@@ -16,8 +16,7 @@ public class ProductCategoryPage extends HeaderPage {
     }
 
     @Step("ProductCategoryPage: get product category page visibility status by locating page heading")
-    public Boolean isOpened() {
-        return $x("//h1[@class = 'portal__heading ng-star-inserted']").is(Condition.visible);
+    public boolean isOpened() {
+        return isElementVisible("//h1[@class = 'portal__heading ng-star-inserted']");
     }
 }
-

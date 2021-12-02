@@ -9,10 +9,11 @@ import static java.lang.String.format;
 public enum GeneralProductCategory {
 
     NOTEBOOKS_AND_COMPUTERS("computers-notebooks"),
+    SMARTPHONES_TV_AND_ELECTRONICS("telefony-tv-i-ehlektronika"),
     PRODUCTS_FOR_HOUSE("tovary-dlya-doma"),
     HOUSEHOLD_APPLIANCES("bt"),
     COTTAGE_GARDEN_BACKYARD("dacha-sad-ogorod"),
-    SMARTPHONE_TV_ELECTRONICS("telefony-tv-i-ehlektronika");
+    PHONES_AND_TV("telefony-tv-i-ehlektronika");
 
     @Getter
     private final String name;

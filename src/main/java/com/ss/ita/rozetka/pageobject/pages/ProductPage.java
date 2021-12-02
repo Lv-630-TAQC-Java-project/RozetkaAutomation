@@ -5,6 +5,7 @@ import com.ss.ita.rozetka.pageobject.modals.BasketModal;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class ProductPage extends HeaderPage {
@@ -41,5 +42,18 @@ public class ProductPage extends HeaderPage {
     @Step("ProductPage: get product description")
     public String getDescription() {
         return $x("//p[@class = 'product-about__brief ng-star-inserted']").text();
+    }
+
+    @Step("ProductPage: open {number}-th related product")
+    public ProductPage openRelatedProduct(int number) {
+        String relatedProductXpathTemplate =
+                "//section[contains(@class,'product-related')]//li[contains(@class,'simple-slider__item')][%d]";
+        $x(String.format(relatedProductXpathTemplate, number)).click();
+        return this;
+    }
+
+    @Step("ProductPage: get product characteristics")
+    public String getProductCharacteristics() {
+        return $(".characteristics-full__list").getText();
     }
 }
