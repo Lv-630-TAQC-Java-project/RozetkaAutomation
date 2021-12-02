@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.pageobject.modals.BasketModal;
 import com.ss.ita.rozetka.pageobject.modals.CatalogModal;
+import com.ss.ita.rozetka.pageobject.modals.LoginModal;
 import com.ss.ita.rozetka.pageobject.modals.ComparisonModal;
 import com.ss.ita.rozetka.pageobject.modals.SideMenuModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
@@ -59,6 +60,12 @@ public class Header {
     public ComparisonModal openComparisonModal() {
         $x("(//button[@class='header__button ng-star-inserted'])[2]").click();
         return new ComparisonModal();
+    }
+
+    @Step("Header: open login modal")
+    public LoginModal openLoginModal() {
+        $x("//button[@class='header__button ng-star-inserted']").click();
+        return new LoginModal();
     }
 
     @Step("Header: get catalog modal visibility status")
