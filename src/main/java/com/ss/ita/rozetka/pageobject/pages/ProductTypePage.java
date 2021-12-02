@@ -7,12 +7,14 @@ import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
+import org.testng.asserts.Assertion;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.ss.ita.rozetka.pageobject.utils.PageUtil.isElementVisible;
 import static java.lang.String.format;
 
 public class ProductTypePage extends HeaderPage {
@@ -47,8 +49,8 @@ public class ProductTypePage extends HeaderPage {
     }
 
     @Step("ProductPage: get product type page visibility status by locating page heading")
-    public Boolean isOpened() {
-        return $x("//h1[@class = 'catalog-heading ng-star-inserted']").is(Condition.visible);
+    public boolean isOpened() {
+        return isElementVisible("//h1[@class = 'catalog-heading ng-star-inserted']");
     }
 
     @Step("ProductTypePage: get display status select sorting type")
@@ -83,6 +85,13 @@ public class ProductTypePage extends HeaderPage {
                 .map(price -> price.replaceAll(" ", StringUtils.EMPTY))
                 .map(price -> new BigDecimal(price))
                 .collect(Collectors.toList());
+    }
+
+    @Step("ProductTypePage: filter products by {parameter}")
+    public ProductTypePage filterProductsByParameters(String parameter) {
+        $(String.format("label[for='%s']", parameter)).shouldBe(Condition.enabled).click();
+
+        return new ProductTypePage();
     }
 
     @Step("ProductTypePage: get product by number {numberProduct}")
