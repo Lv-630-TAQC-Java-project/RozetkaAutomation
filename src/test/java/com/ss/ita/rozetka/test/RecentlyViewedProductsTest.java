@@ -65,7 +65,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
 
         List<String> recentlyViewedProductNames = header
                 .openHomePage()
-                .getRecentlyViewedProductsNames();
+                .getRecentlyViewedProductNames();
 
         SoftAssertions softly = new SoftAssertions();
         softly.assertThat(recentlyViewedProductNames.get(0))
