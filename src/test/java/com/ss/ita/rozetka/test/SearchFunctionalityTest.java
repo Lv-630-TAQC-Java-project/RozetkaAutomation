@@ -1,11 +1,13 @@
 package com.ss.ita.rozetka.test;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
+import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -57,27 +59,32 @@ public class SearchFunctionalityTest extends TestRunner {
     }
 
     @Test
-    @Description("Verify that items in the search history in right order and search works correct")
+    @Description("Verify that search from search history works correct and items in the search history in right order")
     public void verifySearchFromSearchHistory() {
         Header header = new HomePage()
                 .open()
                 .getHeader();
         List<String> searchTerms = new ArrayList<>(Arrays.asList("Dell", "НР", "Bosh", "IPhone", "Stihl"));
-        Product productItem;
         ProductTypePage searchResultPage;
-        for (String searchTerm : searchTerms){
+        int productCount;
+        SoftAssertions softAssert = new SoftAssertions();
+        for (String searchTerm : searchTerms) {
             searchResultPage = header.doSearch(searchTerm);
-            int productCount = $$x("//div[@class='goods-tile__inner']").size();
-            for (int i = 1; i <= productCount; i++){
-                productItem = searchResultPage.getProduct(i);
-                assertThat(productItem
+            productCount = $$x("//div[@class='goods-tile__inner']")
+                    .shouldBe(CollectionCondition.sizeLessThanOrEqual(36))
+                    .size();
+            for (int i = 1; i <= productCount; i++) {
+                String productTitle = searchResultPage
+                        .getProduct(i)
                         .getTitle()
-                        .toUpperCase())
+                        .toUpperCase();
+                softAssert.assertThat(productTitle)
                         .as("Product title should contains search term")
                         .contains(searchTerm.toUpperCase());
             }
             header.openHomePage();
         }
+        softAssert.assertAll();
         header.setSearchInputInFocus();
     }
 }
