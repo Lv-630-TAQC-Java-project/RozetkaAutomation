@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.pageobject.modals.BasketModal;
 import com.ss.ita.rozetka.pageobject.modals.CatalogModal;
 import com.ss.ita.rozetka.pageobject.modals.LoginModal;
+import com.ss.ita.rozetka.pageobject.modals.ComparisonModal;
 import com.ss.ita.rozetka.pageobject.modals.SideMenuModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
@@ -54,6 +55,11 @@ public class Header {
     public SideMenuModal openSideMenuModal() {
         $x("//button[@class='header__button']").click();
         return new SideMenuModal();
+    }
+    @Step("Header: open comparison modal")
+    public ComparisonModal openComparisonModal() {
+        $x("(//button[@class='header__button ng-star-inserted'])[2]").click();
+        return new ComparisonModal();
     }
 
     @Step("Header: open login modal")

@@ -79,7 +79,7 @@ public class BasketTest extends TestRunner {
                 .as("Notebooks subcategory page should be opened")
                 .contains("https://rozetka.com.ua/notebooks/c80004/");
 
-        BasketModal basketModal = productTypePage
+        BasketModal<ProductPage> basketModal = productTypePage
                 .openProductPage(1)
                 .addProductToBasket();
 
