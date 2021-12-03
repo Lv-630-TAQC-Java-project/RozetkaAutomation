@@ -71,7 +71,7 @@ public class SearchFunctionalityTest extends TestRunner {
         for (String searchTerm : searchTerms) {
             searchResultPage = header.doSearch(searchTerm);
             productCount = $$x("//div[@class='goods-tile__inner']")
-                    .shouldBe(CollectionCondition. sizeLessThanOrEqual(36))
+                    .shouldBe(CollectionCondition.sizeLessThanOrEqual(36))
                     .size();
             for (int i = 1; i <= productCount; i++) {
                 String productTitle = searchResultPage
@@ -84,8 +84,7 @@ public class SearchFunctionalityTest extends TestRunner {
             }
             header.openHomePage();
         }
-        softAssert.assertAll();
         header.setSearchInputInFocus();
-        sleep(10000);
+        softAssert.assertAll();
     }
 }
