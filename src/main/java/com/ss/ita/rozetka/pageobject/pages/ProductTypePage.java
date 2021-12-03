@@ -2,6 +2,8 @@ package com.ss.ita.rozetka.pageobject.pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+
 import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
@@ -54,13 +56,7 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: get display status select sorting type")
     public boolean isSelectSortingTypeDisplayed() {
-        try {
-            return $x("//select[contains(@class,'select-css')]")
-                    .shouldBe(Condition.visible)
-                    .isDisplayed();
-        } catch (AssertionError exception) {
-            return false;
-        }
+        return isElementVisible("//select[contains(@class,'select-css')]");
     }
 
     @Step("ProductTypePage: sort products list {sortType}")
@@ -91,6 +87,14 @@ public class ProductTypePage extends HeaderPage {
         $(String.format("label[for='%s']", parameter)).shouldBe(Condition.enabled).click();
 
         return new ProductTypePage();
+    }
+
+    @Step("ProductTypePage: add product count to comparison")
+    public ProductTypePage addProductCountToComparison(int productCount) {
+        for (int i = 0; i < productCount; i++) {
+            $x(format("(//button[@class='compare-button ng-star-inserted'])[%s]", i + 1)).click();
+        }
+        return this;
     }
 
     @Step("ProductTypePage: get product by number {numberProduct}")
