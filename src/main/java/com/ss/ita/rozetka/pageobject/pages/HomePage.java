@@ -42,8 +42,8 @@ public class HomePage extends HeaderPage {
     }
 
     @Step("HomePage: get recently viewed products names list from first to {intNumber} Recently Viewed Products list")
-    public List<String> getRecentlyViewedProductNames(){
-        return  $$x("//section[@class = 'main-goods ng-star-inserted'][1]//ul/li//a[@class = 'tile__title']").shouldBe(sizeNotEqual(0)).texts();
+    public List<String> getRecentlyViewedProductNames() {
+        return $$x("//section[@class = 'main-goods ng-star-inserted'][1]//ul/li//a[@class = 'tile__title']").shouldBe(sizeNotEqual(0)).texts();
     }
 
     @Step("HomePage: get display status main menu categories")
