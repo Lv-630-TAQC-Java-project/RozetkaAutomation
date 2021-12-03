@@ -70,9 +70,7 @@ public class SearchFunctionalityTest extends TestRunner {
         SoftAssertions softAssert = new SoftAssertions();
         for (String searchTerm : searchTerms) {
             searchResultPage = header.doSearch(searchTerm);
-            productCount = $$x("//div[@class='goods-tile__inner']")
-                    .shouldBe(CollectionCondition.sizeLessThanOrEqual(36))
-                    .size();
+            productCount = searchResultPage.getProductsCount();
             for (int i = 1; i <= productCount; i++) {
                 String productTitle = searchResultPage
                         .getProduct(i)
