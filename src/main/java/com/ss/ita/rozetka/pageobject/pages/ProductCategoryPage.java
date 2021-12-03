@@ -11,7 +11,7 @@ public class ProductCategoryPage extends HeaderPage {
 
     @Step("ProductCategoryPage: open product type page by category {categoryOrSubCategory}")
     public ProductTypePage openProductTypePage(ProductCategoryAndSubCategory categoryOrSubCategory) {
-        $x(format("//a[contains(@href,'%s')]", categoryOrSubCategory.getName())).click();
+        $x(format("//div[contains(@class,'tile-cats')]//a[contains(@href,'%s')]", categoryOrSubCategory.getName())).click();
         return new ProductTypePage();
     }
 

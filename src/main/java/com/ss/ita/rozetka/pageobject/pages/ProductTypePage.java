@@ -2,6 +2,7 @@ package com.ss.ita.rozetka.pageobject.pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
@@ -83,5 +84,10 @@ public class ProductTypePage extends HeaderPage {
         $(String.format("label[for='%s']", parameter)).shouldBe(Condition.enabled).click();
 
         return new ProductTypePage();
+    }
+
+    @Step("ProductTypePage: get product by number {numberProduct}")
+    public Product getProduct(int numberProduct) {
+        return new Product(String.format(("(//div[@class='goods-tile__inner'])[%s]"), numberProduct));
     }
 }
