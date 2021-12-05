@@ -3,7 +3,6 @@ package com.ss.ita.rozetka.test;
 import com.ss.ita.rozetka.pageobject.modals.LoginModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import io.qameta.allure.Description;
-import io.qameta.allure.Issue;
 import io.qameta.allure.TmsLink;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
