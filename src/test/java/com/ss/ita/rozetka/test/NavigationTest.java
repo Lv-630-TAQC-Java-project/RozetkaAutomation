@@ -3,7 +3,8 @@ package com.ss.ita.rozetka.test;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductCategoryPage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
-import io.qameta.allure.Issue;
+import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.HOUSEHOLD_APPLIANCES;
@@ -14,7 +15,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class NavigationTest extends TestRunner {
 
     @Test
-    @Issue("LVTAQC630-7")
+    @Description(value = "Verifies that user can return to home page from product category page")
+    @TmsLink(value = "LVTAQC630-7")
     public void verifyReturnToHomePage() {
         ProductCategoryPage productCategoryPage = new HomePage()
                 .open()
