@@ -2,6 +2,8 @@ package com.ss.ita.rozetka.test;
 
 import com.ss.ita.rozetka.pageobject.modals.LoginModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
+import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
 
@@ -9,6 +11,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginModalTest {
     @Test
+    @Description(value = "verifies validation of login & password in LoginModal")
+    @Issue(value = "LVTAQC630-26")
     public void verifyLoginValidationTest() {
         LoginModal loginModal = new HomePage()
                 .open()

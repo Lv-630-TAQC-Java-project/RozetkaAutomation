@@ -7,6 +7,8 @@ import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
+import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
@@ -69,6 +71,8 @@ public class BasketTest extends TestRunner {
     }
 
     @Test
+    @Description(value = "verifies adding product by plus button in a cart")
+    @TmsLink(value = "LVTAQC630-26")
     public void verifyAddProductFunctionality() {
         ProductTypePage productTypePage = new HomePage()
                 .open()
