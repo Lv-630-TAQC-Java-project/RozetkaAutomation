@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BasketTest extends TestRunner {
     @Test
-    @Description("Verify that user can change count of product in basket and remove it from there.")
+    @Description("Verify that user can change count of product in basket and remove it from there")
     @TmsLink(value = "LVTAQC630-34")
     public void verifyChangingProductCountAndRemovingFromBasket() {
         BasketModal<ProductPage> basket = new HomePage()
