@@ -5,6 +5,8 @@ import com.ss.ita.rozetka.pageobject.pages.OrderingPage;
 import com.ss.ita.rozetka.pageobject.pages.ProductCategoryPage;
 import com.ss.ita.rozetka.pageobject.pages.ProductPage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
+import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
@@ -15,6 +17,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BuyProductTest extends TestRunner {
 
     @Test
+    @Description("Verify that system does not allow user to buy product with invalid data")
+    @TmsLink(value = "LVTAQC630")
     public void verifyUserCantBuyProductWithInvalidData() {
         HomePage homePage = new HomePage()
                 .open()
