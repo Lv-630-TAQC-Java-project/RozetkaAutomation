@@ -4,7 +4,8 @@ import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
-import io.qameta.allure.Issue;
+import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
@@ -22,7 +23,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RecentlyViewedProductsTest extends TestRunner {
 
     @Test
-    @Issue("LVTAQC630-30")
+    @Description(value = "Verifies that products opened by user are displayed on home page under recently viewed products list in order from last opened to first opened")
+    @TmsLink(value = "LVTAQC630-30")
     public void verifyLastViewedProductAddedToTheList() {
         ProductTypePage productPage = new HomePage()
                 .open()
