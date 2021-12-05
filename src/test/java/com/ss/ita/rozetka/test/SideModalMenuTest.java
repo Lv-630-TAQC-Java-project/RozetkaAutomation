@@ -15,7 +15,7 @@ public class SideModalMenuTest extends TestRunner {
 
     @Test
     @TmsLink(value = "LVTAQC630-3")
-    @Description(value = "Verify that can open and close Left side Menu")
+    @Description(value = "Verify user that can open and close Left side Menu")
     public void verifySideMenuModalOpensAndCloses() {
         Header header = new HomePage()
                 .open()
