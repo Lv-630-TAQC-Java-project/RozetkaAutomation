@@ -5,6 +5,7 @@ import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
@@ -16,7 +17,7 @@ public class ComparisonTest extends TestRunner {
 
     @Test
     @Description(value = "verifies that product count list size on ComparisonPage is equal to count added on productTypePage")
-    @Issue(value = "LVTAQC630-11")
+    @TmsLink(value = "LVTAQC630-11")
     public void verifyAddingProductToComparison() {
         ProductTypePage productTypePage = new HomePage()
                 .open()
