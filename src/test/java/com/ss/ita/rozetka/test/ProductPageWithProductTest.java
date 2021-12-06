@@ -19,7 +19,7 @@ public class ProductPageWithProductTest extends TestRunner {
     @Description("Verify that information about product presented on Product type page and Product page is similar")
     @TmsLink(value = "LVTAQC630-39")
     public void verifyThatProductInformationIsSimilar() {
-        ProductTypePage productTypePage = new HomePage()
+        var productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS_CATEGORY);
@@ -31,7 +31,7 @@ public class ProductPageWithProductTest extends TestRunner {
         int productPriceOnProductTypePage = product.getPrice();
         String productDescriptionOnProductTypePage = product.getDescription();
 
-        ProductPage productPage = productTypePage.openProductPage(productNumber);
+        var productPage = productTypePage.openProductPage(productNumber);
 
         String productTitleOnProductPage = productPage.getName();
         int productPriceOnProductPage = productPage.getPrice();
