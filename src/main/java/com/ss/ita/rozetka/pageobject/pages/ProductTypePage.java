@@ -2,13 +2,13 @@ package com.ss.ita.rozetka.pageobject.pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+
+import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
-import org.testng.asserts.Assertion;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +20,7 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: open product page by product number {productNumber}")
     public ProductPage openProductPage(int productNumber) {
-        $$x("//li[contains(@class,'catalog-grid')]").get(productNumber).click();
+        $x(String.format(("//div[@class='goods-tile__inner'][%s]"), productNumber)).click(); //to open the same product as in getProduct method
         return new ProductPage();
     }
 
@@ -54,13 +54,7 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: get display status select sorting type")
     public boolean isSelectSortingTypeDisplayed() {
-        try {
-            return $x("//select[contains(@class,'select-css')]")
-                    .shouldBe(Condition.visible)
-                    .isDisplayed();
-        } catch (AssertionError exception) {
-            return false;
-        }
+        return isElementVisible("//select[contains(@class,'select-css')]");
     }
 
     @Step("ProductTypePage: sort products list {sortType}")
@@ -76,13 +70,13 @@ public class ProductTypePage extends HeaderPage {
     }
 
     @Step("ProductTypePage: get product prices list")
-    public List<BigDecimal> getProductPricesList() {
+    public List<Integer> getProductPricesList() {
         return $$x("//span[contains(@class, 'goods-tile__price-value')]")
                 .shouldBe(CollectionCondition.sizeLessThanOrEqual(60))
                 .texts()
                 .stream()
                 .map(price -> price.replaceAll(" ", StringUtils.EMPTY))
-                .map(price -> new BigDecimal(price))
+                .map(price -> Integer.valueOf(price))
                 .collect(Collectors.toList());
     }
 
@@ -91,5 +85,18 @@ public class ProductTypePage extends HeaderPage {
         $(String.format("label[for='%s']", parameter)).shouldBe(Condition.enabled).click();
 
         return new ProductTypePage();
+    }
+
+    @Step("ProductTypePage: add product count to comparison")
+    public ProductTypePage addProductCountToComparison(int productCount) {
+        for (int i = 0; i < productCount; i++) {
+            $x(format("(//button[@class='compare-button ng-star-inserted'])[%s]", i + 1)).click();
+        }
+        return this;
+    }
+
+    @Step("ProductTypePage: get product by number {numberProduct}")
+    public Product getProduct(int numberProduct) {
+        return new Product(String.format(("(//div[@class='goods-tile__inner'])[%s]"), numberProduct));
     }
 }

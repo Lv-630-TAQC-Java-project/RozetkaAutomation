@@ -39,6 +39,11 @@ public class ProductPage extends HeaderPage {
         return $x("//h1[@class = 'product__title']").text();
     }
 
+    @Step("ProductPage: get product description")
+    public String getDescription() {
+        return $x("//p[@class = 'product-about__brief ng-star-inserted']").text();
+    }
+
     @Step("ProductPage: open {number}-th related product")
     public ProductPage openRelatedProduct(int number) {
         String relatedProductXpathTemplate =
