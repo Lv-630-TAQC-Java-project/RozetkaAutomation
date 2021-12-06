@@ -63,7 +63,7 @@ public class SearchFunctionalityTest extends TestRunner {
     }
 
     @Test
-    @Description("Verify that search from search history works correct and items in the search history in right order")
+    @Description(value  = "Verify that search from search history works correct and items in the search history in right order")
     public void verifySearchFromSearchHistory() {
         Header header = new HomePage()
                 .open()
