@@ -9,6 +9,7 @@ import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
+import lombok.var;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
@@ -74,7 +75,7 @@ public class BasketTest extends TestRunner {
     @Description(value = "verifies adding product by plus button in a cart")
     @TmsLink(value = "LVTAQC630-26")
     public void verifyAddProductFunctionality() {
-        ProductTypePage productTypePage = new HomePage()
+        var productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY);
@@ -83,7 +84,7 @@ public class BasketTest extends TestRunner {
                 .as("Notebooks subcategory page should be opened")
                 .contains("https://rozetka.com.ua/notebooks/c80004/");
 
-        BasketModal<ProductPage> basketModal = productTypePage
+        var basketModal = productTypePage
                 .openProductPage(1)
                 .addProductToBasket();
 

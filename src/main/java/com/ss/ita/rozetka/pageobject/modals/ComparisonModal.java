@@ -1,6 +1,7 @@
 package com.ss.ita.rozetka.pageobject.modals;
 
 import com.ss.ita.rozetka.pageobject.pages.ComparisonPage;
+import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
@@ -12,4 +13,6 @@ public class ComparisonModal {
         $x("//a[@class='comparison-modal__link']").click();
         return new ComparisonPage();
     }
+
+
 }

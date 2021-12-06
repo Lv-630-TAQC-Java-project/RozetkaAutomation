@@ -1,9 +1,9 @@
 package com.ss.ita.rozetka.test;
 
-import com.ss.ita.rozetka.pageobject.modals.LoginModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
+import lombok.var;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
 
@@ -14,7 +14,7 @@ public class LoginModalTest {
     @Description(value = "verifies validation of login & password in LoginModal")
     @TmsLink(value = "LVTAQC630-26")
     public void verifyLoginValidationTest() {
-        LoginModal loginModal = new HomePage()
+        var loginModal = new HomePage()
                 .open()
                 .getHeader()
                 .openLoginModal()
