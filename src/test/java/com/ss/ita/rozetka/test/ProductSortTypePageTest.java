@@ -19,8 +19,8 @@ public class ProductSortTypePageTest extends TestRunner {
     public void verifyThatProductsArePresentedInBooksCategory(){
         ProductTypePage productTypePage = new HomePage()
                 .open()
-                .openProductCategoryPage(STATIONERY_AND_BOOKS)
-                .openProductTypePage(BOOKS_CATEGORY)
+                .openGeneralProductCategory(STATIONERY_AND_BOOKS)
+                .openProductCategoryAndSubCategory(BOOKS_CATEGORY)
                 .sortProductsListBy(ProductsListSortType.ACTION);
 
         String labelClassAction = "goods-tile__label promo-label promo-label_type_action ng-star-inserted";

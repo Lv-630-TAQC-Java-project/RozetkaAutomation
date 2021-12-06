@@ -18,8 +18,8 @@ public class OrderingProductsTest extends TestRunner {
     public void verifyOrderingProducts() {
         ProductPage productPage = new HomePage()
                 .open()
-                .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
-                .openProductTypePage(BIG_HOUSEHOLD_APPLIANCES_CATEGORY)
+                .openGeneralProductCategory(HOUSEHOLD_APPLIANCES)
+                .openProductCategoryAndSubCategory(BIG_HOUSEHOLD_APPLIANCES_CATEGORY)
                 .openProductPage(1);
 
         int productPrice = productPage.getPrice();

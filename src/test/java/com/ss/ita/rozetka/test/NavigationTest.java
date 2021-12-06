@@ -18,7 +18,7 @@ public class NavigationTest extends TestRunner {
     public void verifyReturnToHomePage() {
         ProductCategoryPage productCategoryPage = new HomePage()
                 .open()
-                .openProductCategoryPage(HOUSEHOLD_APPLIANCES);
+                .openGeneralProductCategory(HOUSEHOLD_APPLIANCES);
 
         boolean isProductPageOpened = productCategoryPage.isOpened();
         assertThat(isProductPageOpened)
@@ -26,7 +26,7 @@ public class NavigationTest extends TestRunner {
                 .isTrue();
 
         boolean isProductTypePageOpened = productCategoryPage
-                .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY)
+                .openProductCategoryAndSubCategory(KITCHEN_APPLIANCES_CATEGORY)
                 .isOpened();
         assertThat(isProductTypePageOpened)
                 .as("Product type page should be opened")

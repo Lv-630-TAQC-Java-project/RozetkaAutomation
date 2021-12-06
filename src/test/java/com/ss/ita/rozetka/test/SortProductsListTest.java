@@ -8,7 +8,7 @@ import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.*;
-import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.*;
+import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.TRIMMERS_SUBCATEGORY;
 import static com.ss.ita.rozetka.pageobject.utils.ProductsListSortType.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,12 +20,12 @@ public class SortProductsListTest extends TestRunner {
     public void verifyCheapToExpensiveSorting() {
         ProductCategoryPage productCategoryPage = new HomePage()
                 .open()
-                .openProductCategoryPage(COTTAGE_GARDEN_BACKYARD);
+                .openGeneralProductCategory(COTTAGE_GARDEN_BACKYARD);
         assertThat(productCategoryPage.isOpened())
                 .as("Products category page should be opened")
                 .isTrue();
         ProductTypePage productTypePage = productCategoryPage
-                .openProductTypePage(TRIMMERS_SUBCATEGORY);
+                .openProductCategoryAndSubCategory(TRIMMERS_SUBCATEGORY);
         assertThat(productTypePage.isOpened())
                 .as("Products type page should be opened")
                 .isTrue();

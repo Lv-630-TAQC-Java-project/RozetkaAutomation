@@ -18,8 +18,8 @@ public class RecentlyViewedProductsTest extends TestRunner {
     public void verifyLastViewedProductAddedToTheList() {
         ProductTypePage productPage = new HomePage()
                 .open()
-                .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
-                .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
+                .openGeneralProductCategory(HOUSEHOLD_APPLIANCES)
+                .openProductCategoryAndSubCategory(KITCHEN_APPLIANCES_CATEGORY);
         boolean isProductTypePageOpened = productPage.isOpened();
         assertThat(getCurrentUrl())
                 .as("Kitchen appliances category page should be opened")
