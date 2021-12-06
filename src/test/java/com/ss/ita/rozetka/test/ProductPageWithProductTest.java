@@ -18,7 +18,7 @@ public class ProductPageWithProductTest extends TestRunner {
     @Test
     @Description("Verify that information about product presented on Product type page and Product page is similar")
     @TmsLink(value = "LVTAQC630-39")
-    public void verifyThatProductInformationAreSimilar() {
+    public void verifyThatProductInformationIsSimilar() {
         ProductTypePage productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
