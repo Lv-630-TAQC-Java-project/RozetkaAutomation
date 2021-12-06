@@ -1,12 +1,14 @@
 package com.ss.ita.rozetka.pageobject.elements;
 
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.Color;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,24 +21,25 @@ public class Product {
     private final String xPath;
     private String promoLabelTitle;
     private String productTitle;
-    private BigDecimal productOldPrice;
-    private BigDecimal productPrice;
+    private int productOldPrice;
+    private int productPrice;
     private List<String> availableColors;
     private String availability;
-    private int amountReviews;
+    private int reviewAmount;
     private String productDescription;
 
     @Step("Product: get product title")
-    public String getProductTitle() {
+    public String getTitle() {
         productTitle = $x(String.format("%s%s", xPath, "//span[@class='goods-tile__title']")).text();
         return productTitle;
     }
 
     @Step("Product: get promo label title")
     public String getPromoLabelTitle() {
-        try {
-            promoLabelTitle = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__label')]")).text();
-        } catch (AssertionError exception) {
+        SelenideElement promoLabelElement = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__label')]"));
+        if (promoLabelElement.exists()) {
+            promoLabelTitle = promoLabelElement.text();
+        } else {
             promoLabelTitle = StringUtils.EMPTY;
         }
         return promoLabelTitle;
@@ -44,71 +47,75 @@ public class Product {
 
     @Step("Product: get available colors")
     public List<String> getAvailableColors() {
-        try {
-            availableColors = $$x(String.format("%s%s", xPath, "//span[@class='goods-tile__colors-content']"))
+        List<SelenideElement> availableColorsList = $$x(String.format("%s%s", xPath, "//span[@class='goods-tile__colors-content']"));
+        if (availableColorsList.isEmpty()) {
+            availableColors = new ArrayList<>();
+        } else {
+            availableColors = availableColorsList
                     .stream()
                     .map(element -> Color.fromString(element.getCssValue("background-color")).asHex())
                     .collect(Collectors.toList());
-        } catch (AssertionError exception) {
-            availableColors = null;
         }
         return availableColors;
     }
 
     @Step("Product: get product old price")
-    public BigDecimal getProductOldPrice() {
-        try {
-            String oldPriceString = $x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__price--old')]"))
-                    .text()
-                    .replaceAll("\\D", StringUtils.EMPTY);
-            productOldPrice = new BigDecimal(oldPriceString);
-        } catch (AssertionError | NumberFormatException exception) {
-            productOldPrice = BigDecimal.ZERO;
+    public int getOldPrice() {
+        String oldPriceString = $x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__price--old')]"))
+                .text()
+                .replaceAll("\\D", StringUtils.EMPTY);
+        if (oldPriceString.isEmpty()) {
+            productOldPrice = 0;
+        } else {
+            productOldPrice = Integer.parseInt(oldPriceString);
         }
         return productOldPrice;
     }
 
     @Step("Product: get product price")
-    public BigDecimal getProductPrice() {
-        try {
-            String price = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__price-value')]"))
-                    .text()
-                    .replaceAll("\\D", StringUtils.EMPTY);
-            productPrice = new BigDecimal(price);
-        } catch (AssertionError | NumberFormatException exception) {
-            productPrice = BigDecimal.ZERO;
+    public int getPrice() {
+        String price = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__price-value')]"))
+                .text()
+                .replaceAll("\\D", StringUtils.EMPTY);
+        if (price.isEmpty()) {
+            productPrice = 0;
+        } else {
+            productPrice = Integer.parseInt(price);
         }
         return productPrice;
     }
 
     @Step("Product: get product availability")
     public String getAvailability() {
-        try {
-            availability = $x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__availability')]")).text();
-        } catch (AssertionError exception) {
+        SelenideElement availabilityElement = $x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__availability')]"));
+        if (availabilityElement.exists()) {
+            availability = availabilityElement.text();
+        } else {
             availability = StringUtils.EMPTY;
         }
         return availability;
     }
 
-    @Step("Product: get amount reviews")
-    public int getAmountReviews() {
-        try {
-            amountReviews = Integer.parseInt($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__reviews-link')]"))
+    @Step("Product: get review amount ")
+    public int getReviewAmount() {
+        SelenideElement reviewAmountElement = $x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__reviews-link')]"));
+        if (reviewAmountElement.exists()) {
+            reviewAmount = Integer.parseInt((reviewAmountElement)
                     .text()
                     .replaceAll("\\D", StringUtils.EMPTY));
-        } catch (AssertionError exception) {
-            amountReviews = 0;
+        } else {
+            reviewAmount = 0;
         }
-        return amountReviews;
+        return reviewAmount;
     }
 
     @Step("Product: get product description")
-    public String getProductDescription() {
-        try {
-            actions().moveToElement($x(xPath)).perform();
-            productDescription = $x(String.format("%s%s", xPath, "//*[contains(@class,'goods-tile__description')]")).text();
-        } catch (AssertionError exception) {
+    public String getDescription() {
+        actions().moveToElement($x(xPath)).perform();
+        SelenideElement descriptionElement = $x(String.format("%s%s", xPath, "//*[contains(@class,'goods-tile__description')]"));
+        if (descriptionElement.exists()) {
+            productDescription = descriptionElement.text();
+        } else {
             productDescription = StringUtils.EMPTY;
         }
         return productDescription;
