@@ -103,4 +103,9 @@ public class ProductTypePage extends HeaderPage {
     public Product getProduct(int numberProduct) {
         return new Product(String.format(("(//div[@class='goods-tile__inner'])[%s]"), numberProduct));
     }
+
+    @Step("ProductPage: get product tile label")
+    public String getLabelProductStatus() {
+        return $x("//span[contains(@class,'goods-tile__label promo-label promo-label_type_action')]").getAttribute("class");
+    }
 }
