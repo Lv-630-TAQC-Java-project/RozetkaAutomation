@@ -5,17 +5,20 @@ import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductPage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
+import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
-
-import java.math.BigDecimal;
 
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY;
 
-public class CompareTest extends TestRunner {
+public class ProductPageWithProductTest extends TestRunner {
+
     @Test
-    public void verifyThatProductsAreSimilar() {
+    @Description("Verify that information about product presented on Product type page and Product page is similar")
+    @TmsLink(value = "LVTAQC630-39")
+    public void verifyThatProductInformationAreSimilar() {
         ProductTypePage productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
@@ -24,27 +27,27 @@ public class CompareTest extends TestRunner {
         int productNumber = 1;
         Product product = productTypePage.getProduct(productNumber);
 
-        String productTitle = product.getProductTitle();
-        BigDecimal productPrice = product.getProductPrice();
-        String productDescription = product.getProductDescription();
+        String productTitleOnProductTypePage = product.getTitle();
+        int productPriceOnProductTypePage = product.getPrice();
+        String productDescriptionOnProductTypePage = product.getDescription();
 
         ProductPage productPage = productTypePage.openProductPage(productNumber);
 
         String productTitleOnProductPage = productPage.getName();
-        BigDecimal productPriceOnProductPage = BigDecimal.valueOf(productPage.getPrice());
+        int productPriceOnProductPage = productPage.getPrice();
         String productDescriptionOnProductPage = productPage.getDescription();
 
         SoftAssertions softAssertion = new SoftAssertions();
         softAssertion
-                .assertThat(productTitle)
+                .assertThat(productTitleOnProductTypePage)
                 .as("There should be similar titles")
                 .isEqualTo(productTitleOnProductPage);
         softAssertion
-                .assertThat(productPrice)
+                .assertThat(productPriceOnProductTypePage)
                 .as("There should be similar price")
                 .isEqualTo(productPriceOnProductPage);
         softAssertion
-                .assertThat(productDescription)
+                .assertThat(productDescriptionOnProductTypePage)
                 .as("There should be similar description")
                 .isEqualTo(productDescriptionOnProductPage);
         softAssertion.assertAll();
