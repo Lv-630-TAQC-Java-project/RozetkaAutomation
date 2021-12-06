@@ -21,7 +21,7 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: open product page by product number {productNumber}")
     public ProductPage openProductPage(int productNumber) {
-        $$x("//li[contains(@class,'catalog-grid')]").get(productNumber).click();
+        $x(String.format(("//div[@class='goods-tile__inner'][%s]"), productNumber)).click(); //to open the same product as in getProduct method
         return new ProductPage();
     }
 

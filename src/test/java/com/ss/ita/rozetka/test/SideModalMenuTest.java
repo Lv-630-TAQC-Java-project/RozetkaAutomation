@@ -4,7 +4,9 @@ import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.modals.SideMenuModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
+import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,6 +14,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SideModalMenuTest extends TestRunner {
 
     @Test
+    @TmsLink(value = "LVTAQC630-3")
+    @Description(value = "Verify user that can open and close Left side Menu")
     public void verifySideMenuModalOpensAndCloses() {
         Header header = new HomePage()
                 .open()

@@ -5,6 +5,7 @@ import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -31,7 +32,9 @@ public class SearchFunctionalityTest extends TestRunner {
     }
 
     @Test
-    public void verifySearchHistoryTest() {
+    @TmsLink(value = "LVTAQC630-4")
+    @Description(value = "Verify that searched product was added to search history")
+    public void verifySearchHistoryText() {
         Header header = new HomePage()
                 .open()
                 .getHeader();

@@ -5,6 +5,7 @@ import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.pages.*;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import io.qameta.allure.Issue;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
@@ -19,8 +20,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SortProductsListTest extends TestRunner {
 
     @Test
-    @Issue("LVTAQC630-29")
-    @Description("Verify sorting functionality from cheap to expensive")
+    @TmsLink(value = "LVTAQC630-29")
+    @Description(value = "Verify sorting functionality from cheap to expensive")
     public void verifyCheapToExpensiveSorting() {
         ProductCategoryPage productCategoryPage = new HomePage()
                 .open()
@@ -80,5 +81,3 @@ public class SortProductsListTest extends TestRunner {
         softAssert.assertAll();
     }
 }
-
-
