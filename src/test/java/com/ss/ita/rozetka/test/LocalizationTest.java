@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LocalizationTest extends TestRunner {
 
     @Test
-    @TmsLink(value = "LVTAQC630")
+    @TmsLink(value = "LVTAQC630-9")
     @Description("Verify that user can change language")
     public void verifyUserCanChangeLanguage() {
         HomePage homePage = new HomePage().open();

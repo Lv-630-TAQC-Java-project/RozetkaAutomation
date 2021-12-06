@@ -18,7 +18,7 @@ public class BuyProductTest extends TestRunner {
 
     @Test
     @Description("Verify that system does not allow user to buy product with invalid data")
-    @TmsLink(value = "LVTAQC630")
+    @TmsLink(value = "LVTAQC630-38")
     public void verifyUserCantBuyProductWithInvalidData() {
         HomePage homePage = new HomePage()
                 .open()

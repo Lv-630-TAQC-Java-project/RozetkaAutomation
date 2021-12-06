@@ -18,7 +18,7 @@ public class FilterFunctionalityTest extends TestRunner {
 
     @Test
     @Description("Verify that user can filter products with parameters")
-    @TmsLink(value = "LVTAQC630")
+    @TmsLink(value = "LVTAQC630-22")
     public void verifyUserCanFilterProducts() {
         ProductTypePage productTypePage = new HomePage()
                 .open()

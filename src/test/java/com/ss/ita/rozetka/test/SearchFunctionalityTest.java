@@ -14,7 +14,7 @@ public class SearchFunctionalityTest extends TestRunner {
 
     @Test
     @Description("Verify that user can do search with Xiaomi products")
-    @TmsLink(value = "LVTAQC630")
+    @TmsLink(value = "LVTAQC630-10")
     public void verifyXiaomiWillBeInSearchResult() {
         String searchProduct = "Xiaomi";
 
