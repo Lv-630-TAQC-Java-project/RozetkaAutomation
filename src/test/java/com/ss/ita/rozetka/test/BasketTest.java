@@ -16,6 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BasketTest extends TestRunner {
     @Test
+    @Description("Verify that user can change count of product in basket and remove it from there")
+    @TmsLink(value = "LVTAQC630-34")
     public void verifyChangingProductCountAndRemovingFromBasket() {
         BasketModal<ProductPage> basket = new HomePage()
                 .open()
@@ -46,6 +48,8 @@ public class BasketTest extends TestRunner {
     }
   
     @Test
+    @Description("Verify that, after adding two related products to basket, the total price of basket is correct")
+    @TmsLink(value = "LVTAQC630-2")
     public void verifyTotalPriceOfTwoProductsIsCorrect() {
         ProductPage productPage = new HomePage()
                 .open()
