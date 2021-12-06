@@ -30,7 +30,7 @@ public class SideModalMenuTest extends TestRunner {
                 .isFalse();
     }
 
-    @Test
+    @Test()
     @Issue("LVTAQC630-28")
     public void verifyChangingTown() {
         Header header = new HomePage()
@@ -38,7 +38,7 @@ public class SideModalMenuTest extends TestRunner {
                 .getHeader();
         SideMenuModal sideModalMenu = header.openSideMenuModal();
 
-        String odessa = "Одеса";
+        String odessa = "Одеcа";
 
         sideModalMenu
                 .startChangingCity()
@@ -52,7 +52,7 @@ public class SideModalMenuTest extends TestRunner {
                 .as("currentCity should be the same like odesa")
                 .isEqualTo(odessa);
 
-        String lviv = "Львів";
+        String lviv = "Львiв";
 
         sideModalMenu
                 .startChangingCity()
