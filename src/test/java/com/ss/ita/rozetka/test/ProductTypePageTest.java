@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ProductTypePageTest extends TestRunner {
 
     @Test
-    @Description("Verify that at least 10 product in notebook category are presented")
+    @Description("Verify that at least 10 products are presented in notebook category")
     @TmsLink(value = "LVTAQC630-14")
     public void verifyThatProductsArePresentedInNotebookCategory() {
         ProductTypePage productTypePage = new HomePage()
@@ -28,7 +28,7 @@ public class ProductTypePageTest extends TestRunner {
     }
 
     @Test
-    @Description("Verify that at least 10 product in TV accessories category are presented")
+    @Description("Verify that at least 10 products are presented in TV accessories category")
     @TmsLink(value = "LVTAQC630-35")
     public void verifyThatProductsArePresentedInTVAccessoriesCategory() {
         ProductTypePage productTypePage = new HomePage()

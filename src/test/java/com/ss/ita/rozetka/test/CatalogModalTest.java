@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 public class CatalogModalTest extends TestRunner {
 
     @Test
-    @Description("Verify that catalog opens and closed correctly")
+    @Description("Verify that catalog opens and closes correctly")
     @TmsLink(value = "LVTAQC630-13")
     public void verifyThatCatalogOpensAndCloses() {
         Header header = new HomePage()
