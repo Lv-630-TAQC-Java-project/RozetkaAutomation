@@ -97,20 +97,20 @@ public class RecentlyViewedProductsTest extends TestRunner {
         assertThat(isProductTypePageOpened)
                 .as("Product type page should be opened")
                 .isTrue();
-        String firstOpenedProduct = productPage
+        var firstOpenedProduct = productPage
                 .openProductPage(1)
                 .getName();
 
         var header = productPage.getHeader();
 
-        String recentlyOpenedProductName = header
+        var recentlyOpenedProductName = header
                 .openHomePage()
                 .getRecentlyViewedProductName(1);
         assertThat(recentlyOpenedProductName)
                 .as("First product name in Recently Opened products should be equal to last viewed product name")
                 .isEqualTo(firstOpenedProduct);
 
-        String secondOpenedProduct = homePage
+        var secondOpenedProduct = homePage
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY)
                 .getProduct(1)
