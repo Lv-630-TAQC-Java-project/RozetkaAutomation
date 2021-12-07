@@ -51,6 +51,11 @@
                     <include name="verifyOrderingProducts"/>
                 </methods>
             </class>
+            <class name="com.ss.ita.rozetka.test.ProductPageWithProductTest">
+                <methods>
+                    <include name="verifyThatProductInformationIsSimilar"/>
+                </methods>
+            </class>
             <class name="com.ss.ita.rozetka.test.ProductTypePageTest">
                 <methods>
                     <include name="verifyThatProductsArePresentedInNotebookCategory"/>
