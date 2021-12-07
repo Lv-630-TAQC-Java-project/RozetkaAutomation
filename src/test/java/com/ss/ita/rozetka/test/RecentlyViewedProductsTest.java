@@ -81,4 +81,48 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .isEqualTo(firstOpenedProductName);
         softly.assertAll();
     }
+
+    @Test
+    @Description(value = "Verifies that opening same product multiple times does not add new entries in recently viewed product list")
+    @TmsLink(value = "LVTAQC630-44")
+    public void verifyProductAddedOnlyOnce() {
+        var homePage = new HomePage().open();
+        ProductTypePage productPage = homePage
+                .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
+                .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
+        boolean isProductTypePageOpened = productPage.isOpened();
+        assertThat(getCurrentUrl())
+                .as("Kitchen appliances category page should be opened")
+                .isEqualTo("https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/");
+        assertThat(isProductTypePageOpened)
+                .as("Product type page should be opened")
+                .isTrue();
+        String firstOpenedProduct = productPage
+                .openProductPage(1)
+                .getName();
+
+        var header = productPage.getHeader();
+
+        String recentlyOpenedProductName = header
+                .openHomePage()
+                .getRecentlyViewedProductName(1);
+        assertThat(recentlyOpenedProductName)
+                .as("First product name in Recently Opened products should be equal to last viewed product name")
+                .isEqualTo(firstOpenedProduct);
+
+        String secondOpenedProduct = homePage
+                .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
+                .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY)
+                .getProduct(1)
+                .getTitle();
+        var recentlyViewedProductNames = header
+                .openHomePage()
+                .getRecentlyViewedProductNames();
+        assertThat(recentlyViewedProductNames.size())
+                .as("Recently viewed product list should contain one product")
+                .isEqualTo(1);
+        assertThat(recentlyViewedProductNames.get(0))
+                .as("Product in recently viewed product list should be the same as last opened product")
+                .isEqualTo(secondOpenedProduct);
+    }
 }
