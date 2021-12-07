@@ -122,7 +122,7 @@ public class Product {
 
     @Step("ProductTypePage: get status product discount price")
     public boolean isProductDiscountPriceValid() {
-        return productOldPrice < productPrice;
+        return productOldPrice > productPrice;
     }
 
     @Step("ProductTypePage: get old price text color")

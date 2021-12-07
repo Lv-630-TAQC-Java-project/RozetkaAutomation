@@ -53,20 +53,20 @@ public class SortProductsListTest extends TestRunner {
     @Description("Verify that sort by Action products list contains products which have higher old price" +
             " than price with discount and price text color is grey for old price, red for new price")
     public void verifyProductDiscountPrice() {
-        ProductCategoryPage productCategoryPage = new HomePage()
+        var productCategoryPage = new HomePage()
                 .open()
                 .openProductCategoryPage(SMARTPHONE_TV_ELECTRONICS);
         assertThat(productCategoryPage.isOpened())
                 .as("Product category page should be opened")
                 .isTrue();
-        ProductTypePage productTypePage = productCategoryPage
+        var productTypePage = productCategoryPage
                 .openProductTypePage(MOBILE_PHONES_CATEGORY);
         assertThat(productTypePage.isOpened())
                 .as("Product type page should be opened")
                 .isTrue();
         productTypePage.sortProductsListBy(ACTION);
-        List<Product> discountPriceProductsList = productTypePage.getDiscountPriceProductsList();
-        SoftAssertions softAssert = new SoftAssertions();
+        var discountPriceProductsList = productTypePage.getDiscountPriceProductsList();
+        var softAssert = new SoftAssertions();
         for (Product discountPriceProduct : discountPriceProductsList) {
             softAssert.assertThat(discountPriceProduct.isProductDiscountPriceValid())
                     .as("Price with discount must be less than price without discount")
