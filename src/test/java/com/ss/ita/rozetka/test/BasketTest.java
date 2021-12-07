@@ -19,7 +19,7 @@ public class BasketTest extends TestRunner {
     @Description("Verify that user can change count of product in basket and remove it from there")
     @TmsLink(value = "LVTAQC630-34")
     public void verifyChangingProductCountAndRemovingFromBasket() {
-        BasketModal<ProductPage> basket = new HomePage()
+        var basket = new HomePage()
                 .open()
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY)
@@ -30,7 +30,7 @@ public class BasketTest extends TestRunner {
                 .as("Basket can not be empty - a product was added")
                 .isFalse();
 
-        String productTitle = basket.getProductTitles().get(0);
+        var productTitle = basket.getProductTitles().get(0);
         int newProductCount = 3;
         int totalPriceBeforeChangingCount = basket.getProductsTotalPrice();
 
@@ -51,14 +51,14 @@ public class BasketTest extends TestRunner {
     @Description("Verify that, after adding two related products to basket, the total price of basket is correct")
     @TmsLink(value = "LVTAQC630-2")
     public void verifyTotalPriceOfTwoProductsIsCorrect() {
-        ProductPage productPage = new HomePage()
+        var productPage = new HomePage()
                 .open()
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY)
                 .openProductPage(1);
         int productPrice = productPage.getPrice();
 
-        ProductPage relatedProductPage = productPage
+        var relatedProductPage = productPage
                 .addProductToBasket()
                 .close()
                 .openRelatedProduct(1);
