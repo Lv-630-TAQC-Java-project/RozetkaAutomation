@@ -1,9 +1,6 @@
 package com.ss.ita.rozetka.test;
 
-import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
-import com.ss.ita.rozetka.pageobject.pages.ProductPage;
-import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
