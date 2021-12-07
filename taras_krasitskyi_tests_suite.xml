@@ -18,6 +18,8 @@
                 <methods>
                     <include name="verifyCheapToExpensiveSorting"/>
                 </methods>
+
+
             </class>
         </classes>
     </test>

@@ -3,7 +3,7 @@ package com.ss.ita.rozetka.pageobject.pages;
 import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.modals.BasketModal;
 import io.qameta.allure.Step;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
