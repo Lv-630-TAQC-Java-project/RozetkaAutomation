@@ -1,6 +1,5 @@
 package com.ss.ita.rozetka.pageobject.pages;
 
-import com.codeborne.selenide.Condition;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import io.qameta.allure.Step;
 
