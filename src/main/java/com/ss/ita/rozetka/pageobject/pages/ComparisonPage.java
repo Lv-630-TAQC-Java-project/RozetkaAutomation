@@ -23,5 +23,4 @@ public class ComparisonPage {
         $x("(//span[@class='comparison-settings__label'])[1]").click();
         return new ProductTypePage();
     }
-
 }
