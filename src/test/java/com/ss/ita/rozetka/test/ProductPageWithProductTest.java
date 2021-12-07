@@ -1,9 +1,6 @@
 package com.ss.ita.rozetka.test;
 
-import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
-import com.ss.ita.rozetka.pageobject.pages.ProductPage;
-import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
@@ -19,23 +16,23 @@ public class ProductPageWithProductTest extends TestRunner {
     @Description("Verify that information about product presented on Product type page and Product page is similar")
     @TmsLink(value = "LVTAQC630-39")
     public void verifyThatProductInformationIsSimilar() {
-        ProductTypePage productTypePage = new HomePage()
+        var productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS_CATEGORY);
 
         int productNumber = 1;
-        Product product = productTypePage.getProduct(productNumber);
+        var product = productTypePage.getProduct(productNumber);
 
-        String productTitleOnProductTypePage = product.getTitle();
+        var productTitleOnProductTypePage = product.getTitle();
         int productPriceOnProductTypePage = product.getPrice();
-        String productDescriptionOnProductTypePage = product.getDescription();
+        var productDescriptionOnProductTypePage = product.getDescription();
 
-        ProductPage productPage = productTypePage.openProductPage(productNumber);
+        var productPage = productTypePage.openProductPage(productNumber);
 
-        String productTitleOnProductPage = productPage.getName();
+        var productTitleOnProductPage = productPage.getName();
         int productPriceOnProductPage = productPage.getPrice();
-        String productDescriptionOnProductPage = productPage.getDescription();
+        var productDescriptionOnProductPage = productPage.getDescription();
 
         SoftAssertions softAssertion = new SoftAssertions();
         softAssertion
