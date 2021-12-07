@@ -17,13 +17,15 @@ public class AddProductToWishListTest extends TestRunner {
     @Description("Verify user can add product to wish list")
     @TmsLink(value = "LVTAQC630-57")
     public void verifyUserCanAddProductToWishList() {
-        var homepage = new HomePage()
+        var header = new HomePage()
                 .open()
-                .getHeader()
+                .getHeader();
+
+        var homePage = header
                 .openLoginModal()
                 .loginWithFacebook();
 
-        var productTypePage = homepage
+        var productTypePage = homePage
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY);
 

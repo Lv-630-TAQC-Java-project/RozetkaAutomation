@@ -25,8 +25,7 @@ public class RegistrationFunctionalityTest extends TestRunner {
                 .setName("Test Name")
                 .setSurname("Test Surname")
                 .setPhoneNumber("09312345")
-                .setEmail("Test Email")
-                .confirmRegistration();
+                .setEmail("Test Email");
 
         assertThat(header.isNameErrorMessageDisplayed())
                 .as("Error message should be displayed")
@@ -43,5 +42,7 @@ public class RegistrationFunctionalityTest extends TestRunner {
         assertThat(header.isEmailErrorMessageDisplayed())
                 .as("Error message should be displayed")
                 .isTrue();
+
+        header.confirmRegistration();
     }
 }
