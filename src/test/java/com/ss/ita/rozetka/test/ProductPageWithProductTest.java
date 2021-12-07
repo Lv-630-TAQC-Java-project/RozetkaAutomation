@@ -25,17 +25,17 @@ public class ProductPageWithProductTest extends TestRunner {
                 .openProductTypePage(NOTEBOOKS_CATEGORY);
 
         int productNumber = 1;
-        Product product = productTypePage.getProduct(productNumber);
+        var product = productTypePage.getProduct(productNumber);
 
-        String productTitleOnProductTypePage = product.getTitle();
+        var productTitleOnProductTypePage = product.getTitle();
         int productPriceOnProductTypePage = product.getPrice();
-        String productDescriptionOnProductTypePage = product.getDescription();
+        var productDescriptionOnProductTypePage = product.getDescription();
 
         var productPage = productTypePage.openProductPage(productNumber);
 
-        String productTitleOnProductPage = productPage.getName();
+        var productTitleOnProductPage = productPage.getName();
         int productPriceOnProductPage = productPage.getPrice();
-        String productDescriptionOnProductPage = productPage.getDescription();
+        var productDescriptionOnProductPage = productPage.getDescription();
 
         SoftAssertions softAssertion = new SoftAssertions();
         softAssertion
