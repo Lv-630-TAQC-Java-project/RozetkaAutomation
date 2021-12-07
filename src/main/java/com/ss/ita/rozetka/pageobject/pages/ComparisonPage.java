@@ -1,10 +1,7 @@
 package com.ss.ita.rozetka.pageobject.pages;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-
-import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
@@ -18,7 +15,7 @@ public class ComparisonPage {
                 .size();
     }
 
-    @Step("ComparisonModal: get add more products button")
+    @Step("ComparisonPage: open ProductTypePage")
     public ProductTypePage openProductTypePage(){
         $x("(//span[@class='comparison-settings__label'])[1]").click();
         return new ProductTypePage();
