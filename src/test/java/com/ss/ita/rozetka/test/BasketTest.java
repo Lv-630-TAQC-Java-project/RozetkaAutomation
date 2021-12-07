@@ -1,15 +1,12 @@
 package com.ss.ita.rozetka.test;
 
-import com.ss.ita.rozetka.pageobject.modals.BasketModal;
+
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
-import com.ss.ita.rozetka.pageobject.pages.ProductPage;
-import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
-import lombok.var;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;

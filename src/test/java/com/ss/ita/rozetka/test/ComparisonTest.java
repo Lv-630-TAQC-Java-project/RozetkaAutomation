@@ -1,6 +1,5 @@
 package com.ss.ita.rozetka.test;
 
-import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
@@ -48,6 +47,7 @@ public class ComparisonTest extends TestRunner {
 
     @Test
     @Description(value = "verifies add more products to comparison from comparison page")
+    @TmsLink(value = "LVTAQC630-49")
     public void verifyAddingProductsFromComparisonPage() {
         var header = productTypePage.getHeader();
         header
