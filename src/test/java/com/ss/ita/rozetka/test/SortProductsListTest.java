@@ -23,13 +23,13 @@ public class SortProductsListTest extends TestRunner {
     @TmsLink(value = "LVTAQC630-29")
     @Description(value = "Verify sorting functionality from cheap to expensive")
     public void verifyCheapToExpensiveSorting() {
-        ProductCategoryPage productCategoryPage = new HomePage()
+        var productCategoryPage = new HomePage()
                 .open()
                 .openProductCategoryPage(COTTAGE_GARDEN_BACKYARD);
         assertThat(productCategoryPage.isOpened())
                 .as("Products category page should be opened")
                 .isTrue();
-        ProductTypePage productTypePage = productCategoryPage
+        var productTypePage = productCategoryPage
                 .openProductTypePage(TRIMMERS_SUBCATEGORY);
         assertThat(productTypePage.isOpened())
                 .as("Products type page should be opened")

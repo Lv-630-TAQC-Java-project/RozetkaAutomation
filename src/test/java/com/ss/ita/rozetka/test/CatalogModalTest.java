@@ -1,6 +1,5 @@
 package com.ss.ita.rozetka.test;
 
-import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
@@ -14,7 +13,7 @@ public class CatalogModalTest extends TestRunner {
     @Description("Verify that catalog opens and closes correctly")
     @TmsLink(value = "LVTAQC630-13")
     public void verifyThatCatalogOpensAndCloses() {
-        Header header = new HomePage()
+        var header = new HomePage()
                 .open()
                 .getHeader();
 

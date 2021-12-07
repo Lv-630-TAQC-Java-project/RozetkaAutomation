@@ -18,6 +18,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SearchFunctionalityTest extends TestRunner {
 
     @Test
+    @Description("Verify that user can do search with Xiaomi products")
+    @TmsLink(value = "LVTAQC630-10")
     public void verifyXiaomiWillBeInSearchResult() {
         String searchProduct = "Xiaomi";
 
@@ -35,20 +37,20 @@ public class SearchFunctionalityTest extends TestRunner {
     @TmsLink(value = "LVTAQC630-4")
     @Description(value = "Verify that searched product was added to search history")
     public void verifySearchHistoryText() {
-        Header header = new HomePage()
+        var header = new HomePage()
                 .open()
                 .getHeader();
-        String searchTerm = "DELL";
-        ProductTypePage searchResultPage = header.doSearch(searchTerm);
+        var searchTerm = "DELL";
+        var searchResultPage = header.doSearch(searchTerm);
         assertThat(searchResultPage.isSelectSortingTypeDisplayed())
                 .as("Select sorting type should be displayed")
                 .isTrue();
-        HomePage homePage = header.openHomePage();
+        var homePage = header.openHomePage();
         assertThat(homePage.isMainMenuCategoriesDisplayed())
                 .as("Main Menu Categories should be displayed")
                 .isTrue();
         int numberSearchTerm = 1;
-        String actualSearchTerm = header
+        var actualSearchTerm = header
                 .setSearchInputInFocus()
                 .getTextFromSearchHistory(numberSearchTerm);
         assertThat(actualSearchTerm)
