@@ -56,4 +56,10 @@ public class ProductPage extends HeaderPage {
     public String getProductCharacteristics() {
         return $(".characteristics-full__list").getText();
     }
+
+    @Step("ProductPage: add product to favourite")
+    public ProductPage addProductToFavourite() {
+        $x("(//*[name()='svg'][@class='ng-star-inserted'])[1]").click();
+        return this;
+    }
 }

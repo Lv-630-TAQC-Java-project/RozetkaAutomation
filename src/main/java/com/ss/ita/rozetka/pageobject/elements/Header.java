@@ -2,13 +2,10 @@ package com.ss.ita.rozetka.pageobject.elements;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.ss.ita.rozetka.pageobject.modals.BasketModal;
-import com.ss.ita.rozetka.pageobject.modals.CatalogModal;
-import com.ss.ita.rozetka.pageobject.modals.LoginModal;
-import com.ss.ita.rozetka.pageobject.modals.ComparisonModal;
-import com.ss.ita.rozetka.pageobject.modals.SideMenuModal;
+import com.ss.ita.rozetka.pageobject.modals.*;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
+import com.ss.ita.rozetka.pageobject.pages.UserPage;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
@@ -56,6 +53,7 @@ public class Header {
         $x("//button[@class='header__button']").click();
         return new SideMenuModal();
     }
+
     @Step("Header: open comparison modal")
     public ComparisonModal openComparisonModal() {
         $x("(//button[@class='header__button ng-star-inserted'])[2]").click();
@@ -117,5 +115,11 @@ public class Header {
         setSearchInputInFocus();
         return $x(String.format("(//li[@class='search-suggest__item ng-star-inserted'])[%s]", numberSearchedTerm))
                 .getText();
+    }
+
+    @Step("Header: open wish list")
+    public UserPage openWishList() {
+        $x("(//*[name()='svg'][@aria-hidden='true'])[20]").click();
+        return new UserPage();
     }
 }
