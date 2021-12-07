@@ -2,6 +2,7 @@ package com.ss.ita.rozetka.pageobject.modals;
 
 import com.codeborne.selenide.Condition;
 import com.ss.ita.rozetka.pageobject.elements.Header;
+import com.ss.ita.rozetka.pageobject.pages.UserPage;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
@@ -30,5 +31,11 @@ public class SideMenuModal {
     @Step("SideModalMenu: get city")
     public String getCity() {
         return $x("//span[contains(@class, 'city-toggle')]").text();
+    }
+
+    @Step("Header: open wish list")
+    public UserPage openWishList() {
+        $x("//ul[@class='ng-tns-c5-0 ng-star-inserted']//li[1]").click();
+        return new UserPage();
     }
 }

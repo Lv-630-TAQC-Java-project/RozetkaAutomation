@@ -116,10 +116,4 @@ public class Header {
         return $x(String.format("(//li[@class='search-suggest__item ng-star-inserted'])[%s]", numberSearchedTerm))
                 .getText();
     }
-
-    @Step("Header: open wish list")
-    public UserPage openWishList() {
-        $x("(//*[name()='svg'][@aria-hidden='true'])[20]").click();
-        return new UserPage();
-    }
 }

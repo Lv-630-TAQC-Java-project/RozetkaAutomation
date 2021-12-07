@@ -16,7 +16,7 @@ public class AddProductToWishListTest extends TestRunner {
     @Test
     @Description("Verify user can add product to wish list")
     @TmsLink(value = "LVTAQC630-57")
-    public void verifyUserCanAddProductToWishList() {
+    public void verifyUserCanAddProductToWishList() throws InterruptedException {
         var header = new HomePage()
                 .open()
                 .getHeader();
@@ -35,7 +35,7 @@ public class AddProductToWishListTest extends TestRunner {
                 .openProductPage(1)
                 .addProductToFavourite();
 
-        var userPage = header.openWishList();
+        var userPage = header.openSideMenuModal().openWishList();
 
         var productTitleInWishList = userPage.getProductTitle(1);
 
@@ -43,14 +43,14 @@ public class AddProductToWishListTest extends TestRunner {
                 .as("Product title should be the same")
                 .isEqualTo(productTitleInWishList);
 
+        var sumOfProducts = userPage.countProductsListSize();
+
         userPage
                 .selectProductInWishList(1)
                 .removeProductFromWishList();
 
-        var productTitleAfterRemoving = userPage.getProductTitle(1);
-
-        assertThat(productTitleInWishList)
+        assertThat(sumOfProducts)
                 .as("Product title should not be the same")
-                .isNotEqualTo(productTitleAfterRemoving);
+                .isNotEqualTo(userPage.countProductsListSize());
     }
 }

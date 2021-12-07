@@ -2,8 +2,7 @@ package com.ss.ita.rozetka.pageobject.pages;
 
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 
 public class UserPage {
 
@@ -28,5 +27,9 @@ public class UserPage {
     public UserPage removeProductFromWishList() {
         $("div.wish-details__actions>button:nth-child(3)").click();
         return this;
+    }
+
+    public int countProductsListSize() {
+        return $$x("(//a[@class='goods-tile__picture ng-star-inserted'])").size();
     }
 }
