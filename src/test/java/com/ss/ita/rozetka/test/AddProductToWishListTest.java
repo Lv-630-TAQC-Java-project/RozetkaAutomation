@@ -31,11 +31,11 @@ public class AddProductToWishListTest extends TestRunner {
 
         var productTitle = productTypePage.getProductTitle(1);
 
-        var userPage = productTypePage
+        productTypePage
                 .openProductPage(1)
-                .addProductToFavourite()
-                .getHeader()
-                .openWishList();
+                .addProductToFavourite();
+
+        var userPage = header.openWishList();
 
         var productTitleInWishList = userPage.getProductTitle(1);
 
