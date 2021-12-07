@@ -5,6 +5,8 @@ import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductPage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
+import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
@@ -15,6 +17,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class FilterFunctionalityTest extends TestRunner {
 
     @Test
+    @Description("Verify that user can filter products with parameters")
+    @TmsLink(value = "LVTAQC630-22")
     public void verifyUserCanFilterProducts() {
         ProductTypePage productTypePage = new HomePage()
                 .open()

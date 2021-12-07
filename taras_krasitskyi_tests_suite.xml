@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Taras Krasitskyi RozetkaAutomation suite">
+    <test verbose="2" preserve-order="true"
+          name="Taras Krasitskyi tests">
+        <classes>
+            <class name="com.ss.ita.rozetka.test.SearchFunctionalityTest">
+                <methods>
+                    <include name="verifySearchHistoryText"/>
+                </methods>
+            </class>
+            <class name="com.ss.ita.rozetka.test.SideModalMenuTest">
+                <methods>
+                    <include name="verifySideMenuModalOpensAndCloses"/>
+                </methods>
+            </class>
+            <class name="com.ss.ita.rozetka.test.SortProductsListTest">
+                <methods>
+                    <include name="verifyCheapToExpensiveSorting"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
