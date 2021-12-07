@@ -16,17 +16,21 @@ public class ProductSortTypePageTest extends TestRunner {
     @Test
     @Description(value = "Opening a home page, choosing a product category and opening it, sorting the classification type ")
     @TmsLink(value = "https://jira.softserve.academy/projects/LVTAQC630/issues/LVTAQC630-31?filter=allopenissues")
-    public void verifyThatProductsArePresentedInBooksCategory(){
+    public void verifyThatProductsArePresentedInBooksCategory() {
         ProductTypePage productTypePage = new HomePage()
                 .open()
                 .openGeneralProductCategory(STATIONERY_AND_BOOKS)
                 .openProductCategoryAndSubCategory(BOOKS_CATEGORY)
                 .sortProductsListBy(ProductsListSortType.ACTION);
 
+
         String labelClassAction = "goods-tile__label promo-label promo-label_type_action ng-star-inserted";
 
-        assertThat(productTypePage.getLabelProductStatus())
+        assertThat(productTypePage
+                .getProduct(1)
+                .getPromoLabelTitle())
                 .as("Product must have tile label 'action'")
                 .isEqualTo(labelClassAction);
+
     }
 }
