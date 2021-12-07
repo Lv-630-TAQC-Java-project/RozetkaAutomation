@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class AddProductToFavourite extends TestRunner {
+public class AddProductToWishListTest extends TestRunner {
 
     @Test
     @Description("Verify user can add product to wish list")
@@ -37,12 +37,18 @@ public class AddProductToFavourite extends TestRunner {
 
         var productTitleInWishList = userPage.getProductTitle(1);
 
-        assertThat(productTitle).as("Product title should be the same").isEqualTo(productTitleInWishList);
+        assertThat(productTitle)
+                .as("Product title should be the same")
+                .isEqualTo(productTitleInWishList);
 
-        userPage.selectProductInWishList(1).removeProductFromWishList();
+        userPage
+                .selectProductInWishList(1)
+                .removeProductFromWishList();
 
         var productTitleAfterRemoving = userPage.getProductTitle(1);
 
-        assertThat(productTitleInWishList).as("Product title should not be the same").isNotEqualTo(productTitleAfterRemoving);
+        assertThat(productTitleInWishList)
+                .as("Product title should not be the same")
+                .isNotEqualTo(productTitleAfterRemoving);
     }
 }
