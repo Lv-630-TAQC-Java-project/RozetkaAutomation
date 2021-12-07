@@ -6,7 +6,6 @@ import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
-import lombok.var;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -18,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ComparisonTest extends TestRunner {
 
     private ProductTypePage productTypePage;
-    private final int productCount = 5;
+    private int productCount = 5;
 
     @BeforeMethod
     public void addingProductsToComparison() {
@@ -50,13 +49,14 @@ public class ComparisonTest extends TestRunner {
     @Test
     @Description(value = "verifies add more products to comparison from comparison page")
     public void verifyAddingProductsFromComparisonPage() {
-        int comparisonProductListSize = productTypePage
-                .getHeader()
+        var header = productTypePage.getHeader();
+        header
                 .openComparisonModal()
                 .openComparisonPage()
                 .openProductTypePage()
-                .addProductCountToComparison(3)
-                .getHeader()
+                .addProductCountToComparison(3);
+
+        int comparisonProductListSize = header
                 .openComparisonModal()
                 .openComparisonPage()
                 .getComparisonListSize();
