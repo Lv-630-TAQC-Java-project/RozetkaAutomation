@@ -26,7 +26,6 @@ public class ComparisonTest extends TestRunner {
                 .open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS_CATEGORY);
-        int productCount = 5;
         productTypePage.addProductCountToComparison(productCount);
         assertThat(getCurrentUrl())
                 .as("Notebooks subcategory page should be opened")
