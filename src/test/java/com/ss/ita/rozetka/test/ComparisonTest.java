@@ -30,7 +30,6 @@ public class ComparisonTest extends TestRunner {
                 .isEqualTo("https://rozetka.com.ua/notebooks/c80004/");
     }
 
-
     @Test
     @Description(value = "verifies that product count list size on ComparisonPage is equal to count added on productTypePage")
     @TmsLink(value = "LVTAQC630-11")
