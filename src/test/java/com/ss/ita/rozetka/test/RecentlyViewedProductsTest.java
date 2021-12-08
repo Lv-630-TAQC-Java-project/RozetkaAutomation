@@ -90,7 +90,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
         ProductTypePage productPage = homePage
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
-        boolean isProductTypePageOpened = productPage.isOpened();
+        var isProductTypePageOpened = productPage.isOpened();
         assertThat(getCurrentUrl())
                 .as("Kitchen appliances category page should be opened")
                 .isEqualTo("https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/");
@@ -110,11 +110,11 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .as("First product name in Recently Opened products should be equal to last viewed product name")
                 .isEqualTo(firstOpenedProduct);
 
-        var secondOpenedProduct = homePage
+        var secondOpenedProductName = homePage
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY)
-                .getProduct(1)
-                .getTitle();
+                .openProductPage(1)
+                .getName();
         var recentlyViewedProductNames = header
                 .openHomePage()
                 .getRecentlyViewedProductNames();
@@ -123,6 +123,6 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .isEqualTo(1);
         assertThat(recentlyViewedProductNames.get(0))
                 .as("Product in recently viewed product list should be the same as last opened product")
-                .isEqualTo(secondOpenedProduct);
+                .isEqualTo(secondOpenedProductName);
     }
 }
