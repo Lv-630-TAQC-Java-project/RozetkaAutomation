@@ -25,7 +25,7 @@ public class FilterTest extends TestRunner {
                 .getFilter(FilterName.SELLER);
 
         var optionName = "Rozetka";
-        int expectedProductsAmount = filter.getProductsQuantityOfOption(optionName);
+        int expectedProductsAmount = filter.getOptionProductsQuantity(optionName);
 
         filter.selectOption(optionName);
         int actualProductsAmount = productTypePage.getSelectedProductsAmount();

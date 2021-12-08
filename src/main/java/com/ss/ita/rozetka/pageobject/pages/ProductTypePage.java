@@ -7,6 +7,7 @@ import com.ss.ita.rozetka.pageobject.elements.filters.FilterSideBar;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
+import lombok.Getter;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +18,8 @@ import static java.lang.String.format;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 public class ProductTypePage extends HeaderPage {
-    private FilterSideBar filterSideBar;
+    @Getter
+    private final FilterSideBar filterSideBar = new FilterSideBar();
 
     @Step("ProductTypePage: open product page by product number {productNumber}")
     public ProductPage openProductPage(int productNumber) {
@@ -101,18 +103,8 @@ public class ProductTypePage extends HeaderPage {
         return new Product(String.format(("(//div[@class='goods-tile__inner'])[%s]"), numberProduct));
     }
 
-    @Step("ProductTypePage: get filter side bar")
-    public FilterSideBar getFilterSideBar() {
-        if (filterSideBar == null) {
-            filterSideBar = new FilterSideBar();
-        }
-        return filterSideBar;
-    }
-
     @Step("ProductTypePage: get count of selected products by filter")
     public int getSelectedProductsAmount() {
-        return Integer.parseInt(
-                $x("//rz-selected-filters/div/p").getText().replaceAll("\\D", EMPTY)
-        );
+        return Integer.parseInt($x("//rz-selected-filters/div/p").getText().replaceAll("\\D", EMPTY));
     }
 }
