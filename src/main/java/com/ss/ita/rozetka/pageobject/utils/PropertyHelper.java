@@ -19,4 +19,10 @@ public class PropertyHelper {
         String systemTimeout = System.getProperty("timeout", defaultTimeout);
         return Long.parseLong(systemTimeout);
     }
+
+    public static long getPageLoadTimeout() {
+        String defaultPageLoadTimeout = String.valueOf(Duration.ofMinutes(3).toMillis());
+        String systemPageLoadTimeout = System.getProperty("pageLoadTimeout", defaultPageLoadTimeout);
+        return Long.parseLong(systemPageLoadTimeout);
+    }
 }
