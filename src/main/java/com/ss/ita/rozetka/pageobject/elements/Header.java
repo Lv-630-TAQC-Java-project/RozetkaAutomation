@@ -5,7 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.pageobject.modals.*;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
-import com.ss.ita.rozetka.pageobject.pages.UserPage;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;

@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.test;
 
+import com.ss.ita.rozetka.CredentialProperties;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
@@ -10,20 +11,19 @@ import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 public class AddProductToWishListTest extends TestRunner {
 
     @Test
     @Description("Verify user can add product to wish list")
     @TmsLink(value = "LVTAQC630-57")
-    public void verifyUserCanAddProductToWishList() throws InterruptedException {
+    public void verifyUserCanAddProductToWishList() {
         var header = new HomePage()
                 .open()
                 .getHeader();
 
         var homePage = header
                 .openLoginModal()
-                .loginWithFacebook();
+                .loginWithFacebook(new CredentialProperties().getFacebookEmail(), new CredentialProperties().getFacebookPassword());
 
         var productTypePage = homePage
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
@@ -35,22 +35,22 @@ public class AddProductToWishListTest extends TestRunner {
                 .openProductPage(1)
                 .addProductToFavourite();
 
-        var userPage = header.openSideMenuModal().openWishList();
+        var wishListPage = header.openSideMenuModal().openWishList();
 
-        var productTitleInWishList = userPage.getProductTitle(1);
+        var productTitleInWishList = wishListPage.getProductTitle(1);
 
         assertThat(productTitle)
                 .as("Product title should be the same")
                 .isEqualTo(productTitleInWishList);
 
-        var sumOfProducts = userPage.countProductsListSize();
+        var sumOfProducts = wishListPage.getProductsListSize();
 
-        userPage
+        wishListPage
                 .selectProductInWishList(1)
                 .removeProductFromWishList();
 
         assertThat(sumOfProducts)
                 .as("Product title should not be the same")
-                .isNotEqualTo(userPage.countProductsListSize());
+                .isNotEqualTo(wishListPage.getProductsListSize());
     }
 }

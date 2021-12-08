@@ -15,34 +15,38 @@ public class RegistrationFunctionalityTest extends TestRunner {
     @Description("Verify that system does not allow to register new user with invalid data")
     @TmsLink(value = "LVTAQC630-46")
     public void verifyUserCantRegisterWithInvalidData() {
-        var header = new HomePage()
+        var registrationModal = new HomePage()
                 .open()
                 .getHeader()
                 .openLoginModal()
                 .openRegistrationModal();
 
-        header
+        registrationModal
                 .setName("Test Name")
                 .setSurname("Test Surname")
                 .setPhoneNumber("09312345")
                 .setEmail("Test Email");
 
-        assertThat(header.isNameErrorMessageDisplayed())
+        assertThat(registrationModal.isNameErrorMessageDisplayed())
                 .as("Error message should be displayed")
                 .isTrue();
 
-        assertThat(header.isSurnameErrorMessageDisplayed())
+        assertThat(registrationModal.isSurnameErrorMessageDisplayed())
                 .as("Error message should be displayed")
                 .isTrue();
 
-        assertThat(header.isPhoneNumberErrorMessageDisplayed())
+        assertThat(registrationModal.isPhoneNumberErrorMessageDisplayed())
                 .as("Error message should be displayed")
                 .isTrue();
 
-        assertThat(header.isEmailErrorMessageDisplayed())
+        assertThat(registrationModal.isEmailErrorMessageDisplayed())
                 .as("Error message should be displayed")
                 .isTrue();
 
-        header.confirmRegistration();
+        registrationModal.confirmRegistration();
+
+        assertThat(registrationModal.isRegistrationModalIsVisible())
+                .as("Registration modal should be visible")
+                .isTrue();
     }
 }

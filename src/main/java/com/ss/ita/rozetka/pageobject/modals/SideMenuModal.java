@@ -2,7 +2,7 @@ package com.ss.ita.rozetka.pageobject.modals;
 
 import com.codeborne.selenide.Condition;
 import com.ss.ita.rozetka.pageobject.elements.Header;
-import com.ss.ita.rozetka.pageobject.pages.UserPage;
+import com.ss.ita.rozetka.pageobject.pages.own_cabinet.WishListPage;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
@@ -34,8 +34,8 @@ public class SideMenuModal {
     }
 
     @Step("Header: open wish list")
-    public UserPage openWishList() {
+    public WishListPage openWishList() {
         $x("//ul[@class='ng-tns-c5-0 ng-star-inserted']//li[1]").click();
-        return new UserPage();
+        return new WishListPage();
     }
 }

@@ -6,6 +6,7 @@ import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import io.qameta.allure.Step;
 
+
 import static com.codeborne.selenide.Selenide.*;
 
 public class LoginModal {
@@ -56,17 +57,39 @@ public class LoginModal {
         return new RegistrationModal();
     }
 
-    @Step("LoginModal: login with facebook")
-    public HomePage loginWithFacebook() {
+    @Step("LoginModal: set facebook email {email}")
+    public LoginModal setFacebookEmail(String email) {
+        $("input[type=text]").sendKeys(email);
+        return this;
+    }
+
+    @Step("LoginModal: set facebook {password}")
+    public LoginModal setFacebookPassword(String password) {
+        $("input[type=password]").sendKeys(password);
+        return this;
+    }
+
+    @Step("LoginModal: open login with facebook")
+    public LoginModal openLoginWithFacebook() {
         $("div[class='auth-modal__social'] button:nth-child(1)").click();
+        return new LoginModal();
+    }
+
+    @Step("LoginModal: confirm login with facebook")
+    public LoginModal confirmLoginWithFacebook() {
+        $("input[type=submit]").click();
+        return this;
+    }
+
+    @Step("LoginModal: login with facebook {email}, {password}")
+    public HomePage loginWithFacebook(String email, String password) {
+        openLoginWithFacebook();
 
         switchTo().window(1);
 
-        $("input[type=text]").sendKeys("testuser.rozetka@gmail.com");
-
-        $("input[type=password]").sendKeys("123456789A");
-
-        $("input[type=submit]").click();
+        setFacebookEmail(email);
+        setFacebookPassword(password);
+        confirmLoginWithFacebook();
 
         switchTo().window(0);
 
