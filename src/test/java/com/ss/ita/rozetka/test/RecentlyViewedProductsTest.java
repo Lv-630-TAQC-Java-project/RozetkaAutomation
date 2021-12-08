@@ -118,11 +118,11 @@ public class RecentlyViewedProductsTest extends TestRunner {
         var recentlyViewedProductNames = header
                 .openHomePage()
                 .getRecentlyViewedProductNames();
-        assertThat(recentlyViewedProductNames.size())
+        assertThat(recentlyViewedProductNames)
                 .as("Recently viewed product list should contain one product")
-                .isEqualTo(1);
-        assertThat(recentlyViewedProductNames.get(0))
+                .hasSize(1);
+        assertThat(recentlyViewedProductNames)
                 .as("Product in recently viewed product list should be the same as last opened product")
-                .isEqualTo(secondOpenedProductName);
+                .contains(secondOpenedProductName);
     }
 }
