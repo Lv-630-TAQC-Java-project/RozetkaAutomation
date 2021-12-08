@@ -26,4 +26,5 @@ test-output
 src/test/resources/web-drivers/
 allure-results/
 chromedriver.exe
-allure-report/
+allure-report
+
