@@ -49,7 +49,7 @@ public class SortProductsListTest extends TestRunner {
     }
 
     @Test
-    @Issue("LVTAQC630-33")
+    @TmsLink("LVTAQC630-33")
     @Description("Verify that sort by Action products list contains products which have higher old price" +
             " than price with discount and price text color is grey for old price, red for new price")
     public void verifyProductDiscountPrice() {
@@ -65,18 +65,21 @@ public class SortProductsListTest extends TestRunner {
                 .as("Product type page should be opened")
                 .isTrue();
         productTypePage.sortProductsListBy(ACTION);
-        var discountPriceProductsList = productTypePage.getDiscountPriceProductsList();
         var softAssert = new SoftAssertions();
+        var discountPriceProductsList = productTypePage.getProductsList();
         for (Product discountPriceProduct : discountPriceProductsList) {
-            softAssert.assertThat(discountPriceProduct.isProductDiscountPriceValid())
-                    .as("Price with discount must be less than price without discount")
-                    .isTrue();
-            softAssert.assertThat(discountPriceProduct.getOldPriceTextColor())
-                    .as("Price color text must be grey: #797878")
-                    .isEqualTo("#797878");
-            softAssert.assertThat(discountPriceProduct.getPriceTextColor())
-                    .as("Price color text must be red: #f84147")
-                    .isEqualTo("#f84147");
+            int preDiscountPrice = discountPriceProduct.getOldPrice();
+            if (preDiscountPrice > 0) {
+                softAssert.assertThat(preDiscountPrice > discountPriceProduct.getPrice())
+                        .as("Price with discount must be less than price without discount")
+                        .isTrue();
+                softAssert.assertThat(discountPriceProduct.getOldPriceTextColor())
+                        .as("Price color text must be grey: #797878")
+                        .isEqualTo("#797878");
+                softAssert.assertThat(discountPriceProduct.getPriceTextColor())
+                        .as("Price color text must be red: #f84147")
+                        .isEqualTo("#f84147");
+            }
         }
         softAssert.assertAll();
     }

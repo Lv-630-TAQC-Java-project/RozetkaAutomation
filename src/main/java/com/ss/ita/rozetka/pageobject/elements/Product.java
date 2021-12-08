@@ -120,11 +120,6 @@ public class Product {
         return productDescription;
     }
 
-    @Step("ProductTypePage: get status product discount price")
-    public boolean isProductDiscountPriceValid() {
-        return productOldPrice > productPrice;
-    }
-
     @Step("ProductTypePage: get old price text color")
     public String getOldPriceTextColor() {
         return Color.fromString($x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__price--old')]"))

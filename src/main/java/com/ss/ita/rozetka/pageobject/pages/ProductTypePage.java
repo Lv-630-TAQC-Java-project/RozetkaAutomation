@@ -73,7 +73,7 @@ public class ProductTypePage extends HeaderPage {
     @Step("ProductTypePage: get product prices list")
     public List<Integer> getProductPricesList() {
         return $$x("//span[contains(@class, 'goods-tile__price-value')]")
-                .shouldBe(CollectionCondition.sizeLessThanOrEqual(60))
+                .shouldBe(CollectionCondition.sizeGreaterThan(1))
                 .texts()
                 .stream()
                 .map(price -> price.replaceAll(" ", StringUtils.EMPTY))
@@ -101,19 +101,16 @@ public class ProductTypePage extends HeaderPage {
         return new Product(String.format(("(//div[@class='goods-tile__inner'])[%s]"), numberProduct));
     }
 
-    @Step("ProductTypePage: get products action prices list")
-    public List<Product> getDiscountPriceProductsList() {
+    @Step("ProductTypePage: get products list")
+    public List<Product> getProductsList() {
         List<Product> productsList = new ArrayList<>();
         int productsCollectionSize = $$x("//div[@class='goods-tile__inner']")
-                .shouldBe(CollectionCondition.sizeLessThanOrEqual(60))
+                .shouldBe(CollectionCondition.sizeGreaterThan(1))
                 .size();
         for (int i = 1; i <= productsCollectionSize; i++) {
-            Product productItem = getProduct(i);
-            if (productItem.getOldPrice() > 0) {
-                productItem.getPrice();
-                productsList.add(productItem);
-            }
+            productsList.add(getProduct(i));
         }
         return productsList;
     }
+
 }
