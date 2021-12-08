@@ -2,10 +2,10 @@ package com.ss.ita.rozetka.pageobject.modals;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
-import com.ss.ita.rozetka.pageobject.pages.*;
 import com.ss.ita.rozetka.pageobject.pages.OrderingPage;
 import io.qameta.allure.Step;
 
+import java.time.Duration;
 import java.util.List;
 
 import static com.codeborne.selenide.Condition.exist;
@@ -68,9 +68,12 @@ public class BasketModal<T> {
 
     @Step("BasketModal: waiting for price to change from {totalPriceBefore}")
     private void waitForTotalPriceToUpdate(int totalPriceBefore) {
-        SelenideElement totalPriceSpan = $x("//div[@class='cart-receipt__sum-price']/span[1]");
-        if (totalPriceSpan.is(exist)) {
-            totalPriceSpan.shouldNotHave(text(String.valueOf(totalPriceBefore)));
+        try {
+            var priceSpan = $x("//div[@class='cart-receipt__sum-price']/span[1]");
+            priceSpan.shouldNotHave(text(String.valueOf(totalPriceBefore)), Duration.ofSeconds(5));
+        } catch (AssertionError ignored) {
+            // For situation when the last product is removed from the basket
+            // and the price span doesn't exist
         }
     }
 
