@@ -14,8 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ComparisonTest extends TestRunner {
 
-
-
     @Test
     @Description("Verify that product count list size on ComparisonPage is equal to count added on productTypePage")
     @TmsLink(value = "LVTAQC630-11")
@@ -25,7 +23,7 @@ public class ComparisonTest extends TestRunner {
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS_CATEGORY);
         int productCount = 5;
-        productTypePage.addProductCountToComparison(productCount);
+        productTypePage.addProductsToComparison(productCount);
         assertThat(getCurrentUrl())
                 .as("Notebooks subcategory page should be opened")
                 .isEqualTo("https://rozetka.com.ua/notebooks/c80004/");
@@ -49,7 +47,7 @@ public class ComparisonTest extends TestRunner {
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS_CATEGORY);
         int productCount = 5;
-        productTypePage.addProductCountToComparison(productCount);
+        productTypePage.addProductsToComparison(productCount);
         assertThat(getCurrentUrl())
                 .as("Notebooks subcategory page should be opened")
                 .isEqualTo("https://rozetka.com.ua/notebooks/c80004/");
@@ -59,7 +57,7 @@ public class ComparisonTest extends TestRunner {
                 .openComparisonModal()
                 .openComparisonPage()
                 .openProductTypePage()
-                .addProductCountToComparison(3);
+                .addProductsToComparison(3);
 
         int comparisonProductListSize = header
                 .openComparisonModal()
