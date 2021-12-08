@@ -87,7 +87,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
     @TmsLink(value = "LVTAQC630-44")
     public void verifyProductAddedOnlyOnce() {
         var homePage = new HomePage().open();
-        ProductTypePage productPage = homePage
+        var productPage = homePage
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
         var isProductTypePageOpened = productPage.isOpened();
@@ -103,26 +103,26 @@ public class RecentlyViewedProductsTest extends TestRunner {
 
         var header = productPage.getHeader();
 
-        var recentlyOpenedProductName = header
+        var recentlyOpenedProductTitle = header
                 .openHomePage()
                 .getRecentlyViewedProductTitle(1);
-        assertThat(recentlyOpenedProductName)
+        assertThat(recentlyOpenedProductTitle)
                 .as("First product name in Recently Opened products should be equal to last viewed product name")
                 .isEqualTo(firstOpenedProduct);
 
-        var secondOpenedProductName = homePage
+        var secondOpenedProductTitle = homePage
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY)
                 .openProductPage(1)
                 .getTitle();
-        var recentlyViewedProductNames = header
+        var recentlyViewedProductTitle = header
                 .openHomePage()
                 .getRecentlyViewedProductTitle();
-        assertThat(recentlyViewedProductNames)
+        assertThat(recentlyViewedProductTitle)
                 .as("Recently viewed product list should contain one product")
                 .hasSize(1);
-        assertThat(recentlyViewedProductNames)
+        assertThat(recentlyViewedProductTitle)
                 .as("Product in recently viewed product list should be the same as last opened product")
-                .contains(secondOpenedProductName);
+                .contains(secondOpenedProductTitle);
     }
 }
