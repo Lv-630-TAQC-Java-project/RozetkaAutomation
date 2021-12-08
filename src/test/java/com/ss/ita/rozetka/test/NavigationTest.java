@@ -18,23 +18,23 @@ public class NavigationTest extends TestRunner {
     @Description(value = "Verifies that user can return to home page from product category page")
     @TmsLink(value = "LVTAQC630-7")
     public void verifyReturnToHomePage() {
-        ProductCategoryPage productCategoryPage = new HomePage()
+        var productCategoryPage = new HomePage()
                 .open()
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES);
 
-        boolean isProductPageOpened = productCategoryPage.isOpened();
+        var isProductPageOpened = productCategoryPage.isOpened();
         assertThat(isProductPageOpened)
                 .as("Product category page should be opened")
                 .isTrue();
 
-        boolean isProductTypePageOpened = productCategoryPage
+        var isProductTypePageOpened = productCategoryPage
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY)
                 .isOpened();
         assertThat(isProductTypePageOpened)
                 .as("Product type page should be opened")
                 .isTrue();
 
-        boolean isHomePageOpened = productCategoryPage
+        var isHomePageOpened = productCategoryPage
                 .getHeader()
                 .openHomePage()
                 .isOpened();
