@@ -38,47 +38,47 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .as("Product type page should be opened")
                 .isTrue();
 
-        String firstOpenedProductName = productPage
+        String firstOpenedProductTitle = productPage
                 .openProductPage(1)
-                .getName();
+                .getTitle();
 
         Header header = productPage.getHeader();
 
-        String recentlyViewedProductName = header
+        String recentlyViewedProductTitle = header
                 .openHomePage()
-                .getRecentlyViewedProductName(1);
-        assertThat(recentlyViewedProductName)
+                .getRecentlyViewedProductTitle(1);
+        assertThat(recentlyViewedProductTitle)
                 .as("First product name in Recently Opened products should be equal to last viewed product name")
-                .isEqualTo(firstOpenedProductName);
+                .isEqualTo(firstOpenedProductTitle);
 
-        String secondOpenedProductName = header
+        String secondOpenedProductTitle = header
                 .openHomePage()
                 .openProductCategoryPage(COTTAGE_GARDEN_BACKYARD)
                 .openProductTypePage(GARDEN_TECH_CATEGORY)
                 .openProductPage(1)
-                .getName();
+                .getTitle();
 
-        String thirdOpenedProductName = header
+        String thirdOpenedProductTitle = header
                 .openHomePage()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS_CATEGORY)
                 .openProductPage(1)
-                .getName();
+                .getTitle();
 
-        List<String> recentlyViewedProductNames = header
+        List<String> recentlyViewedProductTitles = header
                 .openHomePage()
-                .getRecentlyViewedProductNames();
+                .getRecentlyViewedProductTitle();
 
         SoftAssertions softly = new SoftAssertions();
-        softly.assertThat(recentlyViewedProductNames.get(0))
+        softly.assertThat(recentlyViewedProductTitles.get(0))
                 .as("First product name in Recently Opened products should be equal to last viewed product name")
-                .isEqualTo(thirdOpenedProductName);
-        softly.assertThat(recentlyViewedProductNames.get(1))
+                .isEqualTo(thirdOpenedProductTitle);
+        softly.assertThat(recentlyViewedProductTitles.get(1))
                 .as("Second product name in Recently Opened products should be equal to second viewed product name")
-                .isEqualTo(secondOpenedProductName);
-        softly.assertThat(recentlyViewedProductNames.get(2))
+                .isEqualTo(secondOpenedProductTitle);
+        softly.assertThat(recentlyViewedProductTitles.get(2))
                 .as("Third product name in Recently Opened products should be equal to first viewed product name")
-                .isEqualTo(firstOpenedProductName);
+                .isEqualTo(firstOpenedProductTitle);
         softly.assertAll();
     }
 
@@ -99,13 +99,13 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .isTrue();
         var firstOpenedProduct = productPage
                 .openProductPage(1)
-                .getName();
+                .getTitle();
 
         var header = productPage.getHeader();
 
         var recentlyOpenedProductName = header
                 .openHomePage()
-                .getRecentlyViewedProductName(1);
+                .getRecentlyViewedProductTitle(1);
         assertThat(recentlyOpenedProductName)
                 .as("First product name in Recently Opened products should be equal to last viewed product name")
                 .isEqualTo(firstOpenedProduct);
@@ -114,10 +114,10 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY)
                 .openProductPage(1)
-                .getName();
+                .getTitle();
         var recentlyViewedProductNames = header
                 .openHomePage()
-                .getRecentlyViewedProductNames();
+                .getRecentlyViewedProductTitle();
         assertThat(recentlyViewedProductNames)
                 .as("Recently viewed product list should contain one product")
                 .hasSize(1);

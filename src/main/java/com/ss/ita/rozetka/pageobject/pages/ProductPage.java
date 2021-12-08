@@ -35,7 +35,7 @@ public class ProductPage extends HeaderPage {
     }
 
     @Step("ProductPage: get product name")
-    public String getName() {
+    public String getTitle() {
         return $x("//h1[@class = 'product__title']").text();
     }
 
