@@ -5,6 +5,7 @@ import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.pages.own_cabinet.WishListPage;
 import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class SideMenuModal {
@@ -35,7 +36,7 @@ public class SideMenuModal {
 
     @Step("Header: open wish list")
     public WishListPage openWishList() {
-        $x("//ul[@class='ng-tns-c5-0 ng-star-inserted']//li[1]").click();
+        $("ul.ng-star-inserted>li.side-menu__item:nth-child(1) > a.button:nth-child(1)").click();
         return new WishListPage();
     }
 }

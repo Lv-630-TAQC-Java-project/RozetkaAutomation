@@ -9,6 +9,8 @@ import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AddProductToWishListTest extends TestRunner {
@@ -16,7 +18,7 @@ public class AddProductToWishListTest extends TestRunner {
     @Test
     @Description("Verify user can add product to wish list")
     @TmsLink(value = "LVTAQC630-57")
-    public void verifyUserCanAddProductToWishList() {
+    public void verifyUserCanAddProductToWishList() throws IOException {
         var header = new HomePage()
                 .open()
                 .getHeader();
@@ -43,14 +45,18 @@ public class AddProductToWishListTest extends TestRunner {
                 .as("Product title should be the same")
                 .isEqualTo(productTitleInWishList);
 
-        var sumOfProducts = wishListPage.getProductsListSize();
+        var productsListSize = wishListPage.getProductsListSize();
+
+        assertThat(productsListSize)
+                .as("ProductsListSize should be greater that 0")
+                .isGreaterThan(0);
 
         wishListPage
-                .selectProductInWishList(1)
-                .removeProductFromWishList();
+                .selectProduct(1)
+                .removeProduct();
 
-        assertThat(sumOfProducts)
+        assertThat(wishListPage.isProductListEmpty())
                 .as("Product title should not be the same")
-                .isNotEqualTo(wishListPage.getProductsListSize());
+                .isTrue();
     }
 }

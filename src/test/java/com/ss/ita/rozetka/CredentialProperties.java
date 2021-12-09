@@ -5,19 +5,19 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class CredentialProperties {
-    FileInputStream fis;
-    Properties prop;
+    private final FileInputStream fileInputStream;
+    private final Properties properties;
 
     public CredentialProperties() {
         try {
-            this.fis = new FileInputStream("src/test/resources/credential.properties");
-            this.prop = new Properties();
-            prop.load(fis);
+            this.fileInputStream = new FileInputStream("src/test/resources/credential.properties");
+            this.properties = new Properties();
+            properties.load(fileInputStream);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
-    public String getFacebookEmail() { return prop.getProperty("facebook_email"); }
-    public String getFacebookPassword() { return prop.getProperty("facebook_password"); }
+    public String getFacebookEmail() { return properties.getProperty("facebook_email"); }
+    public String getFacebookPassword() { return properties.getProperty("facebook_password"); }
 }

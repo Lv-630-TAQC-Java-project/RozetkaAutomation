@@ -70,9 +70,9 @@ public class LoginModal {
     }
 
     @Step("LoginModal: open login with facebook")
-    public LoginModal openLoginWithFacebook() {
+    public LoginModal startLoggingWithFacebook() {
         $("div[class='auth-modal__social'] button:nth-child(1)").click();
-        return new LoginModal();
+        return this;
     }
 
     @Step("LoginModal: confirm login with facebook")
@@ -83,13 +83,13 @@ public class LoginModal {
 
     @Step("LoginModal: login with facebook {email}, {password}")
     public HomePage loginWithFacebook(String email, String password) {
-        openLoginWithFacebook();
+        startLoggingWithFacebook();
 
         switchTo().window(1);
 
-        setFacebookEmail(email);
-        setFacebookPassword(password);
-        confirmLoginWithFacebook();
+        setFacebookEmail(email)
+                .setFacebookPassword(password)
+                .confirmLoginWithFacebook();
 
         switchTo().window(0);
 
