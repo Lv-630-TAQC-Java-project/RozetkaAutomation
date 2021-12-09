@@ -9,7 +9,6 @@ import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
-
 import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.PRODUCER;
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.MONITORS_CATEGORY;
