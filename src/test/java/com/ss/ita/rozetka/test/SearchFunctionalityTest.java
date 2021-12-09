@@ -110,8 +110,7 @@ public class SearchFunctionalityTest extends TestRunner {
                 softAssert
                         .assertThat(productTitle)
                         .as("Product title should contains search term")
-                        .contains(searchTerm
-                                .toUpperCase());
+                        .contains(searchTerm.toUpperCase());
             }
             homePage = header.openHomePage();
             assertThat(homePage.isMainMenuCategoriesDisplayed())
