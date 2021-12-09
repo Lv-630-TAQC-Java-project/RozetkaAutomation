@@ -82,7 +82,7 @@ public class SortProductsListTest extends TestRunner {
                 softAssert
                         .assertThat(discountPriceProduct.getPriceTextColor())
                         .as("Price color text must be red")
-                        .isEqualTo(RED);
+                        .isEqualTo(RED.toString());
             }
         }
         softAssert.assertAll();

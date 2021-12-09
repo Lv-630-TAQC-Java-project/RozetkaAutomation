@@ -7,10 +7,10 @@ public enum Color {
     GRAY("#797878"),
     RED("#f84147");
 
-    private final String color;
+    private final String colorAsHex;
 
     @Override
     public String toString() {
-        return color;
+        return colorAsHex;
     }
 }
