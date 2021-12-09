@@ -68,6 +68,7 @@ public class FilterFunctionalityTest extends TestRunner {
     @Description("Verify that after changing and submitting price bounds displayed products with correct price")
     @TmsLink(value = "LVTAQC630-55")
     public void verifyThatPriceFilterIsCorrect() {
+        FilterSideBar filterSideBar;
         var productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
@@ -75,8 +76,7 @@ public class FilterFunctionalityTest extends TestRunner {
 
         var company = "Dell";
 
-        productTypePage
-                .filterProductsByParameters(company);
+        productTypePage.filterProductsByParameters(company);
 
         assertThat(productTypePage.getProductTitle(1))
                 .as("Title should contains Dell")
@@ -93,15 +93,11 @@ public class FilterFunctionalityTest extends TestRunner {
         int productPrisesCount = productTypePage.getProductsCount();
         var productPricesList = productTypePage.getProductPricesList();
 
-        boolean priceCorrectness = false;
         for (int i = 0; i <= productPrisesCount - 1; i++) {
-            if (productPricesList.get(i) <= maxPrice && productPricesList.get(i) >= minPrice) {
-                priceCorrectness = true;
-            }
+            assertThat(productPricesList.get(i))
+                    .as("Price should be in selected bounds")
+                    .isGreaterThan(minPrice)
+                    .isLessThan(maxPrice);
         }
-
-        assertThat(priceCorrectness)
-                .as("Price should be in selected bounds")
-                .isTrue();
     }
 }
