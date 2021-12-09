@@ -2,12 +2,12 @@ package com.ss.ita.rozetka.pageobject.pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-
 import com.ss.ita.rozetka.pageobject.elements.Product;
+import com.ss.ita.rozetka.pageobject.elements.filters.FilterSideBar;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
-import org.apache.commons.lang3.StringUtils;
+import lombok.Getter;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,8 +15,11 @@ import java.util.stream.Collectors;
 import static com.codeborne.selenide.Selenide.*;
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.isElementVisible;
 import static java.lang.String.format;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 public class ProductTypePage extends HeaderPage {
+    @Getter
+    private final FilterSideBar filterSideBar = new FilterSideBar();
 
     @Step("ProductTypePage: open product page by product number {productNumber}")
     public ProductPage openProductPage(int productNumber) {
@@ -75,7 +78,7 @@ public class ProductTypePage extends HeaderPage {
                 .shouldBe(CollectionCondition.sizeLessThanOrEqual(60))
                 .texts()
                 .stream()
-                .map(price -> price.replaceAll(" ", StringUtils.EMPTY))
+                .map(price -> price.replaceAll(" ", EMPTY))
                 .map(price -> Integer.valueOf(price))
                 .collect(Collectors.toList());
     }
@@ -88,8 +91,8 @@ public class ProductTypePage extends HeaderPage {
     }
 
     @Step("ProductTypePage: add product count to comparison")
-    public ProductTypePage addProductCountToComparison(int productCount) {
-        for (int i = 0; i < productCount; i++) {
+    public ProductTypePage addProductsToComparison(int productsToAdd) {
+        for (int i = 0; i < productsToAdd; i++) {
             $x(format("(//button[@class='compare-button ng-star-inserted'])[%s]", i + 1)).click();
         }
         return this;
@@ -98,5 +101,10 @@ public class ProductTypePage extends HeaderPage {
     @Step("ProductTypePage: get product by number {numberProduct}")
     public Product getProduct(int numberProduct) {
         return new Product(String.format(("(//div[@class='goods-tile__inner'])[%s]"), numberProduct));
+    }
+
+    @Step("ProductTypePage: get count of selected products by filter")
+    public int getSelectedProductsAmount() {
+        return Integer.parseInt($x("//rz-selected-filters/div/p").getText().replaceAll("\\D", EMPTY));
     }
 }
