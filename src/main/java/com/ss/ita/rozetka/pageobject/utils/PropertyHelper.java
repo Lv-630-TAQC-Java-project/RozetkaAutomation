@@ -21,7 +21,7 @@ public class PropertyHelper {
     }
 
     public static long getPageLoadTimeout() {
-        String systemPageLoadTimeout = System.getProperty("pageLoadTimeout", String.valueOf(3*60*1000));
+        var systemPageLoadTimeout = System.getProperty("pageLoadTimeout", String.valueOf(3*60*1000));
         return Long.parseLong(systemPageLoadTimeout);
     }
 }
