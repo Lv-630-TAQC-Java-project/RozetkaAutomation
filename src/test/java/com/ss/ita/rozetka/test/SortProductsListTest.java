@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.*;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.*;
 import static com.ss.ita.rozetka.pageobject.utils.ProductsListSortType.*;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SortProductsListTest extends TestRunner {
