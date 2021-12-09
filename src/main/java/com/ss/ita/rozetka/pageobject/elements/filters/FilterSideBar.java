@@ -169,7 +169,7 @@ public class FilterSideBar {
         }
 
         @Step("Filter: get products quantity that corresponds to option with name {optionName}")
-        public int getProductsQuantityOfOption(String optionName) {
+        public int getOptionProductsQuantity(String optionName) {
             String optionQuantityXpath = format(filterContainerXpath + "//label[@for='%s']/span", optionName);
 
             return Integer.parseInt(
