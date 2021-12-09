@@ -10,6 +10,8 @@ import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.MONITORS_CATEGORY;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY;
@@ -71,7 +73,7 @@ public class FilterFunctionalityTest extends TestRunner {
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS_CATEGORY);
 
-        var company ="Dell";
+        var company = "Dell";
 
         productTypePage
                 .filterProductsByParameters(company);
@@ -80,19 +82,26 @@ public class FilterFunctionalityTest extends TestRunner {
                 .as("Title should contains Dell")
                 .contains(company);
 
-        FilterSideBar filterSideBar = new FilterSideBar()
-                .setMinPrice(15000)
-                .setMaxPrice(50000);
+        int minPrice = 15000;
+        int maxPrice = 50000;
 
-        productTypePage.getProductPricesList().stream().filter(s->s>=15000&&s<=50000);
-        int productPrisesCount=productTypePage.getProductPricesList().size();
-        productTypePage.getProductPricesList().size();
+        new FilterSideBar()
+                .setMinPrice(minPrice)
+                .setMaxPrice(maxPrice)
+                .filterByPrice();
 
-        boolean status = false;
-        for (int i = 0; i <= productPrisesCount; i++) {
-            if (productTypePage.getProductPricesList().get(i) > 50000 && productTypePage.getProductPricesList().get(i) < 15000) {
-                status = true;
-            } else status = false;
+        int productPrisesCount = productTypePage.getProductsCount();
+        List<Integer> productPricesList = productTypePage.getProductPricesList();
+
+        boolean priceCorrectness = false;
+        for (int i = 0; i <= productPrisesCount - 1; i++) {
+            if (productPricesList.get(i) <= maxPrice && productPricesList.get(i) >= minPrice) {
+                priceCorrectness = true;
+            }
         }
+
+        assertThat(priceCorrectness)
+                .as("Price should be in selected bounds")
+                .isTrue();
     }
 }
