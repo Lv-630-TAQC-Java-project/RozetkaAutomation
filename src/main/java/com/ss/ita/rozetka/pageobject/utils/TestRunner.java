@@ -16,6 +16,7 @@ public class TestRunner {
         browser = getBrowserProperty();
         browserSize = getBrowserSizeProperty();
         timeout = getTimeoutProperty();
+        pageLoadTimeout = getPageLoadTimeout();
     }
 
     @AfterMethod
