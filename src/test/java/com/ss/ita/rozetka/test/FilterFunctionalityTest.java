@@ -91,7 +91,7 @@ public class FilterFunctionalityTest extends TestRunner {
                 .filterByPrice();
 
         int productPrisesCount = productTypePage.getProductsCount();
-        List<Integer> productPricesList = productTypePage.getProductPricesList();
+        var productPricesList = productTypePage.getProductPricesList();
 
         boolean priceCorrectness = false;
         for (int i = 0; i <= productPrisesCount - 1; i++) {
