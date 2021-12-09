@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ComparisonTest extends TestRunner {
 
     @Test
-    @Description(value = "verifies that product count list size on ComparisonPage is equal to count added on productTypePage")
+    @Description("Verify that product count list size on ComparisonPage is equal to count added on productTypePage")
     @TmsLink(value = "LVTAQC630-11")
     public void verifyAddingProductToComparison() {
         ProductTypePage productTypePage = new HomePage()
@@ -23,7 +23,7 @@ public class ComparisonTest extends TestRunner {
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS_CATEGORY);
         int productCount = 5;
-        productTypePage.addProductCountToComparison(productCount);
+        productTypePage.addProductsToComparison(productCount);
         assertThat(getCurrentUrl())
                 .as("Notebooks subcategory page should be opened")
                 .isEqualTo("https://rozetka.com.ua/notebooks/c80004/");
@@ -36,6 +36,36 @@ public class ComparisonTest extends TestRunner {
         assertThat(comparisonProductListSize)
                 .as("List size should be equal to count we added at the ProductTypePage")
                 .isEqualTo(productCount);
+    }
+
+    @Test
+    @Description("Verifies add more products to comparison from comparison page")
+    @TmsLink(value = "LVTAQC630-49")
+    public void verifyAddingProductsFromComparisonPage() {
+        ProductTypePage productTypePage = new HomePage()
+                .open()
+                .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
+                .openProductTypePage(NOTEBOOKS_CATEGORY);
+        int productCount = 5;
+        productTypePage.addProductsToComparison(productCount);
+        assertThat(getCurrentUrl())
+                .as("Notebooks subcategory page should be opened")
+                .isEqualTo("https://rozetka.com.ua/notebooks/c80004/");
+
+        var header = productTypePage.getHeader();
+        header
+                .openComparisonModal()
+                .openComparisonPage()
+                .openProductTypePage()
+                .addProductsToComparison(3);
+
+        int comparisonProductListSize = header
+                .openComparisonModal()
+                .openComparisonPage()
+                .getComparisonListSize();
+        assertThat(comparisonProductListSize)
+                .as("List size shouldn't be equal to count we changed")
+                .isNotEqualTo(productCount);
     }
 
 }
