@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.PRODUCER;
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.MONITORS_CATEGORY;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY;
@@ -68,15 +69,17 @@ public class FilterFunctionalityTest extends TestRunner {
     @Description("Verify that after changing and submitting price bounds displayed products with correct price")
     @TmsLink(value = "LVTAQC630-55")
     public void verifyThatPriceFilterIsCorrect() {
-        FilterSideBar filterSideBar;
         var productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS_CATEGORY);
 
         var company = "Dell";
+        var filterSideBar = productTypePage.getFilterSideBar();
 
-        productTypePage.filterProductsByParameters(company);
+        filterSideBar
+                .getFilter(PRODUCER)
+                .selectOption(company);
 
         assertThat(productTypePage.getProductTitle(1))
                 .as("Title should contains Dell")
@@ -85,7 +88,7 @@ public class FilterFunctionalityTest extends TestRunner {
         int minPrice = 15000;
         int maxPrice = 50000;
 
-        new FilterSideBar()
+        filterSideBar
                 .setMinPrice(minPrice)
                 .setMaxPrice(maxPrice)
                 .filterByPrice();
