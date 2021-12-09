@@ -88,8 +88,8 @@ public class ProductTypePage extends HeaderPage {
     }
 
     @Step("ProductTypePage: add product count to comparison")
-    public ProductTypePage addProductCountToComparison(int productCount) {
-        for (int i = 0; i < productCount; i++) {
+    public ProductTypePage addProductsToComparison(int productsToAdd) {
+        for (int i = 0; i < productsToAdd; i++) {
             $x(format("(//button[@class='compare-button ng-star-inserted'])[%s]", i + 1)).click();
         }
         return this;
