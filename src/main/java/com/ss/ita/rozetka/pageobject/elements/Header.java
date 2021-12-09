@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.pageobject.elements;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.pageobject.modals.BasketModal;
@@ -13,10 +14,14 @@ import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.codeborne.selenide.Selenide.*;
 
 public class Header {
+
+    private final String searchHistoryListXPath = "//li[@class='search-suggest__item ng-star-inserted']" ;
 
     @Step("Header: do search of term {searchText}")
     public ProductTypePage doSearch(String searchText) {
@@ -115,7 +120,24 @@ public class Header {
     @Step("Header: get text number {numberSearchedTerm} from search history")
     public String getTextFromSearchHistory(int numberSearchedTerm) {
         setSearchInputInFocus();
-        return $x(String.format("(//li[@class='search-suggest__item ng-star-inserted'])[%s]", numberSearchedTerm))
+        return $x(String.format("(%s)[%s]", searchHistoryListXPath, numberSearchedTerm))
                 .getText();
+    }
+
+    @Step("Header: Get search history terms list")
+    public List<String> getSearchHistoryTermsList() {
+        setSearchInputInFocus();
+        return $$x(searchHistoryListXPath)
+                .shouldBe(CollectionCondition.sizeGreaterThan(1))
+                .stream()
+                .map(item -> item.getText())
+                .collect(Collectors.toList());
+    }
+
+    @Step("Header: Search term number - {numberTerm} from search history")
+    public ProductTypePage searchTermFromSearchHistory(int numberTerm) {
+        setSearchInputInFocus();
+        $x(String.format("(%s)[%s]", searchHistoryListXPath, numberTerm)).click();
+        return new ProductTypePage();
     }
 }

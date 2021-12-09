@@ -1,24 +1,16 @@
 package com.ss.ita.rozetka.test;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.ss.ita.rozetka.pageobject.elements.Header;
-import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
-import io.qameta.allure.Description;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
 
-import static com.codeborne.selenide.Selenide.$$x;
-import static com.codeborne.selenide.Selenide.sleep;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SearchFunctionalityTest extends TestRunner {
@@ -65,30 +57,67 @@ public class SearchFunctionalityTest extends TestRunner {
     }
 
     @Test
-    @Description(value  = "Verify that search from search history works correct and items in the search history in right order")
+    @TmsLink(value = "LVTAQC630-61")
+    @Description(value = "Verify that items in the search history in right order and search from search history works correct")
     public void verifySearchFromSearchHistory() {
-        Header header = new HomePage()
+        var header = new HomePage()
                 .open()
-                .getHeader();
-        List<String> searchTerms = new ArrayList<>(Arrays.asList("Dell", "НР", "Bosch", "IPhone", "Stihl"));
+                .getHeader()
+                .changeLanguage("UA");
+        var searchTermsList = new ArrayList<>(Arrays.asList("Dell", "HP", "IPhone", "Stihl"));
+        var softAssert = new SoftAssertions();
         ProductTypePage searchResultPage;
-        int productCount;
-        SoftAssertions softAssert = new SoftAssertions();
-        for (String searchTerm : searchTerms) {
+        HomePage homePage;
+        for (var searchTerm : searchTermsList) {
             searchResultPage = header.doSearch(searchTerm);
+            assertThat(searchResultPage.isSelectSortingTypeDisplayed())
+                    .as("Search result page should be displayed")
+                    .isTrue();
+            homePage = searchResultPage
+                    .getHeader()
+                    .openHomePage();
+            assertThat(homePage.isMainMenuCategoriesDisplayed())
+                    .as("Home page should be opened")
+                    .isTrue();
+        }
+        var searchHistoryTermsList = header.getSearchHistoryTermsList();
+        assertThat(searchTermsList)
+                .as("search terms count should be equals to search history terms count")
+                .hasSameSizeAs(searchHistoryTermsList);
+        assertThat(searchHistoryTermsList)
+                .as("Search terms list should have same elements as search history terms list")
+                .containsExactlyInAnyOrderElementsOf(searchTermsList);
+        int searchHistoryTermsCount = searchHistoryTermsList.size();
+        for (int i = 0; i < searchHistoryTermsCount; i++) {
+            softAssert
+                    .assertThat(searchTermsList.get(i))
+                    .as("Search history terms list should be reverse ordered to search terms list")
+                    .isEqualTo(searchHistoryTermsList.get(searchHistoryTermsCount - 1 - i));
+        }
+        int productCount;
+        for (int i = 1; i <= searchHistoryTermsList.size(); i++) {
+            var searchTerm = header.getTextFromSearchHistory(i);
+            searchResultPage = header.searchTermFromSearchHistory(i);
+            assertThat(searchResultPage.isSelectSortingTypeDisplayed())
+                    .as("Search result page should be displayed")
+                    .isTrue();
             productCount = searchResultPage.getProductsCount();
-            for (int i = 1; i <= productCount; i++) {
-                String productTitle = searchResultPage
-                        .getProduct(i)
+            for (int j = 1; j <= productCount; j++) {
+                var productTitle = searchResultPage
+                        .getProduct(j)
                         .getTitle()
                         .toUpperCase();
-                softAssert.assertThat(productTitle)
+                softAssert
+                        .assertThat(productTitle)
                         .as("Product title should contains search term")
-                        .contains(searchTerm.toUpperCase());
+                        .contains(searchTerm
+                                .toUpperCase());
             }
-            header.openHomePage();
+            homePage = header.openHomePage();
+            assertThat(homePage.isMainMenuCategoriesDisplayed())
+                    .as("Home page should be opened")
+                    .isTrue();
         }
-        header.setSearchInputInFocus();
         softAssert.assertAll();
     }
 }
