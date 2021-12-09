@@ -26,11 +26,11 @@ public class RecentlyViewedProductsTest extends TestRunner {
     @Description(value = "Verifies that products opened by user are displayed on home page under recently viewed products list in order from last opened to first opened")
     @TmsLink(value = "LVTAQC630-30")
     public void verifyLastViewedProductAddedToTheList() {
-        ProductTypePage productPage = new HomePage()
+        var productPage = new HomePage()
                 .open()
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
-        boolean isProductTypePageOpened = productPage.isOpened();
+        var isProductTypePageOpened = productPage.isOpened();
         assertThat(getCurrentUrl())
                 .as("Kitchen appliances category page should be opened")
                 .isEqualTo("https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/");
@@ -38,34 +38,34 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .as("Product type page should be opened")
                 .isTrue();
 
-        String firstOpenedProductName = productPage
+        var firstOpenedProductName = productPage
                 .openProductPage(1)
                 .getName();
 
-        Header header = productPage.getHeader();
+        var header = productPage.getHeader();
 
-        String recentlyViewedProductName = header
+        var recentlyViewedProductName = header
                 .openHomePage()
                 .getRecentlyViewedProductName(1);
         assertThat(recentlyViewedProductName)
                 .as("First product name in Recently Opened products should be equal to last viewed product name")
                 .isEqualTo(firstOpenedProductName);
 
-        String secondOpenedProductName = header
+        var secondOpenedProductName = header
                 .openHomePage()
                 .openProductCategoryPage(COTTAGE_GARDEN_BACKYARD)
                 .openProductTypePage(GARDEN_TECH_CATEGORY)
                 .openProductPage(1)
                 .getName();
 
-        String thirdOpenedProductName = header
+        var thirdOpenedProductName = header
                 .openHomePage()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS_CATEGORY)
                 .openProductPage(1)
                 .getName();
 
-        List<String> recentlyViewedProductNames = header
+        var recentlyViewedProductNames = header
                 .openHomePage()
                 .getRecentlyViewedProductNames();
 
