@@ -97,7 +97,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
         assertThat(isProductTypePageOpened)
                 .as("Product type page should be opened")
                 .isTrue();
-        var firstOpenedProduct = productPage
+        var firstOpenedProductTitle = productPage
                 .openProductPage(1)
                 .getTitle();
 
@@ -108,7 +108,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .getRecentlyViewedProductTitle(1);
         assertThat(recentlyOpenedProductTitle)
                 .as("First product name in Recently Opened products should be equal to last viewed product name")
-                .isEqualTo(firstOpenedProduct);
+                .isEqualTo(firstOpenedProductTitle);
 
         var secondOpenedProductTitle = homePage
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
