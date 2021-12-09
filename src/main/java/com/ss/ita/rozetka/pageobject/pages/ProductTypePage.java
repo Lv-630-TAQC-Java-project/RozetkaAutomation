@@ -111,7 +111,7 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: get products list")
     public List<Product> getProductsList() {
-        List<Product> productsList = new ArrayList<>();
+        var productsList = new ArrayList<Product>();
         int productsCollectionSize = $$x("//div[@class='goods-tile__inner']")
                 .shouldBe(CollectionCondition.sizeGreaterThan(1))
                 .size();
@@ -120,5 +120,4 @@ public class ProductTypePage extends HeaderPage {
         }
         return productsList;
     }
-
 }
