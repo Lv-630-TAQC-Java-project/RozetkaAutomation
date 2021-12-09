@@ -38,7 +38,6 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .as("Product type page should be opened")
                 .isTrue();
 
-
         var firstOpenedProductTitle = productPage
                 .openProductPage(1)
                 .getTitle();
@@ -65,7 +64,6 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .openProductTypePage(NOTEBOOKS_CATEGORY)
                 .openProductPage(1)
                 .getTitle();
-
 
         var recentlyViewedProductTitles = header
                 .openHomePage()
