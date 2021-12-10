@@ -8,10 +8,13 @@ import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
 import lombok.Getter;
+import org.checkerframework.common.value.qual.IntRange;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.isElementVisible;
@@ -76,7 +79,7 @@ public class ProductTypePage extends HeaderPage {
     @Step("ProductTypePage: get product prices list")
     public List<Integer> getProductPricesList() {
         return $$x("//span[contains(@class, 'goods-tile__price-value')]")
-                .shouldBe(CollectionCondition.sizeGreaterThan(1))
+                .shouldHave(CollectionCondition.sizeGreaterThan(1))
                 .texts()
                 .stream()
                 .map(price -> price.replaceAll(" ", EMPTY))
@@ -111,13 +114,12 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: get products list")
     public List<Product> getProductsList() {
-        var productsList = new ArrayList<Product>();
         int productsCollectionSize = $$x("//div[@class='goods-tile__inner']")
-                .shouldBe(CollectionCondition.sizeGreaterThan(1))
+                .shouldHave(CollectionCondition.sizeGreaterThan(1))
                 .size();
-        for (int i = 1; i <= productsCollectionSize; i++) {
-            productsList.add(getProduct(i));
-        }
-        return productsList;
+        return IntStream
+                .rangeClosed(1, productsCollectionSize)
+                .mapToObj(i -> getProduct(i))
+                .collect(Collectors.toList());
     }
 }
