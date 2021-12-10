@@ -132,10 +132,10 @@ public class Header {
                 .texts();
     }
 
-    @Step("Header: Search term number - {numberTerm} from search history")
-    public ProductTypePage openItemFromSearchHistory(int numberTerm) {
+    @Step("Header: Open item number - {numberItem} from search history")
+    public ProductTypePage openItemFromSearchHistory(int numberItem) {
         setSearchInputInFocus();
-        $x(String.format("(%s)[%s]", searchHistoryListXPath, numberTerm)).click();
+        $x(String.format("(%s)[%s]", searchHistoryListXPath, numberItem)).click();
         return new ProductTypePage();
     }
 }
