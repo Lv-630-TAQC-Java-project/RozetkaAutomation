@@ -12,12 +12,10 @@ import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.PRODUCER;
 import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.SELLER;
-import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.PRODUCER;
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.MONITORS_CATEGORY;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY;
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FilterFunctionalityTest extends TestRunner {
