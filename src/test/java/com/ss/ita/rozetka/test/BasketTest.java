@@ -44,7 +44,7 @@ public class BasketTest extends TestRunner {
                 .as("Basket should be empty - a product was removed")
                 .isTrue();
     }
-  
+
     @Test
     @Description("Verify that, after adding two related products to basket, the total price of basket is correct")
     @TmsLink(value = "LVTAQC630-2")
@@ -59,7 +59,10 @@ public class BasketTest extends TestRunner {
         var relatedProductPage = productPage
                 .addProductToBasket()
                 .close()
-                .openRelatedProduct(1);
+                .getHeader()
+                .setSearchTerms("Ноутбуки")
+                .search()
+                .openProductPage(2);
         int relatedProductPrice = relatedProductPage.getPrice();
 
         int expectedTotalPrice = productPrice + relatedProductPrice;
