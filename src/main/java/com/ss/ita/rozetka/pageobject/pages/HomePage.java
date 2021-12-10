@@ -37,12 +37,12 @@ public class HomePage extends HeaderPage {
     }
 
     @Step("HomePage: get product name number {itemNumber} from Recently Viewed Products list")
-    public String getRecentlyViewedProductName(int itemNumber) {
+    public String getRecentlyViewedProductTitle(int itemNumber) {
         return $x(format("//section[@class = 'main-goods ng-star-inserted'][1]//ul/li[%s]//a[@class = 'tile__title']", itemNumber)).getText();
     }
 
     @Step("HomePage: get recently viewed products names list from first to {intNumber} Recently Viewed Products list")
-    public List<String> getRecentlyViewedProductNames() {
+    public List<String> getRecentlyViewedProductTitle() {
         return $$x("//section[@class = 'main-goods ng-star-inserted'][1]//ul/li//a[@class = 'tile__title']")
                 .shouldBe(sizeNotEqual(0))
                 .texts();

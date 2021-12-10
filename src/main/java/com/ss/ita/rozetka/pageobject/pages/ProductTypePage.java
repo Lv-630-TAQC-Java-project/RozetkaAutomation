@@ -24,7 +24,7 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: open product page by product number {productNumber}")
     public ProductPage openProductPage(int productNumber) {
-        $x(String.format(("//div[@class='goods-tile__inner'][%s]"), productNumber)).click(); //to open the same product as in getProduct method
+        $x(String.format("(//div[@class='goods-tile__inner'])[%s]", productNumber)).click(); //to open the same product as in getProduct method
         return new ProductPage();
     }
 
@@ -101,7 +101,7 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: get product by number {numberProduct}")
     public Product getProduct(int numberProduct) {
-        return new Product(String.format(("(//div[@class='goods-tile__inner'])[%s]"), numberProduct));
+        return new Product(String.format("(//div[@class='goods-tile__inner'])[%s]", numberProduct));
     }
 
     @Step("ProductTypePage: get count of selected products by filter")
