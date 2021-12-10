@@ -18,7 +18,7 @@ public class AddProductToWishListTest extends TestRunner {
     @Test
     @Description("Verify user can add product to wish list")
     @TmsLink(value = "LVTAQC630-57")
-    public void verifyUserCanAddProductToWishList() throws IOException {
+    public void verifyUserCanAddProductToWishList() {
         var header = new HomePage()
                 .open()
                 .getHeader();

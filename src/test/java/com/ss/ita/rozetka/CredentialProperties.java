@@ -14,7 +14,7 @@ public class CredentialProperties {
             this.properties = new Properties();
             properties.load(fileInputStream);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new AssertionError(e);
         }
     }
 
