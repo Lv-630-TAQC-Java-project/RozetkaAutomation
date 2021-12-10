@@ -18,8 +18,8 @@ public class ProductTypePageTest extends TestRunner {
     public void verifyThatProductsArePresentedInNotebookCategory() {
         var productTypePage = new HomePage()
                 .open()
-                .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
-                .openProductTypePage(NOTEBOOKS_CATEGORY);
+                .openGeneralProductCategory(NOTEBOOKS_AND_COMPUTERS)
+                .openProductCategoryAndSubCategory(NOTEBOOKS_CATEGORY);
 
         assertThat(productTypePage.getProductsCount())
                 .as("There should be presented at least 10 products")
@@ -32,8 +32,8 @@ public class ProductTypePageTest extends TestRunner {
     public void verifyThatProductsArePresentedInTVAccessoriesCategory() {
         var productTypePage = new HomePage()
                 .open()
-                .openProductCategoryPage(PHONES_AND_TV)
-                .openProductTypePage(TV_ACCESSORIES_CATEGORY);
+                .openGeneralProductCategory(PHONES_AND_TV)
+                .openProductCategoryAndSubCategory(TV_ACCESSORIES_CATEGORY);
 
         assertThat(productTypePage.getProductsCount())
                 .as("There should be presented at least 10 products")

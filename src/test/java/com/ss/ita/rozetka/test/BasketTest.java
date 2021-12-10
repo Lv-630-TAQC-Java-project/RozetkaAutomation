@@ -19,8 +19,8 @@ public class BasketTest extends TestRunner {
     public void verifyChangingProductCountAndRemovingFromBasket() {
         var basket = new HomePage()
                 .open()
-                .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
-                .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY)
+                .openGeneralProductCategory(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
+                .openProductCategoryAndSubCategory(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY)
                 .openProductPage(1)
                 .addProductToBasket();
 
@@ -51,8 +51,8 @@ public class BasketTest extends TestRunner {
     public void verifyTotalPriceOfTwoProductsIsCorrect() {
         var productPage = new HomePage()
                 .open()
-                .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
-                .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY)
+                .openGeneralProductCategory(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
+                .openProductCategoryAndSubCategory(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY)
                 .openProductPage(1);
         int productPrice = productPage.getPrice();
 
@@ -81,8 +81,8 @@ public class BasketTest extends TestRunner {
     public void verifyAddProductFunctionality() {
         var productTypePage = new HomePage()
                 .open()
-                .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
-                .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY);
+                .openGeneralProductCategory(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
+                .openProductCategoryAndSubCategory(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY);
 
         assertThat(getCurrentUrl())
                 .as("Notebooks subcategory page should be opened")

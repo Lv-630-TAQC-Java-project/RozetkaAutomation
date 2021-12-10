@@ -10,7 +10,7 @@ import static java.lang.String.format;
 public class ProductCategoryPage extends HeaderPage {
 
     @Step("ProductCategoryPage: open product type page by category {categoryOrSubCategory}")
-    public ProductTypePage openProductTypePage(ProductCategoryAndSubCategory categoryOrSubCategory) {
+    public ProductTypePage openProductCategoryAndSubCategory(ProductCategoryAndSubCategory categoryOrSubCategory) {
         $x(format("//div[contains(@class,'tile-cats')]//a[contains(@href,'%s')]", categoryOrSubCategory.getName())).click();
         return new ProductTypePage();
     }

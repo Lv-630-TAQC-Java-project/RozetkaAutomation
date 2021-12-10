@@ -22,8 +22,8 @@ public class FilterFunctionalityTest extends TestRunner {
     public void verifyUserCanFilterProducts() {
         ProductTypePage productTypePage = new HomePage()
                 .open()
-                .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
-                .openProductTypePage(MONITORS_CATEGORY);
+                .openGeneralProductCategory(NOTEBOOKS_AND_COMPUTERS)
+                .openProductCategoryAndSubCategory(MONITORS_CATEGORY);
 
         assertThat(getCurrentUrl())
                 .as("Url should contain 'Monitors'")

@@ -30,10 +30,10 @@ public class BuyProductTest extends TestRunner {
                 .as("Url should contain '/ua/'")
                 .contains("/ua/");
 
-        ProductCategoryPage productCategoryPage = homePage.openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS);
+        ProductCategoryPage productCategoryPage = homePage.openGeneralProductCategory(NOTEBOOKS_AND_COMPUTERS);
 
         ProductPage productPage = productCategoryPage
-                .openProductTypePage(NOTEBOOKS_CATEGORY)
+                .openProductCategoryAndSubCategory(NOTEBOOKS_CATEGORY)
                 .openProductPage(1);
 
         OrderingPage orderingPage = productPage

@@ -20,8 +20,8 @@ public class ComparisonTest extends TestRunner {
     public void verifyAddingProductToComparison() {
         ProductTypePage productTypePage = new HomePage()
                 .open()
-                .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
-                .openProductTypePage(NOTEBOOKS_CATEGORY);
+                .openGeneralProductCategory(NOTEBOOKS_AND_COMPUTERS)
+                .openProductCategoryAndSubCategory(NOTEBOOKS_CATEGORY);
         int productCount = 5;
         productTypePage.addProductsToComparison(productCount);
         assertThat(getCurrentUrl())

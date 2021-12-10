@@ -107,4 +107,9 @@ public class ProductTypePage extends HeaderPage {
     public int getSelectedProductsAmount() {
         return Integer.parseInt($x("//rz-selected-filters/div/p").getText().replaceAll("\\D", EMPTY));
     }
+
+    @Step("ProductPage: get product tile label")
+    public String getLabelProductStatus() {
+        return $x("//span[contains(@class,'goods-tile__label promo-label promo-label_type_action')]").getAttribute("class");
+    }
 }
