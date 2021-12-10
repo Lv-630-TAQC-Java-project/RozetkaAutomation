@@ -128,14 +128,12 @@ public class Header {
     public List<String> getSearchHistoryTermsList() {
         setSearchInputInFocus();
         return $$x(searchHistoryListXPath)
-                .shouldBe(CollectionCondition.sizeGreaterThan(1))
-                .stream()
-                .map(item -> item.getText())
-                .collect(Collectors.toList());
+                .shouldHave(CollectionCondition.sizeGreaterThan(1))
+                .texts();
     }
 
     @Step("Header: Search term number - {numberTerm} from search history")
-    public ProductTypePage searchTermFromSearchHistory(int numberTerm) {
+    public ProductTypePage openItemFromSearchHistory(int numberTerm) {
         setSearchInputInFocus();
         $x(String.format("(%s)[%s]", searchHistoryListXPath, numberTerm)).click();
         return new ProductTypePage();

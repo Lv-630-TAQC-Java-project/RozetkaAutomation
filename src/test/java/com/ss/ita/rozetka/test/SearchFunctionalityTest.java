@@ -44,8 +44,8 @@ public class SearchFunctionalityTest extends TestRunner {
                 .as("Select sorting type should be displayed")
                 .isTrue();
         var homePage = header.openHomePage();
-        assertThat(homePage.isMainMenuCategoriesDisplayed())
-                .as("Main Menu Categories should be displayed")
+        assertThat(homePage.isOpened())
+                .as("Home page should be opened")
                 .isTrue();
         int numberSearchTerm = 1;
         var actualSearchTerm = header
@@ -60,23 +60,22 @@ public class SearchFunctionalityTest extends TestRunner {
     @TmsLink(value = "LVTAQC630-61")
     @Description(value = "Verify that items in the search history in right order and search from search history works correct")
     public void verifySearchFromSearchHistory() {
-        var header = new HomePage()
+        var homePage = new HomePage()
                 .open()
                 .getHeader()
-                .changeLanguage("UA");
-        var searchTermsList = new ArrayList<>(Arrays.asList("Dell", "HP", "IPhone", "Stihl"));
+                .changeLanguage("UA")
+                .openHomePage();
+        var searchTermsList = Arrays.asList("Dell", "HP", "IPhone", "Stihl");
         var softAssert = new SoftAssertions();
         ProductTypePage searchResultPage;
-        HomePage homePage;
+        var header = homePage.getHeader();
         for (var searchTerm : searchTermsList) {
             searchResultPage = header.doSearch(searchTerm);
-            assertThat(searchResultPage.isSelectSortingTypeDisplayed())
+            assertThat(searchResultPage.isOpened())
                     .as("Search result page should be displayed")
                     .isTrue();
-            homePage = searchResultPage
-                    .getHeader()
-                    .openHomePage();
-            assertThat(homePage.isMainMenuCategoriesDisplayed())
+            homePage = header.openHomePage();
+            assertThat(homePage.isOpened())
                     .as("Home page should be opened")
                     .isTrue();
         }
@@ -97,8 +96,8 @@ public class SearchFunctionalityTest extends TestRunner {
         int productCount;
         for (int i = 1; i <= searchHistoryTermsList.size(); i++) {
             var searchTerm = header.getTextFromSearchHistory(i);
-            searchResultPage = header.searchTermFromSearchHistory(i);
-            assertThat(searchResultPage.isSelectSortingTypeDisplayed())
+            searchResultPage = header.openItemFromSearchHistory(i);
+            assertThat(searchResultPage.isOpened())
                     .as("Search result page should be displayed")
                     .isTrue();
             productCount = searchResultPage.getProductsCount();
@@ -113,7 +112,7 @@ public class SearchFunctionalityTest extends TestRunner {
                         .contains(searchTerm.toUpperCase());
             }
             homePage = header.openHomePage();
-            assertThat(homePage.isMainMenuCategoriesDisplayed())
+            assertThat(homePage.isOpened())
                     .as("Home page should be opened")
                     .isTrue();
         }
