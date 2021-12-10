@@ -7,6 +7,7 @@ import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
+import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.PRODUCER;
@@ -92,12 +93,15 @@ public class FilterFunctionalityTest extends TestRunner {
 
         int productPrisesCount = productTypePage.getProductsCount();
         var productPricesList = productTypePage.getProductPricesList();
+        SoftAssertions softAssertion = new SoftAssertions();
 
-        for (int i = 0; i <= productPrisesCount - 1; i++) {
-            assertThat(productPricesList.get(i))
+        for (int i = 0; i < productPrisesCount; i++) {
+            softAssertion
+                    .assertThat(productPricesList.get(i))
                     .as("Price should be in selected bounds")
                     .isGreaterThan(minPrice)
                     .isLessThan(maxPrice);
         }
+        softAssertion.assertAll();
     }
 }
