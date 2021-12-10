@@ -30,7 +30,7 @@ public class ProductPageWithProductTest extends TestRunner {
 
         var productPage = productTypePage.openProductPage(productNumber);
 
-        var productTitleOnProductPage = productPage.getName();
+        var productTitleOnProductPage = productPage.getTitle();
         int productPriceOnProductPage = productPage.getPrice();
         var productDescriptionOnProductPage = productPage.getDescription();
 
