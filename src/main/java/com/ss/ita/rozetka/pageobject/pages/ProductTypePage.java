@@ -108,6 +108,7 @@ public class ProductTypePage extends HeaderPage {
         return Integer.parseInt($x("//rz-selected-filters/div/p").getText().replaceAll("\\D", EMPTY));
     }
 
+    @Step("ProductTypePage: get products quantity")
     public int getProductsQuantity() {
         String[] productsQuantity = $(".catalog-selection__label.ng-star-inserted").getText().split(" ");
         return Integer.parseInt(productsQuantity[1]);

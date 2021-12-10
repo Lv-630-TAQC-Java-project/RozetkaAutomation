@@ -67,6 +67,8 @@ public class FilterFunctionalityTest extends TestRunner {
     }
 
     @Test
+    @Description("Verify that products quantity with two filters will be less than with one")
+    @TmsLink(value = "LVTAQC630-51")
     public void verifyThatProductsQuantityWillDecrease() {
         ProductTypePage productTypePage = new HomePage()
                 .open()
