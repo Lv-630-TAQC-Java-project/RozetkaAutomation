@@ -8,13 +8,10 @@ import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
 import lombok.Getter;
-import org.checkerframework.common.value.qual.IntRange;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.isElementVisible;
