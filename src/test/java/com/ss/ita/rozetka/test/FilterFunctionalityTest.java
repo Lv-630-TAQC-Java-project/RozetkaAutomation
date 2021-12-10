@@ -11,10 +11,13 @@ import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.PRODUCER;
+import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.SELLER;
+import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.PRODUCER;
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.MONITORS_CATEGORY;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY;
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FilterFunctionalityTest extends TestRunner {
@@ -61,6 +64,34 @@ public class FilterFunctionalityTest extends TestRunner {
         assertThat(totalPriceWithoutOptions)
                 .as("Total price should be changed")
                 .isLessThan(totalPriceWithOptions);
+    }
+
+    @Test
+    public void verifyThatProductsQuantityWillDecrease() {
+        ProductTypePage productTypePage = new HomePage()
+                .open()
+                .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
+                .openProductTypePage(MONITORS_CATEGORY);
+
+        var filterSideBar = productTypePage.getFilterSideBar();
+
+        filterSideBar
+                .getFilter(PRODUCER)
+                .selectOption("ASUS");
+
+        var productsQuantityWithOneFilter = productTypePage.getProductsQuantity();
+
+        assertThat(productsQuantityWithOneFilter)
+                .as("Products quantity should be greater than 0")
+                .isGreaterThan(0);
+
+        filterSideBar
+                .getFilter(SELLER)
+                .selectOption("Rozetka");
+
+        assertThat(productTypePage.getProductsQuantity())
+                .as("Products quantity with two filter should be less than with one")
+                .isLessThan(productsQuantityWithOneFilter);
     }
 
     @Test
