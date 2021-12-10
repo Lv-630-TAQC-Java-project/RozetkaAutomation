@@ -2,14 +2,12 @@ package com.ss.ita.rozetka.pageobject.modals;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
-import com.ss.ita.rozetka.pageobject.pages.*;
 import com.ss.ita.rozetka.pageobject.pages.OrderingPage;
 import io.qameta.allure.Step;
 
 import java.util.List;
 
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
@@ -66,30 +64,33 @@ public class BasketModal<T> {
         return this;
     }
 
-    @Step("BasketModal: waiting for price to change from {totalPriceBefore}")
-    private void waitForTotalPriceToUpdate(int totalPriceBefore) {
-        SelenideElement totalPriceSpan = $x("//div[@class='cart-receipt__sum-price']/span[1]");
-        if (totalPriceSpan.is(exist)) {
-            totalPriceSpan.shouldNotHave(text(String.valueOf(totalPriceBefore)));
-        }
-    }
-
     @Step("BasketModal: remove product with title {productTitle}")
     public BasketModal<T> removeProduct(String productTitle) {
         int totalPrice = getProductsTotalPrice();
+        int productsCount = getProductTitles().size();
 
         String productActionsXpath = format(
                 PRODUCT_XPATH_TEMPLATE_FOR_TITLE + "//button[contains(@id, 'cartProductActions')]", productTitle);
         $x(productActionsXpath).click();
         $x("//rz-trash-icon/button").click();
 
-        waitForTotalPriceToUpdate(totalPrice);
+        if (productsCount == 1) {
+            $(".cart-dummy").should(exist);
+        } else {
+            waitForTotalPriceToUpdate(totalPrice);
+        }
         return this;
+    }
+
+    @Step("BasketModal: waiting for price to change from {totalPriceBefore}")
+    private void waitForTotalPriceToUpdate(int totalPriceBefore) {
+        var priceSpan = $x("//div[@class='cart-receipt__sum-price']/span[1]");
+        priceSpan.shouldNotHave(text(String.valueOf(totalPriceBefore)));
     }
 
     @Step("BasketModal: close basket window")
     public T close() {
-        $x("//button[contains(@class, 'modal__close')]").click();
+        $x("//button[contains(@class, 'modal__close')]").shouldBe(enabled).click();
         return pageObject;
     }
 
