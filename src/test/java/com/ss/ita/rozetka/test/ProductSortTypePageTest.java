@@ -22,14 +22,11 @@ public class ProductSortTypePageTest extends TestRunner {
                 .openProductCategoryAndSubCategory(BOOKS_CATEGORY)
                 .sortProductsListBy(ProductsListSortType.ACTION);
 
-
-        String labelClassAction = "goods-tile__label promo-label promo-label_type_action ng-star-inserted";
-
         assertThat(productTypePage
                 .getProduct(1)
                 .getPromoLabelTitle())
                 .as("Product must have tile label 'action'")
-                .isEqualTo(labelClassAction);
+                .isEqualTo(productTypePage.getLabelClassAction());
 
     }
 }
