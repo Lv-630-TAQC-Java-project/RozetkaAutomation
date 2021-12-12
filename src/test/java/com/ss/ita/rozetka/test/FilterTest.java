@@ -3,17 +3,13 @@ package com.ss.ita.rozetka.test;
 import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.elements.filters.FilterName;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
-import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
-import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
-import org.apache.commons.lang.math.Range;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.PRODUCER;
@@ -103,7 +99,7 @@ public class FilterTest extends TestRunner {
         softly.assertThat(productsList)
                 .as("Selected products should have names corresponding to filter")
                 .map(Product::getTitle)
-                .filteredOn(title -> containsIgnoreCase(title,producerFilterOptionName))
+                .filteredOn(title -> containsIgnoreCase(title, producerFilterOptionName))
                 .hasSameSizeAs(productsList);
 
         softly.assertThat(productsList)
