@@ -123,6 +123,8 @@ public class RecentlyViewedProductsTest extends TestRunner {
     }
 
     @Test
+    @Description(value = "Verifies that opening already opened product moves it to the first position in recently viewed products")
+    @TmsLink(value = "LVTAQC630-60")
     public void verifyProductMovedToFirstPosition() {
         var homePage = new HomePage().open();
 
