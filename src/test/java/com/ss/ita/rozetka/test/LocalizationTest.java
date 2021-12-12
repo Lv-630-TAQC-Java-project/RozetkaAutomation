@@ -22,12 +22,12 @@ public class LocalizationTest extends TestRunner {
 
         assertThat(homePage.getGreetingsText())
                 .as("Language should be changed")
-                .contains("Р›Р°СЃРєР°РІРѕ РїСЂРѕСЃРёРјРѕ!");
+                .contains("Ласкаво просимо!");
 
         header.changeLanguage("RU");
 
         assertThat(homePage.getGreetingsText())
                 .as("Language should be changed")
-                .contains("Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ!");
+                .contains("Добро пожаловать!");
     }
 }
