@@ -61,4 +61,32 @@ public class FilterTest extends TestRunner {
                 .isGreaterThan(producerFilter.getOptionsQuantityInFilter());
     }
 
+    @Test
+    @Description("Verify that after selecting filter option all of the products corresponds to selected option")
+    @TmsLink(value = "LVTAQC630-52")
+    public void verifyFilterOptionCorrespondingWithProducts(){
+
+        var productTypePage = new HomePage()
+                .open()
+                .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
+                .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY);
+
+        productTypePage.getHeader().changeLanguage("UA");
+
+        var producerFilter = productTypePage
+                .getFilterSideBar()
+                .getFilter(FilterName.SELL_STATUS);
+
+        String sellStatus = "Очікується";
+
+        producerFilter.selectOption(sellStatus);
+
+        for (String str: productTypePage.getProductAvailabilityList()) {
+            assertThat(str)
+                    .as("Each element")
+                    .isEqualTo(sellStatus);
+        }
+
+    }
+
 }
