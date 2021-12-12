@@ -9,7 +9,6 @@ import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -86,9 +85,9 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: get product availability list")
     public List<String> getProductAvailabilityList() {
-        return new ArrayList<>($$x("//div[contains(@class,'waiting_for_supply')]")
+        return $$x("//div[contains(@class,'waiting_for_supply')]")
                 .shouldBe(CollectionCondition.sizeLessThanOrEqual(60))
-                .texts());
+                .texts();
     }
 
     @Step("ProductTypePage: filter products by {parameter}")
