@@ -14,6 +14,7 @@ import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategor
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY;
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
+import static com.ss.ita.rozetka.pageobject.utils.PageUtil.refreshPage;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RecentlyViewedProductsTest extends TestRunner {
@@ -182,7 +183,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
         assertThat(recentlyViewedProductTitles)
                 .as("Recently opened products should have 2 products")
                 .hasSize(2);
-        assertThat(recentlyViewedProductTitles.get(1))
+        assertThat(recentlyViewedProductTitles.get(0))
                 .as("First product title in recently viewed products should equal first opened product")
                 .isEqualTo(reopenedProductTitle);
     }
