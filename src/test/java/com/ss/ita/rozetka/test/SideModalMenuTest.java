@@ -32,7 +32,7 @@ public class SideModalMenuTest extends TestRunner {
                 .isFalse();
     }
 
-    @Test()
+    @Test(enabled = false)
     @Issue("LVTAQC630-28")
     public void verifyChangingTown() {
         Header header = new HomePage()
