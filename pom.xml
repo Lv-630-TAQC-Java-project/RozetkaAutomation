@@ -14,8 +14,10 @@
         <aspectj.version>1.9.5</aspectj.version>
         <defaultSuiteXml>src/test/resources/suites/rozetka_regression_suite.xml</defaultSuiteXml>
         <suiteXml>${defaultSuiteXml}</suiteXml>
-        <threads>1</threads>
-        <parallelType>classes</parallelType>
+        <defaultParallelType>classes</defaultParallelType>
+        <parallelType>${defaultParallelType}</parallelType>
+        <defaultThreadsCount>1</defaultThreadsCount>
+        <threads>${defaultThreadsCount}</threads>
     </properties>
 
     <dependencies>
