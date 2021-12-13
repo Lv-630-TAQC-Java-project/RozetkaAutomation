@@ -26,11 +26,11 @@ public class RecentlyViewedProductsTest extends TestRunner {
     @Description(value = "Verifies that products opened by user are displayed on home page under recently viewed products list in order from last opened to first opened")
     @TmsLink(value = "LVTAQC630-30")
     public void verifyLastViewedProductAddedToTheList() {
-        ProductTypePage productPage = new HomePage()
+        var productPage = new HomePage()
                 .open()
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
-        boolean isProductTypePageOpened = productPage.isOpened();
+        var isProductTypePageOpened = productPage.isOpened();
         assertThat(getCurrentUrl())
                 .as("Kitchen appliances category page should be opened")
                 .isEqualTo("https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/");
@@ -38,47 +38,91 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .as("Product type page should be opened")
                 .isTrue();
 
-        String firstOpenedProductName = productPage
+        var firstOpenedProductTitle = productPage
                 .openProductPage(1)
-                .getName();
+                .getTitle();
 
-        Header header = productPage.getHeader();
+        var header = productPage.getHeader();
 
-        String recentlyViewedProductName = header
+        var recentlyViewedProductTitle = header
                 .openHomePage()
-                .getRecentlyViewedProductName(1);
-        assertThat(recentlyViewedProductName)
+                .getRecentlyViewedProductTitle(1);
+        assertThat(recentlyViewedProductTitle)
                 .as("First product name in Recently Opened products should be equal to last viewed product name")
-                .isEqualTo(firstOpenedProductName);
+                .isEqualTo(firstOpenedProductTitle);
 
-        String secondOpenedProductName = header
+        var secondOpenedProductTitle = header
                 .openHomePage()
                 .openProductCategoryPage(COTTAGE_GARDEN_BACKYARD)
                 .openProductTypePage(GARDEN_TECH_CATEGORY)
                 .openProductPage(1)
-                .getName();
+                .getTitle();
 
-        String thirdOpenedProductName = header
+        var thirdOpenedProductTitle = header
                 .openHomePage()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(NOTEBOOKS_CATEGORY)
                 .openProductPage(1)
-                .getName();
+                .getTitle();
 
-        List<String> recentlyViewedProductNames = header
+        var recentlyViewedProductTitles = header
                 .openHomePage()
-                .getRecentlyViewedProductNames();
+                .getRecentlyViewedProductTitle();
 
         SoftAssertions softly = new SoftAssertions();
-        softly.assertThat(recentlyViewedProductNames.get(0))
+        softly.assertThat(recentlyViewedProductTitles.get(0))
                 .as("First product name in Recently Opened products should be equal to last viewed product name")
-                .isEqualTo(thirdOpenedProductName);
-        softly.assertThat(recentlyViewedProductNames.get(1))
+                .isEqualTo(thirdOpenedProductTitle);
+        softly.assertThat(recentlyViewedProductTitles.get(1))
                 .as("Second product name in Recently Opened products should be equal to second viewed product name")
-                .isEqualTo(secondOpenedProductName);
-        softly.assertThat(recentlyViewedProductNames.get(2))
+                .isEqualTo(secondOpenedProductTitle);
+        softly.assertThat(recentlyViewedProductTitles.get(2))
                 .as("Third product name in Recently Opened products should be equal to first viewed product name")
-                .isEqualTo(firstOpenedProductName);
+                .isEqualTo(firstOpenedProductTitle);
         softly.assertAll();
+    }
+
+    @Test
+    @Description(value = "Verifies that opening same product multiple times does not add new entries in recently viewed product list")
+    @TmsLink(value = "LVTAQC630-44")
+    public void verifyProductAddedOnlyOnce() {
+        var homePage = new HomePage().open();
+        var productPage = homePage
+                .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
+                .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
+        var isProductTypePageOpened = productPage.isOpened();
+        assertThat(getCurrentUrl())
+                .as("Kitchen appliances category page should be opened")
+                .isEqualTo("https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/");
+        assertThat(isProductTypePageOpened)
+                .as("Product type page should be opened")
+                .isTrue();
+        var firstOpenedProductTitle = productPage
+                .openProductPage(1)
+                .getTitle();
+
+        var header = productPage.getHeader();
+
+        var recentlyOpenedProductTitle = header
+                .openHomePage()
+                .getRecentlyViewedProductTitle(1);
+        assertThat(recentlyOpenedProductTitle)
+                .as("First product name in Recently Opened products should be equal to last viewed product name")
+                .isEqualTo(firstOpenedProductTitle);
+
+        var secondOpenedProductTitle = homePage
+                .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
+                .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY)
+                .openProductPage(1)
+                .getTitle();
+        var recentlyViewedProductTitle = header
+                .openHomePage()
+                .getRecentlyViewedProductTitle();
+        assertThat(recentlyViewedProductTitle)
+                .as("Recently viewed product list should contain one product")
+                .hasSize(1);
+        assertThat(recentlyViewedProductTitle)
+                .as("Product in recently viewed product list should be the same as last opened product")
+                .contains(secondOpenedProductTitle);
     }
 }
