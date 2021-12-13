@@ -14,7 +14,6 @@ import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategor
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY;
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
-import static com.ss.ita.rozetka.pageobject.utils.PageUtil.refreshPage;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RecentlyViewedProductsTest extends TestRunner {
