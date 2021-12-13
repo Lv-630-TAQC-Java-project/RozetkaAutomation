@@ -11,6 +11,7 @@ import lombok.Getter;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.isElementVisible;
@@ -106,5 +107,16 @@ public class ProductTypePage extends HeaderPage {
     @Step("ProductTypePage: get count of selected products by filter")
     public int getSelectedProductsAmount() {
         return Integer.parseInt($x("//rz-selected-filters/div/p").getText().replaceAll("\\D", EMPTY));
+    }
+
+    @Step("ProductTypePage: get products list")
+    public List<Product> getProductsList() {
+        int productsCollectionSize = $$x("//div[@class='goods-tile__inner']")
+                .shouldHave(CollectionCondition.sizeGreaterThan(1))
+                .size();
+        return IntStream
+                .rangeClosed(1, productsCollectionSize)
+                .mapToObj(i -> getProduct(i))
+                .collect(Collectors.toList());
     }
 }

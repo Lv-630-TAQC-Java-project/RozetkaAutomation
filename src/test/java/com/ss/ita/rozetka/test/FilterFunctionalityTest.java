@@ -9,10 +9,10 @@ import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import static com.codeborne.selenide.Selenide.sleep;
-import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.PRODUCER;
-import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.SELLER;
+import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.*;
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.MONITORS_CATEGORY;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY;
@@ -111,23 +111,54 @@ public class FilterFunctionalityTest extends TestRunner {
     @TmsLink(value = "LVTAQC630-53")
     @Description(value = "Verify that after multiply filtering all products corresponds to selected filter options")
     public void verifyProductsCorrespondsToSelectedFilterOptions(){
-        var productCategoryPage = new HomePage()
+        var homePage = new HomePage()
                 .open()
-                .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS);
+                .getHeader()
+                .changeLanguage("UA")
+                .openHomePage();
+        assertThat(homePage.isOpened())
+                .as("Home page should be opened")
+                .isTrue();
+        var productCategoryPage = homePage.openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS);
         assertThat(productCategoryPage.isOpened())
                 .as("Product category page should be opened")
                 .isTrue();
-        var  productTypePage = productCategoryPage.openProductTypePage(NOTEBOOKS_CATEGORY);
+        var productTypePage = productCategoryPage.openProductTypePage(NOTEBOOKS_CATEGORY);
         assertThat(productTypePage.isOpened())
                 .as("Product type page should be opened")
                 .isTrue();
         var filterSideBar = productTypePage.getFilterSideBar();
+        var readyToDelivery = "Готовий до відправлення";
         filterSideBar
-                .getFilter(SELLER)
-                .selectOption("Rozetka");
+                .getFilter(READY_TO_DELIVER)
+                .selectOption(readyToDelivery);
+        var brand = "Dell";
         filterSideBar
                 .getFilter(PRODUCER)
-                .selectOption("Dell");
+                .selectOption(brand);
+        var screenSize = "15\"-15.6\"";
+        filterSideBar
+                .getFilter("20861")
+                .selectOption(screenSize);
+
+        var softAssert = new SoftAssertions();
+        var productList = productTypePage.getProductsList();
+        for (int i = 0; i < productList.size(); i++) {
+            var productItem = productList.get(i);
+            softAssert
+                    .assertThat(productItem.getTitle())
+                    .as(String.format("Product title should be contains %s", brand))
+                    .contains(brand);
+            softAssert
+                    .assertThat(productItem.getDescription())
+                    .as(String.format("Product description should contains screen size %s", productTypePage))
+                    .containsAnyOf("15\"","15.6\"");
+            softAssert
+                    .assertThat(productItem.getAvailability())
+                    .as(String.format("Product availability should be %s", readyToDelivery))
+                    .isEqualTo(readyToDelivery);
+        }
+
 
         sleep(10000);
 
