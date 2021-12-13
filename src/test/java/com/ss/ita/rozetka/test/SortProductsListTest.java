@@ -54,7 +54,7 @@ public class SortProductsListTest extends TestRunner {
     @TmsLink("LVTAQC630-33")
     @Description("Verify that sort by Action products list contains products which have higher old price" +
             " than price with discount and price text color is grey for old price, red for new price")
-    public void verifyProductDiscountPrice() {
+    public void verifyDiscountPriceAndOldPriceAreDisplayedCorrectly() {
         var productCategoryPage = new HomePage()
                 .open()
                 .openProductCategoryPage(SMARTPHONE_TV_ELECTRONICS);
@@ -70,6 +70,9 @@ public class SortProductsListTest extends TestRunner {
         var discountPriceProductsList = productTypePage.getProductsList();
         for (Product discountPriceProduct : discountPriceProductsList) {
             int preDiscountPrice = discountPriceProduct.getOldPrice();
+            /*Products in the sort by action list may can haven't preDiscountPrice.
+            Then preDiscountPrice = 0 and prices not check.
+            Prices checking only if preDiscountPrice > 0*/
             if (preDiscountPrice > 0) {
                 softAssert
                         .assertThat(preDiscountPrice)
