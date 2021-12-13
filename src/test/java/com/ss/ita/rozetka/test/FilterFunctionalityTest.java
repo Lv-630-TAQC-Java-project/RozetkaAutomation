@@ -10,7 +10,9 @@ import io.qameta.allure.TmsLink;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
+import static com.codeborne.selenide.Selenide.sleep;
 import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.PRODUCER;
+import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.SELLER;
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.MONITORS_CATEGORY;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY;
@@ -103,5 +105,31 @@ public class FilterFunctionalityTest extends TestRunner {
                     .isLessThan(maxPrice);
         }
         softAssertion.assertAll();
+    }
+
+    @Test
+    @TmsLink(value = "LVTAQC630-53")
+    @Description(value = "Verify that after multiply filtering all products corresponds to selected filter options")
+    public void verifyProductsCorrespondsToSelectedFilterOptions(){
+        var productCategoryPage = new HomePage()
+                .open()
+                .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS);
+        assertThat(productCategoryPage.isOpened())
+                .as("Product category page should be opened")
+                .isTrue();
+        var  productTypePage = productCategoryPage.openProductTypePage(NOTEBOOKS_CATEGORY);
+        assertThat(productTypePage.isOpened())
+                .as("Product type page should be opened")
+                .isTrue();
+        var filterSideBar = productTypePage.getFilterSideBar();
+        filterSideBar
+                .getFilter(SELLER)
+                .selectOption("Rozetka");
+        filterSideBar
+                .getFilter(PRODUCER)
+                .selectOption("Dell");
+
+        sleep(10000);
+
     }
 }
