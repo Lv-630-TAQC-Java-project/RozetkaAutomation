@@ -79,8 +79,10 @@ public class FilterTest extends TestRunner {
                 .openProductTypePage(NOTEBOOKS_CATEGORY);
         var filterSidebar = productTypePage.getFilterSideBar();
 
-        var producerFilterOptionName = "ASUS";
-        filterSidebar.getFilter(PRODUCER).selectOption(producerFilterOptionName);
+        var producerName = "ASUS";
+        filterSidebar
+                .getFilter(PRODUCER)
+                .selectOption(producerName);
 
         int lowerPriceBound = 5000;
         int upperPriceBound = 20000;
@@ -90,16 +92,16 @@ public class FilterTest extends TestRunner {
                 .filterByPrice();
 
         int productsAmountOnPage = productTypePage.getProductsCount();
-        List<Product> productsList = IntStream
+        var productsList = IntStream
                 .rangeClosed(1, productsAmountOnPage)
                 .mapToObj(productTypePage::getProduct)
                 .collect(toList());
 
-        SoftAssertions softly = new SoftAssertions();
+        var softly = new SoftAssertions();
         softly.assertThat(productsList)
                 .as("Selected products should have names corresponding to filter")
                 .map(Product::getTitle)
-                .filteredOn(title -> containsIgnoreCase(title, producerFilterOptionName))
+                .filteredOn(title -> containsIgnoreCase(title, producerName))
                 .hasSameSizeAs(productsList);
 
         softly.assertThat(productsList)
