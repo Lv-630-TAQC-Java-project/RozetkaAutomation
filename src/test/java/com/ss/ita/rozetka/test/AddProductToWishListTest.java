@@ -23,9 +23,11 @@ public class AddProductToWishListTest extends TestRunner {
                 .open()
                 .getHeader();
 
+        var credentialProperties = new CredentialProperties();
+
         var homePage = header
                 .openLoginModal()
-                .loginWithFacebook(new CredentialProperties().getFacebookEmail(), new CredentialProperties().getFacebookPassword());
+                .loginWithFacebook(credentialProperties.getFacebookEmail(), credentialProperties.getFacebookPassword());
 
         var productTypePage = homePage
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)

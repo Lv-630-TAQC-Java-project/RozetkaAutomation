@@ -4,7 +4,9 @@ import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
+import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,26 +29,35 @@ public class RegistrationFunctionalityTest extends TestRunner {
                 .setPhoneNumber("09312345")
                 .setEmail("Test Email");
 
-        assertThat(registrationModal.isNameErrorMessageDisplayed())
+        var softAssertion = new SoftAssertions();
+
+        softAssertion
+                .assertThat(registrationModal.isNameErrorMessageDisplayed())
                 .as("Error message should be displayed")
                 .isTrue();
 
-        assertThat(registrationModal.isSurnameErrorMessageDisplayed())
+        softAssertion
+                .assertThat(registrationModal.isSurnameErrorMessageDisplayed())
                 .as("Error message should be displayed")
                 .isTrue();
 
-        assertThat(registrationModal.isPhoneNumberErrorMessageDisplayed())
+        softAssertion
+                .assertThat(registrationModal.isPhoneNumberErrorMessageDisplayed())
                 .as("Error message should be displayed")
                 .isTrue();
 
-        assertThat(registrationModal.isEmailErrorMessageDisplayed())
+        softAssertion
+                .assertThat(registrationModal.isEmailErrorMessageDisplayed())
                 .as("Error message should be displayed")
                 .isTrue();
 
         registrationModal.confirmRegistration();
 
-        assertThat(registrationModal.isRegistrationModalIsVisible())
+        softAssertion
+                .assertThat(registrationModal.isRegistrationModalIsVisible())
                 .as("Registration modal should be visible")
                 .isTrue();
+
+        softAssertion.assertAll();
     }
 }
