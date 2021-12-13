@@ -29,6 +29,6 @@ public class SideMenuModal {
 
     @Step("SideModalMenu: get city")
     public String getCity() {
-        return $x("//span[contains(@class, 'city-toggle')]").text();
+        return $x("//span[contains(@class, 'city-toggle')]").shouldNotBe(Condition.empty).text();
     }
 }
