@@ -82,11 +82,10 @@ public class ProductTypePage extends HeaderPage {
                 .map(price -> Integer.valueOf(price))
                 .collect(Collectors.toList());
     }
-    
+
     @Step("ProductTypePage: filter products by {parameter}")
     public ProductTypePage filterProductsByParameters(String parameter) {
         $(String.format("label[for='%s']", parameter)).shouldBe(Condition.enabled).click();
-
         return new ProductTypePage();
     }
 

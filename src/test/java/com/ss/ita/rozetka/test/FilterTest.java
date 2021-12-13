@@ -38,7 +38,7 @@ public class FilterTest extends TestRunner {
     @Test
     @Description("Verify that after selecting one filter option in other filters amount of options will decrease")
     @TmsLink(value = "LVTAQC630-54")
-    public void verifyOptionsAmountDecreasingAfterFilterSelecting() {
+    public void verifyOptionsAmountDecreasingAfterFilterSelecting(){
         var productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
