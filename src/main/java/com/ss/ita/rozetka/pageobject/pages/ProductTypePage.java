@@ -87,7 +87,7 @@ public class ProductTypePage extends HeaderPage {
     public List<String> getProductAvailabilityList() {
         return $$x("//div[contains(@class,'waiting_for_supply')]")
                 .shouldBe(CollectionCondition.sizeGreaterThan(0))
-
+                .shouldBe(CollectionCondition.sizeLessThanOrEqual(60))
                 .texts();
     }
 
