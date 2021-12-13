@@ -38,7 +38,7 @@ public class FilterTest extends TestRunner {
     @Test
     @Description("Verify that after selecting one filter option in other filters amount of options will decrease")
     @TmsLink(value = "LVTAQC630-54")
-    public void verifyOptionsAmountDecreasingAfterFilterSelecting(){
+    public void verifyOptionsAmountDecreasingAfterFilterSelecting() {
         var productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
@@ -64,13 +64,12 @@ public class FilterTest extends TestRunner {
     @Test
     @Description("Verify that after selecting filter option all of the products corresponds to selected option")
     @TmsLink(value = "LVTAQC630-52")
-    public void verifyFilterOptionCorrespondingWithProducts(){
+    public void verifyFilterOptionCorrespondingWithProducts() {
 
         var productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY);
-
         productTypePage
                 .getHeader()
                 .changeLanguage("UA");
@@ -80,6 +79,7 @@ public class FilterTest extends TestRunner {
                 .getFilter(FilterName.AVAILABILITY_STATUS);
 
         var availabilityStatus = "Очікується";
+
 
         producerFilter.selectOption(availabilityStatus);
 
