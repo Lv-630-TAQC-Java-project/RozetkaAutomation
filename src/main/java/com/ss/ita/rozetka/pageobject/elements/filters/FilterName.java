@@ -12,7 +12,7 @@ public enum FilterName {
     PRODUCER("producer"),
     PRODUCING_COUNTRY("strana-proizvoditelj-tovara-90098"),
     COUNTRY_OF_BRAND_REGISTRATION("strana-registracii-brenda-87790"),
-    AVAILABILITY_STATUS("sell_status");
+    SELL_STATUS("sell_status");
 
     @Getter
     private final String filterName;

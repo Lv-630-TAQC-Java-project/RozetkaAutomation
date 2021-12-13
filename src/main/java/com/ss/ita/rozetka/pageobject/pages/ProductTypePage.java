@@ -82,15 +82,7 @@ public class ProductTypePage extends HeaderPage {
                 .map(price -> Integer.valueOf(price))
                 .collect(Collectors.toList());
     }
-
-    @Step("ProductTypePage: get product availability list")
-    public List<String> getProductAvailabilityList() {
-        return $$x("//div[contains(@class,'waiting_for_supply')]")
-                .shouldBe(CollectionCondition.sizeGreaterThan(0))
-                .shouldBe(CollectionCondition.sizeLessThanOrEqual(60))
-                .texts();
-    }
-
+    
     @Step("ProductTypePage: filter products by {parameter}")
     public ProductTypePage filterProductsByParameters(String parameter) {
         $(String.format("label[for='%s']", parameter)).shouldBe(Condition.enabled).click();
