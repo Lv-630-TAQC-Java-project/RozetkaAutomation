@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.test;
 
+import com.google.common.collect.Lists;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
@@ -10,6 +11,8 @@ import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -86,13 +89,10 @@ public class SearchFunctionalityTest extends TestRunner {
         assertThat(searchHistoryTermsList)
                 .as("Search terms list should have same elements as search history terms list")
                 .containsExactlyInAnyOrderElementsOf(searchTermsList);
-        int searchHistoryTermsCount = searchHistoryTermsList.size();
-        for (int i = 0; i < searchHistoryTermsCount; i++) {
-            softAssert
-                    .assertThat(searchTermsList.get(i))
-                    .as("Search history terms list should be reverse ordered to search terms list")
-                    .isEqualTo(searchHistoryTermsList.get(searchHistoryTermsCount - 1 - i));
-        }
+        Lists.reverse(searchHistoryTermsList);
+        assertThat(Lists.reverse(searchHistoryTermsList))
+                .as("Search history terms list should be reverse ordered to search terms list")
+                .isEqualTo(searchTermsList);
         int productCount;
         for (int i = 1; i <= searchHistoryTermsList.size(); i++) {
             var searchTerm = header.getTextFromSearchHistory(i);
