@@ -71,20 +71,22 @@ public class FilterTest extends TestRunner {
                 .openProductCategoryPage(GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY);
 
-        productTypePage.getHeader().changeLanguage("UA");
+        productTypePage
+                .getHeader()
+                .changeLanguage("UA");
 
         var producerFilter = productTypePage
                 .getFilterSideBar()
-                .getFilter(FilterName.SELL_STATUS);
+                .getFilter(FilterName.AVAILABILITY_STATUS);
 
-        String sellStatus = "Очікується";
+        var availabilityStatus = "Очікується";
 
-        producerFilter.selectOption(sellStatus);
+        producerFilter.selectOption(availabilityStatus);
 
-        for (String str: productTypePage.getProductAvailabilityList()) {
-            assertThat(str)
-                    .as("Each element")
-                    .isEqualTo(sellStatus);
+        for (var availability : productTypePage.getProductAvailabilityList()) {
+            assertThat(availability)
+                    .as("availability status should be equal")
+                    .isEqualTo(availabilityStatus);
         }
 
     }
