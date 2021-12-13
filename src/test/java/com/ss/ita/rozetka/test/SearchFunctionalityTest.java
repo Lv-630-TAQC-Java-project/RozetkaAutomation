@@ -89,7 +89,6 @@ public class SearchFunctionalityTest extends TestRunner {
         assertThat(searchHistoryTermsList)
                 .as("Search terms list should have same elements as search history terms list")
                 .containsExactlyInAnyOrderElementsOf(searchTermsList);
-        Lists.reverse(searchHistoryTermsList);
         assertThat(Lists.reverse(searchHistoryTermsList))
                 .as("Search history terms list should be reverse ordered to search terms list")
                 .isEqualTo(searchTermsList);
