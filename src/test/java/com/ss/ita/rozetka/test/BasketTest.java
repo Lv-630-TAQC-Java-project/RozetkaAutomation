@@ -60,7 +60,7 @@ public class BasketTest extends TestRunner {
                 .addProductToBasket()
                 .close()
                 .getHeader()
-                .setSearchTerms("Ноутбуки")
+                .setSearchTerms("РќРѕСѓС‚Р±СѓРєРё")
                 .search()
                 .openProductPage(2);
         int relatedProductPrice = relatedProductPage.getPrice();
