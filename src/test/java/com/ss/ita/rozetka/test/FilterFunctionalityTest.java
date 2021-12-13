@@ -67,7 +67,7 @@ public class FilterFunctionalityTest extends TestRunner {
     @Test
     @Description("Verify that products quantity with two filters will be less than with one")
     @TmsLink(value = "LVTAQC630-51")
-    public void verifyThatProductsQuantityWillDecrease() {
+    public void verifyThatProductsQuantityWithTwoFiltersWillDecrease() {
         ProductTypePage productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
@@ -80,6 +80,7 @@ public class FilterFunctionalityTest extends TestRunner {
                 .selectOption("ASUS");
 
         var productsQuantityWithOneFilter = productTypePage.getProductsQuantity();
+        System.out.println(productsQuantityWithOneFilter);
 
         assertThat(productsQuantityWithOneFilter)
                 .as("Products quantity should be greater than 0")
@@ -88,6 +89,8 @@ public class FilterFunctionalityTest extends TestRunner {
         filterSideBar
                 .getFilter(SELLER)
                 .selectOption("Rozetka");
+
+        System.out.println(productTypePage.getProductsQuantity());
 
         assertThat(productTypePage.getProductsQuantity())
                 .as("Products quantity with two filter should be less than with one")

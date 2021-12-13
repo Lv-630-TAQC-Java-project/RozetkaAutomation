@@ -8,7 +8,10 @@ import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -110,7 +113,10 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: get products quantity")
     public int getProductsQuantity() {
-        String[] productsQuantity = $(".catalog-selection__label.ng-star-inserted").getText().split(" ");
-        return Integer.parseInt(productsQuantity[1]);
+        var productsQuantity = Arrays.asList($(".catalog-selection__label.ng-star-inserted")
+                .getText()
+                .split(StringUtils.SPACE));
+
+        return Integer.parseInt(productsQuantity.get(1));
     }
 }
