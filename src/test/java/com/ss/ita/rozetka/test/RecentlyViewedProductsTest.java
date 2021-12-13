@@ -134,7 +134,10 @@ public class RecentlyViewedProductsTest extends TestRunner {
         var isProductTypePageOpened = productPage.isOpened();
         assertThat(getCurrentUrl())
                 .as("Kitchen appliances category page should be opened")
-                .isEqualTo("https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/");
+                .satisfiesAnyOf(
+                        url -> assertThat(url).isEqualTo("https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/"),
+                        url ->assertThat(url).isEqualTo("https://bt.rozetka.com.ua/ua/tehnika-dlya-kuhni/c435974/")
+                );
         assertThat(isProductTypePageOpened)
                 .as("Product type page should be opened")
                 .isTrue();
