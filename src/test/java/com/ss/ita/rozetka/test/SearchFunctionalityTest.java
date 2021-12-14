@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.test;
 
+
 import com.google.common.collect.Lists;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
