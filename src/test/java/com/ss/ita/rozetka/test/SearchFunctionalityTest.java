@@ -41,8 +41,8 @@ public class SearchFunctionalityTest extends TestRunner {
                 .getHeader();
         var searchTerm = "DELL";
         var searchResultPage = header.doSearch(searchTerm);
-        assertThat(searchResultPage.isSelectSortingTypeDisplayed())
-                .as("Select sorting type should be displayed")
+        assertThat(searchResultPage.isOpened())
+                .as("Product type page should be opened")
                 .isTrue();
         var homePage = header.openHomePage();
         assertThat(homePage.isOpened())
