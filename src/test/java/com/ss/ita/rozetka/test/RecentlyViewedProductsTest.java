@@ -1,15 +1,11 @@
 package com.ss.ita.rozetka.test;
 
-import com.ss.ita.rozetka.pageobject.elements.Header;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
-import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.HOUSEHOLD_APPLIANCES;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.KITCHEN_APPLIANCES_CATEGORY;
@@ -67,7 +63,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
 
         var recentlyViewedProductTitles = header
                 .openHomePage()
-                .getRecentlyViewedProductTitle();
+                .getRecentlyViewedProductTitles();
 
         SoftAssertions softly = new SoftAssertions();
         softly.assertThat(recentlyViewedProductTitles.get(0))
@@ -117,12 +113,52 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .getTitle();
         var recentlyViewedProductTitle = header
                 .openHomePage()
-                .getRecentlyViewedProductTitle();
+                .getRecentlyViewedProductTitles();
         assertThat(recentlyViewedProductTitle)
                 .as("Recently viewed product list should contain one product")
                 .hasSize(1);
         assertThat(recentlyViewedProductTitle)
                 .as("Product in recently viewed product list should be the same as last opened product")
                 .contains(secondOpenedProductTitle);
+    }
+
+    @Test
+    @Description(value = "Verifies that 'Show more' button appears in recently viewed products after opening more than 6 producs and clicking it will display other products")
+    @TmsLink(value = "LVTAQC630-68")
+    public void verifyClickingShowMoreDisplaysProducts() {
+        var homePage = new HomePage().open();
+
+        var header = homePage.getHeader();
+        header.changeLanguage("UA");
+
+        var productPage = homePage
+                .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
+                .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
+        var isProductTypePageOpened = productPage.isOpened();
+        assertThat(getCurrentUrl())
+                .as("Kitchen appliances category page should be opened")
+                .isEqualTo("https://bt.rozetka.com.ua/ua/tehnika-dlya-kuhni/c435974/");
+        assertThat(isProductTypePageOpened)
+                .as("Product type page should be opened")
+                .isTrue();
+
+        for (int i = 1; i <= 7; i++) {
+            productPage.openProductPage(i);
+            productPage.back();
+        }
+
+        header.openHomePage();
+        var recentlyOpenedProductsTitles = homePage.getRecentlyViewedProductTitles();
+        assertThat(recentlyOpenedProductsTitles)
+                .as("Only 6 or less products should be displayed")
+                .hasSizeLessThan(7);
+
+        homePage.expandRecentlyViewedProductsList();
+
+        var expandedRecentlyOpenedProductsTitles = homePage.getRecentlyViewedProductTitles();
+
+        assertThat(expandedRecentlyOpenedProductsTitles)
+                .as("All 7 opened products should be displayed")
+                .hasSize(7);
     }
 }
