@@ -9,10 +9,8 @@ import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.PRODUCER;
-import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.SELLER;
+import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.*;
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.MONITORS_CATEGORY;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY;
@@ -143,7 +141,7 @@ public class FilterFunctionalityTest extends TestRunner {
     @Test
     @TmsLink(value = "LVTAQC630-53")
     @Description(value = "Verify that after multiply filtering all products corresponds to selected filter options")
-    public void verifyProductsCorrespondsToSelectedFilterOptions(){
+    public void verifyProductsCorrespondsToSelectedFilterOptions() {
         var homePage = new HomePage()
                 .open()
                 .getHeader()
@@ -176,6 +174,7 @@ public class FilterFunctionalityTest extends TestRunner {
                 .as("Option Brand should be selected")
                 .isTrue();
         var screenSize = "15\"-15.6\"";
+        var splitScreenSizeParams = screenSize.split("-");
         option = filterSideBar
                 .getFilter("20861")
                 .selectOption(screenSize);
@@ -193,15 +192,11 @@ public class FilterFunctionalityTest extends TestRunner {
             softAssert
                     .assertThat(productItem.getDescription())
                     .as(String.format("Product description should contains screen size %s", productTypePage))
-                    .containsAnyOf("15\"","15.6\"");
+                    .containsAnyOf(splitScreenSizeParams);
             softAssert
                     .assertThat(productItem.getAvailability())
                     .as(String.format("Product availability should be %s", readyToDelivery))
                     .isEqualTo(readyToDelivery);
         }
-
-
-        sleep(10000);
-
     }
 }
