@@ -129,18 +129,26 @@ public class FilterFunctionalityTest extends TestRunner {
                 .isTrue();
         var filterSideBar = productTypePage.getFilterSideBar();
         var readyToDelivery = "Готовий до відправлення";
-        filterSideBar
+        var option = filterSideBar
                 .getFilter(READY_TO_DELIVER)
                 .selectOption(readyToDelivery);
+        assertThat(option.isOptionSelected(readyToDelivery))
+                .as("Option Ready to delivery should be selected")
+                .isTrue();
         var brand = "Dell";
-        filterSideBar
+        option = filterSideBar
                 .getFilter(PRODUCER)
                 .selectOption(brand);
+        assertThat(option.isOptionSelected(brand))
+                .as("Option Brand should be selected")
+                .isTrue();
         var screenSize = "15\"-15.6\"";
-        filterSideBar
+        option = filterSideBar
                 .getFilter("20861")
                 .selectOption(screenSize);
-
+        assertThat(option.isOptionSelected(screenSize))
+                .as("Option Screen size should be selected")
+                .isTrue();
         var softAssert = new SoftAssertions();
         var productList = productTypePage.getProductsList();
         for (int i = 0; i < productList.size(); i++) {
