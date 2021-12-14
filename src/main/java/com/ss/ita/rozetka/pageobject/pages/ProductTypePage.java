@@ -113,10 +113,10 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: get products quantity")
     public int getProductsQuantity() {
-        var productsQuantity = Arrays.asList($(".catalog-selection__label.ng-star-inserted")
+        var productsQuantity = $(".catalog-selection__label.ng-star-inserted")
                 .getText()
-                .split(StringUtils.SPACE));
+                .split(StringUtils.SPACE);
 
-        return Integer.parseInt(productsQuantity.get(1));
+        return Integer.parseInt(productsQuantity[1]);
     }
 }
