@@ -1,9 +1,6 @@
 package com.ss.ita.rozetka.test;
 
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
-import com.ss.ita.rozetka.pageobject.pages.OrderingPage;
-import com.ss.ita.rozetka.pageobject.pages.ProductCategoryPage;
-import com.ss.ita.rozetka.pageobject.pages.ProductPage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
@@ -20,7 +17,7 @@ public class BuyProductTest extends TestRunner {
     @Description("Verify that system does not allow user to buy product with invalid data")
     @TmsLink(value = "LVTAQC630-38")
     public void verifyUserCantBuyProductWithInvalidData() {
-        HomePage homePage = new HomePage()
+        var homePage = new HomePage()
                 .open()
                 .getHeader()
                 .changeLanguage("UA")
@@ -30,17 +27,17 @@ public class BuyProductTest extends TestRunner {
                 .as("Url should contain '/ua/'")
                 .contains("/ua/");
 
-        ProductCategoryPage productCategoryPage = homePage.openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS);
+        var productCategoryPage = homePage.openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS);
 
-        ProductPage productPage = productCategoryPage
+        var productPage = productCategoryPage
                 .openProductTypePage(NOTEBOOKS_CATEGORY)
                 .openProductPage(1);
 
-        OrderingPage orderingPage = productPage
+        var orderingPage = productPage
                 .addProductToBasket()
                 .openOrderingPage();
 
-        orderingPage.setRequiredFields("TestUserSurname", "TestUserPhone", "093123456");
+        orderingPage.setRequiredFields("TestUserSurname", "TestUserName", "093123456");
 
         assertThat(orderingPage.isSurnameErrorMessageDisplayed())
                 .as("Error message should be visible")
@@ -52,11 +49,11 @@ public class BuyProductTest extends TestRunner {
                 .as("Error message should be visible")
                 .isTrue();
 
-        String urlBeforeConfirmingOrder = getCurrentUrl();
+        var urlBeforeConfirmingOrder = getCurrentUrl();
 
         orderingPage.confirmOrdering();
 
-        String urlAfterConfirmingOrder = getCurrentUrl();
+        var urlAfterConfirmingOrder = getCurrentUrl();
 
         assertThat(urlBeforeConfirmingOrder)
                 .as("Url should not be different")
