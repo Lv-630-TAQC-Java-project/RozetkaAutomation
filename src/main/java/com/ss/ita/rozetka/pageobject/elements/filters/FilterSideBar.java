@@ -64,10 +64,10 @@ public class FilterSideBar {
 
     @Step("FilterSideBar: set maximum price bound to {maxPrice}")
     public FilterSideBar setMaxPrice(int maxPrice) {
-        SelenideElement minPriceField = $x(maxPriceFieldXpath);
-        minPriceField.click();
-        minPriceField.clear();
-        minPriceField.sendKeys(String.valueOf(maxPrice));
+        SelenideElement maxPriceField = $x(maxPriceFieldXpath);
+        maxPriceField.click();
+        maxPriceField.clear();
+        maxPriceField.sendKeys(String.valueOf(maxPrice));
         return this;
     }
 

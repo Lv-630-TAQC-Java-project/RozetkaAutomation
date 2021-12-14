@@ -23,7 +23,7 @@ public class OrderingProductsTest extends TestRunner {
                 .openProductPage(1);
 
         int productPrice = productPage.getPrice();
-        String productTitle = productPage.getName();//should be renamed by another PR
+        String productTitle = productPage.getTitle();//should be renamed by another PR
 
         OrderingPage orderingPage = productPage
                 .addProductToBasket()

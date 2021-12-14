@@ -35,7 +35,7 @@ public class ProductPage extends HeaderPage {
     }
 
     @Step("ProductPage: get product name")
-    public String getName() {
+    public String getTitle() {
         return $x("//h1[@class = 'product__title']").text();
     }
 
@@ -55,5 +55,11 @@ public class ProductPage extends HeaderPage {
     @Step("ProductPage: get product characteristics")
     public String getProductCharacteristics() {
         return $(".characteristics-full__list").getText();
+    }
+
+    @Step("ProductPage: add product to favourite")
+    public ProductPage addProductToFavourite() {
+        $x("(//*[name()='svg'][@class='ng-star-inserted'])[1]").click();
+        return this;
     }
 }
