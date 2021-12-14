@@ -88,7 +88,6 @@ public class ProductTypePage extends HeaderPage {
     @Step("ProductTypePage: filter products by {parameter}")
     public ProductTypePage filterProductsByParameters(String parameter) {
         $(String.format("label[for='%s']", parameter)).shouldBe(Condition.enabled).click();
-
         return new ProductTypePage();
     }
 

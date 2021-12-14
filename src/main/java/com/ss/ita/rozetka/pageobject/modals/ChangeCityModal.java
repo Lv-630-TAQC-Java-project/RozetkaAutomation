@@ -19,14 +19,16 @@ public class ChangeCityModal {
     @Step("ChangeCityModal: set city")
     public ChangeCityModal setCity(String city) {
         SelenideElement cityField = $x("//input[contains(@class, 'autocomplete')]");
+        cityField.clear();
         cityField.sendKeys(city);
         cityField.pressEnter();
+        $x(format("//b[contains(text(), '%s')]",city)).click();
         return this;
     }
 
     @Step("ChangeCityModal: approve changing city and open home page")
     public HomePage approveChangingCityAndOpenHomePage() {
-        $x("//a[contains(@class, 'button_color_gray')]").click();
+        $x("//a[@class='button button_size_medium button_color_gray']").click();
         return new HomePage();
     }
 
