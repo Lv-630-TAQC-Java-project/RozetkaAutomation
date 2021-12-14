@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.test;
 
+import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.modals.BasketModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductPage;
@@ -142,49 +143,33 @@ public class FilterFunctionalityTest extends TestRunner {
     @TmsLink(value = "LVTAQC630-53")
     @Description(value = "Verify that after multiply filtering all products corresponds to selected filter options")
     public void verifyProductsCorrespondsToSelectedFilterOptions() {
-        var homePage = new HomePage()
+        var productCategoryPage = new HomePage()
                 .open()
                 .getHeader()
                 .changeLanguage("UA")
-                .openHomePage();
-        assertThat(homePage.isOpened())
-                .as("Home page should be opened")
-                .isTrue();
-        var productCategoryPage = homePage.openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS);
-        assertThat(productCategoryPage.isOpened())
-                .as("Product category page should be opened")
-                .isTrue();
+                .openHomePage()
+                .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS);
         var productTypePage = productCategoryPage.openProductTypePage(NOTEBOOKS_CATEGORY);
         assertThat(productTypePage.isOpened())
                 .as("Product type page should be opened")
                 .isTrue();
         var filterSideBar = productTypePage.getFilterSideBar();
         var readyToDelivery = "Готовий до відправлення";
-        var option = filterSideBar
+        filterSideBar
                 .getFilter(READY_TO_DELIVER)
                 .selectOption(readyToDelivery);
-        assertThat(option.isOptionSelected(readyToDelivery))
-                .as("Option Ready to delivery should be selected")
-                .isTrue();
         var brand = "Dell";
-        option = filterSideBar
+        filterSideBar
                 .getFilter(PRODUCER)
                 .selectOption(brand);
-        assertThat(option.isOptionSelected(brand))
-                .as("Option Brand should be selected")
-                .isTrue();
         var screenSize = "15\"-15.6\"";
-        var splitScreenSizeParams = screenSize.split("-");
-        option = filterSideBar
+        filterSideBar
                 .getFilter("20861")
                 .selectOption(screenSize);
-        assertThat(option.isOptionSelected(screenSize))
-                .as("Option Screen size should be selected")
-                .isTrue();
+        var splitScreenSizeParams = screenSize.split("-");
         var softAssert = new SoftAssertions();
         var productList = productTypePage.getProductsList();
-        for (int i = 0; i < productList.size(); i++) {
-            var productItem = productList.get(i);
+        for (Product productItem : productList) {
             softAssert
                     .assertThat(productItem.getTitle())
                     .as(String.format("Product title should be contains %s", brand))
@@ -198,5 +183,6 @@ public class FilterFunctionalityTest extends TestRunner {
                     .as(String.format("Product availability should be %s", readyToDelivery))
                     .isEqualTo(readyToDelivery);
         }
+        softAssert.assertAll();
     }
 }
