@@ -70,9 +70,9 @@ public class SortProductsListTest extends TestRunner {
         var discountPriceProductsList = productTypePage.getProductsList();
         for (Product discountPriceProduct : discountPriceProductsList) {
             int preDiscountPrice = discountPriceProduct.getOldPrice();
-            /*Products in the sort by action list may can haven't preDiscountPrice.
-            Then preDiscountPrice = 0 and prices not check.
-            Prices checking only if preDiscountPrice > 0*/
+            //Products in the sort by action list may can haven't preDiscountPrice.
+            //Then preDiscountPrice = 0 and prices not check.
+            //Prices checking only if preDiscountPrice > 0
             if (preDiscountPrice > 0) {
                 softAssert
                         .assertThat(preDiscountPrice)
