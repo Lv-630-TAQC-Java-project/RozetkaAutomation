@@ -15,7 +15,7 @@
         <suiteXmlPath>src/test/resources/suites/</suiteXmlPath>
         <defaultSuiteXml>${suiteXmlPath}rozetka_regression_suite.xml</defaultSuiteXml>
         <suiteXml>${defaultSuiteXml}</suiteXml>
-        <defaultParallelType>classes</defaultParallelType>
+        <defaultParallelType></defaultParallelType>
         <parallelType>${defaultParallelType}</parallelType>
         <defaultThreadsCount>1</defaultThreadsCount>
         <threads>${defaultThreadsCount}</threads>
