@@ -12,8 +12,8 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <aspectj.version>1.9.5</aspectj.version>
-        <suiteXmlSrc>src/test/resources/suites/</suiteXmlSrc>
-        <defaultSuiteXml>${suiteXmlSrc}rozetka_regression_suite.xml</defaultSuiteXml>
+        <suiteXmlPath>src/test/resources/suites/</suiteXmlPath>
+        <defaultSuiteXml>${suiteXmlPath}rozetka_regression_suite.xml</defaultSuiteXml>
         <suiteXml>${defaultSuiteXml}</suiteXml>
         <defaultParallelType>classes</defaultParallelType>
         <parallelType>${defaultParallelType}</parallelType>
@@ -90,7 +90,7 @@
                     <parallel>${parallelType}</parallel>
                     <threadCount>${threads}</threadCount>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${suiteXmlSrc}${suiteXml}</suiteXmlFile>
+                        <suiteXmlFile>${suiteXmlPath}${suiteXml}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
                 <dependencies>
