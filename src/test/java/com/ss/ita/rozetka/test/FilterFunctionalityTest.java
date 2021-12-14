@@ -23,7 +23,7 @@ public class FilterFunctionalityTest extends TestRunner {
     @Description("Verify that user can filter products with parameters")
     @TmsLink(value = "LVTAQC630-22")
     public void verifyUserCanFilterProducts() {
-        ProductTypePage productTypePage = new HomePage()
+        var productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
                 .openProductTypePage(MONITORS_CATEGORY);
@@ -32,8 +32,8 @@ public class FilterFunctionalityTest extends TestRunner {
                 .as("Url should contain 'Monitors'")
                 .contains("monitors");
 
-        String company = "Samsung";
-        String resolution = "1920x1080";
+        var company = "Samsung";
+        var resolution = "1920x1080";
 
         productTypePage
                 .filterProductsByParameters(company)
@@ -43,20 +43,20 @@ public class FilterFunctionalityTest extends TestRunner {
                 .as("Title should be Samsung")
                 .contains(company);
 
-        ProductPage productPage = productTypePage.openProductPage(1);
+        var productPage = productTypePage.openProductPage(1);
 
         assertThat(productPage
                 .getProductCharacteristics())
                 .as("In characteristics should be 1920 x 1080 resolution")
                 .contains("1920 x 1080");
 
-        BasketModal<ProductPage> basket = productPage.addProductToBasket();
+        var basket = productPage.addProductToBasket();
 
-        int totalPriceWithoutOptions = basket.getProductsTotalPrice();
+        var totalPriceWithoutOptions = basket.getProductsTotalPrice();
 
         basket.addAdditionalServices();
 
-        int totalPriceWithOptions = basket.getProductsTotalPrice();
+        var totalPriceWithOptions = basket.getProductsTotalPrice();
 
         assertThat(totalPriceWithoutOptions)
                 .as("Total price should be changed")

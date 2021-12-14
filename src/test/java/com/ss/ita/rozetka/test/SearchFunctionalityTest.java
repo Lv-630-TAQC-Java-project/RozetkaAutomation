@@ -16,9 +16,9 @@ public class SearchFunctionalityTest extends TestRunner {
     @Description("Verify that user can do search with Xiaomi products")
     @TmsLink(value = "LVTAQC630-10")
     public void verifyXiaomiWillBeInSearchResult() {
-        String searchProduct = "Xiaomi";
+        var searchProduct = "Xiaomi";
 
-        ProductTypePage productTypePage = new HomePage()
+        var productTypePage = new HomePage()
                 .open()
                 .getHeader()
                 .doSearch(searchProduct);
