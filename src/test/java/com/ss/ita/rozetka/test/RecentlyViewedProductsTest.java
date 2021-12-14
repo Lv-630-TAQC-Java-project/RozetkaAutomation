@@ -142,7 +142,9 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .as("Product type page should be opened")
                 .isTrue();
 
-        for (int i = 1; i <= 7; i++) {
+        var numberOfProducts = 7;
+
+        for (int i = 1; i <= numberOfProducts; i++) {
             productPage.openProductPage(i);
             productPage.back();
         }
@@ -159,6 +161,6 @@ public class RecentlyViewedProductsTest extends TestRunner {
 
         assertThat(expandedRecentlyOpenedProductsTitles)
                 .as("All 7 opened products should be displayed")
-                .hasSize(7);
+                .hasSize(numberOfProducts);
     }
 }
