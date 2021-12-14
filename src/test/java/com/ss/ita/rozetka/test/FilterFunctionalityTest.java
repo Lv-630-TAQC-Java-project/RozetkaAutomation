@@ -1,8 +1,6 @@
 package com.ss.ita.rozetka.test;
 
-import com.ss.ita.rozetka.pageobject.modals.BasketModal;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
-import com.ss.ita.rozetka.pageobject.pages.ProductPage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
@@ -137,5 +135,52 @@ public class FilterFunctionalityTest extends TestRunner {
                     .isLessThan(maxPrice);
         }
         softAssertion.assertAll();
+    }
+
+    @Test
+    @Description("Verify that after selecting and discarding 2 filter options product type page presented correctly")
+    @TmsLink(value = "LVTAQC630-66")
+    public void verifyThatDiscardButtonWorkCorrectly() {
+        var productTypePage = new HomePage()
+                .open()
+                .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
+                .openProductTypePage(NOTEBOOKS_CATEGORY);
+
+        var company = "Dell";
+        var seller = "Rozetka";
+        var filterSideBar = productTypePage.getFilterSideBar();
+
+        filterSideBar
+                .getFilter(PRODUCER)
+                .selectOption(company);
+
+        assertThat(productTypePage.getProductTitle(1))
+                .as("Title should contains Dell")
+                .contains(company);
+
+        filterSideBar
+                .getFilter(SELLER)
+                .selectOption(seller);
+
+        assertThat(filterSideBar.getFilter(PRODUCER).isOptionSelected(company))
+                .as("Filter should be selected")
+                .isTrue();
+
+        productTypePage.discardAllFilters();
+        assertThat(productTypePage.isDiscardingButtonVisible())
+                .as("Discard all filters button should be invisible")
+                .isTrue();
+
+        assertThat(filterSideBar
+                .getFilter(SELLER)
+                .isOptionSelected(seller))
+                .as("After discarding filter shouldn't be selected")
+                .isFalse();
+
+        assertThat(filterSideBar
+                .getFilter(PRODUCER)
+                .isOptionSelected(company))
+                .as("After discarding filter shouldn't be selected")
+                .isFalse();
     }
 }

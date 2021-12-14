@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.ss.ita.rozetka.pageobject.utils.PageUtil.isElementInvisible;
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.isElementVisible;
 import static java.lang.String.format;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
@@ -131,5 +132,16 @@ public class ProductTypePage extends HeaderPage {
                 .split(StringUtils.SPACE);
 
         return Integer.parseInt(productsQuantity[1]);
+    }
+
+    @Step("ProductTypePage: discard all selected filters")
+    public ProductTypePage discardAllFilters() {
+        $x("//button[@class='catalog-selection__link catalog-selection__link_type_reset']").shouldBe(Condition.enabled).click();
+        return new ProductTypePage();
+    }
+
+    @Step("ProductTypePage: get discarding button display status")
+    public boolean isDiscardingButtonVisible() {
+        return isElementInvisible("//button[@class='catalog-selection__link catalog-selection__link_type_reset']");
     }
 }
