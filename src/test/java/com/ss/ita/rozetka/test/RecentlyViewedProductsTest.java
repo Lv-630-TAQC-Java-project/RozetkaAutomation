@@ -125,8 +125,11 @@ public class RecentlyViewedProductsTest extends TestRunner {
     @Test
     @Description(value = "Verifies that opening already opened product moves it to the first position in recently viewed products")
     @TmsLink(value = "LVTAQC630-60")
-    public void verifyProductMovedToFirstPosition() {
+    public void verifyProductMovedToFirstPositionWhenReopened() {
         var homePage = new HomePage().open();
+
+        var header = homePage.getHeader();
+        header.changeLanguage("UA");
 
         var productPage = homePage
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
@@ -134,10 +137,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
         var isProductTypePageOpened = productPage.isOpened();
         assertThat(getCurrentUrl())
                 .as("Kitchen appliances category page should be opened")
-                .satisfiesAnyOf(
-                        url -> assertThat(url).isEqualTo("https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/"),
-                        url -> assertThat(url).isEqualTo("https://bt.rozetka.com.ua/ua/tehnika-dlya-kuhni/c435974/")
-                );
+                .isEqualTo("https://bt.rozetka.com.ua/ua/tehnika-dlya-kuhni/c435974/");
         assertThat(isProductTypePageOpened)
                 .as("Product type page should be opened")
                 .isTrue();
@@ -154,8 +154,6 @@ public class RecentlyViewedProductsTest extends TestRunner {
         productPage.back();
 
         productPage.openProductPage(1);
-
-        var header = productPage.getHeader();
 
         var recentlyViewedProductTitles = header
                 .openHomePage()

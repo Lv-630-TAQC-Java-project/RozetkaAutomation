@@ -8,8 +8,8 @@ public abstract class HeaderPage {
     @Getter
     protected Header header = new Header();
 
-    public Object back(){
+    public Header back(){
         Selenide.back();
-        return this;
+        return new Header();
     }
 }
