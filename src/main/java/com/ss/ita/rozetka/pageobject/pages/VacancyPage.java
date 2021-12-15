@@ -1,6 +1,5 @@
 package com.ss.ita.rozetka.pageobject.pages;
 
-import com.ss.ita.rozetka.pageobject.elements.Header;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
