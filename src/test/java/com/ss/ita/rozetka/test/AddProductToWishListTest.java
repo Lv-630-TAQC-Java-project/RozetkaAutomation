@@ -58,7 +58,7 @@ public class AddProductToWishListTest extends TestRunner {
                 .removeProduct();
 
         assertThat(wishListPage.isProductListEmpty())
-                .as("Product list size should be empty")
+                .as("Product list should be empty")
                 .isTrue();
     }
 }
