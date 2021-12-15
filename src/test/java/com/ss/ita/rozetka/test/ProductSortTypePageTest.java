@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.STATIONERY_AND_BOOKS;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.BOOKS_CATEGORY;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ProductSortTypePageTest extends TestRunner {
     @Test
