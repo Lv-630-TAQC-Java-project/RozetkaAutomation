@@ -9,7 +9,6 @@ import io.qameta.allure.TmsLink;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
-import java.util.List;
 import java.util.stream.IntStream;
 
 import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.PRODUCER;
@@ -111,5 +110,42 @@ public class FilterTest extends TestRunner {
                 .hasSameSizeAs(productsList);
 
         softly.assertAll();
+    }
+
+    @Test
+    @Description("Verify that in filter after decreasing lower and upper price bounds the OK button is disabled")
+    @TmsLink("LVTAQC630-72")
+    public void verifyTPriceOkButtonIsDisabledWhenBoundsAreIncorrect() {
+        var filterSideBar = new HomePage()
+                .open()
+                .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
+                .openProductTypePage(NOTEBOOKS_CATEGORY)
+                .getFilterSideBar();
+
+        int defaultMinPrice = filterSideBar.getMinPrice();
+        int defaultMaxPrice = filterSideBar.getMaxPrice();
+
+        filterSideBar.setMinPrice(defaultMinPrice - 1);
+        var softly = new SoftAssertions();
+
+        softly.assertThat(filterSideBar.isPriceRangeCorrect())
+                .as("Price range should be incorrect because min price is lower than bound")
+                .isFalse();
+
+        filterSideBar
+                .setMinPrice(defaultMinPrice - 1)
+                .setMaxPrice(defaultMaxPrice + 1);
+
+        softly.assertThat(filterSideBar.isPriceRangeCorrect())
+                .as("Price range should be incorrect because max price is higher than bound")
+                .isFalse();
+
+        filterSideBar
+                .setMinPrice(defaultMinPrice)
+                .setMaxPrice(defaultMaxPrice);
+
+        softly.assertThat(filterSideBar.isPriceRangeCorrect())
+                .as("Price range should be correct because min and max were returned to default values")
+                .isTrue();
     }
 }
