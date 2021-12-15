@@ -13,13 +13,6 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <aspectj.version>1.9.5</aspectj.version>
-        <suiteXmlPath>src/test/resources/suites/</suiteXmlPath>
-        <defaultSuiteXml>${suiteXmlPath}rozetka_regression_suite.xml</defaultSuiteXml>
-        <suiteXml>${defaultSuiteXml}</suiteXml>
-        <defaultParallelType></defaultParallelType>
-        <parallelType>${defaultParallelType}</parallelType>
-        <defaultThreadsCount>1</defaultThreadsCount>
-        <threads>${defaultThreadsCount}</threads>
     </properties>
 
     <dependencies>
