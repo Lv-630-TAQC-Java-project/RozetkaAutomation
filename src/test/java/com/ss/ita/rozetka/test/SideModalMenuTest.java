@@ -73,8 +73,8 @@ public class SideModalMenuTest extends TestRunner {
     }
 
     @Test
-    @Description()
-    @TmsLink(value = "")
+    @Description("verify vacancy catalog is displayed on VacancyPage")
+    @TmsLink(value = "LVTAQC630-69")
     public void verifyVacancyCatalogDisplaying(){
         var vacancyPage = new HomePage()
                 .open()
