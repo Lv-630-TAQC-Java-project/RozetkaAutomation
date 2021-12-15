@@ -7,9 +7,4 @@ import lombok.Getter;
 public abstract class HeaderPage {
     @Getter
     protected Header header = new Header();
-
-    public Header back() {
-        Selenide.back();
-        return new Header();
-    }
 }
