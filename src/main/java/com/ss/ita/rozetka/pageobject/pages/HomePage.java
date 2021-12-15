@@ -49,7 +49,7 @@ public class HomePage extends HeaderPage {
                 .texts();
     }
 
-    @Step("HomePage: display more recently viewed products")
+    @Step("HomePage: expand recently viewed products list")
     public HomePage expandRecentlyViewedProductsList() {
         $x("//section[@class = 'main-goods ng-star-inserted'][1]/goods-section/button").click();
         return this;

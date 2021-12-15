@@ -1,6 +1,7 @@
 package com.ss.ita.rozetka.test;
 
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
+import com.ss.ita.rozetka.pageobject.utils.Language;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
@@ -129,7 +130,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
         var homePage = new HomePage().open();
 
         var header = homePage.getHeader();
-        header.changeLanguage("UA");
+        header.changeLanguage(Language.UA);
 
         var productPage = homePage
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
