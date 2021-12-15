@@ -2,7 +2,6 @@ package com.ss.ita.rozetka.pageobject.modals;
 
 import com.codeborne.selenide.Condition;
 import com.ss.ita.rozetka.pageobject.elements.Header;
-import com.ss.ita.rozetka.pageobject.pages.HelpCenterPage;
 import com.ss.ita.rozetka.pageobject.pages.VacancyPage;
 import com.ss.ita.rozetka.pageobject.pages.own_cabinet.WishListPage;
 import io.qameta.allure.Step;
@@ -40,12 +39,6 @@ public class SideMenuModal {
     public WishListPage openWishList() {
         $("ul.ng-star-inserted>li.side-menu__item:nth-child(1) > a.button:nth-child(1)").click();
         return new WishListPage();
-    }
-
-    @Step("SideModalMenu: open Help Center")
-    public HelpCenterPage openHelpCenter(){
-        $x("(//a[contains(@class,'button--large')])[1]").click();
-        return new HelpCenterPage();
     }
 
     @Step("SideModalMenu: open vacancy page")
