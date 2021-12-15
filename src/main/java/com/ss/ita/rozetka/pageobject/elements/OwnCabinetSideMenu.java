@@ -1,11 +1,12 @@
 package com.ss.ita.rozetka.pageobject.elements;
 
+import com.ss.ita.rozetka.pageobject.pages.HeaderPage;
 import com.ss.ita.rozetka.pageobject.pages.own_cabinet.RecentlyViewedProductsPage;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class OwnCabinetSideMenu {
+public class OwnCabinetSideMenu extends HeaderPage {
 
     @Step("RecentlyViewedProductsPage: open recently viewed products page")
     public RecentlyViewedProductsPage openRecentlyViewedProductsPage() {

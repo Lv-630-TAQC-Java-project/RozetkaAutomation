@@ -1,11 +1,12 @@
 package com.ss.ita.rozetka.pageobject.pages.own_cabinet;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.ss.ita.rozetka.pageobject.pages.HeaderPage;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class RecentlyViewedProductsPage {
+public class RecentlyViewedProductsPage extends HeaderPage {
     @Step("RecentlyViewedProductsPage: clear recently viewed products list")
     public RecentlyViewedProductsPage clearRecentlyViewedProductsList() {
         $("button.button_color_white").click();
@@ -18,9 +19,9 @@ public class RecentlyViewedProductsPage {
     }
 
     @Step("RecentlyViewedProductsPage: is product list empty")
-    public boolean isProductListEmpty() {
+    public int getProductListSize() {
         return $$("div.goods-tile__inner")
-                .shouldBe(CollectionCondition.size(0))
-                .isEmpty();
+                .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0))
+                .size();
     }
 }

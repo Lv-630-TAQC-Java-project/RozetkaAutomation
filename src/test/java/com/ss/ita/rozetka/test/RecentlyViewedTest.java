@@ -5,12 +5,16 @@ import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.product.GeneralProductCategory;
 import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
+import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RecentlyViewedTest extends TestRunner {
     @Test
+    @Description("Verify that opened product will be in recently viewed page")
+    @TmsLink(value = "LVTAQC630-64")
     public void verifyOpenedProductWillBeInRecentlyViewedPage() {
         var header = new HomePage()
                 .open()
@@ -43,8 +47,8 @@ public class RecentlyViewedTest extends TestRunner {
 
         recentlyViewedPage.clearRecentlyViewedProductsList();
 
-        assertThat(recentlyViewedPage.isProductListEmpty())
-                .as("Product list should be empty")
-                .isTrue();
+        assertThat(recentlyViewedPage.getProductListSize())
+                .as("Product list size should be equal to zero")
+                .isEqualTo(0);
     }
 }

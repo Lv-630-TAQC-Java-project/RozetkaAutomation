@@ -1,11 +1,12 @@
 package com.ss.ita.rozetka.pageobject.pages.own_cabinet;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.ss.ita.rozetka.pageobject.pages.HeaderPage;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class WishListPage {
+public class WishListPage extends HeaderPage {
 
     @Step("WishListPage: get product title {productNumber}")
     public String getProductTitle(int productNumber) {
