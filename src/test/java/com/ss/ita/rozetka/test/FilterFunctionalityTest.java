@@ -153,7 +153,7 @@ public class FilterFunctionalityTest extends TestRunner {
                 .as("Product type page should be opened")
                 .isTrue();
         var filterSideBar = productTypePage.getFilterSideBar();
-        var readyToDelivery = "Р“РѕС‚РѕРІРёР№ РґРѕ РІС–РґРїСЂР°РІР»РµРЅРЅСЏ";
+        var readyToDelivery = "Готовий до відправлення";
         filterSideBar
                 .getFilter(READY_TO_DELIVER)
                 .selectOption(readyToDelivery);
