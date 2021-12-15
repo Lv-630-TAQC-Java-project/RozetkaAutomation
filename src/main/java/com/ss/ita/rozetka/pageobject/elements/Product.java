@@ -119,4 +119,18 @@ public class Product {
         }
         return productDescription;
     }
+
+    @Step("ProductTypePage: get old price text color")
+    public String getOldPriceTextColor() {
+        return Color.fromString($x(String.format("%s%s", xPath, "//div[contains(@class,'goods-tile__price--old')]"))
+                        .getCssValue("color"))
+                .asHex();
+    }
+
+    @Step("ProductTypePage: get price text color")
+    public String getPriceTextColor() {
+        return Color.fromString($x(String.format("%s%s", xPath, "//span[contains(@class,'goods-tile__price-value')]"))
+                        .getCssValue("color"))
+                .asHex();
+    }
 }

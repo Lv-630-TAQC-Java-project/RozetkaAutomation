@@ -10,6 +10,7 @@ import static com.codeborne.selenide.CollectionCondition.*;
 
 import java.util.List;
 
+import static com.ss.ita.rozetka.pageobject.utils.PageUtil.isElementVisible;
 import static java.lang.String.format;
 
 public class HomePage extends HeaderPage {
@@ -33,7 +34,7 @@ public class HomePage extends HeaderPage {
 
     @Step("HomePage: get home page visibility status by locating slider")
     public boolean isOpened() {
-        return $x("//div[@class = 'simple-slider__holder']").is(Condition.visible);
+        return isElementVisible("//div[@class = 'simple-slider__holder']");
     }
 
     @Step("HomePage: get product name number {itemNumber} from Recently Viewed Products list")

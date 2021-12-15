@@ -9,6 +9,7 @@ import io.qameta.allure.Issue;
 import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
+import static com.ss.ita.rozetka.pageobject.utils.Language.UA;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SideModalMenuTest extends TestRunner {
@@ -34,13 +35,14 @@ public class SideModalMenuTest extends TestRunner {
 
     @Test()
     @Issue("LVTAQC630-28")
-    public void verifyChangingTown() {
+    public void verifyChangingCity() {
         Header header = new HomePage()
                 .open()
-                .getHeader();
+                .getHeader()
+                .changeLanguage(UA);
         SideMenuModal sideModalMenu = header.openSideMenuModal();
 
-        String odessa = "Одеcа";
+        String odessa = "Одеса";
 
         sideModalMenu
                 .startChangingCity()
@@ -54,11 +56,11 @@ public class SideModalMenuTest extends TestRunner {
                 .as("currentCity should be the same like odesa")
                 .isEqualTo(odessa);
 
-        String lviv = "Львiв";
+        String lviv = "Львів";
 
         sideModalMenu
                 .startChangingCity()
-                .selectCity(lviv)
+                .setCity(lviv)
                 .approveChangingCity(HomePage.class);
         String selectedCity = header
                 .openSideMenuModal()
@@ -68,16 +70,6 @@ public class SideModalMenuTest extends TestRunner {
                 .as("selectedCity should be the same like lviv")
                 .isEqualTo(lviv);
 
-        sideModalMenu
-                .startChangingCity()
-                .setCity(odessa)
-                .approveChangingCityAndOpenHomePage();
-        String revertedCity = header
-                .openSideMenuModal()
-                .getCity();
-
-        assertThat(revertedCity)
-                .as("revertedCity should be the same like odesa")
-                .isEqualTo(odessa);
     }
+
 }

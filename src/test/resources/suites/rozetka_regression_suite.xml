@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Lv-630-TAQC-Java-RozetkaAutomation"  parallel="classes" thread-count="2">
+<suite name="Rozetka regression suite" parallel="classes" thread-count="2">
     <test verbose="2" preserve-order="true"
           name="All Tests Group">
         <classes>
@@ -24,11 +24,19 @@
             <class name="com.ss.ita.rozetka.test.ComparisonTest">
                 <methods>
                     <include name="verifyAddingProductToComparison"/>
+                    <include name="verifyAddingProductsFromComparisonPage"/>
                 </methods>
             </class>
             <class name="com.ss.ita.rozetka.test.FilterFunctionalityTest">
                 <methods>
                     <include name="verifyUserCanFilterProducts"/>
+                    <include name="verifyThatPriceFilterIsCorrect"/>
+                </methods>
+            </class>
+            <class name="com.ss.ita.rozetka.test.FilterTest">
+                <methods>
+                    <include name="verifyFilteredProductsAmountIsCorrect"/>
+                    <include name="verifyOptionsAmountDecreasingAfterFilterSelecting"/>
                 </methods>
             </class>
             <class name="com.ss.ita.rozetka.test.LocalizationTest">
@@ -65,6 +73,7 @@
             <class name="com.ss.ita.rozetka.test.RecentlyViewedProductsTest">
                 <methods>
                     <include name="verifyLastViewedProductAddedToTheList"/>
+                    <include name="verifyProductAddedOnlyOnce"/>
                 </methods>
             </class>
             <class name="com.ss.ita.rozetka.test.SearchFunctionalityTest">

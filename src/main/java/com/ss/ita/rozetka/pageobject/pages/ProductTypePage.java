@@ -8,9 +8,13 @@ import com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory;
 import com.ss.ita.rozetka.pageobject.utils.ProductsListSortType;
 import io.qameta.allure.Step;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.isElementVisible;
@@ -23,7 +27,9 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: open product page by product number {productNumber}")
     public ProductPage openProductPage(int productNumber) {
-        $x(String.format("(//div[@class='goods-tile__inner'])[%s]", productNumber)).click(); //to open the same product as in getProduct method
+        $x(String.format(("//div[@class='goods-tile__inner'][%s]"), productNumber)).click(); //to open the same product as in getProduct method
+        $(".product__title").click();
+
         return new ProductPage();
     }
 
@@ -75,7 +81,7 @@ public class ProductTypePage extends HeaderPage {
     @Step("ProductTypePage: get product prices list")
     public List<Integer> getProductPricesList() {
         return $$x("//span[contains(@class, 'goods-tile__price-value')]")
-                .shouldBe(CollectionCondition.sizeLessThanOrEqual(60))
+                .shouldHave(CollectionCondition.sizeGreaterThan(1))
                 .texts()
                 .stream()
                 .map(price -> price.replaceAll(" ", EMPTY))
@@ -86,7 +92,6 @@ public class ProductTypePage extends HeaderPage {
     @Step("ProductTypePage: filter products by {parameter}")
     public ProductTypePage filterProductsByParameters(String parameter) {
         $(String.format("label[for='%s']", parameter)).shouldBe(Condition.enabled).click();
-
         return new ProductTypePage();
     }
 
@@ -106,5 +111,25 @@ public class ProductTypePage extends HeaderPage {
     @Step("ProductTypePage: get count of selected products by filter")
     public int getSelectedProductsAmount() {
         return Integer.parseInt($x("//rz-selected-filters/div/p").getText().replaceAll("\\D", EMPTY));
+    }
+
+    @Step("ProductTypePage: get products list")
+    public List<Product> getProductsList() {
+        int productsCollectionSize = $$x("//div[@class='goods-tile__inner']")
+                .shouldHave(CollectionCondition.sizeGreaterThan(1))
+                .size();
+        return IntStream
+                .rangeClosed(1, productsCollectionSize)
+                .mapToObj(i -> getProduct(i))
+                .collect(Collectors.toList());
+    }
+
+    @Step("ProductTypePage: get products quantity")
+    public int getProductsQuantity() {
+        var productsQuantity = $(".catalog-selection__label.ng-star-inserted")
+                .getText()
+                .split(StringUtils.SPACE);
+
+        return Integer.parseInt(productsQuantity[1]);
     }
 }
