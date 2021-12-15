@@ -5,16 +5,16 @@
         <param name="Threshold" value="INFO"/>
         <param name="Target" value="System.out"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%-5p %c{1} - %m%n" />
+            <param name="ConversionPattern" value="%-5p %c{1} - %m%n"/>
         </layout>
     </appender>
 
     <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
         <param name="Threshold" value="DEBUG"/>
         <param name="File" value="logs/test-execution.log"/>
-        <param name="append" value="false" />
+        <param name="append" value="false"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
         </layout>
     </appender>
 
@@ -23,5 +23,4 @@
         <appender-ref ref="console"/>
         <appender-ref ref="fileAppender"/>
     </root>
-
 </log4j:configuration>
