@@ -9,6 +9,7 @@ import io.qameta.allure.Issue;
 import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
+import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SideModalMenuTest extends TestRunner {
@@ -69,6 +70,26 @@ public class SideModalMenuTest extends TestRunner {
                 .as("selectedCity should be the same like lviv")
                 .isEqualTo(lviv);
 
+    }
+
+    @Test
+    @Description()
+    @TmsLink(value = "")
+    public void verifyVacancyCatalogDisplaying(){
+        var vacancyPage = new HomePage()
+                .open()
+                .getHeader()
+                .changeLanguage("UA")
+                .openSideMenuModal()
+                .openVacancyPage();
+
+        assertThat(getCurrentUrl())
+                .as("PartnershipPage should be opened")
+                .isEqualTo("https://rozetka.com.ua/ua/careers/");
+
+        assertThat(vacancyPage.isVacanciesCatalogDisplayed())
+                .as("Vacancy catalog should be displayed")
+                .isTrue();
     }
 
 }
