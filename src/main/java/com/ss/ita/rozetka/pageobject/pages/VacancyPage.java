@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class VacancyPage {
     @Step("VacancyPage: vacancies is displayed")
-    public boolean isVacanciesCatalogDisplayed(){
+    public boolean isVacancyCatalogDisplayed(){
         return $x("//a[contains(@href,'catalog')]").isDisplayed();
     }
 }

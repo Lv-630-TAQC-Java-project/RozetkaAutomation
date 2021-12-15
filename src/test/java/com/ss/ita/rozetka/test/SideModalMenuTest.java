@@ -87,7 +87,7 @@ public class SideModalMenuTest extends TestRunner {
                 .as("PartnershipPage should be opened")
                 .isEqualTo("https://rozetka.com.ua/ua/careers/");
 
-        assertThat(vacancyPage.isVacanciesCatalogDisplayed())
+        assertThat(vacancyPage.isVacancyCatalogDisplayed())
                 .as("Vacancy catalog should be displayed")
                 .isTrue();
     }
