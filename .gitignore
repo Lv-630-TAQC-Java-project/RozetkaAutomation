@@ -22,6 +22,7 @@ test-output
 
 *.png
 *.html
+*.log
 
 src/test/resources/web-drivers/
 allure-results/
