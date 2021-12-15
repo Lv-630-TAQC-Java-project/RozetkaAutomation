@@ -17,8 +17,8 @@ public class ProductSortTypePageTest extends TestRunner {
     public void verifyThatProductsArePresentedInBooksCategory(){
         var productTypePage = new HomePage()
                 .open()
-                .openGeneralProductCategory(STATIONERY_AND_BOOKS)
-                .openProductCategoryAndSubCategory(BOOKS_CATEGORY)
+                .openProductCategoryPage(STATIONERY_AND_BOOKS)
+                .openProductTypePage(BOOKS_CATEGORY)
                 .sortProductsListBy(ProductsListSortType.ACTION);
 
         assertThat(productTypePage

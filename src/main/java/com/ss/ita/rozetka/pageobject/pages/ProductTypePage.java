@@ -10,8 +10,6 @@ import io.qameta.allure.Step;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -131,5 +129,12 @@ public class ProductTypePage extends HeaderPage {
                 .split(StringUtils.SPACE);
 
         return Integer.parseInt(productsQuantity[1]);
+    }
+
+    @Step("ProductTypePage: get action tile label")
+    public String getLabelClassAction() {
+        String labelClassAction;
+        labelClassAction = "goods-tile__label promo-label promo-label_type_action ng-star-inserted";
+        return labelClassAction;
     }
 }
