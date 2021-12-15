@@ -17,7 +17,8 @@ public enum ProductCategoryAndSubCategory {
     TV_ACCESSORIES_CATEGORY("c80015"), //specific
     SPA_POOLS_CATEGORY("spa-basseyni"),
     TRIMMERS_SUBCATEGORY("trimmers"),
-    MOBILE_PHONES_CATEGORY("mobile-phones");
+    MOBILE_PHONES_CATEGORY("mobile-phones"),
+    BOOKS_CATEGORY("komiksi");
 
     @Getter
     private final String name;

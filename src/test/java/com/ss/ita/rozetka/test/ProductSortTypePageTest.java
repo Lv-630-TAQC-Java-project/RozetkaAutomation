@@ -7,6 +7,9 @@ import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
+import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.STATIONERY_AND_BOOKS;
+import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.BOOKS_CATEGORY;
+
 public class ProductSortTypePageTest extends TestRunner {
     @Test
     @Description(value = "Opening a home page, choosing a product category and opening it, sorting the classification type ")
