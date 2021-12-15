@@ -33,8 +33,6 @@ public class WishListPage {
 
     @Step("WishListPage: is product list empty")
     public boolean isProductListEmpty() {
-        return $$x("(//a[@class='goods-tile__picture ng-star-inserted'])")
-                .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0))
-                .isEmpty();
+        return $$x("(//a[@class='goods-tile__picture ng-star-inserted'])").isEmpty();
     }
 }
