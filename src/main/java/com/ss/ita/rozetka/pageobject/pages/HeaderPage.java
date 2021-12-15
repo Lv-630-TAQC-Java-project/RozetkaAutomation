@@ -1,6 +1,5 @@
 package com.ss.ita.rozetka.pageobject.pages;
 
-import com.codeborne.selenide.Selenide;
 import com.ss.ita.rozetka.pageobject.elements.Header;
 import lombok.Getter;
 
