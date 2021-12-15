@@ -140,7 +140,7 @@ public class FilterFunctionalityTest extends TestRunner {
     @Test
     @Description("Verify that after selecting and discarding 2 filter options product type page presented correctly")
     @TmsLink(value = "LVTAQC630-66")
-    public void verifyThatDiscardButtonWorkCorrectly() {
+    public void verifyThatDiscardButtonWorksCorrectly() {
         var productTypePage = new HomePage()
                 .open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
@@ -162,12 +162,14 @@ public class FilterFunctionalityTest extends TestRunner {
                 .getFilter(SELLER)
                 .selectOption(seller);
 
-        assertThat(filterSideBar.getFilter(PRODUCER).isOptionSelected(company))
+        assertThat(filterSideBar
+                .getFilter(PRODUCER)
+                .isOptionSelected(company))
                 .as("Filter should be selected")
                 .isTrue();
 
         productTypePage.discardAllFilters();
-        assertThat(productTypePage.isDiscardingButtonVisible())
+        assertThat(productTypePage.isDiscardingButtonInvisible())
                 .as("Discard all filters button should be invisible")
                 .isTrue();
 

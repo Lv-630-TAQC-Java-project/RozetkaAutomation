@@ -136,12 +136,14 @@ public class ProductTypePage extends HeaderPage {
 
     @Step("ProductTypePage: discard all selected filters")
     public ProductTypePage discardAllFilters() {
-        $x("//button[@class='catalog-selection__link catalog-selection__link_type_reset']").shouldBe(Condition.enabled).click();
+        $x("//button[@class='catalog-selection__link catalog-selection__link_type_reset']")
+                .shouldBe(Condition.enabled)
+                .click();
         return new ProductTypePage();
     }
 
     @Step("ProductTypePage: get discarding button display status")
-    public boolean isDiscardingButtonVisible() {
+    public boolean isDiscardingButtonInvisible() {
         return isElementInvisible("//button[@class='catalog-selection__link catalog-selection__link_type_reset']");
     }
 }
