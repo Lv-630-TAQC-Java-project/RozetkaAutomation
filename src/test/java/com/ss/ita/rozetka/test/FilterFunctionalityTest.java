@@ -15,6 +15,7 @@ import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.*;
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.MONITORS_CATEGORY;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY;
+import static com.ss.ita.rozetka.pageobject.utils.Language.UA;
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -146,7 +147,7 @@ public class FilterFunctionalityTest extends TestRunner {
         var productCategoryPage = new HomePage()
                 .open()
                 .getHeader()
-                .changeLanguage("UA")
+                .changeLanguage(UA)
                 .openHomePage()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS);
         var productTypePage = productCategoryPage.openProductTypePage(NOTEBOOKS_CATEGORY);
@@ -172,15 +173,15 @@ public class FilterFunctionalityTest extends TestRunner {
         for (Product productItem : productList) {
             softAssert
                     .assertThat(productItem.getTitle())
-                    .as(String.format("Product title should be contains %s", brand))
+                    .as("Product title should be contains " + brand)
                     .contains(brand);
             softAssert
                     .assertThat(productItem.getDescription())
-                    .as(String.format("Product description should contains screen size %s", productTypePage))
+                    .as("Product description should contains screen size " + productTypePage)
                     .containsAnyOf(splitScreenSizeParams);
             softAssert
                     .assertThat(productItem.getAvailability())
-                    .as(String.format("Product availability should be %s", readyToDelivery))
+                    .as("Product availability should be " + readyToDelivery)
                     .isEqualTo(readyToDelivery);
         }
         softAssert.assertAll();

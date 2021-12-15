@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 
 
+import static com.ss.ita.rozetka.pageobject.utils.Language.UA;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SearchFunctionalityTest extends TestRunner {
@@ -65,7 +66,7 @@ public class SearchFunctionalityTest extends TestRunner {
         var homePage = new HomePage()
                 .open()
                 .getHeader()
-                .changeLanguage("UA")
+                .changeLanguage(UA)
                 .openHomePage();
         var searchTermsList = Arrays.asList("Dell", "HP", "IPhone", "Stihl");
         var softAssert = new SoftAssertions();

@@ -6,6 +6,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
+import static com.ss.ita.rozetka.pageobject.utils.Language.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LocalizationTest extends TestRunner {
@@ -17,13 +18,13 @@ public class LocalizationTest extends TestRunner {
         var homePage = new HomePage().open();
         var header = homePage.getHeader();
 
-        header.changeLanguage("UA");
+        header.changeLanguage(UA);
 
         assertThat(homePage.getGreetingsText())
                 .as("Language should be changed")
                 .contains("Ласкаво просимо!");
 
-        header.changeLanguage("RU");
+        header.changeLanguage(RU);
 
         assertThat(homePage.getGreetingsText())
                 .as("Language should be changed")

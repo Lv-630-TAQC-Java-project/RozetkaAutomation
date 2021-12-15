@@ -6,6 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.ss.ita.rozetka.pageobject.modals.*;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
+import com.ss.ita.rozetka.pageobject.utils.Language;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
@@ -39,7 +40,7 @@ public class Header {
     }
 
     @Step("Header: change language to {language}")
-    public Header changeLanguage(String language) {
+    public Header changeLanguage(Language language) {
         $x(String.format("//a[normalize-space()='%s']", language)).click();
         return this;
     }
