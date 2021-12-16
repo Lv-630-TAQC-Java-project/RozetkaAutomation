@@ -139,7 +139,7 @@ public class ProductTypePage extends HeaderPage {
         $x("//button[@class='catalog-selection__link catalog-selection__link_type_reset']")
                 .shouldBe(Condition.enabled)
                 .click();
-        return new ProductTypePage();
+        return this;
     }
 
     @Step("ProductTypePage: get discarding button display status")
