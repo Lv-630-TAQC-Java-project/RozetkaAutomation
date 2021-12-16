@@ -23,18 +23,14 @@ public class RecentlyViewedProductsTest extends TestRunner {
     @Description(value = "Verifies that products opened by user are displayed on home page under recently viewed products list in order from last opened to first opened")
     @TmsLink(value = "LVTAQC630-30")
     public void verifyLastViewedProductAddedToTheList() {
-        var homePage = new HomePage()
-                .open();
-        var header = homePage.getHeader();
-
-        header.changeLanguage(Language.UA);
-        var productPage = homePage
+        var productPage = new HomePage()
+                .open()
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
         var isProductTypePageOpened = productPage.isOpened();
         assertThat(getCurrentUrl())
                 .as("Kitchen appliances category page should be opened")
-                .isEqualTo("https://bt.rozetka.com.ua/ua/tehnika-dlya-kuhni/c435974/");
+                .isEqualTo("https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/");
         assertThat(isProductTypePageOpened)
                 .as("Product type page should be opened")
                 .isTrue();
@@ -43,6 +39,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .openProductPage(1)
                 .getTitle();
 
+        var header = productPage.getHeader();
 
         var recentlyViewedProductTitle = header
                 .openHomePage()
@@ -86,25 +83,22 @@ public class RecentlyViewedProductsTest extends TestRunner {
     @Description(value = "Verifies that opening same product multiple times does not add new entries in recently viewed product list")
     @TmsLink(value = "LVTAQC630-44")
     public void verifyProductAddedOnlyOnce() {
-        var homePage = new HomePage()
-                .open();
-        var header = homePage.getHeader();
-
-        header.changeLanguage(Language.UA);
+        var homePage = new HomePage().open();
         var productPage = homePage
                 .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
         var isProductTypePageOpened = productPage.isOpened();
         assertThat(getCurrentUrl())
                 .as("Kitchen appliances category page should be opened")
-                .isEqualTo("https://bt.rozetka.com.ua/ua/tehnika-dlya-kuhni/c435974/");
+                .isEqualTo("https://bt.rozetka.com.ua/tehnika-dlya-kuhni/c435974/");
         assertThat(isProductTypePageOpened)
                 .as("Product type page should be opened")
                 .isTrue();
-
         var firstOpenedProductTitle = productPage
                 .openProductPage(1)
                 .getTitle();
+
+        var header = productPage.getHeader();
 
         var recentlyOpenedProductTitle = header
                 .openHomePage()

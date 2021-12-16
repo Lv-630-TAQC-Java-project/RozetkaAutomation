@@ -2,7 +2,6 @@ package com.ss.ita.rozetka.test;
 
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductCategoryPage;
-import com.ss.ita.rozetka.pageobject.utils.Language;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
@@ -19,14 +18,9 @@ public class NavigationTest extends TestRunner {
     @Description(value = "Verifies that user can return to home page from product category page")
     @TmsLink(value = "LVTAQC630-7")
     public void verifyReturnToHomePage() {
-        var homePage = new HomePage()
-                .open();
-
-        var header = homePage.getHeader();
-
-        header.changeLanguage(Language.UA);
-
-        var productCategoryPage = homePage.openProductCategoryPage(HOUSEHOLD_APPLIANCES);
+        var productCategoryPage = new HomePage()
+                .open()
+                .openProductCategoryPage(HOUSEHOLD_APPLIANCES);
 
         var isProductPageOpened = productCategoryPage.isOpened();
         assertThat(isProductPageOpened)
@@ -40,12 +34,13 @@ public class NavigationTest extends TestRunner {
                 .as("Product type page should be opened")
                 .isTrue();
 
-        var isHomePageOpened = header
+        var isHomePageOpened = productCategoryPage
+                .getHeader()
                 .openHomePage()
                 .isOpened();
         assertThat(getCurrentUrl())
                 .as("Home page should be opened")
-                .isEqualTo("https://rozetka.com.ua/ua/");
+                .isEqualTo("https://rozetka.com.ua/");
         assertThat(isHomePageOpened)
                 .as("Home page should be opened")
                 .isTrue();
