@@ -115,7 +115,7 @@ public class FilterTest extends TestRunner {
     @Test
     @Description("Verify that in filter after decreasing lower and upper price bounds the OK button is disabled")
     @TmsLink("LVTAQC630-72")
-    public void verifyTPriceOkButtonIsDisabledWhenBoundsAreIncorrect() {
+    public void verifyPriceSubmitButtonIsDisabledWhenBoundsAreIncorrect() {
         var filterSideBar = new HomePage()
                 .open()
                 .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
@@ -128,7 +128,7 @@ public class FilterTest extends TestRunner {
         filterSideBar.setMinPrice(defaultMinPrice - 1);
         var softly = new SoftAssertions();
 
-        softly.assertThat(filterSideBar.isPriceRangeCorrect())
+        softly.assertThat(filterSideBar.isPriceRangeValid())
                 .as("Price range should be incorrect because min price is lower than bound")
                 .isFalse();
 
@@ -136,7 +136,7 @@ public class FilterTest extends TestRunner {
                 .setMinPrice(defaultMinPrice - 1)
                 .setMaxPrice(defaultMaxPrice + 1);
 
-        softly.assertThat(filterSideBar.isPriceRangeCorrect())
+        softly.assertThat(filterSideBar.isPriceRangeValid())
                 .as("Price range should be incorrect because max price is higher than bound")
                 .isFalse();
 
@@ -144,7 +144,7 @@ public class FilterTest extends TestRunner {
                 .setMinPrice(defaultMinPrice)
                 .setMaxPrice(defaultMaxPrice);
 
-        softly.assertThat(filterSideBar.isPriceRangeCorrect())
+        softly.assertThat(filterSideBar.isPriceRangeValid())
                 .as("Price range should be correct because min and max were returned to default values")
                 .isTrue();
     }

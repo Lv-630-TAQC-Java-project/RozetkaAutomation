@@ -72,7 +72,7 @@ public class FilterSideBar {
     }
 
     @Step("FilterSideBar: get price correctness status")
-    public boolean isPriceRangeCorrect() {
+    public boolean isPriceRangeValid() {
         return $x(priceOkButtonXpath).isEnabled();
     }
 
