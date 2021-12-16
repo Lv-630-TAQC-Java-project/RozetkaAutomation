@@ -169,4 +169,46 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .as("Second product title in recently viewed products should equal second opened product")
                 .isEqualTo(secondOpenedProductTitle);
     }
+
+    @Test
+    @Description(value = "Verifies that 'Show more' button appears in recently viewed products after opening more than 6 producs and clicking it will display other products")
+    @TmsLink(value = "LVTAQC630-68")
+    public void verifyShowMoreButtonExpandsRecentlyViewedProductsSection() {
+        var homePage = new HomePage().open();
+
+        var header = homePage.getHeader();
+        header.changeLanguage(Language.UA);
+
+        var productPage = homePage
+                .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
+                .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
+        var isProductTypePageOpened = productPage.isOpened();
+        assertThat(getCurrentUrl())
+                .as("Kitchen appliances category page should be opened")
+                .isEqualTo("https://bt.rozetka.com.ua/ua/tehnika-dlya-kuhni/c435974/");
+        assertThat(isProductTypePageOpened)
+                .as("Product type page should be opened")
+                .isTrue();
+
+        var numberOfProducts = 7;
+
+        for (int i = 1; i <= numberOfProducts; i++) {
+            productPage.openProductPage(i);
+            productPage.back();
+        }
+
+        header.openHomePage();
+        var recentlyOpenedProductsTitles = homePage.getRecentlyViewedProductTitles();
+        assertThat(recentlyOpenedProductsTitles)
+                .as("Only 6 or less products should be displayed")
+                .hasSizeLessThan(7);
+
+        homePage.expandRecentlyViewedProductsSection();
+
+        var expandedRecentlyOpenedProductsTitles = homePage.getRecentlyViewedProductTitles();
+
+        assertThat(expandedRecentlyOpenedProductsTitles)
+                .as("All 7 opened products should be displayed")
+                .hasSize(numberOfProducts);
+    }
 }

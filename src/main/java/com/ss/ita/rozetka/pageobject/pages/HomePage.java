@@ -49,6 +49,12 @@ public class HomePage extends HeaderPage {
                 .texts();
     }
 
+    @Step("HomePage: expand recently viewed products section")
+    public HomePage expandRecentlyViewedProductsSection() {
+        $x("//section[@class = 'main-goods ng-star-inserted'][1]/goods-section/button").click();
+        return this;
+    }
+
     @Step("HomePage: get display status main menu categories")
     public boolean isMainMenuCategoriesDisplayed() {
         return $x("//ul[@class='menu-categories menu-categories_type_main']").isDisplayed();
