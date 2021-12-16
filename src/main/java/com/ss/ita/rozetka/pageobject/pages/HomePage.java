@@ -49,8 +49,8 @@ public class HomePage extends HeaderPage {
                 .texts();
     }
 
-    @Step("HomePage: expand recently viewed products list")
-    public HomePage expandRecentlyViewedProductsList() {
+    @Step("HomePage: expand recently viewed products section")
+    public HomePage expandRecentlyViewedProductsSection() {
         $x("//section[@class = 'main-goods ng-star-inserted'][1]/goods-section/button").click();
         return this;
     }

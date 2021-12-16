@@ -173,7 +173,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
     @Test
     @Description(value = "Verifies that 'Show more' button appears in recently viewed products after opening more than 6 producs and clicking it will display other products")
     @TmsLink(value = "LVTAQC630-68")
-    public void verifyClickingShowMoreDisplaysProducts() {
+    public void verifyShowMoreButtonExpandsRecentlyViewedProductsSection() {
         var homePage = new HomePage().open();
 
         var header = homePage.getHeader();
@@ -203,7 +203,7 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .as("Only 6 or less products should be displayed")
                 .hasSizeLessThan(7);
 
-        homePage.expandRecentlyViewedProductsList();
+        homePage.expandRecentlyViewedProductsSection();
 
         var expandedRecentlyOpenedProductsTitles = homePage.getRecentlyViewedProductTitles();
 
