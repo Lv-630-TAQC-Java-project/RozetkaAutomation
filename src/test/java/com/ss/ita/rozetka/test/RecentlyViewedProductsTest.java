@@ -112,15 +112,62 @@ public class RecentlyViewedProductsTest extends TestRunner {
                 .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY)
                 .openProductPage(1)
                 .getTitle();
-        var recentlyViewedProductTitle = header
+        var recentlyViewedProductTitles = header
                 .openHomePage()
                 .getRecentlyViewedProductTitles();
-        assertThat(recentlyViewedProductTitle)
+        assertThat(recentlyViewedProductTitles)
                 .as("Recently viewed product list should contain one product")
                 .hasSize(1);
-        assertThat(recentlyViewedProductTitle)
+        assertThat(recentlyViewedProductTitles)
                 .as("Product in recently viewed product list should be the same as last opened product")
                 .contains(secondOpenedProductTitle);
+    }
+
+    @Test
+    @Description(value = "Verifies that opening already opened product moves it to the first position in recently viewed products")
+    @TmsLink(value = "LVTAQC630-60")
+    public void verifyProductMovedToFirstPositionWhenReopened() {
+        var homePage = new HomePage().open();
+
+        var header = homePage.getHeader();
+        header.changeLanguage(Language.UA);
+
+        var productPage = homePage
+                .openProductCategoryPage(HOUSEHOLD_APPLIANCES)
+                .openProductTypePage(KITCHEN_APPLIANCES_CATEGORY);
+        var isProductTypePageOpened = productPage.isOpened();
+        assertThat(getCurrentUrl())
+                .as("Kitchen appliances category page should be opened")
+                .isEqualTo("https://bt.rozetka.com.ua/ua/tehnika-dlya-kuhni/c435974/");
+        assertThat(isProductTypePageOpened)
+                .as("Product type page should be opened")
+                .isTrue();
+        var firstOpenedProductTitle = productPage
+                .openProductPage(1)
+                .getTitle();
+
+        productPage.back();
+
+        var secondOpenedProductTitle = productPage
+                .openProductPage(2)
+                .getTitle();
+
+        productPage.back();
+
+        productPage.openProductPage(1);
+
+        var recentlyViewedProductTitles = header
+                .openHomePage()
+                .getRecentlyViewedProductTitles();
+        assertThat(recentlyViewedProductTitles)
+                .as("Recently opened products should have 2 products")
+                .hasSize(2);
+        assertThat(recentlyViewedProductTitles.get(0))
+                .as("First product title in recently viewed products should equal first opened product")
+                .isEqualTo(firstOpenedProductTitle);
+        assertThat(recentlyViewedProductTitles.get(1))
+                .as("Second product title in recently viewed products should equal second opened product")
+                .isEqualTo(secondOpenedProductTitle);
     }
 
     @Test
