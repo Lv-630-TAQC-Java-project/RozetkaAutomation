@@ -26,7 +26,7 @@ public class ProductSortTypePageTest extends TestRunner {
                 .getProduct(1)
                 .getPromoLabelTitle())
                 .as("Product must have tile label 'action'")
-                .isEqualTo(productTypePage.getLabelClassAction());
+                .isEqualTo(ProductsListSortType.ACTION);
     }
 
 }

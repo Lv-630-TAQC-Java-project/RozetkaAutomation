@@ -130,11 +130,4 @@ public class ProductTypePage extends HeaderPage {
 
         return Integer.parseInt(productsQuantity[1]);
     }
-
-    @Step("ProductTypePage: get action tile label")
-    public String getLabelClassAction() {
-        String labelClassAction;
-        labelClassAction = "goods-tile__label promo-label promo-label_type_action ng-star-inserted";
-        return labelClassAction;
-    }
 }
