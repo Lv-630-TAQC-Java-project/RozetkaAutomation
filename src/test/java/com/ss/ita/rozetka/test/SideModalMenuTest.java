@@ -73,24 +73,4 @@ public class SideModalMenuTest extends TestRunner {
 
     }
 
-    @Test
-    @Description("verify vacancy catalog is displayed on VacancyPage")
-    @TmsLink(value = "LVTAQC630-69")
-    public void verifyVacancyCatalogDisplaying(){
-        var vacancyPage = new HomePage()
-                .open()
-                .getHeader()
-                .changeLanguage(UA)
-                .openSideMenuModal()
-                .openVacancyPage();
-
-        assertThat(getCurrentUrl())
-                .as("PartnershipPage should be opened")
-                .isEqualTo("https://rozetka.com.ua/ua/careers/");
-
-        assertThat(vacancyPage.isVacancyCatalogDisplayed())
-                .as("Vacancy catalog should be displayed")
-                .isTrue();
-    }
-
 }
