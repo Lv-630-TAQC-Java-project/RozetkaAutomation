@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY;
+import static com.ss.ita.rozetka.pageobject.utils.Language.UA;
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,7 +21,7 @@ public class BuyProductTest extends TestRunner {
         var homePage = new HomePage()
                 .open()
                 .getHeader()
-                .changeLanguage("UA")
+                .changeLanguage(UA)
                 .openHomePage();
 
         assertThat(getCurrentUrl())

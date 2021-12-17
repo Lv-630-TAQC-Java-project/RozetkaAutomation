@@ -9,6 +9,7 @@ import io.qameta.allure.Issue;
 import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
+import static com.ss.ita.rozetka.pageobject.utils.Language.UA;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SideModalMenuTest extends TestRunner {
@@ -38,7 +39,7 @@ public class SideModalMenuTest extends TestRunner {
         Header header = new HomePage()
                 .open()
                 .getHeader()
-                .changeLanguage("UA");
+                .changeLanguage(UA);
         SideMenuModal sideModalMenu = header.openSideMenuModal();
 
         String odessa = "Одеса";

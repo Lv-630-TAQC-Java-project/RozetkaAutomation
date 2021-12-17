@@ -110,7 +110,7 @@ public class Product {
 
     @Step("Product: get product description")
     public String getDescription() {
-        actions().moveToElement($x(xPath)).perform();
+        $x(xPath).scrollIntoView(true).hover();
         SelenideElement descriptionElement = $x(String.format("%s%s", xPath, "//*[contains(@class,'goods-tile__description')]"));
         if (descriptionElement.exists()) {
             productDescription = descriptionElement.text();

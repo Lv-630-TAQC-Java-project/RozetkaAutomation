@@ -1,5 +1,6 @@
 package com.ss.ita.rozetka.test;
 
+import com.ss.ita.rozetka.pageobject.elements.Product;
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
 import com.ss.ita.rozetka.pageobject.pages.ProductTypePage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
@@ -8,11 +9,11 @@ import io.qameta.allure.TmsLink;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
-import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.PRODUCER;
-import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.SELLER;
+import static com.ss.ita.rozetka.pageobject.elements.filters.FilterName.*;
 import static com.ss.ita.rozetka.pageobject.product.GeneralProductCategory.NOTEBOOKS_AND_COMPUTERS;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.MONITORS_CATEGORY;
 import static com.ss.ita.rozetka.pageobject.product.ProductCategoryAndSubCategory.NOTEBOOKS_CATEGORY;
+import static com.ss.ita.rozetka.pageobject.utils.Language.UA;
 import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -184,5 +185,53 @@ public class FilterFunctionalityTest extends TestRunner {
                 .isOptionSelected(company))
                 .as("After discarding filter shouldn't be selected")
                 .isFalse();
+    }
+
+  
+    @Test
+    @TmsLink(value = "LVTAQC630-53")
+    @Description(value = "Verify that after multiply filtering all products corresponds to selected filter options")
+    public void verifyProductsCorrespondsToSelectedFilterOptions() {
+        var productCategoryPage = new HomePage()
+                .open()
+                .getHeader()
+                .changeLanguage(UA)
+                .openHomePage()
+                .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS);
+        var productTypePage = productCategoryPage.openProductTypePage(NOTEBOOKS_CATEGORY);
+        assertThat(productTypePage.isOpened())
+                .as("Product type page should be opened")
+                .isTrue();
+        var filterSideBar = productTypePage.getFilterSideBar();
+        var readyToDelivery = "Готовий до відправлення";
+        filterSideBar
+                .getFilter(READY_TO_DELIVER)
+                .selectOption(readyToDelivery);
+        var brand = "Dell";
+        filterSideBar
+                .getFilter(PRODUCER)
+                .selectOption(brand);
+        var screenSize = "15\"-15.6\"";
+        filterSideBar
+                .getFilter("20861")
+                .selectOption(screenSize);
+        var splitScreenSizeParams = screenSize.split("-");
+        var softAssert = new SoftAssertions();
+        var productList = productTypePage.getProductsList();
+        for (Product productItem : productList) {
+            softAssert
+                    .assertThat(productItem.getTitle())
+                    .as("Product title should be contains " + brand)
+                    .contains(brand);
+            softAssert
+                    .assertThat(productItem.getDescription())
+                    .as("Product description should contains screen size " + productTypePage)
+                    .containsAnyOf(splitScreenSizeParams);
+            softAssert
+                    .assertThat(productItem.getAvailability())
+                    .as("Product availability should be " + readyToDelivery)
+                    .isEqualTo(readyToDelivery);
+        }
+        softAssert.assertAll();
     }
 }
