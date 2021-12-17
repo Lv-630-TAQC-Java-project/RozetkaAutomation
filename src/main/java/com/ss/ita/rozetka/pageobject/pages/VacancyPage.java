@@ -9,7 +9,8 @@ public class VacancyPage {
     public boolean isVacancyCatalogDisplayed(){
         return $x("//a[contains(@href,'catalog')]").isDisplayed();
     }
-    @Step
+
+    @Step("VacancyPage: open vacancy catalog page")
     public VacancyCatalogPage openVacancyCatalogPage(){
         $x("//a[contains(@href,'catalog')]").click();
         return new VacancyCatalogPage();

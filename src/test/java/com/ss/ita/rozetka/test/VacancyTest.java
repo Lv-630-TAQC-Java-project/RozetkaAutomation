@@ -1,9 +1,11 @@
 package com.ss.ita.rozetka.test;
 
 import com.ss.ita.rozetka.pageobject.pages.HomePage;
+import com.ss.ita.rozetka.pageobject.pages.VacancyPage;
 import com.ss.ita.rozetka.pageobject.utils.TestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.TmsLink;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.utils.Language.UA;
@@ -12,17 +14,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class VacancyTest extends TestRunner {
 
-    @Test
-    @Description("Verify vacancy catalog is displayed on VacancyPage")
-    @TmsLink(value = "LVTAQC630-69")
-    public void verifyVacancyCatalogDisplaying(){
-        var vacancyPage = new HomePage()
+    private VacancyPage vacancyPage;
+
+    @BeforeMethod
+    public void goToVacancyPage() {
+        vacancyPage = new HomePage()
                 .open()
                 .getHeader()
                 .changeLanguage(UA)
                 .openSideMenuModal()
                 .openVacancyPage();
+    }
 
+    @Test
+    @Description("Verify vacancy catalog is displayed on VacancyPage")
+    @TmsLink(value = "LVTAQC630-69")
+    public void verifyVacancyCatalogDisplaying() {
         assertThat(getCurrentUrl())
                 .as("PartnershipPage should be opened")
                 .isEqualTo("https://rozetka.com.ua/ua/careers/");
@@ -35,14 +42,7 @@ public class VacancyTest extends TestRunner {
     @Test
     @Description("Verify vacancy count decreasing after filtration")
     @TmsLink(value = "LVTAQC630-73")
-    public void verifyVacancyDecreasingAfterFiltration(){
-        var vacancyPage = new HomePage()
-                .open()
-                .getHeader()
-                .changeLanguage(UA)
-                .openSideMenuModal()
-                .openVacancyPage();
-
+    public void verifyVacancyDecreasingAfterFiltration() {
         assertThat(getCurrentUrl())
                 .as("PartnershipPage should be opened")
                 .isEqualTo("https://rozetka.com.ua/ua/careers/");
