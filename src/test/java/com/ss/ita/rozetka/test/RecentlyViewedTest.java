@@ -50,6 +50,5 @@ public class RecentlyViewedTest extends TestRunner {
         assertThat(recentlyViewedPage.getProductsAmount())
                 .as("Products amount should be equal to zero")
                 .isEqualTo(0);
-
     }
 }
