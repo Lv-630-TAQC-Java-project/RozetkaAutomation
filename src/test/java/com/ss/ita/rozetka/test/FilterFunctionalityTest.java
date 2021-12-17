@@ -139,6 +139,56 @@ public class FilterFunctionalityTest extends TestRunner {
     }
 
     @Test
+    @Description("Verify that after selecting and discarding 2 filter options product type page presented correctly")
+    @TmsLink(value = "LVTAQC630-66")
+    public void verifyThatDiscardButtonWorksCorrectly() {
+        var productTypePage = new HomePage()
+                .open()
+                .openProductCategoryPage(NOTEBOOKS_AND_COMPUTERS)
+                .openProductTypePage(NOTEBOOKS_CATEGORY);
+
+        var company = "Dell";
+        var seller = "Rozetka";
+        var filterSideBar = productTypePage.getFilterSideBar();
+
+        filterSideBar
+                .getFilter(PRODUCER)
+                .selectOption(company);
+
+        assertThat(productTypePage.getProductTitle(1))
+                .as("Title should contains Dell")
+                .contains(company);
+
+        filterSideBar
+                .getFilter(SELLER)
+                .selectOption(seller);
+
+        assertThat(filterSideBar
+                .getFilter(PRODUCER)
+                .isOptionSelected(company))
+                .as("Filter should be selected")
+                .isTrue();
+
+        productTypePage.discardAllFilters();
+        assertThat(productTypePage.isDiscardingButtonInvisible())
+                .as("Discard all filters button should be invisible")
+                .isTrue();
+
+        assertThat(filterSideBar
+                .getFilter(SELLER)
+                .isOptionSelected(seller))
+                .as("After discarding filter shouldn't be selected")
+                .isFalse();
+
+        assertThat(filterSideBar
+                .getFilter(PRODUCER)
+                .isOptionSelected(company))
+                .as("After discarding filter shouldn't be selected")
+                .isFalse();
+    }
+
+  
+    @Test
     @TmsLink(value = "LVTAQC630-53")
     @Description(value = "Verify that after multiply filtering all products corresponds to selected filter options")
     public void verifyProductsCorrespondsToSelectedFilterOptions() {

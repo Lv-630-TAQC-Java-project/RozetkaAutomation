@@ -19,4 +19,14 @@ public class PageUtil {
             return false;
         }
     }
+
+    public static boolean isElementInvisible(String elementXPath) {
+        try {
+            return $x(elementXPath)
+                    .shouldNot(Condition.exist)
+                    .is(Condition.hidden);
+        } catch (AssertionError exception) {
+            return false;
+        }
+    }
 }
