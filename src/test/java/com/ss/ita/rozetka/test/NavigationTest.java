@@ -19,8 +19,7 @@ public class NavigationTest extends TestRunner {
     @Description(value = "Verifies that user can return to home page from product category page")
     @TmsLink(value = "LVTAQC630-7")
     public void verifyReturnToHomePage() {
-        var homePage = new HomePage()
-                .open();
+        var homePage = new HomePage().open();
 
         var header = homePage.getHeader();
 
