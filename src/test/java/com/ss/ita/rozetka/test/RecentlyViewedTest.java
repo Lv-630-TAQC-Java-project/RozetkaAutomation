@@ -47,8 +47,9 @@ public class RecentlyViewedTest extends TestRunner {
 
         recentlyViewedPage.clearRecentlyViewedProductsList();
 
-        assertThat(recentlyViewedPage.getProductListSize())
-                .as("Product list size should be equal to zero")
+        assertThat(recentlyViewedPage.getProductsAmount())
+                .as("Products amount should be equal to zero")
                 .isEqualTo(0);
+
     }
 }

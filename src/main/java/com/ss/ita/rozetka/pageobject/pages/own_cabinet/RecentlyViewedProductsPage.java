@@ -19,7 +19,7 @@ public class RecentlyViewedProductsPage extends HeaderPage {
     }
 
     @Step("RecentlyViewedProductsPage: is product list empty")
-    public int getProductListSize() {
+    public int getProductsAmount() {
         return $$("div.goods-tile__inner")
                 .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0))
                 .size();
