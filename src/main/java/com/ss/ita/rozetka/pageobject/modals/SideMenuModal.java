@@ -2,6 +2,7 @@ package com.ss.ita.rozetka.pageobject.modals;
 
 import com.codeborne.selenide.Condition;
 import com.ss.ita.rozetka.pageobject.elements.Header;
+import com.ss.ita.rozetka.pageobject.pages.own_cabinet.PersonalInformationPage;
 import com.ss.ita.rozetka.pageobject.pages.own_cabinet.WishListPage;
 import io.qameta.allure.Step;
 
@@ -38,5 +39,11 @@ public class SideMenuModal {
     public WishListPage openWishList() {
         $("ul.ng-star-inserted>li.side-menu__item:nth-child(1) > a.button:nth-child(1)").click();
         return new WishListPage();
+    }
+
+    @Step("PersonalInformationPage: open personal information page")
+    public PersonalInformationPage openPersonalInformationPage() {
+        $("div.side-menu__user>a").click();
+        return new PersonalInformationPage();
     }
 }
