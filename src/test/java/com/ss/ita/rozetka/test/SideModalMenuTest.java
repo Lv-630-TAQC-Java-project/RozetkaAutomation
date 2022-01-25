@@ -10,6 +10,7 @@ import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
 import static com.ss.ita.rozetka.pageobject.utils.Language.UA;
+import static com.ss.ita.rozetka.pageobject.utils.PageUtil.getCurrentUrl;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SideModalMenuTest extends TestRunner {

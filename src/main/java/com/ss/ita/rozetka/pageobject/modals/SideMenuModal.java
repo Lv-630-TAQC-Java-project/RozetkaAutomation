@@ -2,6 +2,7 @@ package com.ss.ita.rozetka.pageobject.modals;
 
 import com.codeborne.selenide.Condition;
 import com.ss.ita.rozetka.pageobject.elements.Header;
+import com.ss.ita.rozetka.pageobject.pages.VacancyPage;
 import com.ss.ita.rozetka.pageobject.pages.own_cabinet.WishListPage;
 import io.qameta.allure.Step;
 
@@ -34,9 +35,15 @@ public class SideMenuModal {
         return $x("//span[contains(@class, 'city-toggle')]").shouldNotBe(Condition.empty).text();
     }
 
-    @Step("Header: open wish list")
+    @Step("SideModalMenu: open wish list")
     public WishListPage openWishList() {
         $("ul.ng-star-inserted>li.side-menu__item:nth-child(1) > a.button:nth-child(1)").click();
         return new WishListPage();
+    }
+
+    @Step("SideModalMenu: open vacancy page")
+    public VacancyPage openVacancyPage(){
+        $x("(//a[contains(@href,'careers')])[2]").click();
+        return new VacancyPage();
     }
 }
